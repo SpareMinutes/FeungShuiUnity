@@ -37,5 +37,4 @@ public class Creature : MonoBehaviour
     public string getType() {
         return this.type;
     }
-    //test comment for commiting from VS code
 }
