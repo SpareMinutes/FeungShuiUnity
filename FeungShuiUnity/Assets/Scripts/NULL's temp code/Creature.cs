@@ -12,29 +12,39 @@ public class Creature : MonoBehaviour
     private float criticalHealth;
     private float attack;
     private float defense;
-    private float spAttack; // i see Mega had intelligence (im guessing)
-    private float spDefense; // Mega had resistance for the name of this stat
+    private float intelligence; //Special attack
+    private float resistance; //special defense
     private float speed;
+
     private string type;
+    private float friendship = 0; //0 should be neutral, and less <0 is bad >0 is good
+    private string personality;
+    private List<float> statModifiers;
 
-    //Type effectiveness dictionaries
-    private static Dictionary<string,List<string>> strongTypeEffectiveness = new Dictionary<string,List<string>>{
-        {"Fire", new List<string>{"Plant","Beast"}},
-        {"Water", new List<string>{"Fire","Earth","Stone"}},
-        {"Earth", new List<string>{"Fire","Electricity"}},
-        {"Wind", new List<string>{"Plant"}}
-        //add more
-    }; //this is for types that the key type DEALS extra damage TO
-    private static Dictionary<string,List<string>> weakTypeEffectiveness = new Dictionary<string,List<string>>{
-        {"Fire", new List<string>{"Earth", "Water"}},
-        {"Water", new List<string>{"Plant", "Ice"}},
-        {"Earth", new List<string>{"Water", "Ice"}},
-        {"Wind", new List<string>{"Electricity", "Stone"}}
-        //add more
-    }; //this is for types that the key type TAKES extra damage FROM
-    
+    private static Dictionary<Creature, float> friendshipDict = new Dictionary<Creature, float>();
+    private float trainerFriendship; // because the player isnt of type Creature
 
-    public string getType() {
-        return this.type;
+    private List<string> personalityKeys = new List<string>{"Hardy","Lonely","Brave","Adamant"}; // just the pokemon ones for placeholders
+    private static Dictionary<string, List<float>> personalityDict = new Dictionary<string, List<float>>{
+        // the list of modifiers are in order that they are stated above (activehealth,crithealth,atk,def,int,res,spd)
+        //since they are multipliers 1 means no change >1 means increase, <1 means decrease (gives potential to nullify a stat, eg shedinja always has 1 health, or we
+        //      could make it not have any defense(no reduction in physical damage)) 
+        {"Hardy", new List<float>{1, 1, 1, 1, 1, 1, 1}}, //no modifiers
+        {"Lonely", new List<float>{1, 1.25f, 0.75f, 1, 1, 1, 1}}, // +Atk, - spA
+        {"Brave", new List<float>{1, 1.25f, 1, 1, 1, 1, 0.75f}}, // +Atk, - Spd
+        {"Adamant", new List<float>{1, 1.25f, 1, 0.75f, 1, 1, 1}} // +Atk, - spD
+    };
+    //
+    //personality stuff
+    //
+    //
+    public void Start() {
+        //this is where the stats will be generated
+
+        //pick a random nature
+        this.personality = personalityKeys[Random.Range(0,this.personalityKeys.Count)];
+        this.statModifiers = personalityDict[this.personality];
+        Debug.Log(this.personality);
+        Debug.Log(this.statModifiers);
     }
 }
