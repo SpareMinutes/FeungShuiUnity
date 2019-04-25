@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Player_Walk_Sideways
+  m_Name: Player_Walk_Left
   serializedVersion: 6
   m_Legacy: 0
   m_Compressed: 0
@@ -22,16 +22,16 @@ AnimationClip:
     - time: 0
       value: {fileID: 7494884515996419191, guid: dcb85aa374f880f479347a39bedffbba,
         type: 3}
-    - time: 0.16666667
+    - time: 0.2
       value: {fileID: -5787079430280156357, guid: dcb85aa374f880f479347a39bedffbba,
         type: 3}
-    - time: 0.36666667
+    - time: 0.4
       value: {fileID: 1469565671277459004, guid: dcb85aa374f880f479347a39bedffbba,
         type: 3}
-    - time: 0.53333336
+    - time: 0.6
       value: {fileID: -6929853869736983932, guid: dcb85aa374f880f479347a39bedffbba,
         type: 3}
-    - time: 0.7
+    - time: 0.8
       value: {fileID: 7494884515996419191, guid: dcb85aa374f880f479347a39bedffbba,
         type: 3}
     attribute: m_Sprite
@@ -63,7 +63,7 @@ AnimationClip:
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.73333335
+    m_StopTime: 0.8333334
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0

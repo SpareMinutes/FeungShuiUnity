@@ -5,27 +5,23 @@ using UnityEngine;
 public class TestWalking : MonoBehaviour
 {
     public float speed; // movement speed multiplier
+    public Animator animator;
 
     private float HorizontalDirection;
     private float VerticalDirection;
 
+
     void Update () {
-        //checks for input
-
-        //moves the player
-        SmoothMovement();
-    }
-
-    void StiffMovement () {
-        // only move in set directions (N,E,S,W,(NE,SE,SW,NW)?)
-
-        
-    }
-
-    void SmoothMovement () {
-        // can move in any direction
+        //get inputs (controller or keyboard)
         HorizontalDirection = Input.GetAxisRaw("Horizontal");
         VerticalDirection = Input.GetAxisRaw("Vertical");
+
+        // seting up the animator settings
+        animator.SetBool("isWalking",HorizontalDirection != 0 || VerticalDirection != 0); 
+        animator.SetFloat("HorizontalSpeed", HorizontalDirection);
+        animator.SetFloat("VerticalSpeed", VerticalDirection);
+
+        //moving the player character around
         gameObject.transform.position = new Vector2(gameObject.transform.position.x + HorizontalDirection*speed*Time.fixedDeltaTime,
             gameObject.transform.position.y + VerticalDirection*speed*Time.fixedDeltaTime);
     }
