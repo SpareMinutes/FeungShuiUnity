@@ -40,4 +40,24 @@ public class Creature : MonoBehaviour
         //this is where the stats will be generated
 
     }
+
+    public int getLevel (){
+        return (int)Mathf.Pow(totalExp,1/3);
+    }
+
+    public float getAttack (bool Physical) {
+        if (Physical) {
+            return this.attack;
+        } else {
+            return this.intelligence;
+        }
+    }
+
+    public float getDefense (bool Physical) {
+        if (Physical) {
+            return this.defense;
+        } else{
+            return this.resistance;
+        }
+    }
 }

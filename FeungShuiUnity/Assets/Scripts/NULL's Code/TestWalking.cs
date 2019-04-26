@@ -15,11 +15,16 @@ public class TestWalking : MonoBehaviour
         //get inputs (controller or keyboard)
         HorizontalDirection = Input.GetAxis("Horizontal");
         VerticalDirection = Input.GetAxis("Vertical");
+        Debug.Log("Horizotnal");
+        Debug.Log(HorizontalDirection);
+        Debug.Log("Vertical");
+        Debug.Log(VerticalDirection);
 
         // seting up the animator settings
         animator.SetBool("isWalking",HorizontalDirection != 0 || VerticalDirection != 0); 
         animator.SetFloat("HorizontalSpeed", HorizontalDirection);
         animator.SetFloat("VerticalSpeed", VerticalDirection);
+
         float angle;
         if (HorizontalDirection == 0){
             angle = 90;

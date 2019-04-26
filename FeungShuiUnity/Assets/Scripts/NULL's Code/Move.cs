@@ -10,9 +10,9 @@ public class Move
     public float Accuracy;
     public float Cost;
     public List<string> Types; // allows for polytyping moves. probably will only ever be at most 2 types
-    public string attackType;
+    public bool attackType;
 
-    public Move (int power, int accuracy, float cost, List<string> types, string attacktype) {
+    public Move (int power, int accuracy, float cost, List<string> types, bool attacktype) {
         this.Power = power;
         this.Accuracy = accuracy;
         this.Cost = cost;
@@ -21,7 +21,11 @@ public class Move
     }
     public void execute (Creature attacker, Creature attackee) {
         // will be called whenever the move is used
-
+        int attackerLevel = attacker.getLevel();
+        float relevantAttackStat = attacker.getAttack(attackType);
+        float relevantDefenseStat = attackee.getDefense(attackType);
+        float modifier = 1; // used for type advantages and stuff probably its own method to calculate it
+        float damageToTake = ((((2*attackerLevel)/5)*this.Power*(relevantAttackStat/relevantDefenseStat))/50 + 2)*modifier;
         
     }
 }
