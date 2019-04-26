@@ -13,16 +13,22 @@ public class TestWalking : MonoBehaviour
 
     void Update () {
         //get inputs (controller or keyboard)
-        HorizontalDirection = Input.GetAxisRaw("Horizontal");
-        VerticalDirection = Input.GetAxisRaw("Vertical");
+        HorizontalDirection = Input.GetAxis("Horizontal");
+        VerticalDirection = Input.GetAxis("Vertical");
 
         // seting up the animator settings
         animator.SetBool("isWalking",HorizontalDirection != 0 || VerticalDirection != 0); 
         animator.SetFloat("HorizontalSpeed", HorizontalDirection);
         animator.SetFloat("VerticalSpeed", VerticalDirection);
+        float angle;
+        if (HorizontalDirection == 0){
+            angle = 90;
+        } else {
+            angle = Mathf.Abs(Mathf.Atan(VerticalDirection/HorizontalDirection));
+        }
 
         //moving the player character around
-        gameObject.transform.position = new Vector2(gameObject.transform.position.x + HorizontalDirection*speed*Time.fixedDeltaTime,
-            gameObject.transform.position.y + VerticalDirection*speed*Time.fixedDeltaTime);
+        gameObject.transform.position = new Vector2(gameObject.transform.position.x + HorizontalDirection*speed*Time.fixedDeltaTime*Mathf.Cos(angle),
+            gameObject.transform.position.y + VerticalDirection*speed*Time.fixedDeltaTime*Mathf.Sin(angle));
     }
 }
