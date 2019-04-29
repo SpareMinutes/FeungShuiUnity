@@ -21,7 +21,7 @@ public class Creature : MonoBehaviour
     private float totalExp = 0;
 
     //misc stats
-    private string type;
+    private string type; // only single type for now
     private string personality;
     private List<float> statModifiers;
 
@@ -59,5 +59,9 @@ public class Creature : MonoBehaviour
         } else{
             return this.resistance;
         }
+    }
+
+    public string getType (){
+        return this.type;
     }
 }
