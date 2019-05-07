@@ -59,14 +59,6 @@ public class TestWalking : MonoBehaviour
         walkingHorizontally = HorizontalDirection != 0;
         walkingVertically = VerticalDirection != 0;
 
-        if (Mathf.Abs(HorizontalDirection) == 1) {
-            //horizontal input
-            VerticalDirection = 0.0f;
-        } else if (Mathf.Abs(VerticalDirection) == 1) {
-            //vertical input
-            HorizontalDirection = 0.0f;
-        }
-
         // seting up the animator settings
         animator.SetBool("isWalking",HorizontalDirection != 0 || VerticalDirection != 0); 
         animator.SetFloat("HorizontalSpeed", HorizontalDirection);
