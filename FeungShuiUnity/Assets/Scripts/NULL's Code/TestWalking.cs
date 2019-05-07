@@ -70,11 +70,8 @@ public class TestWalking : MonoBehaviour
         float newX = HorizontalDirection*speed*Time.deltaTime;
         float newY = VerticalDirection *speed *Time.deltaTime;
 
-<<<<<<< HEAD
+        //player movement
         gameObject.transform.position += new Vector3(newX, newY, 0);
-=======
-        //moving the player
-        gameObject.transform.position += new Vector3(newX, newY, gameObject.transform.position.z);
->>>>>>> parent of e08a9ba... Revert "Merge branch 'master' of https://github.com/unnamedgamedevteam/FeungShuiUnity"
+
     }
 }
