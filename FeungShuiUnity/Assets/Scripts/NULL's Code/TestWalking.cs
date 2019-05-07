@@ -9,7 +9,12 @@ public class TestWalking : MonoBehaviour
 
     private float HorizontalDirection;
     private float VerticalDirection;
+    private bool walkingHorizontally, walkingVertically;
 
+    void Start() {
+        walkingHorizontally = false;
+        walkingVertically = false;
+    }
 
     void Update () {
         //comment out whichever one you dont want to use (testing purposes)
@@ -24,7 +29,7 @@ public class TestWalking : MonoBehaviour
         VerticalDirection = Input.GetAxis("Vertical")*Mathf.Abs(Input.GetAxisRaw("Vertical")); //extra bit for less floatiness
 
         // seting up the animator settings
-        animator.SetBool("isWalking",HorizontalDirection != 0 || VerticalDirection != 0); 
+        animator.SetBool("isWalking", HorizontalDirection != 0 || VerticalDirection != 0); 
         animator.SetFloat("HorizontalSpeed", HorizontalDirection);
         animator.SetFloat("VerticalSpeed", VerticalDirection);
 
@@ -48,8 +53,11 @@ public class TestWalking : MonoBehaviour
         //plyayer should move in the direction of the most recent input, regardless of other inputs
 
         //either 1 or 0 or -1 in a given direction
-        HorizontalDirection = Input.GetAxisRaw("Horizontal");
-        VerticalDirection = Input.GetAxisRaw("Vertical");
+        HorizontalDirection = walkingVertically ? 0 : Input.GetAxisRaw("Horizontal");
+        VerticalDirection = walkingHorizontally ? 0 : Input.GetAxisRaw("Vertical");
+
+        walkingHorizontally = HorizontalDirection != 0;
+        walkingVertically = VerticalDirection != 0;
 
         if (Mathf.Abs(HorizontalDirection) == 1) {
             //horizontal input
@@ -58,8 +66,6 @@ public class TestWalking : MonoBehaviour
             //vertical input
             HorizontalDirection = 0.0f;
         }
-        //^doesnt quite work becuase it has bias to the horizontal movement (ie if holding down vertical, when you press horizontal it will go that direction)
-        // and if holding down horizontal and press vertical it will still go horizontal
 
         // seting up the animator settings
         animator.SetBool("isWalking",HorizontalDirection != 0 || VerticalDirection != 0); 
