@@ -70,6 +70,6 @@ public class TestWalking : MonoBehaviour
         float newX = HorizontalDirection*speed*Time.deltaTime;
         float newY = VerticalDirection *speed *Time.deltaTime;
 
-        gameObject.transform.position += new Vector3(newX, newY, gameObject.transform.position.z);
+        gameObject.transform.position += new Vector3(newX, newY, 0);
     }
 }
