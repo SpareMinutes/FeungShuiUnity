@@ -77,6 +77,6 @@ public class TestWalking : MonoBehaviour
         float newY = VerticalDirection *speed *Time.deltaTime;
 
         //moving the player character around
-        gameObject.transform.position += new Vector3(newX, newY, gameObject.transform.position.z);
+        gameObject.transform.position += new Vector3(newX, newY, 0);
     }
 }
