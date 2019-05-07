@@ -13,6 +13,7 @@ public class TestWalking : MonoBehaviour
 
     void Update () {
         //comment out whichever one you dont want to use (testing purposes)
+
         //OmnidirectionalMovement();
         StiffMovement();
     }
@@ -44,24 +45,17 @@ public class TestWalking : MonoBehaviour
 
     private void StiffMovement () {
         // will only have 4 directions of movement ==> Up, Down, Left, Right
-
-        //if you press down Up then the character moves UP, etc...
-        // if you press Horizontal while already holding down Vertical, then it should go HORIZONTAL
-        // if you press Vertical while already holding down Horizontal, then it should go VERTICAL
-
-        //only one input should be accepted at a time
+        //plyayer should move in the direction of the most recent input, regardless of other inputs
 
         //either 1 or 0 or -1 in a given direction
         HorizontalDirection = Input.GetAxisRaw("Horizontal");
         VerticalDirection = Input.GetAxisRaw("Vertical");
 
         if (Mathf.Abs(HorizontalDirection) == 1) {
-            //means that Left/Right keys are applying input
-            //so we want to disable the vertical keys from applying input
+            //horizontal input
             VerticalDirection = 0.0f;
         } else if (Mathf.Abs(VerticalDirection) == 1) {
-            //means that Up/Down keys are applying input
-            //so the horizontal should be disabled from applying input
+            //vertical input
             HorizontalDirection = 0.0f;
         }
         //^doesnt quite work becuase it has bias to the horizontal movement (ie if holding down vertical, when you press horizontal it will go that direction)
@@ -71,12 +65,11 @@ public class TestWalking : MonoBehaviour
         animator.SetBool("isWalking",HorizontalDirection != 0 || VerticalDirection != 0); 
         animator.SetFloat("HorizontalSpeed", HorizontalDirection);
         animator.SetFloat("VerticalSpeed", VerticalDirection);
-        
-        //no angle buisness so dont have to worry about that
+
+        //moving the player character around
         float newX = HorizontalDirection*speed*Time.deltaTime;
         float newY = VerticalDirection *speed *Time.deltaTime;
 
-        //moving the player character around
         gameObject.transform.position += new Vector3(newX, newY, gameObject.transform.position.z);
     }
 }

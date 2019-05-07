@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Types_2
+public abstract class Types_2
 {
     //Type effectiveness dictionaries
     //this is for types that the key type deals EXTRA damage to
-    private Dictionary<string,List<string>> strongTypeEffectiveness = new Dictionary<string,List<string>>{
+    private static Dictionary<string,List<string>> strongTypeEffectiveness = new Dictionary<string,List<string>>{
         {"Fire", new List<string>{"Wood","Beast","Metal"}},
         {"Earth", new List<string>{"Fire","Lightning","Water"}},
         {"Metal", new List<string>{"Earth","Sky","Wood"}},
@@ -18,7 +18,7 @@ public class Types_2
     }; 
 
      //this is for types that the key type deals LESS damage to
-    private Dictionary<string,List<string>> weakTypeEffectiveness = new Dictionary<string,List<string>>{
+    private static Dictionary<string,List<string>> weakTypeEffectiveness = new Dictionary<string,List<string>>{
         {"Fire", new List<string>{"Earth","Lightning","Sky","Fire"}},
         {"Earth", new List<string>{"Metal","Sky","Stone","Earth"}},
         {"Metal", new List<string>{"Water","Stone","Ice","Metal"}},
@@ -34,7 +34,7 @@ public class Types_2
 
     //used mainly for STAB bonuses maybe also for semi type effectiveness (?)
     //linked is for secondary STAB bonuses
-    private Dictionary<string, List<string>> linkedTypes = new Dictionary<string, List<string>>{
+    private static Dictionary<string, List<string>> linkedTypes = new Dictionary<string, List<string>>{
         {"Fire", new List<string>{"Lightning","Earth"}},
         {"Earth", new List<string>{"Sky","Metal"}},
         {"Metal", new List<string>{"Stone","Water"}},
@@ -49,7 +49,7 @@ public class Types_2
         {"Dark", new List<string>{}}
     };
     //unlinked is for secondary STAB losses
-    private Dictionary<string,List<string>> unlinkedTypes = new Dictionary<string,List<string>> {
+    private static Dictionary<string,List<string>> unlinkedTypes = new Dictionary<string,List<string>> {
         {"Fire", new List<string>{"Metal","Water"}},
         {"Earth", new List<string>{"Water","Wood"}},
         {"Metal", new List<string>{"Fire","Wood"}},
@@ -64,19 +64,19 @@ public class Types_2
         {"Dark", new List<string>{"Light"}}
     };
 
-    public List<string> getStrongTypeEffectiveness (string type) {
-        return this.strongTypeEffectiveness["type"];
+    public static List<string> getStrongTypeEffectiveness (string type) {
+        return strongTypeEffectiveness["type"];
     }
 
-    public List<string> getWeakTypeEffectiveness (string type) {
-        return this.weakTypeEffectiveness[type];
+    public static List<string> getWeakTypeEffectiveness (string type) {
+        return weakTypeEffectiveness[type];
     }
 
-    public List<string> getLinkedTypes (string type) {
-        return this.linkedTypes[type];
+    public static List<string> getLinkedTypes (string type) {
+        return linkedTypes[type];
     }
 
-    public List<string> getUnlinkedTypes (string type) {
-        return this.unlinkedTypes[type];
+    public static List<string> getUnlinkedTypes (string type) {
+        return unlinkedTypes[type];
     }
 }
