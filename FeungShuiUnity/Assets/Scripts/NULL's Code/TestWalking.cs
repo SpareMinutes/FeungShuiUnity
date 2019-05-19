@@ -65,11 +65,11 @@ public class TestWalking : MonoBehaviour
         animator.SetFloat("VerticalSpeed", VerticalDirection);
 
         //moving the player character around
-        float newX = HorizontalDirection*speed*Time.fixedDeltaTime;
-        float newY = VerticalDirection *speed *Time.fixedDeltaTime;
+        float newX = HorizontalDirection*speed*Time.fixedDeltaTime*640;
+        float newY = VerticalDirection *speed *Time.fixedDeltaTime*640;
 
         //player movement
-        gameObject.transform.position += new Vector3(newX, newY, 0);
+        gameObject.GetComponent<Rigidbody2D>().velocity = new Vector3(newX, newY, 0);
 
     }
 }
