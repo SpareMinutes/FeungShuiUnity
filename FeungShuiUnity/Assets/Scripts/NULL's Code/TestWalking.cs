@@ -16,7 +16,7 @@ public class TestWalking : MonoBehaviour
         walkingVertically = false;
     }
 
-    void Update () {
+    void FixedUpdate () {
         //comment out whichever one you dont want to use (testing purposes)
 
         //OmnidirectionalMovement();
@@ -65,8 +65,8 @@ public class TestWalking : MonoBehaviour
         animator.SetFloat("VerticalSpeed", VerticalDirection);
 
         //moving the player character around
-        float newX = HorizontalDirection*speed*Time.deltaTime;
-        float newY = VerticalDirection *speed *Time.deltaTime;
+        float newX = HorizontalDirection*speed*Time.fixedDeltaTime;
+        float newY = VerticalDirection *speed *Time.fixedDeltaTime;
 
         //player movement
         gameObject.transform.position += new Vector3(newX, newY, 0);
