@@ -19,8 +19,8 @@ public class TestWalking : MonoBehaviour
     void FixedUpdate () {
         //comment out whichever one you dont want to use (testing purposes)
 
-        //OmnidirectionalMovement();
-        StiffMovement();
+        OmnidirectionalMovement();
+        //StiffMovement();
     }
 
     private void OmnidirectionalMovement() {
@@ -41,11 +41,11 @@ public class TestWalking : MonoBehaviour
             angle = Mathf.Abs(Mathf.Atan(VerticalDirection/HorizontalDirection));
         }
 
-        float newX = HorizontalDirection*speed*Time.deltaTime*Mathf.Cos(angle);
-        float newY = VerticalDirection *speed *Time.deltaTime*Mathf.Sin(angle);
+        float newX = HorizontalDirection*speed*Time.fixedDeltaTime*Mathf.Cos(angle)*640;
+        float newY = VerticalDirection *speed *Time.fixedDeltaTime*Mathf.Sin(angle)*640;
 
         //moving the player character around
-        gameObject.transform.position += new Vector3(newX, newY, gameObject.transform.position.z);
+        gameObject.GetComponent<Rigidbody2D>().velocity = new Vector3(newX, newY, 0);
     }
 
     private void StiffMovement () {
