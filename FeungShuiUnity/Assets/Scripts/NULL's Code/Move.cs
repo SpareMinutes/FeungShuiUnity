@@ -54,18 +54,18 @@ public class Move
         string defendingType = defender.getType();
 
         float typeMultiplier = 1.0f;
-        if (Types_2.getStrongTypeEffectiveness(this.Type).Contains(defendingType)) {
+        if (Matchups.getStrongTypeEffectiveness(this.Type).Contains(defendingType)) {
             typeMultiplier = 2.0f;
-        } else if (Types_2.getWeakTypeEffectiveness(this.Type).Contains(defendingType)) {
+        } else if (Matchups.getWeakTypeEffectiveness(this.Type).Contains(defendingType)) {
             typeMultiplier = 0.5f;
         }
 
         float stabMultiplier = 1.0f;
         if (attackingType == Type) {
             stabMultiplier = 2.0f;
-        } else if (Types_2.getLinkedTypes(attackingType).Contains(this.Type)) {
+        } else if (Matchups.getLinkedTypes(attackingType).Contains(this.Type)) {
             stabMultiplier = 1.5f;
-        } else if (Types_2.getUnlinkedTypes(attackingType).Contains(this.Type)) {
+        } else if (Matchups.getUnlinkedTypes(attackingType).Contains(this.Type)) {
             stabMultiplier = 0.75f;
         }
 

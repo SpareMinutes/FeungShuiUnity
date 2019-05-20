@@ -2,8 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class Types_2
-{
+public abstract class Matchups{
     //Type effectiveness dictionaries
     //this is for types that the key type deals EXTRA damage to
     private static Dictionary<string,List<string>> strongTypeEffectiveness = new Dictionary<string,List<string>>{
