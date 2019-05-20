@@ -12,16 +12,21 @@ public class Move
     public string Type; // allows for polytyping moves. probably will only ever be at most 2 types
     public float CritChance;
     public bool AttackType;
+    Target AttackTarget;
+    Dictionary<string, List<string>> Effects;
 
 
-    public Move (int power, float accuracy, float cost, string type, float critChance, bool attacktype) {
+    public Move (int power, float accuracy, float cost, string type, float critChance, bool attacktype, Target attackTarget, Dictionary<string, List<string>> effects) {
         this.Power = power;
         this.Accuracy = accuracy;
         this.Cost = cost;
         this.Type = type;
         this.CritChance = critChance;
         this.AttackType = attacktype;
+        this.AttackTarget = attackTarget;
+        this.Effects = effects;
     }
+
     public float execute (Creature attacker, Creature defender) {
         // will be called whenever the move is used
 
@@ -36,8 +41,12 @@ public class Move
 
         //my way
         float damageToTake = this.Power * (relevantAttackStat/relevantDefenseStat)  * modifier;
+
+        if (Effects != null)
+            foreach (KeyValuePair<string, List<string>> effect in Effects)
+                this.GetType().GetMethod(effect.Key).Invoke(this, effect.Value.ToArray());
+
         return damageToTake;
-        
     }
 
     public float getModifier(Creature attacker, Creature defender) {
@@ -67,5 +76,18 @@ public class Move
         }
 
         return  typeMultiplier * stabMultiplier* critMultiplier;
+    }
+
+    public void Buff(string stat, string modifier){
+        //placeholder
+    }
+
+    public enum Target{
+        Self,
+        Ally,
+        Single,
+        Double,
+        Others,
+        All
     }
 }
