@@ -7,9 +7,14 @@ public class Creature : MonoBehaviour
     //this is (mostly) what Brace and I (NULL1FY3R) were discussing
     //so this class holds all the essential things that every spirit has in common (functionality wise)
 
+    //name of the creature, will default to species name if none is given
+    public string displayName;
+
     //stats
-    public float activeHealth;
-    public float criticalHealth;
+    public float maxActiveHealth;
+    public float currentActiveHealth;
+    public float maxCriticalHealth;
+    public float currentCriticalHealth;
     public float attack;
     public float defense;
     public float intelligence; //Special attack
@@ -21,6 +26,7 @@ public class Creature : MonoBehaviour
     private float totalExp = 0;
 
     //misc stats
+    public bool playerOwned;
     public string type; // only single type for now
     private string personality;
     private List<float> statModifiers;
@@ -31,6 +37,7 @@ public class Creature : MonoBehaviour
     private static Dictionary<Creature, float> friendshipDict = new Dictionary<Creature, float>();
     private float trainerFriendship; // because the player isnt of type Creature
 
+    /*
     public void Start() {
         //pick a random nature
         this.personality = Natures2.personalityKeys[Random.Range(0,Natures2.personalityKeys.Count)];
@@ -43,7 +50,7 @@ public class Creature : MonoBehaviour
             Moves.Add(MovesMaster.Master[name]);
         }
     }
-
+    */
     public int getLevel (){
         return (int)Mathf.Pow(totalExp,1/3);
     }
@@ -66,5 +73,23 @@ public class Creature : MonoBehaviour
 
     public string getType (){
         return this.type;
+    }
+
+    public float getActiveHealth () {
+        return currentActiveHealth;
+    }
+
+    public float getCriticalHealth () {
+        return currentCriticalHealth;
+    }
+
+    public float getSpeed () {
+        return speed;
+    }
+
+    public void takeTurn () {
+        Debug.Log(displayName + " did a thing");
+
+        //in this function a move will be chosen and items will be used
     }
 }
