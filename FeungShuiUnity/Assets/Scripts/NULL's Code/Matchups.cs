@@ -6,14 +6,18 @@ public abstract class Matchups{
     //Type effectiveness dictionaries
     //this is for types that the key type deals EXTRA damage to
     private static Dictionary<string,List<string>> strongTypeEffectiveness = new Dictionary<string,List<string>>{
-        {"Fire", new List<string>{"Wood","Beast","Metal"}},
-        {"Earth", new List<string>{"Fire","Lightning","Water"}},
-        {"Metal", new List<string>{"Earth","Sky","Wood"}},
-        {"Water", new List<string>{"Metal","Stone","Fire"}},
-        {"Wood", new List<string>{"Water", "Ice", "Earth"}},
+        {"Fire", new List<string>{"Wood", "Metal", "Ice"}},
+        {"Wood", new List<string>{"Water", "Earth", "Smog"}},
+        {"Water", new List<string>{"Metal", "Fire", "Sky"}},
+        {"Metal", new List<string>{"Earth", "Wood", "Electric"}},
+        {"Earth", new List<string>{"Fire", "Water", "Beast"}},
+        {"Electric", new List<string>{"Water", "Beast"}},
+        {"Sky", new List<string>{"Wood", "Electric"}},
+        {"Smog", new List<string>{"Fire", "Sky"}},
+        {"Ice", new List<string>{"Earth", "Smog"}},
+        {"Beast", new List<string>{"Metal", "Ice"}},
         {"Light", new List<string>{"Dark"}},
         {"Dark", new List<string>{"Light"}}
-
     }; 
 
      //this is for types that the key type deals LESS damage to
@@ -64,7 +68,7 @@ public abstract class Matchups{
     };
 
     public static List<string> getStrongTypeEffectiveness (string type) {
-        return strongTypeEffectiveness["type"];
+        return strongTypeEffectiveness[type];
     }
 
     public static List<string> getWeakTypeEffectiveness (string type) {
