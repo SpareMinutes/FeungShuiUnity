@@ -150,13 +150,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65e0bb09327c0824baaf1e11de773df3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  activeHealth: 20
-  criticalHealth: 10
+  displayName: Dave
+  maxActiveHealth: 15
+  currentActiveHealth: 15
+  maxCriticalHealth: 10
+  currentCriticalHealth: 10
   attack: 5
   defense: 4
   intelligence: 5
   resistance: 4
   speed: 6
+  playerOwned: 0
   type: Fire
   moveNames:
   - Surf
@@ -267,8 +271,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   battlingSpirits:
-  - {fileID: 918530853}
-  - {fileID: 507785584}
+  - {fileID: 918530854}
+  - {fileID: 507785585}
 --- !u!1 &918530853
 GameObject:
   m_ObjectHideFlags: 0
@@ -299,13 +303,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65e0bb09327c0824baaf1e11de773df3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  activeHealth: 20
-  criticalHealth: 10
+  displayName: Greg
+  maxActiveHealth: 20
+  currentActiveHealth: 20
+  maxCriticalHealth: 10
+  currentCriticalHealth: 10
   attack: 5
   defense: 4
   intelligence: 5
   resistance: 4
   speed: 5
+  playerOwned: 1
   type: Water
   moveNames:
   - Scratch
