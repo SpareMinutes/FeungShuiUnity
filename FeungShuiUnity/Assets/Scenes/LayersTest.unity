@@ -458,6 +458,11 @@ PrefabInstance:
       propertyPath: m_Offset.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7041208782141400044, guid: 60a912dff5e9e784aa77429c0e38e37f,
+        type: 3}
+      propertyPath: speed
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 60a912dff5e9e784aa77429c0e38e37f, type: 3}
 --- !u!1 &1362299270
