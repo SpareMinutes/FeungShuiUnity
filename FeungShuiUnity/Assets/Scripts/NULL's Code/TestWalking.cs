@@ -26,8 +26,8 @@ public class TestWalking : MonoBehaviour{
 
     private void OmnidirectionalMovement() {
         //get inputs (controller or keyboard)
-        HorizontalDirection = Input.GetAxis("Horizontal");
-        VerticalDirection = Input.GetAxis("Vertical");
+        HorizontalDirection = Input.GetAxisRaw("Horizontal");
+        VerticalDirection = Input.GetAxisRaw("Vertical");
 
         //normalize keyboard inputs
         float hypotenuse = Mathf.Sqrt(Mathf.Pow(HorizontalDirection, 2)+ Mathf.Pow(VerticalDirection, 2));
