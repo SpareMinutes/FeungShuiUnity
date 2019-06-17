@@ -12,8 +12,9 @@ public class Move
     public string Type; // allows for polytyping moves. probably will only ever be at most 2 types
     public float CritChance;
     public bool AttackType;
-    Target AttackTarget;
+    public Target AttackTarget;
     Dictionary<string, List<string>> Effects;
+    private Creature Attacker, Defender;
 
 
     public Move (int power, float accuracy, float cost, string type, float critChance, bool attacktype, Target attackTarget, Dictionary<string, List<string>> effects) {
@@ -27,31 +28,17 @@ public class Move
         this.Effects = effects;
     }
 
-    public float execute (Creature attacker, Creature defender) {
-        // will be called whenever the move is used
-
-        float relevantAttackStat = attacker.getAttack(AttackType);
-        float relevantDefenseStat = defender.getDefense(AttackType);
-        float modifier = getModifier(attacker, defender); // used for type advantages and stuff
-        
-        //pokemon way (with magic numbers) 
-        //float attackerLevel = attacker.getLevel();
-        //float numerator =((2*attackerLevel)/5)*this.Power*(relevantAttackStat/relevantDefenseStat);
-        //float damageToTake = ((numerator/50) + 2)*modifier;
-
-        //my way
-        float damageToTake = this.Power * (relevantAttackStat/relevantDefenseStat)  * modifier;
-
+    public void execute (Creature attacker, Creature defender) {
+        this.Attacker = attacker;
+        this.Defender = defender;
         if (Effects != null)
             foreach (KeyValuePair<string, List<string>> effect in Effects)
                 this.GetType().GetMethod(effect.Key).Invoke(this, effect.Value.ToArray());
-
-        return damageToTake;
     }
 
-    public float getModifier(Creature attacker, Creature defender) {
-        string attackingType = attacker.getType();
-        string defendingType = defender.getType();
+    public float getModifier() {
+        string attackingType = Attacker.getType();
+        string defendingType = Defender.getType();
 
         float typeMultiplier = 1.0f;
         if (Matchups.getStrongTypeEffectiveness(this.Type).Contains(defendingType)) {
@@ -76,6 +63,32 @@ public class Move
         }
 
         return  typeMultiplier * stabMultiplier* critMultiplier;
+    }
+
+    public void Damage(){
+        float relevantAttackStat = Attacker.getAttack(AttackType);
+        float relevantDefenseStat = Defender.getDefense(AttackType);
+        float modifier = getModifier(); // used for type advantages and stuff
+
+        //pokemon way (with magic numbers) 
+        //float attackerLevel = attacker.getLevel();
+        //float numerator =((2*attackerLevel)/5)*this.Power*(relevantAttackStat/relevantDefenseStat);
+        //float damageToTake = ((numerator/50) + 2)*modifier;
+
+        //my way
+        float damageToTake = this.Power * (relevantAttackStat / relevantDefenseStat) * modifier;
+        if(Defender.currentActiveHealth > damageToTake){
+            Defender.currentActiveHealth -= damageToTake;
+        }else {
+            damageToTake -= Defender.currentActiveHealth;
+            Defender.currentActiveHealth = 0;
+            Defender.currentCriticalHealth = Mathf.Max(0, Defender.currentCriticalHealth - damageToTake);
+            if(Defender.currentCriticalHealth > 0){
+                //faint
+            }else {
+                //die
+            }
+        }
     }
 
     public void Buff(string stat, string modifier){
