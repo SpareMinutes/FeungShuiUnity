@@ -15,6 +15,6 @@ public class CreatureBattleStatusController : MonoBehaviour{
     // Update is called once per frame
     void Update(){
         Stamina.transform.localScale = new Vector3(7.5f * (Target.currentActiveHealth / Target.maxActiveHealth), 1, 0);
-        Critical.transform.localScale = new Vector3(2f * (Target.currentCriticalHealth / Target.maxCriticalHealth), 1, 0);
+        Critical.transform.localScale = new Vector3(4f * (Target.currentCriticalHealth / Target.maxCriticalHealth), 1, 0);
     }
 }
