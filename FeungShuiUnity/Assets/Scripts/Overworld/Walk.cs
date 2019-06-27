@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TestWalking : MonoBehaviour{
+public class Walk : MonoBehaviour{
     [SerializeField]
     private float speed; //movement speed multiplier
     [SerializeField]
