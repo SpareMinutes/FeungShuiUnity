@@ -97,5 +97,6 @@ public class BattleMenu : MonoBehaviour{
     public void DoAttack(){
         SelectedMove.execute(Attacker, Defender);
         //move onto next opponent?
+        AskForAction();
     }
 }
