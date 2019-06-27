@@ -44,7 +44,7 @@ public class BattleMenu : MonoBehaviour{
     }
 
     public void AskForAction(){
-        Attacker = ES.GetComponent<TurnManager>().GetTurnCreature();
+        Attacker = ES.GetComponent<TurnManager2>().getNextSpirit();
         Message.SetActive(true);
         Message.GetComponent<Text>().text = "What will " + Attacker.displayName + " do?";
         Moves.SetActive(false);
@@ -96,5 +96,6 @@ public class BattleMenu : MonoBehaviour{
 
     public void DoAttack(){
         SelectedMove.execute(Attacker, Defender);
+        //move onto next opponent?
     }
 }

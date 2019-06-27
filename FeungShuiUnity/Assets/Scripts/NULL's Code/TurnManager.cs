@@ -8,6 +8,7 @@ public class TurnManager : MonoBehaviour
 {
     //for the sake of testing, i'll add the gameObjects manually but in the real thing it should be automatic
     public List<Creature> battlingSpirits;
+    
     public Creature turnSpirit;
 
     void Start () {

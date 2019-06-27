@@ -162,7 +162,10 @@ MonoBehaviour:
   speed: 0
   playerOwned: 0
   type: Beast
-  moveNames: []
+  moveNames:
+  - Scratch
+  - Surf
+  - Howl
 --- !u!212 &35394307
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -267,7 +270,8 @@ MonoBehaviour:
   speed: 0
   playerOwned: 0
   type: Beast
-  moveNames: []
+  moveNames:
+  - Pound
 --- !u!212 &67951008
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -422,11 +426,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 86151455}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 630d92e34ccbc4a42b38752483a1fec9, type: 3}
+  m_Script: {fileID: 11500000, guid: ae7921379cf2d794ab5cca9f7f6f3352, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  battlingSpirits: []
-  turnSpirit: {fileID: 302500750}
+  takeTurns:
+  - {fileID: 35394306}
+  - {fileID: 202960356}
+  - {fileID: 67951007}
+  - {fileID: 302500750}
 --- !u!1 &109781285
 GameObject:
   m_ObjectHideFlags: 0
@@ -854,7 +861,8 @@ MonoBehaviour:
   speed: 0
   playerOwned: 1
   type: Beast
-  moveNames: []
+  moveNames:
+  - Scratch
 --- !u!212 &202960357
 SpriteRenderer:
   m_ObjectHideFlags: 0
