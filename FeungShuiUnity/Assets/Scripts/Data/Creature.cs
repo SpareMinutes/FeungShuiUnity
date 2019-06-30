@@ -2,11 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Creature : MonoBehaviour
-{
-    //this is (mostly) what Brace and I (NULL1FY3R) were discussing
-    //so this class holds all the essential things that every spirit has in common (functionality wise)
-
+public class Creature : MonoBehaviour{
     //name of the creature, will default to species name if none is given
     public string displayName;
 

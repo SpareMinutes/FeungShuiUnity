@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class CreatureBattleStatusController : MonoBehaviour{
+public class CreatureBattleStatusController : MonoBehaviour {
     public Creature Target;
     public GameObject Name, Critical, Stamina, Mana;
 

@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 7041208782141400047}
   - component: {fileID: 7041208782141400046}
   - component: {fileID: 7041208782141400045}
-  - component: {fileID: 7041208782141400044}
   - component: {fileID: 465495010}
   - component: {fileID: 465495009}
+  - component: {fileID: 8863851292449889813}
   m_Layer: 0
   m_Name: WalkableCharacter
   m_TagString: Untagged
@@ -103,20 +103,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &7041208782141400044
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7041208782141400035}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d58b26a6aadaf3840a3cbd9624d0fa19, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 4
-  animator: {fileID: 7041208782141400045}
 --- !u!50 &465495010
 Rigidbody2D:
   serializedVersion: 4
@@ -164,3 +150,17 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 14, y: 16}
   m_EdgeRadius: 0
+--- !u!114 &8863851292449889813
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7041208782141400035}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c8d697071d8c1440837a6872d844c69, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 1
+  animator: {fileID: 7041208782141400045}

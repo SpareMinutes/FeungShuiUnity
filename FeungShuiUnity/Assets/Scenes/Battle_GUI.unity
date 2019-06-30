@@ -132,7 +132,7 @@ GameObject:
   - component: {fileID: 35394307}
   - component: {fileID: 35394306}
   m_Layer: 0
-  m_Name: ErhuPython1
+  m_Name: Alice (CPU)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -151,15 +151,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   displayName: Alice
-  maxActiveHealth: 20
-  currentActiveHealth: 20
-  maxCriticalHealth: 10
-  currentCriticalHealth: 10
+  maxActiveHealth: 40
+  currentActiveHealth: 40
+  maxCriticalHealth: 20
+  currentCriticalHealth: 20
   attack: 5
   defense: 4
   intelligence: 5
   resistance: 4
-  speed: 0
+  speed: 7
   playerOwned: 0
   type: Beast
   moveNames:
@@ -222,7 +222,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 35394305}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 88, y: 128, z: 0}
+  m_LocalPosition: {x: 75, y: 128, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -240,7 +240,7 @@ GameObject:
   - component: {fileID: 67951008}
   - component: {fileID: 67951007}
   m_Layer: 0
-  m_Name: ErhuPython3
+  m_Name: Charlie (Player)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -259,16 +259,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   displayName: Charlie
-  maxActiveHealth: 20
-  currentActiveHealth: 20
-  maxCriticalHealth: 10
-  currentCriticalHealth: 10
+  maxActiveHealth: 40
+  currentActiveHealth: 40
+  maxCriticalHealth: 20
+  currentCriticalHealth: 20
   attack: 5
   defense: 4
   intelligence: 5
   resistance: 4
-  speed: 0
-  playerOwned: 0
+  speed: 10
+  playerOwned: 1
   type: Beast
   moveNames:
   - Pound
@@ -328,7 +328,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 67951006}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 88, y: 64, z: 0}
+  m_LocalPosition: {x: 75, y: 64, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -831,7 +831,7 @@ GameObject:
   - component: {fileID: 202960357}
   - component: {fileID: 202960356}
   m_Layer: 0
-  m_Name: ErhuPython2
+  m_Name: Bob (CPU)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -850,19 +850,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   displayName: Bob
-  maxActiveHealth: 20
-  currentActiveHealth: 20
-  maxCriticalHealth: 10
-  currentCriticalHealth: 10
+  maxActiveHealth: 40
+  currentActiveHealth: 40
+  maxCriticalHealth: 20
+  currentCriticalHealth: 20
   attack: 5
   defense: 4
   intelligence: 5
   resistance: 4
-  speed: 0
-  playerOwned: 1
+  speed: 9
+  playerOwned: 0
   type: Beast
   moveNames:
-  - Scratch
+  - Pound
 --- !u!212 &202960357
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -943,7 +943,7 @@ GameObject:
   - component: {fileID: 302500751}
   - component: {fileID: 302500750}
   m_Layer: 0
-  m_Name: ErhuPython4
+  m_Name: Dave (Player)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -962,10 +962,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   displayName: Dave
-  maxActiveHealth: 20
-  currentActiveHealth: 20
-  maxCriticalHealth: 10
-  currentCriticalHealth: 10
+  maxActiveHealth: 40
+  currentActiveHealth: 40
+  maxCriticalHealth: 20
+  currentCriticalHealth: 20
   attack: 5
   defense: 4
   intelligence: 5
@@ -1322,7 +1322,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 538691061}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 29, y: -64, z: 0}
+  m_LocalPosition: {x: 51, y: -64, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 687251622}
@@ -1591,7 +1591,7 @@ PrefabInstance:
     - target: {fileID: 8972471321990268270, guid: 54a6266877bc3d942bb5fc23a5772b59,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -91
+      value: -113
       objectReference: {fileID: 0}
     - target: {fileID: 8972471321990268270, guid: 54a6266877bc3d942bb5fc23a5772b59,
         type: 3}
@@ -2627,7 +2627,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1745141505}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 91, y: 16, z: 0}
+  m_LocalPosition: {x: 113, y: 16, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 0}
   m_Children:
   - {fileID: 1803738596}
@@ -3334,7 +3334,7 @@ PrefabInstance:
     - target: {fileID: 8972471321990268270, guid: 54a6266877bc3d942bb5fc23a5772b59,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -91
+      value: -113
       objectReference: {fileID: 0}
     - target: {fileID: 8972471322682743220, guid: 54a6266877bc3d942bb5fc23a5772b59,
         type: 3}

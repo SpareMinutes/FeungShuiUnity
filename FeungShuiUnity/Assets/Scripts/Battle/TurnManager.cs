@@ -4,16 +4,12 @@ using System.Linq;
 using UnityEngine;
 
 public class TurnManager : MonoBehaviour
-{
-    public List<Creature> takeTurns;
+{   
+    [SerializeField]
+    private List<Creature> takeTurns;
+    private int turnIndex = -1;
 
-    private int turnIndex = 0;
-
-    public void Start () {
-        takeTurns = sortBySpeed();
-    }
-
-    private List<Creature> sortBySpeed () {
+    public void sortBySpeed () {
         //this function will just reorder the spirits for the battling order in terms of speed
         List<Creature> returnList = new List<Creature>();
         Dictionary<Creature, float> speedMapping = new Dictionary<Creature, float>();
@@ -22,18 +18,28 @@ public class TurnManager : MonoBehaviour
             speedMapping.Add(creature, creature.getSpeed());
         }
 
-        var items = from pair in speedMapping orderby pair.Value ascending select pair;
+        var items = from pair in speedMapping orderby pair.Value descending select pair;
 
         foreach (KeyValuePair<Creature, float> pair in items) {
             //Debug.Log(pair.Key.getSpeed());
             returnList.Add(pair.Key);
         }
-        return returnList;
+        takeTurns =  returnList;
         //
         //
         // this needs to be rewritten becuase we changed the way turn order is calculated
         //
         //
+    }
+
+    public List<Creature> getActivePlayerControlled () {
+        List<Creature> dummyList = new List<Creature>(){};;
+        foreach (Creature creature in takeTurns) {
+            if (creature.isPlayerOwned() && creature.getActiveHealth() > 0) {
+                dummyList.Add(creature);
+            }
+        }
+        return dummyList;
     }
 
     public Creature getNextSpirit () {

@@ -2,17 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Move
-{
+public class Move {
     // this class is to store all the moves in the game and relevant methods
     // moves that have a bonus effect will bge subclasses of this one
-    public int Power;
-    public float Accuracy;
-    public float Cost;
-    public string Type; // allows for polytyping moves. probably will only ever be at most 2 types
-    public float CritChance;
-    public bool AttackType;
     public Target AttackTarget;
+
+    private int Power;
+    private float Accuracy;
+    private float Cost;
+    private string Type; // allows for polytyping moves. probably will only ever be at most 2 types
+    private float CritChance;
+    private bool AttackType;
     Dictionary<string, List<string>> Effects;
     private Creature Attacker, Defender;
 

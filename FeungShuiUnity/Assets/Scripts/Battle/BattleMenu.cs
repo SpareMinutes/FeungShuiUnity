@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-public class BattleMenu : MonoBehaviour{
+public class BattleMenu : MonoBehaviour {
     public EventSystem ES;
     public GameObject Message, Moves;
     private GameObject Selected;
@@ -14,6 +14,7 @@ public class BattleMenu : MonoBehaviour{
     private Creature Attacker, Defender;
 
     void Start(){
+        ES.GetComponent<TurnManager>().sortBySpeed();
         Selected = ES.firstSelectedGameObject;
         IsSelectingAttack = false;
         Moves.SetActive(false);
@@ -48,6 +49,7 @@ public class BattleMenu : MonoBehaviour{
         if (!IsSelectingAttack) {
             Attacker = ES.GetComponent<TurnManager>().getNextSpirit();
         }
+        
         if (Attacker.isPlayerOwned()) {
             Message.SetActive(true);
             Message.GetComponent<Text>().text = "What will " + Attacker.displayName + " do?";
@@ -59,13 +61,25 @@ public class BattleMenu : MonoBehaviour{
             GameObject.Find("Run").GetComponent<Button>().interactable = true;
             ES.SetSelectedGameObject(GameObject.Find("Attack"));
         } else {
-            // AI part
+            // AI part //
             /* AI needs to:
                 - decide whether to attack or defend or use an item (for wild spirits they shouldnt be able to use items)
                 - choose an attack
                 - choose a target (should be the opposite target choices as the player)
              */
-             Debug.Log("Enemy Turn");
+            //ignoring the first descision because they have no functionality yet. 
+            //so assuming the ai chooses attack
+
+            //this should choose a random move from the enemy's move set (even if they have less than 4 moves)
+            int randNum = Random.Range(0,Attacker.moveNames.Count-1);
+            SelectedMove = MovesMaster.Find(Attacker.moveNames[randNum]);
+
+            //need to choose a "enemy" to attack
+            List<Creature> toChoose = ES.GetComponent<TurnManager>().getActivePlayerControlled();
+            int randNum2 = Random.Range(0,toChoose.Count-1);
+            Defender = toChoose[randNum2];
+            IsSelectingAttack = true;
+            DoAttack();
         }
     }
     
@@ -112,7 +126,7 @@ public class BattleMenu : MonoBehaviour{
                 GameObject.Find("Attack" + i).GetComponent<Button>().interactable = false;
         }
         //To do: attacks with different targeting types and cases with only one opponent
-        IsSelectingAttack = false;
+        
     }
 
     public void LoadDefender(){
@@ -122,8 +136,9 @@ public class BattleMenu : MonoBehaviour{
 
     public void DoAttack(){
         //called when the oppoenent is selected
-
+        Debug.Log(Attacker.displayName + " is attacking " + Defender.displayName);
         SelectedMove.execute(Attacker, Defender);
+        IsSelectingAttack = false;
         AskForAction();
     }
 }
