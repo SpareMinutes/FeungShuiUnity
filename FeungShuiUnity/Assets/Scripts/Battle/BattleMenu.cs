@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
@@ -57,12 +58,7 @@ public class BattleMenu : MonoBehaviour {
         }
         
         if (Attacker.isPlayerOwned()) {
-            //Turn on the message box and ask for action type
-            Message.SetActive(true);
-            Message.GetComponent<Text>().text = "What will " + Attacker.displayName + " do?";
-            //Disable attack buttons
-            Moves.SetActive(false);
-            IsSelectingAttack = false;
+            ShowMessage("What will " + Attacker.displayName + " do?", 0);
             //Enable action type buttons
             GameObject.Find("Attack").GetComponent<Button>().interactable = true;
             GameObject.Find("Defend").GetComponent<Button>().interactable = true;
@@ -144,9 +140,19 @@ public class BattleMenu : MonoBehaviour {
 
     //Called when the oppoenent is selected
     public void DoAttack(){
-        Debug.Log(Attacker.displayName + " is attacking " + Defender.displayName + " with " + moveUsed);
+        ShowMessage(Attacker.displayName + " used " + moveUsed + " on " + Defender.displayName + ".");
         SelectedMove.execute(Attacker, Defender);
         IsSelectingAttack = false;
-        AskForAction();
+        Invoke("AskForAction", 1);
+    }
+
+    //Called when a message is to be displayed in the bottom right box
+    private void ShowMessage(string msg){
+        //Turn on the message box and set the text
+        Message.SetActive(true);
+        Message.GetComponent<Text>().text = msg;
+        //Disable attack buttons
+        Moves.SetActive(false);
+        IsSelectingAttack = false;
     }
 }
