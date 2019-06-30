@@ -3,33 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-
 public class TurnManager : MonoBehaviour
 {
-    //for the sake of testing, i'll add the gameObjects manually but in the real thing it should be automatic
-    public List<Creature> battlingSpirits;
-    
-    public Creature turnSpirit;
+    public List<Creature> takeTurns;
 
-    void Start () {
-        //starts the turn cycle
-        //takeTurn();
-        foreach (Creature creature in sortBySpeed()) {
-            Debug.Log(creature.displayName);
-        }
-    }
+    private int turnIndex = 0;
 
-    public void takeTurn () {
-        foreach (Creature creature in sortBySpeed()) {
-            if (creature.getActiveHealth() <= 0) {
-                //the current creatures active health is below 0 and therefore they must faint and not take their turn
-                //float excessDamage = [damage taken] - [previous current health for that creature]
-                Debug.Log("they dead");
-            }
-            creature.takeTurn();
-        }
-
-
+    public void Start () {
+        takeTurns = sortBySpeed();
     }
 
     private List<Creature> sortBySpeed () {
@@ -37,7 +18,7 @@ public class TurnManager : MonoBehaviour
         List<Creature> returnList = new List<Creature>();
         Dictionary<Creature, float> speedMapping = new Dictionary<Creature, float>();
 
-        foreach (Creature creature in battlingSpirits) {
+        foreach (Creature creature in takeTurns) {
             speedMapping.Add(creature, creature.getSpeed());
         }
 
@@ -47,12 +28,16 @@ public class TurnManager : MonoBehaviour
             //Debug.Log(pair.Key.getSpeed());
             returnList.Add(pair.Key);
         }
-
         return returnList;
+        //
+        //
+        // this needs to be rewritten becuase we changed the way turn order is calculated
+        //
+        //
     }
 
-    //Hard coded for testing
-    public Creature GetTurnCreature(){
-        return turnSpirit;
+    public Creature getNextSpirit () {
+        turnIndex += 1;
+        return takeTurns[turnIndex%takeTurns.Count];
     }
 }
