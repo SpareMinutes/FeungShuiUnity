@@ -10,6 +10,7 @@ public class BattleMenu : MonoBehaviour {
     private GameObject Selected;
     private bool IsSelectingAttack;
     private Move SelectedMove;
+    //Used to force only one selection to be cancelled per cancel button press
     private bool CancelHeld;
     private Creature Attacker, Defender;
     private string moveUsed;
@@ -24,28 +25,31 @@ public class BattleMenu : MonoBehaviour {
     }
 
     void Update(){
+        //Ensures clicking doesn't deselect buttons
         if (ES.currentSelectedGameObject != Selected){
             if (ES.currentSelectedGameObject == null)
                 ES.SetSelectedGameObject(Selected);
             else
                 Selected = ES.currentSelectedGameObject;
         }
-        //called when the the cancel button is pressed (esc)
+        //Called when the the cancel button is pressed (esc)
         if (Input.GetAxis("Cancel") != 0){
-            if (SelectedMove != null){ //for chaning descision on the move you want to make
+            if (SelectedMove != null){ //Cancel target selection and return to move selection
                 GameObject.Find("Spirit3Status").GetComponent<Button>().interactable = false;
                 GameObject.Find("Spirit4Status").GetComponent<Button>().interactable = false;
                 SelectedMove = null;
                 SelectAttack();
-            }else if (IsSelectingAttack && !CancelHeld){ //for when 
+            }else if (IsSelectingAttack && !CancelHeld){ //Cancel move selection and return to action selection
                 AskForAction();
             }
             CancelHeld = true;
         }
+        //Cancel button has been released, reenable canceling
         else
             CancelHeld = false;
     }
 
+    //Select action type (Attack/Defend/Item/Run)
     public void AskForAction(){
         if (!IsSelectingAttack) {
             ES.GetComponent<TurnManager>().checker();
@@ -53,10 +57,13 @@ public class BattleMenu : MonoBehaviour {
         }
         
         if (Attacker.isPlayerOwned()) {
+            //Turn on the message box and ask for action type
             Message.SetActive(true);
             Message.GetComponent<Text>().text = "What will " + Attacker.displayName + " do?";
+            //Disable attack buttons
             Moves.SetActive(false);
-            IsSelectingAttack = true;
+            IsSelectingAttack = false;
+            //Enable action type buttons
             GameObject.Find("Attack").GetComponent<Button>().interactable = true;
             GameObject.Find("Defend").GetComponent<Button>().interactable = true;
             GameObject.Find("Item").GetComponent<Button>().interactable = true;
@@ -85,27 +92,26 @@ public class BattleMenu : MonoBehaviour {
             DoAttack();
         }
     }
-    
-    public void SelectAttack(){
-        //called when the Attack option is pressed
 
-        Message.SetActive(false); //text in right most text box -> disable it
-        Moves.SetActive(true); //let the moves become selectable (shown)
+    //Called when the Attack option is pressed
+    public void SelectAttack(){
+        Message.SetActive(false); //Text in right most text box -> disable it
+        Moves.SetActive(true); //Let the moves become selectable (shown)
         IsSelectingAttack = true; 
-        //disables the attack, defend, item, run buttons as buttons (text is still there)
+        //Disables the attack, defend, item, run buttons as buttons (text is still there)
         GameObject.Find("Attack").GetComponent<Button>().interactable = false;
         GameObject.Find("Defend").GetComponent<Button>().interactable = false;
         GameObject.Find("Item").GetComponent<Button>().interactable = false;
         GameObject.Find("Run").GetComponent<Button>().interactable = false;
-        //goes through the list of moves of a creature and displays them in the rightmost text as selectable buttons
-        ES.SetSelectedGameObject(GameObject.Find("Attack0"));
+        ES.SetSelectedGameObject(GameObject.Find("Attack0")); //Set the first (upper left) attack as the currently highlighed button
+        //Goes through the list of moves of a creature and displays them in the rightmost text as selectable buttons
         int i = 0;
         while (i < Attacker.moveNames.Count){
             GameObject.Find("Attack" + i).GetComponentInChildren<Text>().text = Attacker.moveNames[i];
             GameObject.Find("Attack" + i).GetComponent<Button>().interactable = true;
             i++;
         }
-        //just fills out the remainders with empty text and makes them not selectable
+        //Fills out the remainders with empty text and makes them not selectable
         while (i < 4){
             GameObject.Find("Attack" + i).GetComponentInChildren<Text>().text = "";
             GameObject.Find("Attack" + i).GetComponent<Button>().interactable = false;
@@ -113,19 +119,17 @@ public class BattleMenu : MonoBehaviour {
         }
     }
 
+    //Called when a move is selected
     public void LoadAttack(){
-        //called when a move is selected
-
         moveUsed = ES.currentSelectedGameObject.GetComponentInChildren<Text>().text;
         SelectedMove = MovesMaster.Find(moveUsed); //gets the move out of database
         //if statement dealing with targeting type
         if(SelectedMove.AttackTarget == Move.Target.Single){
-            //makes the opponents selectable for hte move to target
-            //*******probably want to go through the turn cycle and get all non player controlled creatures and make them targetable*********
+            //Makes the opponents selectable for the move to target
             GameObject.Find("Spirit3Status").GetComponent<Button>().interactable = true;
             GameObject.Find("Spirit4Status").GetComponent<Button>().interactable = true;
             ES.SetSelectedGameObject(GameObject.Find("Spirit4Status"));
-            //makes moves non interactable
+            //Makes moves non interactable
             for(int i=0; i<4; i++)
                 GameObject.Find("Attack" + i).GetComponent<Button>().interactable = false;
         }
@@ -133,13 +137,13 @@ public class BattleMenu : MonoBehaviour {
         
     }
 
+    //Called by defender when they're selected telling script to target them
     public void LoadDefender(){
-        //called by defender whent they're selected telling script to target them
         Defender = Selected.GetComponent<CreatureBattleStatusController>().Target;
     }
 
+    //Called when the oppoenent is selected
     public void DoAttack(){
-        //called when the oppoenent is selected
         Debug.Log(Attacker.displayName + " is attacking " + Defender.displayName + " with " + moveUsed);
         SelectedMove.execute(Attacker, Defender);
         IsSelectingAttack = false;
