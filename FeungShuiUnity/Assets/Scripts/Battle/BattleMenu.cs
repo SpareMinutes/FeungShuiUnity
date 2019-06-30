@@ -12,6 +12,7 @@ public class BattleMenu : MonoBehaviour {
     private Move SelectedMove;
     private bool CancelHeld;
     private Creature Attacker, Defender;
+    private string moveUsed;
 
     void Start(){
         ES.GetComponent<TurnManager>().sortBySpeed();
@@ -47,6 +48,7 @@ public class BattleMenu : MonoBehaviour {
 
     public void AskForAction(){
         if (!IsSelectingAttack) {
+            ES.GetComponent<TurnManager>().checker();
             Attacker = ES.GetComponent<TurnManager>().getNextSpirit();
         }
         
@@ -71,12 +73,13 @@ public class BattleMenu : MonoBehaviour {
             //so assuming the ai chooses attack
 
             //this should choose a random move from the enemy's move set (even if they have less than 4 moves)
-            int randNum = Random.Range(0,Attacker.moveNames.Count-1);
-            SelectedMove = MovesMaster.Find(Attacker.moveNames[randNum]);
+            int randNum = Random.Range(0,Attacker.moveNames.Count);
+            moveUsed = Attacker.moveNames[randNum];
+            SelectedMove = MovesMaster.Find(moveUsed);
 
             //need to choose a "enemy" to attack
             List<Creature> toChoose = ES.GetComponent<TurnManager>().getActivePlayerControlled();
-            int randNum2 = Random.Range(0,toChoose.Count-1);
+            int randNum2 = Random.Range(0,toChoose.Count);
             Defender = toChoose[randNum2];
             IsSelectingAttack = true;
             DoAttack();
@@ -113,7 +116,8 @@ public class BattleMenu : MonoBehaviour {
     public void LoadAttack(){
         //called when a move is selected
 
-        SelectedMove = MovesMaster.Find(ES.currentSelectedGameObject.GetComponentInChildren<Text>().text); //gets the move out of database
+        moveUsed = ES.currentSelectedGameObject.GetComponentInChildren<Text>().text;
+        SelectedMove = MovesMaster.Find(moveUsed); //gets the move out of database
         //if statement dealing with targeting type
         if(SelectedMove.AttackTarget == Move.Target.Single){
             //makes the opponents selectable for hte move to target
@@ -136,7 +140,7 @@ public class BattleMenu : MonoBehaviour {
 
     public void DoAttack(){
         //called when the oppoenent is selected
-        Debug.Log(Attacker.displayName + " is attacking " + Defender.displayName);
+        Debug.Log(Attacker.displayName + " is attacking " + Defender.displayName + " with " + moveUsed);
         SelectedMove.execute(Attacker, Defender);
         IsSelectingAttack = false;
         AskForAction();

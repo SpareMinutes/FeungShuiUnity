@@ -46,4 +46,13 @@ public class TurnManager : MonoBehaviour
         turnIndex += 1;
         return takeTurns[turnIndex%takeTurns.Count];
     }
+
+    public void checker () {
+        foreach (Creature creature in takeTurns) {
+            if (creature.getActiveHealth() <= 0) {
+                //remove that creature from the list so it can't make more moves
+                takeTurns.Remove(creature);
+            }
+        }
+    }
 }

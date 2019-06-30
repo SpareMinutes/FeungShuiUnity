@@ -164,8 +164,6 @@ MonoBehaviour:
   type: Beast
   moveNames:
   - Scratch
-  - Surf
-  - Howl
 --- !u!212 &35394307
 SpriteRenderer:
   m_ObjectHideFlags: 0
