@@ -36,7 +36,6 @@ public class BattleMenu : MonoBehaviour{
                 SelectedMove = null;
                 SelectAttack();
             }else if (IsSelectingAttack && !CancelHeld){ //for when 
-                Debug.Log("pressed cancel");
                 AskForAction();
             }
             CancelHeld = true;
@@ -49,15 +48,25 @@ public class BattleMenu : MonoBehaviour{
         if (!IsSelectingAttack) {
             Attacker = ES.GetComponent<TurnManager>().getNextSpirit();
         }
-        Message.SetActive(true);
-        Message.GetComponent<Text>().text = "What will " + Attacker.displayName + " do?";
-        Moves.SetActive(false);
-        IsSelectingAttack = true;
-        GameObject.Find("Attack").GetComponent<Button>().interactable = true;
-        GameObject.Find("Defend").GetComponent<Button>().interactable = true;
-        GameObject.Find("Item").GetComponent<Button>().interactable = true;
-        GameObject.Find("Run").GetComponent<Button>().interactable = true;
-        ES.SetSelectedGameObject(GameObject.Find("Attack"));
+        if (Attacker.isPlayerOwned()) {
+            Message.SetActive(true);
+            Message.GetComponent<Text>().text = "What will " + Attacker.displayName + " do?";
+            Moves.SetActive(false);
+            IsSelectingAttack = true;
+            GameObject.Find("Attack").GetComponent<Button>().interactable = true;
+            GameObject.Find("Defend").GetComponent<Button>().interactable = true;
+            GameObject.Find("Item").GetComponent<Button>().interactable = true;
+            GameObject.Find("Run").GetComponent<Button>().interactable = true;
+            ES.SetSelectedGameObject(GameObject.Find("Attack"));
+        } else {
+            // AI part
+            /* AI needs to:
+                - decide whether to attack or defend or use an item (for wild spirits they shouldnt be able to use items)
+                - choose an attack
+                - choose a target (should be the opposite target choices as the player)
+             */
+             Debug.Log("Enemy Turn");
+        }
     }
     
     public void SelectAttack(){

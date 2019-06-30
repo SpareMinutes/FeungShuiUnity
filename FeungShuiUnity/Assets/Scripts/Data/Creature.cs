@@ -89,7 +89,10 @@ public class Creature : MonoBehaviour
 
     public void takeTurn () {
         Debug.Log(displayName + " did a thing");
-
         //in this function a move will be chosen and items will be used
+    }
+
+    public bool isPlayerOwned () {
+        return playerOwned;
     }
 }
