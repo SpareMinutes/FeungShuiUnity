@@ -3,11 +3,17 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class TurnManager : MonoBehaviour
-{   
+public class TurnManager : MonoBehaviour{   
     [SerializeField]
     private List<Creature> takeTurns;
-    private int turnIndex = -1;
+    private int turnIndex = 0;
+    private Queue<Creature> Upcoming;
+
+    public void Init(){
+        sortBySpeed();
+        Upcoming = new Queue<Creature>();
+        CalcUpcoming();
+    }
 
     public void sortBySpeed () {
         //this function will just reorder the spirits for the battling order in terms of speed
@@ -25,15 +31,22 @@ public class TurnManager : MonoBehaviour
             returnList.Add(pair.Key);
         }
         takeTurns =  returnList;
-        //
-        //
-        // this needs to be rewritten becuase we changed the way turn order is calculated
-        //
-        //
+    }
+
+    public void CalcUpcoming(){
+        while (Upcoming.Count() < 20){
+            turnIndex++;
+            foreach(Creature creature in takeTurns){
+                //To do: get a better formula
+                if (turnIndex % (1000 - creature.getSpeed()) == 0){
+                    Upcoming.Enqueue(creature);
+                }
+            }
+        }
     }
 
     public List<Creature> getActivePlayerControlled () {
-        List<Creature> dummyList = new List<Creature>(){};
+        List<Creature> dummyList = new List<Creature>();
         foreach (Creature creature in takeTurns) {
             if (creature.isPlayerOwned()) {
                 dummyList.Add(creature);
@@ -43,7 +56,7 @@ public class TurnManager : MonoBehaviour
     }
 
     public List<Creature> getActiveEnemies () {
-        List<Creature> dummyList = new List<Creature>(){};
+        List<Creature> dummyList = new List<Creature>();
         foreach (Creature creature in takeTurns) {
             if (!creature.isPlayerOwned()) {
                 dummyList.Add(creature);
@@ -53,22 +66,27 @@ public class TurnManager : MonoBehaviour
     }
 
     public Creature getNextSpirit () {
-        turnIndex += 1;
-        return takeTurns[turnIndex%takeTurns.Count];
+        Creature next = Upcoming.Dequeue();
+        Debug.Log(next.name);
+        CalcUpcoming();
+        return next;
     }
 
     public void removeFromPlay (Creature creature) {
         takeTurns.Remove(creature);
+        Upcoming = new Queue<Creature>();
+        sortBySpeed();
+        CalcUpcoming();
     }
 
     public string whoWins () {
-        if (getActiveEnemies().Count == 0) {
-            // player wins
-            return "Player";
-        } else if (getActivePlayerControlled().Count == 0){
+        if (getActivePlayerControlled().Count == 0) {
             //CPU wins
             return "Computer";
-        } else {
+        } else if(getActiveEnemies().Count == 0) {
+            // player wins
+            return "Player";
+        }  else {
             //no one wins
             return "No-one";
         }

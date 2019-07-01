@@ -17,7 +17,7 @@ public class BattleMenu : MonoBehaviour {
     private string moveUsed;
 
     void Start(){
-        ES.GetComponent<TurnManager>().sortBySpeed();
+        ES.GetComponent<TurnManager>().Init();
         Selected = ES.firstSelectedGameObject;
         IsSelectingAttack = false;
         Moves.SetActive(false);
