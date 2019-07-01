@@ -16,5 +16,9 @@ public class CreatureBattleStatusController : MonoBehaviour {
     void Update(){
         Stamina.transform.localScale = new Vector3(7.5f * (Target.currentActiveHealth / Target.maxActiveHealth), 1, 0);
         Critical.transform.localScale = new Vector3(4f * (Target.currentCriticalHealth / Target.maxCriticalHealth), 1, 0);
+        if (Target.currentActiveHealth <= 0){
+            this.gameObject.SetActive(false);
+            //To do: ask for replacement
+        }
     }
 }

@@ -36,8 +36,12 @@ public class BattleMenu : MonoBehaviour {
         //Called when the the cancel button is pressed (esc)
         if (Input.GetAxis("Cancel") != 0){
             if (SelectedMove != null){ //Cancel target selection and return to move selection
-                GameObject.Find("Spirit3Status").GetComponent<Button>().interactable = false;
-                GameObject.Find("Spirit4Status").GetComponent<Button>().interactable = false;
+                GameObject spirit = GameObject.Find("Spirit3Status");
+                if(spirit!=null)
+                    spirit.GetComponent<Button>().interactable = false;
+                spirit = GameObject.Find("Spirit4Status");
+                if (spirit != null)
+                    spirit.GetComponent<Button>().interactable = false;
                 SelectedMove = null;
                 SelectAttack();
             }else if (IsSelectingAttack && !CancelHeld){ //Cancel move selection and return to action selection
@@ -84,7 +88,6 @@ public class BattleMenu : MonoBehaviour {
             List<Creature> toChoose = ES.GetComponent<TurnManager>().getActivePlayerControlled();
             int randNum2 = Random.Range(0,toChoose.Count);
             Defender = toChoose[randNum2];
-            IsSelectingAttack = true;
             DoAttack();
         }
     }
@@ -122,11 +125,17 @@ public class BattleMenu : MonoBehaviour {
         //if statement dealing with targeting type
         if(SelectedMove.AttackTarget == Move.Target.Single){
             //Makes the opponents selectable for the move to target
-            GameObject.Find("Spirit3Status").GetComponent<Button>().interactable = true;
-            GameObject.Find("Spirit4Status").GetComponent<Button>().interactable = true;
-            ES.SetSelectedGameObject(GameObject.Find("Spirit4Status"));
+            GameObject spirit1 = GameObject.Find("Spirit3Status");
+            if(spirit1!=null)
+                spirit1.GetComponent<Button>().interactable = true;
+            GameObject spirit2 = GameObject.Find("Spirit4Status");
+            if (spirit2 != null){
+                spirit2.GetComponent<Button>().interactable = true;
+                ES.SetSelectedGameObject(spirit2);
+            }else
+                ES.SetSelectedGameObject(spirit1);
             //Makes moves non interactable
-            for(int i=0; i<4; i++)
+            for (int i=0; i<4; i++)
                 GameObject.Find("Attack" + i).GetComponent<Button>().interactable = false;
         }
         //To do: attacks with different targeting types and cases with only one opponent
