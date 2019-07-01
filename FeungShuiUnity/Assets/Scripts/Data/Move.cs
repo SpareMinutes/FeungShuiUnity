@@ -83,11 +83,6 @@ public class Move {
             damageToTake -= Defender.currentActiveHealth;
             Defender.currentActiveHealth = 0;
             Defender.currentCriticalHealth = Mathf.Max(0, Defender.currentCriticalHealth - damageToTake);
-            if(Defender.currentCriticalHealth > 0){
-                //faint
-            }else {
-                //die
-            }
         }
     }
 

@@ -56,40 +56,50 @@ public class BattleMenu : MonoBehaviour {
 
     //Select action type (Attack/Defend/Item/Run)
     public void AskForAction(){
-        if (!IsSelectingAttack) {
-            //ES.GetComponent<TurnManager>().checker();
-            Attacker = ES.GetComponent<TurnManager>().getNextSpirit();
+        if (ES.GetComponent<TurnManager>().whoWins().Equals("Player")) {
+            Debug.Log("Player Wins");
+            UnityEditor.EditorApplication.isPlaying = false;
+
+        } else if (ES.GetComponent<TurnManager>().whoWins().Equals("Computer")) {
+            Debug.Log("Player Looses");
+            UnityEditor.EditorApplication.isPlaying = false;
+
+        } else if (ES.GetComponent<TurnManager>().whoWins().Equals("No-one")) {
+            if (!IsSelectingAttack) {
+                Attacker = ES.GetComponent<TurnManager>().getNextSpirit();
+            }
+        
+            if (Attacker.isPlayerOwned()) {
+                ShowMessage("What will " + Attacker.displayName + " do?");
+                //Enable action type buttons
+                GameObject.Find("Attack").GetComponent<Button>().interactable = true;
+                GameObject.Find("Defend").GetComponent<Button>().interactable = true;
+                GameObject.Find("Item").GetComponent<Button>().interactable = true;
+                GameObject.Find("Run").GetComponent<Button>().interactable = true;
+            ES.SetSelectedGameObject(GameObject.Find("Attack"));
+            } else {
+                // AI part //
+                /* AI needs to:
+                    - decide whether to attack or defend or use an item (for wild spirits they shouldnt be able to use items)
+                    - choose an attack
+                    - choose a target (should be the opposite target choices as the player)
+                 */
+                //ignoring the first descision because they have no functionality yet. 
+                //so assuming the ai chooses attack
+
+                //this should choose a random move from the enemy's move set (even if they have less than 4 moves)
+                int randNum = Random.Range(0,Attacker.moveNames.Count);
+                moveUsed = Attacker.moveNames[randNum];
+                SelectedMove = MovesMaster.Find(moveUsed);
+
+                //need to choose a "enemy" to attack
+                List<Creature> toChoose = ES.GetComponent<TurnManager>().getActivePlayerControlled();
+                int randNum2 = Random.Range(0,toChoose.Count);
+                Defender = toChoose[randNum2];
+                DoAttack();
+            }
         }
         
-        if (Attacker.isPlayerOwned()) {
-            ShowMessage("What will " + Attacker.displayName + " do?");
-            //Enable action type buttons
-            GameObject.Find("Attack").GetComponent<Button>().interactable = true;
-            GameObject.Find("Defend").GetComponent<Button>().interactable = true;
-            GameObject.Find("Item").GetComponent<Button>().interactable = true;
-            GameObject.Find("Run").GetComponent<Button>().interactable = true;
-            ES.SetSelectedGameObject(GameObject.Find("Attack"));
-        } else {
-            // AI part //
-            /* AI needs to:
-                - decide whether to attack or defend or use an item (for wild spirits they shouldnt be able to use items)
-                - choose an attack
-                - choose a target (should be the opposite target choices as the player)
-             */
-            //ignoring the first descision because they have no functionality yet. 
-            //so assuming the ai chooses attack
-
-            //this should choose a random move from the enemy's move set (even if they have less than 4 moves)
-            int randNum = Random.Range(0,Attacker.moveNames.Count);
-            moveUsed = Attacker.moveNames[randNum];
-            SelectedMove = MovesMaster.Find(moveUsed);
-
-            //need to choose a "enemy" to attack
-            List<Creature> toChoose = ES.GetComponent<TurnManager>().getActivePlayerControlled();
-            int randNum2 = Random.Range(0,toChoose.Count);
-            Defender = toChoose[randNum2];
-            DoAttack();
-        }
     }
 
     //Called when the Attack option is pressed
@@ -150,13 +160,14 @@ public class BattleMenu : MonoBehaviour {
     //Called when the oppoenent is selected
     public void DoAttack(){
         ShowMessage(Attacker.displayName + " used " + moveUsed + " on " + Defender.displayName + ".");
-        Debug.Log(Attacker.displayName + " used " + moveUsed + " on " + Defender.displayName + ".");//just keep track of whats happening
+        //Debug.Log(Attacker.displayName + " used " + moveUsed + " on " + Defender.displayName + ".");//just keep track of whats happening
         SelectedMove.execute(Attacker, Defender);
         IsSelectingAttack = false;
         //possibly want to make the player press the enter key to progress
         //so they dont miss something they might want to see (the result of their moves)
         //also gives weight to the enemy's turn
         Invoke("AskForAction", 1);
+        
     }
 
     //Called when a message is to be displayed in the bottom right box

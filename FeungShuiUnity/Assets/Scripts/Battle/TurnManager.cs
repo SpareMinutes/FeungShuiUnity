@@ -33,9 +33,19 @@ public class TurnManager : MonoBehaviour
     }
 
     public List<Creature> getActivePlayerControlled () {
-        List<Creature> dummyList = new List<Creature>(){};;
+        List<Creature> dummyList = new List<Creature>(){};
         foreach (Creature creature in takeTurns) {
-            if (creature.isPlayerOwned() && creature.getActiveHealth() > 0) {
+            if (creature.isPlayerOwned()) {
+                dummyList.Add(creature);
+            }
+        }
+        return dummyList;
+    }
+
+    public List<Creature> getActiveEnemies () {
+        List<Creature> dummyList = new List<Creature>(){};
+        foreach (Creature creature in takeTurns) {
+            if (!creature.isPlayerOwned()) {
                 dummyList.Add(creature);
             }
         }
@@ -47,16 +57,20 @@ public class TurnManager : MonoBehaviour
         return takeTurns[turnIndex%takeTurns.Count];
     }
 
-    public void checker () {
-        foreach (Creature creature in takeTurns) {
-            if (creature.getActiveHealth() <= 0) {
-                //remove that creature from the list so it can't make more moves
-                takeTurns.Remove(creature);
-            }
-        }
-    }
-
     public void removeFromPlay (Creature creature) {
         takeTurns.Remove(creature);
+    }
+
+    public string whoWins () {
+        if (getActiveEnemies().Count == 0) {
+            // player wins
+            return "Player";
+        } else if (getActivePlayerControlled().Count == 0){
+            //CPU wins
+            return "Computer";
+        } else {
+            //no one wins
+            return "No-one";
+        }
     }
 }
