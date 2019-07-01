@@ -55,4 +55,8 @@ public class TurnManager : MonoBehaviour
             }
         }
     }
+
+    public void removeFromPlay (Creature creature) {
+        takeTurns.Remove(creature);
+    }
 }

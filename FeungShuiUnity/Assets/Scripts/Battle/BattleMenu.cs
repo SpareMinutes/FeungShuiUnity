@@ -57,7 +57,7 @@ public class BattleMenu : MonoBehaviour {
     //Select action type (Attack/Defend/Item/Run)
     public void AskForAction(){
         if (!IsSelectingAttack) {
-            ES.GetComponent<TurnManager>().checker();
+            //ES.GetComponent<TurnManager>().checker();
             Attacker = ES.GetComponent<TurnManager>().getNextSpirit();
         }
         
@@ -150,8 +150,12 @@ public class BattleMenu : MonoBehaviour {
     //Called when the oppoenent is selected
     public void DoAttack(){
         ShowMessage(Attacker.displayName + " used " + moveUsed + " on " + Defender.displayName + ".");
+        Debug.Log(Attacker.displayName + " used " + moveUsed + " on " + Defender.displayName + ".");//just keep track of whats happening
         SelectedMove.execute(Attacker, Defender);
         IsSelectingAttack = false;
+        //possibly want to make the player press the enter key to progress
+        //so they dont miss something they might want to see (the result of their moves)
+        //also gives weight to the enemy's turn
         Invoke("AskForAction", 1);
     }
 
