@@ -58,7 +58,7 @@ public class BattleMenu : MonoBehaviour {
         }
         
         if (Attacker.isPlayerOwned()) {
-            ShowMessage("What will " + Attacker.displayName + " do?", 0);
+            ShowMessage("What will " + Attacker.displayName + " do?");
             //Enable action type buttons
             GameObject.Find("Attack").GetComponent<Button>().interactable = true;
             GameObject.Find("Defend").GetComponent<Button>().interactable = true;
