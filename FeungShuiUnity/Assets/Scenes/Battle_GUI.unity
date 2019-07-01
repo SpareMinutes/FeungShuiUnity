@@ -270,6 +270,7 @@ MonoBehaviour:
   type: Beast
   moveNames:
   - Pound
+  - Scratch
 --- !u!212 &67951008
 SpriteRenderer:
   m_ObjectHideFlags: 0
