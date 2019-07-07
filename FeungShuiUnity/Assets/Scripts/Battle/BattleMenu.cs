@@ -181,7 +181,7 @@ public class BattleMenu : MonoBehaviour {
         IsSelectingAttack = false;
     }
     
-    public void LoadDefense () {
+    public void LoadDefend () {
         Attacker.doDefenseMove();
         //since it has no targets it doesnt need a target selection
         //show/remove appropriate buttons

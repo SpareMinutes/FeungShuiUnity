@@ -29,6 +29,7 @@ public class TurnManager : MonoBehaviour{
         foreach (KeyValuePair<Creature, float> pair in items) {
             //Debug.Log(pair.Key.getSpeed());
             returnList.Add(pair.Key);
+            Debug.Log(pair.Key.displayName);
         }
         takeTurns =  returnList;
     }
@@ -67,7 +68,7 @@ public class TurnManager : MonoBehaviour{
 
     public Creature getNextSpirit () {
         Creature next = Upcoming.Dequeue();
-        Debug.Log(next.name);
+        //Debug.Log(next.name);
         CalcUpcoming();
         return next;
     }
