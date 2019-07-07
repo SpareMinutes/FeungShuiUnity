@@ -67,7 +67,6 @@ public class BattleMenu : MonoBehaviour {
         } else if (ES.GetComponent<TurnManager>().whoWins().Equals("No-one")) {
             if (!IsSelectingAttack) {
                 Attacker = ES.GetComponent<TurnManager>().getNextSpirit();
-                Attacker.relieveDefenseMove(); //get rid of the defense move on their next turn 
             }
         
             if (Attacker.isPlayerOwned()) {
@@ -179,15 +178,5 @@ public class BattleMenu : MonoBehaviour {
         //Disable attack buttons
         Moves.SetActive(false);
         IsSelectingAttack = false;
-    }
-
-    public void LoadDefense () {
-        Attacker.doDefenseMove();
-        //since it has no targets it doesnt need a target selection
-        //show/remove appropriate buttons
-        //show message that the spririt used defend
-        ShowMessage(Attacker.displayName + " used Defend!");
-        //progress the turn cycle
-        Invoke("AskForAction", 1);
     }
 }

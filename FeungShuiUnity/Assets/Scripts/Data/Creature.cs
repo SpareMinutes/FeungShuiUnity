@@ -8,26 +8,16 @@ public class Creature : MonoBehaviour{
 
     //stats
     public float maxActiveHealth;
+    public float currentActiveHealth;
     public float maxCriticalHealth;
     public float currentCriticalHealth;
-    public float currentActiveHealth;
-
-    public float baseAttack;
-    public float baseDefense;
-    public float baseIntelligence; //Special attack
-    public float baseResistance; //Special defense
-    public float baseSpeed;
-
-    private float currentAttack;
-    private float currentDefense;
-    private float currentIntelligence;
-    private float currentResistance;
-    private float currentSpeed;
-     
+    public float attack;
+    public float defense;
+    public float intelligence; //Special attack
+    public float resistance; //Special defense
+    public float speed;
     private float friendship = 0; //0 should be neutral, and less <0 is bad >0 is good
 
-    private float preDefenseMoveDefense;
-    private float preDefenseMoveResistance;
     //xp stuff
     private float totalExp = 0;
 
@@ -63,17 +53,17 @@ public class Creature : MonoBehaviour{
 
     public float getAttack (bool Physical) {
         if (Physical) {
-            return this.currentAttack;
+            return this.attack;
         } else {
-            return this.currentIntelligence;
+            return this.intelligence;
         }
     }
 
     public float getDefense (bool Physical) {
         if (Physical) {
-            return this.currentDefense;
+            return this.defense;
         } else{
-            return this.currentResistance;
+            return this.resistance;
         }
     }
 
@@ -90,28 +80,15 @@ public class Creature : MonoBehaviour{
     }
 
     public float getSpeed () {
-        return currentSpeed;
+        return speed;
+    }
+
+    public void takeTurn () {
+        Debug.Log(displayName + " did a thing");
+        //in this function a move will be chosen and items will be used
     }
 
     public bool isPlayerOwned () {
         return playerOwned;
-    }
-
-    public void doDefenseMove () {
-        //for now just increase defense and special defense by a bunch (very techincal i know)
-        //these variables are if you buff your defenses other than this move (eg harden in pokemon)
-        preDefenseMoveDefense = currentDefense;
-        preDefenseMoveResistance = currentResistance;
-
-        //multiplies the defenses by 2 (up for change)
-        this.currentDefense *= 2; 
-        this.currentResistance *= 2;
-    }
-
-    public void relieveDefenseMove () {
-        if (preDefenseMoveDefense != null && preDefenseMoveResistance != null) { //ensures no weird things happen
-            currentDefense = preDefenseMoveDefense;
-            currentResistance = preDefenseMoveResistance;
-        }
     }
 }
