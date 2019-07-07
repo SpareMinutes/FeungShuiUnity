@@ -42,7 +42,6 @@ public class Walk : MonoBehaviour{
         animator.SetBool("isWalking", hypotenuse>0);
         if(hypotenuse>0)
             animator.SetFloat("angle", (angle*(180/Mathf.PI))+45);
-        
 
         float newX = HorizontalDirection*speed*Time.fixedDeltaTime*640;
         float newY = VerticalDirection *speed *Time.fixedDeltaTime*640;
