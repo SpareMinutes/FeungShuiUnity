@@ -8,16 +8,26 @@ public class Creature : MonoBehaviour{
 
     //stats
     public float maxActiveHealth;
-    public float currentActiveHealth;
     public float maxCriticalHealth;
     public float currentCriticalHealth;
-    public float attack;
-    public float defense;
-    public float intelligence; //Special attack
-    public float resistance; //Special defense
-    public float speed;
+    public float currentActiveHealth;
+
+    public float baseAttack;
+    public float baseDefense;
+    public float baseIntelligence; //Special attack
+    public float baseResistance; //Special defense
+    public float baseSpeed;
+
+    private float currentAttack;
+    private float currentDefense;
+    private float currentIntelligence;
+    private float currentResistance;
+    private float currentSpeed;
+     
     private float friendship = 0; //0 should be neutral, and less <0 is bad >0 is good
 
+    private float preDefenseMoveDefense;
+    private float preDefenseMoveResistance;
     //xp stuff
     private float totalExp = 0;
 
@@ -33,8 +43,9 @@ public class Creature : MonoBehaviour{
     private static Dictionary<Creature, float> friendshipDict = new Dictionary<Creature, float>();
     private float trainerFriendship; // because the player isnt of type Creature
 
-    /*
+    
     public void Start() {
+        /*
         //pick a random nature
         this.personality = Natures2.personalityKeys[Random.Range(0,Natures2.personalityKeys.Count)];
         this.statModifiers = Natures2.personalityDict[this.personality];
@@ -45,25 +56,33 @@ public class Creature : MonoBehaviour{
         foreach (string name in moveNames) {
             Moves.Add(MovesMaster.Master[name]);
         }
+        */
+        currentAttack = baseAttack;
+        currentDefense = baseDefense;
+        currentIntelligence = baseIntelligence;
+        currentResistance = baseResistance;
+        currentSpeed = baseSpeed;
+        preDefenseMoveDefense = currentDefense;
+        preDefenseMoveResistance = currentResistance;
     }
-    */
+    
     public int getLevel (){
         return (int)Mathf.Pow(totalExp,1/3);
     }
 
     public float getAttack (bool Physical) {
         if (Physical) {
-            return this.attack;
+            return this.currentAttack;
         } else {
-            return this.intelligence;
+            return this.currentIntelligence;
         }
     }
 
     public float getDefense (bool Physical) {
         if (Physical) {
-            return this.defense;
+            return this.currentDefense;
         } else{
-            return this.resistance;
+            return this.currentResistance;
         }
     }
 
@@ -80,15 +99,27 @@ public class Creature : MonoBehaviour{
     }
 
     public float getSpeed () {
-        return speed;
-    }
-
-    public void takeTurn () {
-        Debug.Log(displayName + " did a thing");
-        //in this function a move will be chosen and items will be used
+        return currentSpeed;
     }
 
     public bool isPlayerOwned () {
         return playerOwned;
+    }
+
+    public void doDefenseMove () {
+        //for now just increase defense and special defense by a bunch (very techincal i know)
+        //these variables are if you buff your defenses other than this move (eg harden in pokemon)
+        preDefenseMoveDefense = currentDefense;
+        preDefenseMoveResistance = currentResistance;
+
+        //multiplies the defenses by 2 (up for change)
+        this.currentDefense *= 2; 
+        this.currentResistance *= 2;
+    }
+
+    public void relieveDefenseMove () {
+        currentDefense = preDefenseMoveDefense;
+        currentResistance = preDefenseMoveResistance;
+        
     }
 }

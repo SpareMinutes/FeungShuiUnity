@@ -152,18 +152,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   displayName: Alice
   maxActiveHealth: 40
-  currentActiveHealth: 40
   maxCriticalHealth: 20
   currentCriticalHealth: 20
-  attack: 5
-  defense: 4
-  intelligence: 5
-  resistance: 4
-  speed: 7
+  currentActiveHealth: 40
+  baseAttack: 6
+  baseDefense: 6
+  baseIntelligence: 6
+  baseResistance: 6
+  baseSpeed: 6
   playerOwned: 0
   type: Beast
   moveNames:
   - Scratch
+  - Pound
 --- !u!212 &35394307
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -258,14 +259,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   displayName: Charlie
   maxActiveHealth: 40
-  currentActiveHealth: 40
   maxCriticalHealth: 20
   currentCriticalHealth: 20
-  attack: 5
-  defense: 4
-  intelligence: 5
-  resistance: 4
-  speed: 10
+  currentActiveHealth: 40
+  baseAttack: 8
+  baseDefense: 8
+  baseIntelligence: 8
+  baseResistance: 8
+  baseSpeed: 8
   playerOwned: 1
   type: Beast
   moveNames:
@@ -850,18 +851,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   displayName: Bob
   maxActiveHealth: 40
-  currentActiveHealth: 40
   maxCriticalHealth: 20
   currentCriticalHealth: 20
-  attack: 5
-  defense: 4
-  intelligence: 5
-  resistance: 4
-  speed: 9
+  currentActiveHealth: 40
+  baseAttack: 7
+  baseDefense: 7
+  baseIntelligence: 7
+  baseResistance: 7
+  baseSpeed: 7
   playerOwned: 0
   type: Beast
   moveNames:
   - Pound
+  - Scratch
 --- !u!212 &202960357
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -962,14 +964,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   displayName: Dave
   maxActiveHealth: 40
-  currentActiveHealth: 40
   maxCriticalHealth: 20
   currentCriticalHealth: 20
-  attack: 5
-  defense: 4
-  intelligence: 5
-  resistance: 4
-  speed: 5
+  currentActiveHealth: 40
+  baseAttack: 9
+  baseDefense: 9
+  baseIntelligence: 9
+  baseResistance: 9
+  baseSpeed: 9
   playerOwned: 1
   type: Beast
   moveNames:
