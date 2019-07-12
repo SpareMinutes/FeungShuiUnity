@@ -134,7 +134,29 @@ public class BattleMenu : MonoBehaviour {
         moveUsed = ES.currentSelectedGameObject.GetComponentInChildren<Text>().text;
         SelectedMove = MovesMaster.Find(moveUsed); //gets the move out of database
         //if statement dealing with targeting type
-        if(SelectedMove.AttackTarget == Move.Target.Single){
+        if (SelectedMove.AttackTarget == Move.Target.All) {
+            //everyone is at the recieving end of the move
+
+            //selection needs to highlight everyone and arrows need to not change anything
+
+        } else if (SelectedMove.AttackTarget == Move.Target.Ally) {
+            //the target is the other memeber of their own team
+
+            //only the once choice
+        } else if (SelectedMove.AttackTarget == Move.Target.Double) {
+            //team selection (i assume just the enemy team)
+
+            //player chooses cpu team
+            //cpu chooses player team
+            //the execution of the move has to happen to both enemies in the 
+        } else if (SelectedMove.AttackTarget == Move.Target.Others) {
+            //
+
+        } else if (SelectedMove.AttackTarget == Move.Target.Self) {
+            //creature targets itself --> Defender is the Attacker
+            
+            //targeting is restricted to the Attacker
+        } else if(SelectedMove.AttackTarget == Move.Target.Single){
             //Makes the opponents selectable for the move to target
             GameObject spirit1 = GameObject.Find("Spirit3Status");
             if(spirit1!=null)
@@ -149,8 +171,6 @@ public class BattleMenu : MonoBehaviour {
             for (int i=0; i<4; i++)
                 GameObject.Find("Attack" + i).GetComponent<Button>().interactable = false;
         }
-        //To do: attacks with different targeting types and cases with only one opponent
-        
     }
 
     //Called by defender when they're selected telling script to target them
