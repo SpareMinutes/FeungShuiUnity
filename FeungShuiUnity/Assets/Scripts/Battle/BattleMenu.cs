@@ -145,11 +145,24 @@ public class BattleMenu : MonoBehaviour {
                 //make all selections on (green)
                 //the player can only select this option (everything)
         } else if (SelectedMove.AttackTarget == Move.Target.Ally) {
-            //the target is the other memeber of their own team
+            if (ES.GetComponent<TurnManager>().getActivePlayerControlled().Count == 2) /*to handle if there isnt 2 player controlled alive*/{
+                GameObject selectableSpirit = null;
+                GameObject spirit = GameObject.Find("Spirit1Status");
+                if (spirit.GetComponent<CreatureBattleStatusController>().Target == Attacker) {
+                    //change it to be the other player controlled
+                    selectableSpirit = GameObject.Find("Spirit2Status");
+                } else {
+                    selectableSpirit = spirit;
+                }
+                if (selectableSpirit != null) {
+                    selectableSpirit.GetComponent<Button>().interactable = true;
+                }
+                ES.SetSelectedGameObject(selectableSpirit);
+                disableMoves();
+            } else {
+                Debug.Log("no allies alive");
+            }
 
-            //only single selection, but the selection is restricted to the Attackers team mate
-                //find Attackers team (player or not controlled)
-                //remove the Attacker from the list and the selection should be the remaining
         } else if (SelectedMove.AttackTarget == Move.Target.Double) {
             //team selection (i assume just the enemy team)
 
@@ -163,11 +176,6 @@ public class BattleMenu : MonoBehaviour {
             //get all spirits in play and remove the attacker
                 //these are the selectable spirits
         } else if (SelectedMove.AttackTarget == Move.Target.Self) {
-            //creature targets itself --> Defender is the Attacker
-            
-            //targeting is restricted to the Attacker
-                //look for spirit status that targets the attacker
-                //that is the selectable spirit
             GameObject selectableSpirit = null;
             for (int i = 1; i <= 4; i++) {
                 GameObject spirit = GameObject.Find("Spirit" + i + "Status");
@@ -179,30 +187,42 @@ public class BattleMenu : MonoBehaviour {
                 selectableSpirit.GetComponent<Button>().interactable = true;
             }
             ES.SetSelectedGameObject(selectableSpirit);
-            //Makes moves non interactable
-            for (int i=0; i<4; i++)
-                GameObject.Find("Attack" + i).GetComponent<Button>().interactable = false;
+            disableMoves();
 
         } else if(SelectedMove.AttackTarget == Move.Target.Single){
             //Makes the opponents selectable for the move to target
             GameObject spirit1 = GameObject.Find("Spirit3Status");
-            if(spirit1!=null)
-                spirit1.GetComponent<Button>().interactable = true;
             GameObject spirit2 = GameObject.Find("Spirit4Status");
+
+            if(spirit1!=null) {
+                spirit1.GetComponent<Button>().interactable = true;
+            }
             if (spirit2 != null){
                 spirit2.GetComponent<Button>().interactable = true;
                 ES.SetSelectedGameObject(spirit2);
-            }else
+            }else {
                 ES.SetSelectedGameObject(spirit1);
-            //Makes moves non interactable
-            for (int i=0; i<4; i++)
-                GameObject.Find("Attack" + i).GetComponent<Button>().interactable = false;
+            }
+            disableMoves();
+        }
+    }
+
+    
+    /*just to save on a couple lines for something thats needed for every target selecting type */
+    private void disableMoves () {
+        //Makes moves non interactable
+        for (int i=0; i<4; i++) {
+            GameObject.Find("Attack" + i).GetComponent<Button>().interactable = false;
         }
     }
 
     //Called by defender when they're selected telling script to target them
     public void LoadDefender(){
         Defenders.Add(Selected.GetComponent<CreatureBattleStatusController>().Target);
+        //disable the spirit buttons
+        for (int i = 1; i<=4; i++) {
+            GameObject.Find("Spirit" + i + "Status").GetComponent<Button>().interactable = false;
+        }
     }
 
     //Called when the oppoenent is selected

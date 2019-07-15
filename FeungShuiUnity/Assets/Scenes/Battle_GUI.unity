@@ -273,6 +273,7 @@ MonoBehaviour:
   - Pound
   - Scratch
   - Howl
+  - _Ally
 --- !u!212 &67951008
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -989,6 +990,7 @@ MonoBehaviour:
   moveNames:
   - Scratch
   - Pound
+  - _Ally
 --- !u!212 &302500751
 SpriteRenderer:
   m_ObjectHideFlags: 0
