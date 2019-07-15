@@ -29,7 +29,7 @@ public class TurnManager : MonoBehaviour{
         foreach (KeyValuePair<Creature, float> pair in items) {
             //Debug.Log(pair.Key.getSpeed());
             returnList.Add(pair.Key);
-            Debug.Log(pair.Key.displayName);
+            //Debug.Log(pair.Key.displayName);
         }
         takeTurns =  returnList;
     }

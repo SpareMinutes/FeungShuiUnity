@@ -88,6 +88,7 @@ public class Move {
 
     public void Buff(string stat, string modifier){
         //placeholder
+        Debug.Log("used Buff (WIP)");
     }
 
     public enum Target{

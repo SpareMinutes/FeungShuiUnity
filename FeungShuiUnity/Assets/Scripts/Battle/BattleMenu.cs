@@ -13,7 +13,8 @@ public class BattleMenu : MonoBehaviour {
     private Move SelectedMove;
     //Used to force only one selection to be cancelled per cancel button press
     private bool CancelHeld;
-    private Creature Attacker, Defender;
+    private Creature Attacker;
+    private List<Creature> Defenders; //just to support having several targets
     private string moveUsed;
 
     void Start(){
@@ -22,6 +23,7 @@ public class BattleMenu : MonoBehaviour {
         IsSelectingAttack = false;
         Moves.SetActive(false);
         SelectedMove = null;
+        Defenders = new List<Creature>{};
         AskForAction();
     }
 
@@ -56,6 +58,7 @@ public class BattleMenu : MonoBehaviour {
 
     //Select action type (Attack/Defend/Item/Run)
     public void AskForAction(){
+        Creature Defender;
         if (ES.GetComponent<TurnManager>().whoWins().Equals("Player")) {
             Debug.Log("Player Wins");
             UnityEditor.EditorApplication.isPlaying = false;
@@ -84,7 +87,7 @@ public class BattleMenu : MonoBehaviour {
                     - decide whether to attack or defend or use an item (for wild spirits they shouldnt be able to use items)
                     - choose an attack
                     - choose a target (should be the opposite target choices as the player)
-                 */
+                */
                 //ignoring the first descision because they have no functionality yet. 
                 //so assuming the ai chooses attack
 
@@ -97,6 +100,7 @@ public class BattleMenu : MonoBehaviour {
                 List<Creature> toChoose = ES.GetComponent<TurnManager>().getActivePlayerControlled();
                 int randNum2 = Random.Range(0,toChoose.Count);
                 Defender = toChoose[randNum2];
+                Defenders.Add(Defender);
                 DoAttack();
             }
         }
@@ -137,25 +141,48 @@ public class BattleMenu : MonoBehaviour {
         if (SelectedMove.AttackTarget == Move.Target.All) {
             //everyone is at the recieving end of the move
 
-            //selection needs to highlight everyone and arrows need to not change anything
-
+            //selection needs to highlight everyone and arrows need to not change anythingg
+                //make all selections on (green)
+                //the player can only select this option (everything)
         } else if (SelectedMove.AttackTarget == Move.Target.Ally) {
             //the target is the other memeber of their own team
 
-            //only the once choice
+            //only single selection, but the selection is restricted to the Attackers team mate
+                //find Attackers team (player or not controlled)
+                //remove the Attacker from the list and the selection should be the remaining
         } else if (SelectedMove.AttackTarget == Move.Target.Double) {
             //team selection (i assume just the enemy team)
 
-            //player chooses cpu team
-            //cpu chooses player team
-            //the execution of the move has to happen to both enemies in the 
+            //team based selection
+                //find the team of the Attacker
+                //get opposing team and make those selectable
+                    //if Attacker is player controlled then the spirits to be selected (together) will be 3 and 4
         } else if (SelectedMove.AttackTarget == Move.Target.Others) {
-            //
-
+            //spirits other than the Attacker
+            
+            //get all spirits in play and remove the attacker
+                //these are the selectable spirits
         } else if (SelectedMove.AttackTarget == Move.Target.Self) {
             //creature targets itself --> Defender is the Attacker
             
             //targeting is restricted to the Attacker
+                //look for spirit status that targets the attacker
+                //that is the selectable spirit
+            GameObject selectableSpirit = null;
+            for (int i = 1; i <= 4; i++) {
+                GameObject spirit = GameObject.Find("Spirit" + i + "Status");
+                if (spirit.GetComponent<CreatureBattleStatusController>().Target == Attacker) {
+                    selectableSpirit = spirit;
+                }
+            }
+            if (selectableSpirit != null) {
+                selectableSpirit.GetComponent<Button>().interactable = true;
+            }
+            ES.SetSelectedGameObject(selectableSpirit);
+            //Makes moves non interactable
+            for (int i=0; i<4; i++)
+                GameObject.Find("Attack" + i).GetComponent<Button>().interactable = false;
+
         } else if(SelectedMove.AttackTarget == Move.Target.Single){
             //Makes the opponents selectable for the move to target
             GameObject spirit1 = GameObject.Find("Spirit3Status");
@@ -175,14 +202,17 @@ public class BattleMenu : MonoBehaviour {
 
     //Called by defender when they're selected telling script to target them
     public void LoadDefender(){
-        Defender = Selected.GetComponent<CreatureBattleStatusController>().Target;
+        Defenders.Add(Selected.GetComponent<CreatureBattleStatusController>().Target);
     }
 
     //Called when the oppoenent is selected
     public void DoAttack(){
-        ShowMessage(Attacker.displayName + " used " + moveUsed + " on " + Defender.displayName + ".");
-        //Debug.Log(Attacker.displayName + " used " + moveUsed + " on " + Defender.displayName + ".");//just keep track of whats happening
-        SelectedMove.execute(Attacker, Defender);
+        foreach (Creature Defender in Defenders) {
+            ShowMessage(Attacker.displayName + " used " + moveUsed + " on " + Defender.displayName + ".");
+            SelectedMove.execute(Attacker, Defender);
+        }
+        //clear the defenders list
+        Defenders.Clear();
         IsSelectingAttack = false;
         //possibly want to make the player press the enter key to progress
         //so they dont miss something they might want to see (the result of their moves)
