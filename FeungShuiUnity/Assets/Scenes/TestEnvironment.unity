@@ -15215,17 +15215,18 @@ PrefabInstance:
       propertyPath: speed
       value: 0.25
       objectReference: {fileID: 0}
-    - target: {fileID: 7041208782141400046, guid: 60a912dff5e9e784aa77429c0e38e37f,
-        type: 3}
-      propertyPath: m_SortingOrder
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 8863851292449889813, guid: 60a912dff5e9e784aa77429c0e38e37f,
         type: 3}
       propertyPath: speed
       value: 0.6
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 7041208782141400046, guid: 60a912dff5e9e784aa77429c0e38e37f,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 2
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 4108927702865059297, guid: 60a912dff5e9e784aa77429c0e38e37f, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 60a912dff5e9e784aa77429c0e38e37f, type: 3}
 --- !u!4 &1768873501 stripped
 Transform:
