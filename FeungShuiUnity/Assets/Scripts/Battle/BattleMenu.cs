@@ -221,7 +221,10 @@ public class BattleMenu : MonoBehaviour {
         Defenders.Add(Selected.GetComponent<CreatureBattleStatusController>().Target);
         //disable the spirit buttons
         for (int i = 1; i<=4; i++) {
-            GameObject.Find("Spirit" + i + "Status").GetComponent<Button>().interactable = false;
+            GameObject spirit = GameObject.Find("Spirit" + i + "Status");
+            if (spirit != null) {
+                spirit.GetComponent<Button>().interactable = false;
+            }
         }
     }
 
