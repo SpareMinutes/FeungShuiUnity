@@ -4,6 +4,7 @@ using System.Threading;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 
 public class BattleMenu : MonoBehaviour {
     public EventSystem ES;
@@ -61,12 +62,12 @@ public class BattleMenu : MonoBehaviour {
         Creature Defender;
         if (ES.GetComponent<TurnManager>().whoWins().Equals("Player")) {
             Debug.Log("Player Wins");
-            UnityEditor.EditorApplication.isPlaying = false;
-
+            //TODO: Make this load in the correct scene with correct player position
+            SceneManager.LoadScene("TestEnvironment", LoadSceneMode.Single);
         } else if (ES.GetComponent<TurnManager>().whoWins().Equals("Computer")) {
             Debug.Log("Player Looses");
-            UnityEditor.EditorApplication.isPlaying = false;
-
+            //TODO: Make this load in the correct scene with correct player position
+            SceneManager.LoadScene("TestEnvironment", LoadSceneMode.Single);
         } else if (ES.GetComponent<TurnManager>().whoWins().Equals("No-one")) {
             if (!IsSelectingAttack) {
                 Attacker = ES.GetComponent<TurnManager>().getNextSpirit();
@@ -262,5 +263,10 @@ public class BattleMenu : MonoBehaviour {
         ShowMessage(Attacker.displayName + " used Defend!");
         //progress the turn cycle
         Invoke("AskForAction", 1);
+    }
+
+    public void Run(){
+        //TODO: Make this load in the correct scene with correct player position
+        SceneManager.LoadScene("TestEnvironment", LoadSceneMode.Single);
     }
 }
