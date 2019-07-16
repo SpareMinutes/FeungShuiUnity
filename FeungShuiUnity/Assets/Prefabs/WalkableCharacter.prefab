@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 465495010}
   - component: {fileID: 465495009}
   - component: {fileID: 8863851292449889813}
+  - component: {fileID: 5874084462919211679}
   m_Layer: 0
   m_Name: WalkableCharacter
   m_TagString: Untagged
@@ -165,6 +166,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 1
   animator: {fileID: 7041208782141400045}
+--- !u!114 &5874084462919211679
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7041208782141400035}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6064994c4f02d46479ea82840ee45268, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  area: {fileID: 8789598799098068688}
+  animator: {fileID: 7041208782141400045}
 --- !u!1 &8789598799098068688
 GameObject:
   m_ObjectHideFlags: 0
@@ -206,7 +221,7 @@ PolygonCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}

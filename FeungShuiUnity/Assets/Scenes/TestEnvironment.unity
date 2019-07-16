@@ -15220,10 +15220,15 @@ PrefabInstance:
       propertyPath: speed
       value: 0.6
       objectReference: {fileID: 0}
-    - target: {fileID: 7041208782141400046, guid: 60a912dff5e9e784aa77429c0e38e37f,
+    - target: {fileID: 5909545890592335669, guid: 60a912dff5e9e784aa77429c0e38e37f,
         type: 3}
-      propertyPath: m_SortingOrder
-      value: 2
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4989537833903173174, guid: 60a912dff5e9e784aa77429c0e38e37f,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 4108927702865059297, guid: 60a912dff5e9e784aa77429c0e38e37f, type: 3}
