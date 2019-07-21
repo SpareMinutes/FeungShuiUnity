@@ -266,7 +266,9 @@ public class BattleMenu : MonoBehaviour {
     }
 
     public void Run(){
-        //TODO: Make this load in the correct scene with correct player position
+        //telling the script to use the new player coordinates saved when the battle was engaged
+        PersistentStats.PlayerHasMoved = true;
+        //load the world again (probably also want to save the scene view for the route the player was last in)
         SceneManager.LoadScene("TestEnvironment", LoadSceneMode.Single);
     }
 }

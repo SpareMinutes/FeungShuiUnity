@@ -17,6 +17,14 @@ public class EventTrigger : MonoBehaviour {
     }
 
     public void StartBattle(){
+        //save the players current position and rotation
+        GameObject player = GameObject.Find("WalkableCharacter");
+        if (player != null) {
+            PersistentStats.PlayerPosX = player.transform.position.x;
+            PersistentStats.PlayerPosY = player.transform.position.y;
+            //PersistentStats.PlayerRotZ = player.transform.rotation.z;
+        }
+        //load the battle scene
         SceneManager.LoadScene("Battle_GUI", LoadSceneMode.Single);
     }
 }

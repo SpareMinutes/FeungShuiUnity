@@ -13,6 +13,12 @@ public class Walk : MonoBehaviour{
     private bool walkingHorizontally, walkingVertically;
 
     void Start() {
+        if (PersistentStats.PlayerHasMoved) {
+            gameObject.transform.position = new Vector2(PersistentStats.PlayerPosX, PersistentStats.PlayerPosY);
+            //gameObject.transform.rotation = Quaternion.Euler(0,0,PersistentStats.PlayerRotZ);
+            PersistentStats.PlayerHasMoved = false;
+        }
+
         walkingHorizontally = false;
         walkingVertically = false;
     }
