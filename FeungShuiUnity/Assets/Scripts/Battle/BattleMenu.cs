@@ -27,6 +27,7 @@ public class BattleMenu : MonoBehaviour {
         Moves.SetActive(false);
         SelectedMove = null;
         Defenders = new List<Creature>{};
+        toExculdeFromSelection = new List<Creature>(){}; //blank list
         AskForAction();
     }
 
@@ -64,12 +65,10 @@ public class BattleMenu : MonoBehaviour {
         Creature Defender;
         if (ES.GetComponent<TurnManager>().whoWins().Equals("Player")) {
             Debug.Log("Player Wins");
-            //TODO: Make this load in the correct scene with correct player position
             PersistentStats.PlayerHasMoved = true;
             SceneManager.LoadScene("TestEnvironment", LoadSceneMode.Single);
         } else if (ES.GetComponent<TurnManager>().whoWins().Equals("Computer")) {
             Debug.Log("Player Looses");
-            //TODO: Make this load in the correct scene with correct player position
             PersistentStats.PlayerHasMoved = true;
             SceneManager.LoadScene("TestEnvironment", LoadSceneMode.Single);
         } else if (ES.GetComponent<TurnManager>().whoWins().Equals("No-one")) {
@@ -77,7 +76,6 @@ public class BattleMenu : MonoBehaviour {
                 Attacker = ES.GetComponent<TurnManager>().getNextSpirit();
                 Attacker.relieveDefenseMove(); //get rid of the defense move on their next turn 
             }
-        
             if (Attacker.isPlayerOwned()) {
                 ShowMessage("What will " + Attacker.displayName + " do?");
                 //Enable action type buttons
@@ -153,6 +151,7 @@ public class BattleMenu : MonoBehaviour {
             targetDouble();
 
         } else if (SelectedMove.AttackTarget == Move.Target.Others) {
+            
             targetOthers();
 
         } else if (SelectedMove.AttackTarget == Move.Target.Self) {
@@ -165,8 +164,8 @@ public class BattleMenu : MonoBehaviour {
     }
 
     private void targetAll () {
-        //needs to make the targetAll button interactable
-        toExculdeFromSelection = new List<Creature>(){}; //blank list
+        //the exlcude list should already be empty (just in case)
+        toExculdeFromSelection.Clear();
         GameObject button = GameObject.Find("SelectMultipleButton");
         button.GetComponent<Button>().interactable = true;
         ES.SetSelectedGameObject(button);
@@ -198,20 +197,20 @@ public class BattleMenu : MonoBehaviour {
     }
 
     private void targetOthers () {
-        //spirits other than the Attacker
-            
-            //get all spirits in play and remove the attacker
-                //these are the selectable spirits
+        toExculdeFromSelection.Add(Attacker);
+        GameObject cover = GameObject.Find(findAttacker() + "Cover(Live)");
+        //Debug.Log(findAttacker() + "CoverLive");
+        cover.GetComponent<Image>().enabled = true;
+
+        GameObject button = GameObject.Find("SelectMultipleButton");
+        button.GetComponent<Button>().interactable = true;
+        ES.SetSelectedGameObject(button);
+
     }
     
     private void targetSelf () {
         GameObject selectableSpirit = null;
-            for (int i = 1; i <= 4; i++) {
-                GameObject spirit = GameObject.Find("Spirit" + i + "Status");
-                if (spirit != null && spirit.GetComponent<CreatureBattleStatusController>().Target == Attacker) {
-                    selectableSpirit = spirit;
-                }
-            }
+            selectableSpirit = GameObject.Find(findAttacker() + "Status");
             if (selectableSpirit != null) {
                 selectableSpirit.GetComponent<Button>().interactable = true;
             }
@@ -236,6 +235,15 @@ public class BattleMenu : MonoBehaviour {
             
     }
 
+    private string findAttacker () {
+        for (int i = 1; i <= 2; i++) {
+            GameObject spirit = GameObject.Find("Spirit" + i + "Status");
+                if (spirit != null && spirit.GetComponent<CreatureBattleStatusController>().Target == Attacker) {
+                    return ("Spirit" + i);
+                }
+        }
+        return null;
+    }
 
     /*just to save on a couple lines for something thats needed for every target selecting type */
     private void disableMoves () {
@@ -271,14 +279,25 @@ public class BattleMenu : MonoBehaviour {
             ShowMessage(Attacker.displayName + " used " + moveUsed + " on " + Defender.displayName + ".");
             SelectedMove.execute(Attacker, Defender);
         }
-        //clear the defenders list
-        Defenders.Clear();
-        IsSelectingAttack = false;
+        resetSelection();
+
         //possibly want to make the player press the enter key to progress
         //so they dont miss something they might want to see (the result of their moves)
         //also gives weight to the enemy's turn
         Invoke("AskForAction", 1);
         
+    }
+
+    //just to divide up functions 
+    private void resetSelection () {
+        Defenders.Clear();
+        toExculdeFromSelection.Clear();
+        IsSelectingAttack = false;
+
+        for (int i = 1; i<=4; i++) {
+            GameObject.Find("Spirit" + i + "Cover(Live)").GetComponent<Image>().enabled = false;
+            GameObject.Find("Spirit" + i + "Cover(Dead)").GetComponent<Image>().enabled = false;
+        }
     }
 
     //Called when a message is to be displayed in the bottom right box
