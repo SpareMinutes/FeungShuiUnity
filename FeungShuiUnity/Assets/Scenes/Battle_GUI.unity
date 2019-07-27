@@ -918,7 +918,7 @@ GameObject:
   - component: {fileID: 154605803}
   - component: {fileID: 154605802}
   m_Layer: 5
-  m_Name: Spirit1Cover(Dead)
+  m_Name: Spirit2Cover(Dead)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1418,7 +1418,7 @@ GameObject:
   m_Component:
   - component: {fileID: 476305851}
   m_Layer: 5
-  m_Name: Spirit2
+  m_Name: Spirit1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1438,7 +1438,7 @@ RectTransform:
   - {fileID: 646723051}
   - {fileID: 1868252170}
   m_Father: {fileID: 720780409}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1866,7 +1866,7 @@ GameObject:
   - component: {fileID: 646723053}
   - component: {fileID: 646723052}
   m_Layer: 5
-  m_Name: Spirit2Cover(Dead)
+  m_Name: Spirit1Cover(Dead)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1989,8 +1989,8 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 1848580997}
   - {fileID: 476305851}
+  - {fileID: 1848580997}
   - {fileID: 1304009667}
   - {fileID: 622329070}
   m_Father: {fileID: 1552161349}
@@ -3714,7 +3714,7 @@ GameObject:
   - component: {fileID: 1827608895}
   - component: {fileID: 1827608894}
   m_Layer: 5
-  m_Name: Spirit1Cover(Live)
+  m_Name: Spirit2Cover(Live)
   m_TagString: GameController
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3786,7 +3786,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1848580997}
   m_Layer: 5
-  m_Name: Spirit1
+  m_Name: Spirit2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3806,7 +3806,7 @@ RectTransform:
   - {fileID: 154605801}
   - {fileID: 1827608893}
   m_Father: {fileID: 720780409}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -3825,7 +3825,7 @@ GameObject:
   - component: {fileID: 1868252172}
   - component: {fileID: 1868252171}
   m_Layer: 5
-  m_Name: Spirit2Cover(Live)
+  m_Name: Spirit1Cover(Live)
   m_TagString: GameController
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
