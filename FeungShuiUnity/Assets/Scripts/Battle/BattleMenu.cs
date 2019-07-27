@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
@@ -17,6 +18,7 @@ public class BattleMenu : MonoBehaviour {
     private Creature Attacker;
     private List<Creature> Defenders; //just to support having several targets
     private string moveUsed;
+    private List<Creature> toExculdeFromSelection;
 
     void Start(){
         ES.GetComponent<TurnManager>().Init();
@@ -140,13 +142,36 @@ public class BattleMenu : MonoBehaviour {
         SelectedMove = MovesMaster.Find(moveUsed); //gets the move out of database
         //if statement dealing with targeting type
         if (SelectedMove.AttackTarget == Move.Target.All) {
-            //everyone is at the recieving end of the move
+            targetAll();
 
-            //selection needs to highlight everyone and arrows need to not change anythingg
-                //make all selections on (green)
-                //the player can only select this option (everything)
         } else if (SelectedMove.AttackTarget == Move.Target.Ally) {
-            if (ES.GetComponent<TurnManager>().getActivePlayerControlled().Count == 2) /*to handle if there isnt 2 player controlled alive*/{
+            targetAlly();
+
+        } else if (SelectedMove.AttackTarget == Move.Target.Double) {
+            targetDouble();
+
+        } else if (SelectedMove.AttackTarget == Move.Target.Others) {
+            targetOthers();
+
+        } else if (SelectedMove.AttackTarget == Move.Target.Self) {
+            targetSelf();
+
+        } else if(SelectedMove.AttackTarget == Move.Target.Single){
+            targetSingle();
+        }
+        disableMoves();
+    }
+
+    private void targetAll () {
+        //needs to make the targetAll button interactable
+        toExculdeFromSelection = new List<Creature>(){}; //blank list
+        GameObject button = GameObject.Find("SelectMultipleButton");
+        button.GetComponent<Button>().interactable = true;
+        ES.SetSelectedGameObject(button);
+    }
+
+    private void targetAlly () {
+        if (ES.GetComponent<TurnManager>().getActivePlayerControlled().Count == 2) /*to handle if there isnt 2 player controlled alive*/{
                 GameObject selectableSpirit = null;
                 GameObject spirit = GameObject.Find("Spirit1Status");
                 if (spirit.GetComponent<CreatureBattleStatusController>().Target == Attacker) {
@@ -159,25 +184,26 @@ public class BattleMenu : MonoBehaviour {
                     selectableSpirit.GetComponent<Button>().interactable = true;
                 }
                 ES.SetSelectedGameObject(selectableSpirit);
-                disableMoves();
             } else {
                 Debug.Log("no allies alive");
+                //maybe give the message that the move cannot be used? and then go back to teh select attack screen?
             }
+    }
 
-        } else if (SelectedMove.AttackTarget == Move.Target.Double) {
-            //team selection (i assume just the enemy team)
+    private void targetDouble () {
+        //this function needs to handle the filtering of the button
+            //this means changing the layers so that it looks like the 
+    }
 
-            //team based selection
-                //find the team of the Attacker
-                //get opposing team and make those selectable
-                    //if Attacker is player controlled then the spirits to be selected (together) will be 3 and 4
-        } else if (SelectedMove.AttackTarget == Move.Target.Others) {
-            //spirits other than the Attacker
+    private void targetOthers () {
+        //spirits other than the Attacker
             
             //get all spirits in play and remove the attacker
                 //these are the selectable spirits
-        } else if (SelectedMove.AttackTarget == Move.Target.Self) {
-            GameObject selectableSpirit = null;
+    }
+    
+    private void targetSelf () {
+        GameObject selectableSpirit = null;
             for (int i = 1; i <= 4; i++) {
                 GameObject spirit = GameObject.Find("Spirit" + i + "Status");
                 if (spirit.GetComponent<CreatureBattleStatusController>().Target == Attacker) {
@@ -188,10 +214,11 @@ public class BattleMenu : MonoBehaviour {
                 selectableSpirit.GetComponent<Button>().interactable = true;
             }
             ES.SetSelectedGameObject(selectableSpirit);
-            disableMoves();
+            
+    }
 
-        } else if(SelectedMove.AttackTarget == Move.Target.Single){
-            //Makes the opponents selectable for the move to target
+    private void targetSingle () {
+        //Makes the opponents selectable for the move to target
             GameObject spirit1 = GameObject.Find("Spirit3Status");
             GameObject spirit2 = GameObject.Find("Spirit4Status");
 
@@ -204,11 +231,10 @@ public class BattleMenu : MonoBehaviour {
             }else {
                 ES.SetSelectedGameObject(spirit1);
             }
-            disableMoves();
-        }
+            
     }
 
-    
+
     /*just to save on a couple lines for something thats needed for every target selecting type */
     private void disableMoves () {
         //Makes moves non interactable
@@ -227,6 +253,14 @@ public class BattleMenu : MonoBehaviour {
                 spirit.GetComponent<Button>().interactable = false;
             }
         }
+    }
+
+    //Called for having multiple enemies
+    public void LoadDefenders () {
+        List<Creature> activeCreatures = ES.GetComponent<TurnManager>().getAllActive();
+        Defenders = activeCreatures.Except(toExculdeFromSelection).ToList();
+        //disable the button
+        GameObject.Find("SelectMultipleButton").GetComponent<Button>().interactable = false;
     }
 
     //Called when the oppoenent is selected

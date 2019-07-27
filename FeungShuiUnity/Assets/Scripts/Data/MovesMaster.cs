@@ -9,7 +9,8 @@ public class MovesMaster{
         {"Surf", new Move(90, 1, 1, "Water", 0.01f, false, Move.Target.Others, null)},
         {"Fissure", new Move(10^12, 0.3f, 1, "Earth", 0, false, Move.Target.Single, null)}, // 1,000,000,000,000 damage should be enough for a one hit (dont think we should have OHKO in our game)
         {"Howl", new Move(0, 1, 1, "Water", 0, false, Move.Target.Self, new Dictionary<string,List<string>>{{"Buff", new List<string>{"0", "0"}}})},
-        {"Ally", new Move(10,1,1,"Beast",0f,false,Move.Target.Ally,new Dictionary<string,List<string>>{{"Buff",new List<string> {"0", "0"}}})}
+        {"Ally", new Move(10,1,1,"Beast",0f,false,Move.Target.Ally,new Dictionary<string,List<string>>{{"Buff",new List<string> {"0", "0"}}})},
+        {"Explosion", new Move(10,1,1,"Fire",0,true,Move.Target.All,new Dictionary<string, List<string>>{{"Damage", new List<string> {}}}) }
     };
 
     public static Move Find(string name){

@@ -66,6 +66,10 @@ public class TurnManager : MonoBehaviour{
         return dummyList;
     }
 
+    public List<Creature> getAllActive () {
+        return takeTurns;
+    }
+
     public Creature getNextSpirit () {
         Creature next = Upcoming.Dequeue();
         //Debug.Log(next.name);
