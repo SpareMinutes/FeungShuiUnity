@@ -19,6 +19,8 @@ public class BattleMenu : MonoBehaviour {
     private List<Creature> Defenders; //just to support having several targets
     private string moveUsed;
     private List<Creature> toExculdeFromSelection;
+    [SerializeField]
+    private GameObject[] spiritStatuses, attackButtons;
 
     void Start(){
         ES.GetComponent<TurnManager>().Init();
@@ -42,12 +44,10 @@ public class BattleMenu : MonoBehaviour {
         //Called when the the cancel button is pressed (esc)
         if (Input.GetAxis("Cancel") != 0){
             if (SelectedMove != null){ //Cancel target selection and return to move selection
-                GameObject spirit = GameObject.Find("Spirit3Status");
-                if(spirit!=null)
-                    spirit.GetComponent<Button>().interactable = false;
-                spirit = GameObject.Find("Spirit4Status");
-                if (spirit != null)
-                    spirit.GetComponent<Button>().interactable = false;
+                if(spiritStatuses[2].active)
+                    spiritStatuses[2].GetComponent<Button>().interactable = false;
+                if (spiritStatuses[3].active)
+                    spiritStatuses[3].GetComponent<Button>().interactable = false;
                 SelectedMove = null;
                 SelectAttack();
             }else if (IsSelectingAttack && !CancelHeld){ //Cancel move selection and return to action selection
@@ -120,18 +120,18 @@ public class BattleMenu : MonoBehaviour {
         GameObject.Find("Defend").GetComponent<Button>().interactable = false;
         GameObject.Find("Item").GetComponent<Button>().interactable = false;
         GameObject.Find("Run").GetComponent<Button>().interactable = false;
-        ES.SetSelectedGameObject(GameObject.Find("Attack0")); //Set the first (upper left) attack as the currently highlighed button
+        ES.SetSelectedGameObject(attackButtons[0]); //Set the first (upper left) attack as the currently highlighed button
         //Goes through the list of moves of a creature and displays them in the rightmost text as selectable buttons
         int i = 0;
         while (i < Attacker.moveNames.Count){
-            GameObject.Find("Attack" + i).GetComponentInChildren<Text>().text = Attacker.moveNames[i];
-            GameObject.Find("Attack" + i).GetComponent<Button>().interactable = true;
+            attackButtons[i].GetComponentInChildren<Text>().text = Attacker.moveNames[i];
+            attackButtons[i].GetComponent<Button>().interactable = true;
             i++;
         }
         //Fills out the remainders with empty text and makes them not selectable
         while (i < 4){
-            GameObject.Find("Attack" + i).GetComponentInChildren<Text>().text = "";
-            GameObject.Find("Attack" + i).GetComponent<Button>().interactable = false;
+            attackButtons[i].GetComponentInChildren<Text>().text = "";
+            attackButtons[i].GetComponent<Button>().interactable = false;
             i++;
         }
     }
@@ -174,10 +174,10 @@ public class BattleMenu : MonoBehaviour {
     private void targetAlly () {
         if (ES.GetComponent<TurnManager>().getActivePlayerControlled().Count == 2) /*to handle if there isnt 2 player controlled alive*/{
                 GameObject selectableSpirit = null;
-                GameObject spirit = GameObject.Find("Spirit1Status");
+                GameObject spirit = spiritStatuses[0];
                 if (spirit.GetComponent<CreatureBattleStatusController>().Target == Attacker) {
                     //change it to be the other player controlled
-                    selectableSpirit = GameObject.Find("Spirit2Status");
+                    selectableSpirit = spiritStatuses[1];
                 } else {
                     selectableSpirit = spirit;
                 }
@@ -220,25 +220,24 @@ public class BattleMenu : MonoBehaviour {
 
     private void targetSingle () {
         //Makes the opponents selectable for the move to target
-            GameObject spirit1 = GameObject.Find("Spirit3Status");
-            GameObject spirit2 = GameObject.Find("Spirit4Status");
+            GameObject spirit1 = spiritStatuses[2];
+            GameObject spirit2 = spiritStatuses[3];
 
-            if(spirit1!=null) {
+            if(spirit1.active) {
                 spirit1.GetComponent<Button>().interactable = true;
             }
-            if (spirit2 != null){
+            if (spirit2.active){
                 spirit2.GetComponent<Button>().interactable = true;
                 ES.SetSelectedGameObject(spirit2);
             }else {
                 ES.SetSelectedGameObject(spirit1);
             }
-            
     }
 
     private string findAttacker () {
         for (int i = 1; i <= 2; i++) {
-            GameObject spirit = GameObject.Find("Spirit" + i + "Status");
-                if (spirit != null && spirit.GetComponent<CreatureBattleStatusController>().Target == Attacker) {
+            GameObject spirit = spiritStatuses[i-1];
+                if (spirit.active && spirit.GetComponent<CreatureBattleStatusController>().Target == Attacker) {
                     return ("Spirit" + i);
                 }
         }
@@ -249,7 +248,7 @@ public class BattleMenu : MonoBehaviour {
     private void disableMoves () {
         //Makes moves non interactable
         for (int i=0; i<4; i++) {
-            GameObject.Find("Attack" + i).GetComponent<Button>().interactable = false;
+            attackButtons[i].GetComponent<Button>().interactable = false;
         }
     }
 
@@ -258,8 +257,8 @@ public class BattleMenu : MonoBehaviour {
         Defenders.Add(Selected.GetComponent<CreatureBattleStatusController>().Target);
         //disable the spirit buttons
         for (int i = 1; i<=4; i++) {
-            GameObject spirit = GameObject.Find("Spirit" + i + "Status");
-            if (spirit != null) {
+            GameObject spirit = spiritStatuses[i-1];
+            if (spirit.active) {
                 spirit.GetComponent<Button>().interactable = false;
             }
         }
