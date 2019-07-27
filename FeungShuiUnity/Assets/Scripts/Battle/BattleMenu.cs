@@ -65,10 +65,12 @@ public class BattleMenu : MonoBehaviour {
         if (ES.GetComponent<TurnManager>().whoWins().Equals("Player")) {
             Debug.Log("Player Wins");
             //TODO: Make this load in the correct scene with correct player position
+            PersistentStats.PlayerHasMoved = true;
             SceneManager.LoadScene("TestEnvironment", LoadSceneMode.Single);
         } else if (ES.GetComponent<TurnManager>().whoWins().Equals("Computer")) {
             Debug.Log("Player Looses");
             //TODO: Make this load in the correct scene with correct player position
+            PersistentStats.PlayerHasMoved = true;
             SceneManager.LoadScene("TestEnvironment", LoadSceneMode.Single);
         } else if (ES.GetComponent<TurnManager>().whoWins().Equals("No-one")) {
             if (!IsSelectingAttack) {
