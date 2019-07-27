@@ -206,7 +206,7 @@ public class BattleMenu : MonoBehaviour {
         GameObject selectableSpirit = null;
             for (int i = 1; i <= 4; i++) {
                 GameObject spirit = GameObject.Find("Spirit" + i + "Status");
-                if (spirit.GetComponent<CreatureBattleStatusController>().Target == Attacker) {
+                if (spirit != null && spirit.GetComponent<CreatureBattleStatusController>().Target == Attacker) {
                     selectableSpirit = spirit;
                 }
             }
