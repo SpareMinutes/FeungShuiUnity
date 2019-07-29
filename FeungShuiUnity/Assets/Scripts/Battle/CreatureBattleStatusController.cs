@@ -23,8 +23,8 @@ public class CreatureBattleStatusController : MonoBehaviour {
             ES.GetComponent<TurnManager>().removeFromPlay(Target);
 
             //after its removed from play set the dead cover up for that spirit
-            for (int i=1; i <= 4; i++) {
-                GameObject spirit = GameObject.Find("Spirit" + i + "Status");
+            for (int i=0; i < 4; i++) {
+                GameObject spirit = ES.GetComponent<BattleMenu>().spiritStatuses[i];
                 
                 if (spirit.GetComponent<CreatureBattleStatusController>().Target == this.Target) {
                     GameObject.Find("Spirit" + i + "Cover(Dead)").GetComponent<Image>().enabled = true;

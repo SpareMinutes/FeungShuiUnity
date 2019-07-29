@@ -19,8 +19,7 @@ public class BattleMenu : MonoBehaviour {
     private List<Creature> Defenders; //just to support having several targets
     private string moveUsed;
     private List<Creature> toExculdeFromSelection;
-    [SerializeField]
-    private GameObject[] spiritStatuses, attackButtons;
+    public GameObject[] spiritStatuses, attackButtons;
 
     void Start(){
         ES.GetComponent<TurnManager>().Init();
