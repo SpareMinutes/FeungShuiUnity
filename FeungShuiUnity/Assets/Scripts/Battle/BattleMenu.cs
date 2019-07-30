@@ -54,6 +54,8 @@ public class BattleMenu : MonoBehaviour{
                 SelectedMove = null;
                 SelectAttack();
                 resetSelection();
+                IsSelectingAttack = true;
+                GameObject.Find("SelectMultipleButton").GetComponent<Button>().interactable = false;
             }else if (IsSelectingAttack && !CancelHeld){ //Cancel move selection and return to action selection
                 AskForAction();
             }
@@ -222,6 +224,7 @@ public class BattleMenu : MonoBehaviour{
     private void resetSelection(){
         Defenders.Clear();
         toExculdeFromSelection.Clear();
+        SelectedMove = null;    
         IsSelectingAttack = false;
 
         for (int i = 0; i < 4; i++){
