@@ -7,7 +7,7 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 
-public class BattleMenu : MonoBehaviour {
+public class BattleMenu : MonoBehaviour{
     public EventSystem ES;
     public GameObject Message, Moves;
     private GameObject Selected;
@@ -19,7 +19,11 @@ public class BattleMenu : MonoBehaviour {
     private List<Creature> Defenders; //just to support having several targets
     private string moveUsed;
     private List<Creature> toExculdeFromSelection;
-    public GameObject[] spiritStatuses, attackButtons;
+    public GameObject[] spiritStatuses, attackButtons, toggles;
+
+    /*	---------------------------
+	*	General functions
+	*	---------------------------	*/
 
     void Start(){
         ES.GetComponent<TurnManager>().Init();
@@ -27,8 +31,8 @@ public class BattleMenu : MonoBehaviour {
         IsSelectingAttack = false;
         Moves.SetActive(false);
         SelectedMove = null;
-        Defenders = new List<Creature>{};
-        toExculdeFromSelection = new List<Creature>(){}; //blank list
+        Defenders = new List<Creature> { };
+        toExculdeFromSelection = new List<Creature>() { }; //blank list
         AskForAction();
     }
 
@@ -43,7 +47,7 @@ public class BattleMenu : MonoBehaviour {
         //Called when the the cancel button is pressed (esc)
         if (Input.GetAxis("Cancel") != 0){
             if (SelectedMove != null){ //Cancel target selection and return to move selection
-                if(spiritStatuses[2].active)
+                if (spiritStatuses[2].active)
                     spiritStatuses[2].GetComponent<Button>().interactable = false;
                 if (spiritStatuses[3].active)
                     spiritStatuses[3].GetComponent<Button>().interactable = false;
@@ -59,31 +63,45 @@ public class BattleMenu : MonoBehaviour {
             CancelHeld = false;
     }
 
+    /*	---------------------------
+	*	Main menu functions
+	*	---------------------------	*/
+
+    //Called when a message is to be displayed in the bottom right box
+    private void ShowMessage(string msg){
+        //Turn on the message box and set the text
+        Message.SetActive(true);
+        Message.GetComponent<Text>().text = msg;
+        //Disable attack buttons
+        Moves.SetActive(false);
+        IsSelectingAttack = false;
+    }
+
     //Select action type (Attack/Defend/Item/Run)
     public void AskForAction(){
         Creature Defender;
-        if (ES.GetComponent<TurnManager>().whoWins().Equals("Player")) {
+        if (ES.GetComponent<TurnManager>().whoWins().Equals("Player")){
             Debug.Log("Player Wins");
             PersistentStats.PlayerHasMoved = true;
             SceneManager.LoadScene("TestEnvironment", LoadSceneMode.Single);
-        } else if (ES.GetComponent<TurnManager>().whoWins().Equals("Computer")) {
+        }else if (ES.GetComponent<TurnManager>().whoWins().Equals("Computer")){
             Debug.Log("Player Looses");
             PersistentStats.PlayerHasMoved = true;
             SceneManager.LoadScene("TestEnvironment", LoadSceneMode.Single);
-        } else if (ES.GetComponent<TurnManager>().whoWins().Equals("No-one")) {
-            if (!IsSelectingAttack) {
+        }else if (ES.GetComponent<TurnManager>().whoWins().Equals("No-one")){
+            if (!IsSelectingAttack){
                 Attacker = ES.GetComponent<TurnManager>().getNextSpirit();
                 Attacker.relieveDefenseMove(); //get rid of the defense move on their next turn 
             }
-            if (Attacker.isPlayerOwned()) {
+            if (Attacker.isPlayerOwned()){
                 ShowMessage("What will " + Attacker.displayName + " do?");
                 //Enable action type buttons
                 GameObject.Find("Attack").GetComponent<Button>().interactable = true;
                 GameObject.Find("Defend").GetComponent<Button>().interactable = true;
                 GameObject.Find("Item").GetComponent<Button>().interactable = true;
                 GameObject.Find("Run").GetComponent<Button>().interactable = true;
-            ES.SetSelectedGameObject(GameObject.Find("Attack"));
-            } else {
+                ES.SetSelectedGameObject(GameObject.Find("Attack"));
+            }else{
                 // AI part //
                 /* AI needs to:
                     - decide whether to attack or defend or use an item (for wild spirits they shouldnt be able to use items)
@@ -94,26 +112,25 @@ public class BattleMenu : MonoBehaviour {
                 //so assuming the ai chooses attack
 
                 //this should choose a random move from the enemy's move set (even if they have less than 4 moves)
-                int randNum = Random.Range(0,Attacker.moveNames.Count);
+                int randNum = Random.Range(0, Attacker.moveNames.Count);
                 moveUsed = Attacker.moveNames[randNum];
                 SelectedMove = MovesMaster.Find(moveUsed);
 
                 //need to choose a "enemy" to attack
                 List<Creature> toChoose = ES.GetComponent<TurnManager>().getActivePlayerControlled();
-                int randNum2 = Random.Range(0,toChoose.Count);
+                int randNum2 = Random.Range(0, toChoose.Count);
                 Defender = toChoose[randNum2];
                 Defenders.Add(Defender);
                 DoAttack();
             }
         }
-        
     }
 
     //Called when the Attack option is pressed
     public void SelectAttack(){
         Message.SetActive(false); //Text in right most text box -> disable it
         Moves.SetActive(true); //Let the moves become selectable (shown)
-        IsSelectingAttack = true; 
+        IsSelectingAttack = true;
         //Disables the attack, defend, item, run buttons as buttons (text is still there)
         GameObject.Find("Attack").GetComponent<Button>().interactable = false;
         GameObject.Find("Defend").GetComponent<Button>().interactable = false;
@@ -135,179 +152,7 @@ public class BattleMenu : MonoBehaviour {
         }
     }
 
-    //Called when a move is selected
-    public void LoadAttack(){
-        moveUsed = ES.currentSelectedGameObject.GetComponentInChildren<Text>().text;
-        SelectedMove = MovesMaster.Find(moveUsed); //gets the move out of database
-        //if statement dealing with targeting type
-        if (SelectedMove.AttackTarget == Move.Target.All) {
-            targetAll();
-
-        } else if (SelectedMove.AttackTarget == Move.Target.Ally) {
-            targetAlly();
-
-        } else if (SelectedMove.AttackTarget == Move.Target.Double) {
-            targetDouble();
-
-        } else if (SelectedMove.AttackTarget == Move.Target.Others) {
-            
-            targetOthers();
-
-        } else if (SelectedMove.AttackTarget == Move.Target.Self) {
-            targetSelf();
-
-        } else if(SelectedMove.AttackTarget == Move.Target.Single){
-            targetSingle();
-        }
-        disableMoves();
-    }
-
-    private void targetAll () {
-        //the exlcude list should already be empty (just in case)
-        toExculdeFromSelection.Clear();
-        GameObject button = GameObject.Find("SelectMultipleButton");
-        button.GetComponent<Button>().interactable = true;
-        ES.SetSelectedGameObject(button);
-    }
-
-    private void targetAlly () {
-        if (ES.GetComponent<TurnManager>().getActivePlayerControlled().Count == 2) /*to handle if there isnt 2 player controlled alive*/{
-                GameObject selectableSpirit = null;
-                GameObject spirit = spiritStatuses[0];
-                if (spirit.GetComponent<CreatureBattleStatusController>().Target == Attacker) {
-                    //change it to be the other player controlled
-                    selectableSpirit = spiritStatuses[1];
-                } else {
-                    selectableSpirit = spirit;
-                }
-                if (selectableSpirit != null) {
-                    selectableSpirit.GetComponent<Button>().interactable = true;
-                }
-                ES.SetSelectedGameObject(selectableSpirit);
-            } else {
-                Debug.Log("no allies alive");
-                //maybe give the message that the move cannot be used? and then go back to teh select attack screen?
-            }
-    }
-
-    private void targetDouble () {
-        //this function needs to handle the filtering of the button
-            //this means changing the layers so that it looks like the 
-    }
-
-    private void targetOthers () {
-        toExculdeFromSelection.Add(Attacker);
-        GameObject cover = GameObject.Find(findAttacker() + "Cover(Live)");
-        //Debug.Log(findAttacker() + "CoverLive");
-        cover.GetComponent<Image>().enabled = true;
-
-        GameObject button = GameObject.Find("SelectMultipleButton");
-        button.GetComponent<Button>().interactable = true;
-        ES.SetSelectedGameObject(button);
-
-    }
-    
-    private void targetSelf () {
-        GameObject selectableSpirit = null;
-            selectableSpirit = GameObject.Find(findAttacker() + "Status");
-            if (selectableSpirit != null) {
-                selectableSpirit.GetComponent<Button>().interactable = true;
-            }
-            ES.SetSelectedGameObject(selectableSpirit);
-            
-    }
-
-    private void targetSingle () {
-        //Makes the opponents selectable for the move to target
-            GameObject spirit1 = spiritStatuses[2];
-            GameObject spirit2 = spiritStatuses[3];
-
-            if(spirit1.active) {
-                spirit1.GetComponent<Button>().interactable = true;
-            }
-            if (spirit2.active){
-                spirit2.GetComponent<Button>().interactable = true;
-                ES.SetSelectedGameObject(spirit2);
-            }else {
-                ES.SetSelectedGameObject(spirit1);
-            }
-    }
-
-    private string findAttacker () {
-        for (int i = 1; i <= 2; i++) {
-            GameObject spirit = spiritStatuses[i-1];
-                if (spirit.active && spirit.GetComponent<CreatureBattleStatusController>().Target == Attacker) {
-                    return ("Spirit" + i);
-                }
-        }
-        return null;
-    }
-
-    /*just to save on a couple lines for something thats needed for every target selecting type */
-    private void disableMoves () {
-        //Makes moves non interactable
-        for (int i=0; i<4; i++) {
-            attackButtons[i].GetComponent<Button>().interactable = false;
-        }
-    }
-
-    //Called by defender when they're selected telling script to target them
-    public void LoadDefender(){
-        Defenders.Add(Selected.GetComponent<CreatureBattleStatusController>().Target);
-        //disable the spirit buttons
-        for (int i = 1; i<=4; i++) {
-            GameObject spirit = spiritStatuses[i-1];
-            if (spirit.active) {
-                spirit.GetComponent<Button>().interactable = false;
-            }
-        }
-    }
-
-    //Called for having multiple enemies
-    public void LoadDefenders () {
-        List<Creature> activeCreatures = ES.GetComponent<TurnManager>().getAllActive();
-        Defenders = activeCreatures.Except(toExculdeFromSelection).ToList();
-        //disable the button
-        GameObject.Find("SelectMultipleButton").GetComponent<Button>().interactable = false;
-    }
-
-    //Called when the oppoenent is selected
-    public void DoAttack(){
-        foreach (Creature Defender in Defenders) {
-            ShowMessage(Attacker.displayName + " used " + moveUsed + " on " + Defender.displayName + ".");
-            SelectedMove.execute(Attacker, Defender);
-        }
-        resetSelection();
-
-        //possibly want to make the player press the enter key to progress
-        //so they dont miss something they might want to see (the result of their moves)
-        //also gives weight to the enemy's turn
-        Invoke("AskForAction", 1);
-        
-    }
-
-    //just to divide up functions 
-    private void resetSelection () {
-        Defenders.Clear();
-        toExculdeFromSelection.Clear();
-        IsSelectingAttack = false;
-
-        for (int i = 1; i<=4; i++) {
-            GameObject.Find("Spirit" + i + "Cover(Live)").GetComponent<Image>().enabled = false;
-        }
-    }
-
-    //Called when a message is to be displayed in the bottom right box
-    private void ShowMessage(string msg){
-        //Turn on the message box and set the text
-        Message.SetActive(true);
-        Message.GetComponent<Text>().text = msg;
-        //Disable attack buttons
-        Moves.SetActive(false);
-        IsSelectingAttack = false;
-    }
-    
-    public void LoadDefend () {
+    public void LoadDefend(){
         Attacker.doDefenseMove();
         //since it has no targets it doesnt need a target selection
         //show/remove appropriate buttons
@@ -322,5 +167,181 @@ public class BattleMenu : MonoBehaviour {
         PersistentStats.PlayerHasMoved = true;
         //load the world again (probably also want to save the scene view for the route the player was last in)
         SceneManager.LoadScene("TestEnvironment", LoadSceneMode.Single);
+    }
+
+    /*	---------------------------
+	*	Attacking functions
+	*	---------------------------	*/
+
+    //Called when the oppoenent is selected
+    public void DoAttack(){
+        foreach (Creature Defender in Defenders){
+            ShowMessage(Attacker.displayName + " used " + moveUsed + " on " + Defender.displayName + ".");
+            SelectedMove.execute(Attacker, Defender);
+        }
+        resetSelection();
+
+        //possibly want to make the player press the enter key to progress
+        //so they dont miss something they might want to see (the result of their moves)
+        //also gives weight to the enemy's turn
+        Invoke("AskForAction", 1);
+    }
+
+    private string findAttacker(){
+        for (int i = 1; i <= 2; i++){
+            GameObject spirit = spiritStatuses[i - 1];
+            if (spirit.active && spirit.GetComponent<CreatureBattleStatusController>().Target == Attacker){
+                return ("Spirit" + i);
+            }
+        }
+        return null;
+    }
+
+    //Called by defender when they're selected telling script to target them
+    public void LoadDefender(){
+        Defenders.Add(Selected.GetComponent<CreatureBattleStatusController>().Target);
+        //disable the spirit buttons
+        for (int i = 1; i <= 4; i++){
+            GameObject spirit = spiritStatuses[i - 1];
+            if (spirit.active){
+                spirit.GetComponent<Button>().interactable = false;
+            }
+        }
+    }
+
+    //Called for having multiple enemies
+    public void LoadDefenders(){
+        List<Creature> activeCreatures = ES.GetComponent<TurnManager>().getAllActive();
+        Defenders = activeCreatures.Except(toExculdeFromSelection).ToList();
+        //disable the button
+        GameObject.Find("SelectMultipleButton").GetComponent<Button>().interactable = false;
+    }
+
+    //just to divide up functions 
+    private void resetSelection(){
+        Defenders.Clear();
+        toExculdeFromSelection.Clear();
+        IsSelectingAttack = false;
+
+        for (int i = 1; i <= 4; i++){
+            GameObject.Find("Spirit" + i + "Cover(Live)").GetComponent<Image>().enabled = false;
+        }
+    }
+
+    //Called when a move is selected
+    public void LoadAttack(){
+        moveUsed = ES.currentSelectedGameObject.GetComponentInChildren<Text>().text;
+        SelectedMove = MovesMaster.Find(moveUsed); //gets the move out of database
+        //if statement dealing with targeting type
+        switch (SelectedMove.AttackTarget) {
+            case Move.Target.Single:
+                targetSingle();
+                break;
+            case Move.Target.Self:
+                targetSelf();
+                break;
+            case Move.Target.Ally:
+                targetAlly();
+                break;
+            case Move.Target.Double:
+                targetDouble();
+                break;
+            case Move.Target.Team:
+                targetTeam();
+                break;
+            case Move.Target.Others:
+                targetOthers();
+                break;
+            case Move.Target.All:
+                targetAll();
+                break;
+        }
+        disableMoves();
+    }
+
+    /*just to save on a couple lines for something thats needed for every target selecting type */
+    private void disableMoves(){
+        //Makes moves non interactable
+        for (int i = 0; i < 4; i++){
+            attackButtons[i].GetComponent<Button>().interactable = false;
+        }
+    }
+
+    /*	---------------------------
+	*	Targeting functions
+	*	---------------------------	*/
+
+    private void targetSingle(){
+        //Makes the opponents selectable for the move to target
+        GameObject spirit1 = spiritStatuses[2];
+        GameObject spirit2 = spiritStatuses[3];
+
+        if (spirit1.active){
+            spirit1.GetComponent<Button>().interactable = true;
+        }
+        if (spirit2.active){
+            spirit2.GetComponent<Button>().interactable = true;
+            ES.SetSelectedGameObject(spirit2);
+        }else{
+            ES.SetSelectedGameObject(spirit1);
+        }
+    }
+
+    private void targetSelf(){
+        GameObject selectableSpirit = null;
+        selectableSpirit = GameObject.Find(findAttacker() + "Status");
+        if (selectableSpirit != null){
+            selectableSpirit.GetComponent<Button>().interactable = true;
+        }
+        ES.SetSelectedGameObject(selectableSpirit);
+    }
+
+    private void targetAlly(){
+        if (ES.GetComponent<TurnManager>().getActivePlayerControlled().Count == 2){ /*to handle if there isnt 2 player controlled alive*/
+            GameObject selectableSpirit = null;
+            GameObject spirit = spiritStatuses[0];
+            if (spirit.GetComponent<CreatureBattleStatusController>().Target == Attacker){
+                //change it to be the other player controlled
+                selectableSpirit = spiritStatuses[1];
+            }else{
+                selectableSpirit = spirit;
+            }
+            if (selectableSpirit != null){
+                selectableSpirit.GetComponent<Button>().interactable = true;
+            }
+            ES.SetSelectedGameObject(selectableSpirit);
+        }else{
+            Debug.Log("no allies alive");
+            //maybe give the message that the move cannot be used? and then go back to teh select attack screen?
+        }
+    }
+
+    private void targetDouble(){
+        //this function needs to handle the filtering of the button
+        //this means changing the layers so that it looks like the 
+    }
+
+    private void targetTeam(){
+        //this function needs to handle the filtering of the button
+        //this means changing the layers so that it looks like the 
+    }
+
+    private void targetOthers(){
+        toExculdeFromSelection.Add(Attacker);
+        GameObject cover = GameObject.Find(findAttacker() + "Cover(Live)");
+        //Debug.Log(findAttacker() + "CoverLive");
+        cover.GetComponent<Image>().enabled = true;
+
+        GameObject button = GameObject.Find("SelectMultipleButton");
+        button.GetComponent<Button>().interactable = true;
+        ES.SetSelectedGameObject(button);
+    }
+
+    private void targetAll(){
+        //the exlcude list should already be empty (just in case)
+        toExculdeFromSelection.Clear();
+        GameObject button = GameObject.Find("SelectMultipleButton");
+        button.GetComponent<Button>().interactable = true;
+        ES.SetSelectedGameObject(button);
     }
 }
