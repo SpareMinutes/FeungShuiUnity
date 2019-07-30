@@ -89,7 +89,7 @@ public class Move {
         ApplyDamage(damageToTake);
     }
     
-    public void ApplyDamage(float damageToTake){
+    private void ApplyDamage(float damageToTake){
         if(Defender.currentActiveHealth > damageToTake){
             Defender.currentActiveHealth -= damageToTake;
         }else {
@@ -110,6 +110,7 @@ public class Move {
         Ally,
         Single,
         Double,
+        Team,
         Others,
         All
     }
