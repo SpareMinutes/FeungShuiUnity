@@ -23,15 +23,6 @@ public class CreatureBattleStatusController : MonoBehaviour {
         if (Target.currentActiveHealth <= 0){
             //remove Target from the Turn manager list
             ES.GetComponent<TurnManager>().removeFromPlay(Target);
-
-            //after its removed from play set the dead cover up for that spirit
-            for (int i=0; i < 4; i++) {
-                GameObject spirit = ES.GetComponent<BattleMenu>().spiritStatuses[i];
-                
-                if (spirit.GetComponent<CreatureBattleStatusController>().Target == this.Target) {
-                    GameObject.Find("Spirit" + (i+1) + "Cover(Dead)").GetComponent<Image>().enabled = true;
-                }
-            }
             this.gameObject.SetActive(false);
 
             //To do: ask for replacement
