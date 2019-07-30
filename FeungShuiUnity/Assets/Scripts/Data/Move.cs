@@ -77,6 +77,19 @@ public class Move {
 
         //my way
         float damageToTake = this.Power * (relevantAttackStat / relevantDefenseStat) * modifier;
+        ApplyDamage(damageToTake);
+    }
+
+    public void FixedDamage(string damageToTake){
+        ApplyDamage(int.Parse(damageToTake));
+    }
+
+    public void PercentDamage(string damagePcnt, string useCurrent){
+        float damageToTake = float.Parse(damagePcnt) * (useCurrent.Equals("true") ? Defender.currentActiveHealth : Defender.maxActiveHealth);
+        ApplyDamage(damageToTake);
+    }
+    
+    public void ApplyDamage(float damageToTake){
         if(Defender.currentActiveHealth > damageToTake){
             Defender.currentActiveHealth -= damageToTake;
         }else {
@@ -84,6 +97,7 @@ public class Move {
             Defender.currentActiveHealth = 0;
             Defender.currentCriticalHealth = Mathf.Max(0, Defender.currentCriticalHealth - damageToTake);
         }
+        Defender.currentActiveHealth = Mathf.Min(Defender.currentActiveHealth, Defender.maxActiveHealth);
     }
 
     public void Buff(string stat, string modifier){

@@ -272,7 +272,7 @@ MonoBehaviour:
   moveNames:
   - Pound
   - Scratch
-  - Howl
+  - Recover
   - Surf
 --- !u!212 &67951008
 SpriteRenderer:
@@ -1148,7 +1148,7 @@ MonoBehaviour:
   moveNames:
   - Scratch
   - Surf
-  - Ally
+  - HealPulse
   - Explosion
 --- !u!212 &302500751
 SpriteRenderer:
