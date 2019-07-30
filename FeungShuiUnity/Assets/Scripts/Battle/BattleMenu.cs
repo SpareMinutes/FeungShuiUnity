@@ -53,6 +53,7 @@ public class BattleMenu : MonoBehaviour{
                     spiritStatuses[3].GetComponent<Button>().interactable = false;
                 SelectedMove = null;
                 SelectAttack();
+                resetSelection();
             }else if (IsSelectingAttack && !CancelHeld){ //Cancel move selection and return to action selection
                 AskForAction();
             }
@@ -187,14 +188,14 @@ public class BattleMenu : MonoBehaviour{
         Invoke("AskForAction", 1);
     }
 
-    private string findAttacker(){
+    private int findAttacker(){
         for (int i = 1; i <= 2; i++){
             GameObject spirit = spiritStatuses[i - 1];
             if (spirit.active && spirit.GetComponent<CreatureBattleStatusController>().Target == Attacker){
-                return ("Spirit" + i);
+                return (i-1);
             }
         }
-        return null;
+        return -1;
     }
 
     //Called by defender when they're selected telling script to target them
@@ -223,8 +224,8 @@ public class BattleMenu : MonoBehaviour{
         toExculdeFromSelection.Clear();
         IsSelectingAttack = false;
 
-        for (int i = 1; i <= 4; i++){
-            GameObject.Find("Spirit" + i + "Cover(Live)").GetComponent<Image>().enabled = false;
+        for (int i = 0; i < 4; i++){
+            toggles[i].GetComponent<Toggle>().SetIsOnWithoutNotify(false);
         }
     }
 
@@ -232,7 +233,7 @@ public class BattleMenu : MonoBehaviour{
     public void LoadAttack(){
         moveUsed = ES.currentSelectedGameObject.GetComponentInChildren<Text>().text;
         SelectedMove = MovesMaster.Find(moveUsed); //gets the move out of database
-        //if statement dealing with targeting type
+        //switch/case statement dealing with targeting type
         switch (SelectedMove.AttackTarget) {
             case Move.Target.Single:
                 targetSingle();
@@ -289,7 +290,7 @@ public class BattleMenu : MonoBehaviour{
 
     private void targetSelf(){
         GameObject selectableSpirit = null;
-        selectableSpirit = GameObject.Find(findAttacker() + "Status");
+        selectableSpirit = spiritStatuses[findAttacker()];
         if (selectableSpirit != null){
             selectableSpirit.GetComponent<Button>().interactable = true;
         }
@@ -317,21 +318,30 @@ public class BattleMenu : MonoBehaviour{
     }
 
     private void targetDouble(){
-        //this function needs to handle the filtering of the button
-        //this means changing the layers so that it looks like the 
+        toExculdeFromSelection = ES.GetComponent<TurnManager>().getActivePlayerControlled();
+        toggles[2].GetComponent<Toggle>().SetIsOnWithoutNotify(true);
+        toggles[3].GetComponent<Toggle>().SetIsOnWithoutNotify(true);
+        GameObject button = GameObject.Find("SelectMultipleButton");
+        button.GetComponent<Button>().interactable = true;
+        ES.SetSelectedGameObject(button);
     }
 
     private void targetTeam(){
-        //this function needs to handle the filtering of the button
-        //this means changing the layers so that it looks like the 
+        toExculdeFromSelection = ES.GetComponent<TurnManager>().getActiveEnemies();
+        toggles[0].GetComponent<Toggle>().SetIsOnWithoutNotify(true);
+        toggles[1].GetComponent<Toggle>().SetIsOnWithoutNotify(true);
+        GameObject button = GameObject.Find("SelectMultipleButton");
+        button.GetComponent<Button>().interactable = true;
+        ES.SetSelectedGameObject(button);
     }
 
     private void targetOthers(){
         toExculdeFromSelection.Add(Attacker);
-        GameObject cover = GameObject.Find(findAttacker() + "Cover(Live)");
-        //Debug.Log(findAttacker() + "CoverLive");
-        cover.GetComponent<Image>().enabled = true;
-
+        int exclude = findAttacker();
+        if (exclude >= 0)
+            for(int i = 0; i < 4; i++)
+                if (i != exclude)
+                    toggles[i].GetComponent<Toggle>().SetIsOnWithoutNotify(true);
         GameObject button = GameObject.Find("SelectMultipleButton");
         button.GetComponent<Button>().interactable = true;
         ES.SetSelectedGameObject(button);
@@ -340,6 +350,8 @@ public class BattleMenu : MonoBehaviour{
     private void targetAll(){
         //the exlcude list should already be empty (just in case)
         toExculdeFromSelection.Clear();
+        for (int i = 0; i < 4; i++)
+            toggles[i].GetComponent<Toggle>().SetIsOnWithoutNotify(true);
         GameObject button = GameObject.Find("SelectMultipleButton");
         button.GetComponent<Button>().interactable = true;
         ES.SetSelectedGameObject(button);
