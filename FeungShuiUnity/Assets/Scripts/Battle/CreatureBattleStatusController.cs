@@ -29,7 +29,7 @@ public class CreatureBattleStatusController : MonoBehaviour {
                 GameObject spirit = ES.GetComponent<BattleMenu>().spiritStatuses[i];
                 
                 if (spirit.GetComponent<CreatureBattleStatusController>().Target == this.Target) {
-                    GameObject.Find("Spirit" + i + "Cover(Dead)").GetComponent<Image>().enabled = true;
+                    GameObject.Find("Spirit" + (i+1) + "Cover(Dead)").GetComponent<Image>().enabled = true;
                 }
             }
             this.gameObject.SetActive(false);

@@ -294,7 +294,6 @@ public class BattleMenu : MonoBehaviour {
 
         for (int i = 1; i<=4; i++) {
             GameObject.Find("Spirit" + i + "Cover(Live)").GetComponent<Image>().enabled = false;
-            GameObject.Find("Spirit" + i + "Cover(Dead)").GetComponent<Image>().enabled = false;
         }
     }
 
