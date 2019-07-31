@@ -164,7 +164,9 @@ MonoBehaviour:
   type: Beast
   moveNames:
   - Scratch
-  - Pound
+  - Explosion
+  - RazorLeaf
+  - Howl
 --- !u!212 &35394307
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -891,7 +893,9 @@ MonoBehaviour:
   type: Beast
   moveNames:
   - Pound
-  - Scratch
+  - Surf
+  - Recover
+  - HealPulse
 --- !u!212 &202960357
 SpriteRenderer:
   m_ObjectHideFlags: 0

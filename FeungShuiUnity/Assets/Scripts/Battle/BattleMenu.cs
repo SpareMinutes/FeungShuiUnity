@@ -105,26 +105,7 @@ public class BattleMenu : MonoBehaviour{
                 GameObject.Find("Run").GetComponent<Button>().interactable = true;
                 ES.SetSelectedGameObject(GameObject.Find("Attack"));
             }else{
-                // AI part //
-                /* AI needs to:
-                    - decide whether to attack or defend or use an item (for wild spirits they shouldnt be able to use items)
-                    - choose an attack
-                    - choose a target (should be the opposite target choices as the player)
-                */
-                //ignoring the first descision because they have no functionality yet. 
-                //so assuming the ai chooses attack
-
-                //this should choose a random move from the enemy's move set (even if they have less than 4 moves)
-                int randNum = Random.Range(0, Attacker.moveNames.Count);
-                moveUsed = Attacker.moveNames[randNum];
-                SelectedMove = MovesMaster.Find(moveUsed);
-
-                //need to choose a "enemy" to attack
-                List<Creature> toChoose = ES.GetComponent<TurnManager>().getActivePlayerControlled();
-                int randNum2 = Random.Range(0, toChoose.Count);
-                Defender = toChoose[randNum2];
-                Defenders.Add(Defender);
-                DoAttack();
+                EnemyAI();
             }
         }
     }
@@ -358,5 +339,70 @@ public class BattleMenu : MonoBehaviour{
         GameObject button = GameObject.Find("SelectMultipleButton");
         button.GetComponent<Button>().interactable = true;
         ES.SetSelectedGameObject(button);
+    }
+
+    private void EnemyAI () {
+        Creature Defender;
+        // AI part //
+        /* AI needs to:
+            - decide whether to attack or defend or use an item (for wild spirits they shouldnt be able to use items)
+            - choose an attack
+            - choose a target (should be the opposite target choices as the player)
+        */
+        int todo = Random.Range(0,3); 
+        //0=attack, 1=defend, 2=item, 3=switch(though probably onto go through with this if certain conditions are met)
+
+        if (todo == 0) {
+            //this should choose a random move from the enemy's move set (even if they have less than 4 moves)
+            int randNum = Random.Range(0, Attacker.moveNames.Count);
+            moveUsed = Attacker.moveNames[randNum];
+            SelectedMove = MovesMaster.Find(moveUsed);
+
+            switch (SelectedMove.AttackTarget) {
+                case Move.Target.All:
+                    Defenders = ES.GetComponent<TurnManager>().getAllActive();
+                    DoAttack();
+                    break;
+                case Move.Target.Ally:
+                    Defenders = ES.GetComponent<TurnManager>().getActiveEnemies();
+                    Defenders.Remove(Attacker);
+                    DoAttack();
+                    break;
+                case Move.Target.Double:
+                    Defenders = ES.GetComponent<TurnManager>().getActivePlayerControlled();
+                    DoAttack();
+                    break;
+                case Move.Target.Others:
+                    Defenders = ES.GetComponent<TurnManager>().getAllActive();
+                    Defenders.Remove(Attacker);
+                    DoAttack();
+                    break;
+                case Move.Target.Self:
+                    Defenders.Add(Attacker);
+                    DoAttack();
+                    break;
+                case Move.Target.Single:
+                    List<Creature> toChoose = ES.GetComponent<TurnManager>().getActivePlayerControlled();
+                    int randNum2 = Random.Range(0, toChoose.Count);
+                    Defender = toChoose[randNum2];
+                    Defenders.Add(Defender);
+                    DoAttack();
+                    break;
+                case Move.Target.Team:
+                    Defenders = ES.GetComponent<TurnManager>().getActivePlayerControlled();
+                    DoAttack();
+                    break;
+            }
+        } else if (todo == 1) {
+            LoadDefend();
+        } else if (todo == 2) {
+            Debug.Log("Item (WIP)");
+            ShowMessage("" + Attacker.displayName + "Use an [ITEM] (WIP)");
+            Invoke("AskForAction", 1);
+        } else if (todo == 3) {
+            Debug.Log("Switch Spirit (WIP)");
+            ShowMessage("" + Attacker.displayName + "switched (WIP)");
+            Invoke("AskForAction", 1);
+        }
     }
 }

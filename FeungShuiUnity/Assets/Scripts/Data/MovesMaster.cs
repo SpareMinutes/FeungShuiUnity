@@ -8,7 +8,6 @@ public class MovesMaster{
         {"Scratch", new Move(2, 1, 1,"Beast", 0.01f, true, Move.Target.Single, new Dictionary<string,List<string>>{{"Damage", new List<string> {}}})},
         {"Pound", new Move(5, 1, 1, "Beast", 0.01f, true, Move.Target.Single, new Dictionary<string,List<string>>{{"Damage", new List<string> {}}})},
         {"Surf", new Move(9, 1, 1, "Water", 0.01f, false, Move.Target.Others, new Dictionary<string, List<string>>{{"Damage", new List<string> {}}})},
-        {"Fissure", new Move(10^12, 0.3f, 1, "Earth", 0, false, Move.Target.Single, null)}, // 1,000,000,000,000 damage should be enough for a one hit (dont think we should have OHKO in our game)
         {"Recover", new Move(0, 1, 1, "Wood", 0, false, Move.Target.Self, new Dictionary<string,List<string>>{{"FixedDamage", new List<string>{"-5"}}})},
         {"HealPulse", new Move(0, 1, 1, "Wood", 0f, false, Move.Target.Ally, new Dictionary<string,List<string>>{{"PercentDamage", new List<string> {"-0.5", "false"}}})},
         {"Explosion", new Move(10, 1, 1, "Fire", 0, true, Move.Target.All, new Dictionary<string, List<string>>{{"Damage", new List<string> {}}})},
