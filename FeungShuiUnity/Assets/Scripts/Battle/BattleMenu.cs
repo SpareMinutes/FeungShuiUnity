@@ -146,6 +146,12 @@ public class BattleMenu : MonoBehaviour{
         Invoke("AskForAction", 1);
     }
 
+    public void SelectItem(){
+        Debug.Log("Item (WIP)");
+        ShowMessage("" + Attacker.displayName + " used an [ITEM] (WIP)");
+        Invoke("AskForAction", 1);
+    }
+
     public void Run(){
         //telling the script to use the new player coordinates saved when the battle was engaged
         PersistentStats.PlayerHasMoved = true;
@@ -397,11 +403,11 @@ public class BattleMenu : MonoBehaviour{
             LoadDefend();
         } else if (todo == 2) {
             Debug.Log("Item (WIP)");
-            ShowMessage("" + Attacker.displayName + "Use an [ITEM] (WIP)");
+            ShowMessage("" + Attacker.displayName + " used an [ITEM] (WIP)");
             Invoke("AskForAction", 1);
         } else if (todo == 3) {
             Debug.Log("Switch Spirit (WIP)");
-            ShowMessage("" + Attacker.displayName + "switched (WIP)");
+            ShowMessage("" + Attacker.displayName + " switched (WIP)");
             Invoke("AskForAction", 1);
         }
     }
