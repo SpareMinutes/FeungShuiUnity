@@ -1,8 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class Nature {
+﻿public class Nature {
     //Examples
     public static Nature lazy = new Nature(0, 0.9f, 1.2f, 0.9f, 1.2f, 0.85f);
     public static Nature aggressive = new Nature(1, 1.22f, 0.9f, 1f, 1f, 0.9f);
