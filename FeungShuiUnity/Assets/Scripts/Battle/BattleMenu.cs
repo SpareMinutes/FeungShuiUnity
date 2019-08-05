@@ -18,6 +18,7 @@ public class BattleMenu : MonoBehaviour{
     private string moveUsed;
     private List<Creature> toExculdeFromSelection;
     public GameObject[] spiritStatuses, attackButtons, toggles;
+    public GameObject ProgressButton;
 
     /*	---------------------------
 	*	General functions
@@ -141,13 +142,13 @@ public class BattleMenu : MonoBehaviour{
         //show message that the spririt used defend
         ShowMessage(Attacker.displayName + " used Defend!");
         //progress the turn cycle
-        Invoke("AskForAction", 1);
+        LoadProgress();
     }
 
     public void SelectItem(){
         Debug.Log("Item (WIP)");
         ShowMessage("" + Attacker.displayName + " used an [ITEM] (WIP)");
-        Invoke("AskForAction", 1);
+        LoadProgress();
     }
 
     public void Run(){
@@ -155,6 +156,16 @@ public class BattleMenu : MonoBehaviour{
         PersistentStats.PlayerHasMoved = true;
         //load the world again (probably also want to save the scene view for the route the player was last in)
         SceneManager.LoadScene("TestEnvironment", LoadSceneMode.Single);
+    }
+
+    private void LoadProgress () {
+        ProgressButton.GetComponent<Button>().interactable = true;
+        ES.SetSelectedGameObject(ProgressButton);
+    }
+
+    public void Progress () {
+        ProgressButton.GetComponent<Button>().interactable = false;
+        AskForAction();
     }
 
     /*	---------------------------
@@ -172,7 +183,7 @@ public class BattleMenu : MonoBehaviour{
         //possibly want to make the player press the enter key to progress
         //so they dont miss something they might want to see (the result of their moves)
         //also gives weight to the enemy's turn
-        Invoke("AskForAction", 1);
+        LoadProgress();
     }
 
     private int findAttacker(){
@@ -397,16 +408,17 @@ public class BattleMenu : MonoBehaviour{
                     DoAttack();
                     break;
             }
+        
         } else if (todo == 1) {
             LoadDefend();
         } else if (todo == 2) {
             Debug.Log("Item (WIP)");
             ShowMessage("" + Attacker.displayName + " used an [ITEM] (WIP)");
-            Invoke("AskForAction", 1);
+            LoadProgress();
         } else if (todo == 3) {
             Debug.Log("Switch Spirit (WIP)");
             ShowMessage("" + Attacker.displayName + " switched (WIP)");
-            Invoke("AskForAction", 1);
+            LoadProgress();
         }
     }
 }
