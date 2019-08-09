@@ -5,6 +5,8 @@ public class Walk : MonoBehaviour{
     private float speed; //movement speed multiplier
     [SerializeField]
     private Animator animator;
+    
+    public bool canWalk = true;
 
     private float HorizontalDirection;
     private float VerticalDirection;
@@ -23,9 +25,10 @@ public class Walk : MonoBehaviour{
 
     void FixedUpdate () {
         //comment out whichever one you dont want to use (testing purposes)
-
-        OmnidirectionalMovement();
-        //StiffMovement();
+        if (canWalk) {
+            OmnidirectionalMovement();
+            //StiffMovement();
+        }
     }
 
     private void OmnidirectionalMovement() {

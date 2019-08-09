@@ -25,5 +25,10 @@ public class EventTrigger : MonoBehaviour {
     public void UIMessage () {
         Debug.Log("A message (for now)");
         Canvas.SetActive(true);
+        
+    }
+
+    public void OpenMenu () {
+        //doesnt do anything but this is where ill put the code to open the in game menu
     }
 }
