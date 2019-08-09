@@ -4,22 +4,28 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-public class MenuAndWorldUI : MonoBehaviour
-{
-    public GameObject button;
+public class MenuAndWorldUI : MonoBehaviour{
     public EventSystem ES;
-    public GameObject player;
+    [SerializeField]
+    private GameObject Player, Canvas, Message, Text;
 
     public void Start () {
-        player.GetComponent<Walk>().canWalk = false;
-        player.transform.GetChild (1).gameObject.SetActive(false);
-        button.GetComponent<Button>().interactable = true;
-        ES.SetSelectedGameObject(button);
     }
 
-    public void disableButton () {
-        button.GetComponent<Button>().interactable = false;
-        player.GetComponent<Walk>().canWalk = true;
-        player.transform.GetChild (1).gameObject.SetActive(true);
+    public void disableButton(){
+        Message.GetComponent<Button>().interactable = false;
+        Message.SetActive(false);
+        Player.GetComponent<Walk>().canWalk = true;
+        Player.transform.GetChild(1).gameObject.SetActive(true);
+    }
+
+    public void ShowMessage(string msg){
+        Debug.Log("A message (for now)");
+        Player.transform.GetChild(1).gameObject.SetActive(false);
+        Player.GetComponent<Walk>().canWalk = false;
+        Message.SetActive(true);
+        Message.GetComponent<Button>().interactable = true;
+        ES.SetSelectedGameObject(Message);
+        Text.GetComponent<Text>().text = msg;
     }
 }

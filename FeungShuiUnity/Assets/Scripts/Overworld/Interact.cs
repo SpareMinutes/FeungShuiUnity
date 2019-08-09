@@ -15,7 +15,7 @@ public class Interact : MonoBehaviour{
     // Update is called once per frame
     void Update(){
         area.transform.rotation = Quaternion.Euler(0, 0, animator.GetInteger("angle") + 45);
-        if (Input.GetButtonUp("Submit")){
+        if (Input.GetButtonDown("Submit")){
             List<Collider2D> lookedAt = new List<Collider2D>();
             ContactFilter2D filter = new ContactFilter2D();
             filter.useTriggers = true;

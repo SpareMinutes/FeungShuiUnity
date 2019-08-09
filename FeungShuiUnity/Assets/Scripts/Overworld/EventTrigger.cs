@@ -5,10 +5,6 @@ using UnityEngine.SceneManagement;
 public class EventTrigger : MonoBehaviour {
     public UnityEvent onInteract;
 
-    [SerializeField]
-    private GameObject Canvas;
-
-
     public void StartBattle(){
         //save the players current position and rotation
         GameObject player = GameObject.Find("WalkableCharacter");
@@ -21,11 +17,8 @@ public class EventTrigger : MonoBehaviour {
         SceneManager.LoadScene("Battle_GUI", LoadSceneMode.Single);
     }
 
-
-    public void UIMessage () {
-        Debug.Log("A message (for now)");
-        Canvas.SetActive(true);
-        
+    public void UIMessage(string msg){
+        GameObject.Find("Canvas").GetComponent<MenuAndWorldUI>().ShowMessage(msg);
     }
 
     public void OpenMenu () {

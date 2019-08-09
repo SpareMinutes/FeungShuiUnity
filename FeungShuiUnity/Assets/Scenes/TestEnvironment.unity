@@ -260,12 +260,12 @@ GameObject:
   - component: {fileID: 73058375}
   - component: {fileID: 73058374}
   m_Layer: 5
-  m_Name: Button
+  m_Name: Message
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &73058373
 RectTransform:
   m_ObjectHideFlags: 0
@@ -9413,7 +9413,6 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
-  Canvas: {fileID: 0}
 --- !u!4 &706286528
 Transform:
   m_ObjectHideFlags: 0
@@ -15567,18 +15566,17 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1535838973}
         m_MethodName: UIMessage
-        m_Mode: 1
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: It's an altar.
           m_BoolArgument: 0
         m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
-  Canvas: {fileID: 2075343286}
 --- !u!1 &1581662122
 GameObject:
   m_ObjectHideFlags: 0
@@ -15958,11 +15956,6 @@ PrefabInstance:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 4989537833903173174, guid: 60a912dff5e9e784aa77429c0e38e37f,
-        type: 3}
-      propertyPath: m_IsTrigger
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 1470523944520388681, guid: 60a912dff5e9e784aa77429c0e38e37f,
         type: 3}
       propertyPath: m_RootOrder
@@ -15996,7 +15989,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &2075343287
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16089,6 +16082,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f520fa633c6af94aaaff76d920b377c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  button: {fileID: 73058372}
   ES: {fileID: 963515317}
-  player: {fileID: 1232001643}
+  Player: {fileID: 1232001643}
+  Canvas: {fileID: 2075343286}
+  Message: {fileID: 73058372}
+  Text: {fileID: 72720862}
