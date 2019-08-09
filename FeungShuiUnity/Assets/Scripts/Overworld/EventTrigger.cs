@@ -25,4 +25,8 @@ public class EventTrigger : MonoBehaviour {
         //load the battle scene
         SceneManager.LoadScene("Battle_GUI", LoadSceneMode.Single);
     }
+
+    public void UIMessage () {
+        Debug.Log("A message (for now)");
+    }
 }
