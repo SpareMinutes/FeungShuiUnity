@@ -46,9 +46,9 @@ public class BattleMenu : MonoBehaviour{
         //Called when the the cancel button is pressed (esc)
         if (Input.GetAxis("Cancel") != 0){
             if (SelectedMove != null){ //Cancel target selection and return to move selection
-                if (spiritStatuses[2].active)
+                if (spiritStatuses[2].activeSelf)
                     spiritStatuses[2].GetComponent<Button>().interactable = false;
-                if (spiritStatuses[3].active)
+                if (spiritStatuses[3].activeSelf)
                     spiritStatuses[3].GetComponent<Button>().interactable = false;
                 SelectedMove = null;
                 SelectAttack();
@@ -188,7 +188,7 @@ public class BattleMenu : MonoBehaviour{
     private int findAttacker(){
         for (int i = 1; i <= 2; i++){
             GameObject spirit = spiritStatuses[i - 1];
-            if (spirit.active && spirit.GetComponent<CreatureBattleStatusController>().Target == Attacker){
+            if (spirit.activeSelf && spirit.GetComponent<CreatureBattleStatusController>().Target == Attacker){
                 return (i-1);
             }
         }
@@ -201,7 +201,7 @@ public class BattleMenu : MonoBehaviour{
         //disable the spirit buttons
         for (int i = 1; i <= 4; i++){
             GameObject spirit = spiritStatuses[i - 1];
-            if (spirit.active){
+            if (spirit.activeSelf){
                 spirit.GetComponent<Button>().interactable = false;
             }
         }
@@ -275,10 +275,10 @@ public class BattleMenu : MonoBehaviour{
         GameObject spirit1 = spiritStatuses[2];
         GameObject spirit2 = spiritStatuses[3];
 
-        if (spirit1.active){
+        if (spirit1.activeSelf){
             spirit1.GetComponent<Button>().interactable = true;
         }
-        if (spirit2.active){
+        if (spirit2.activeSelf){
             spirit2.GetComponent<Button>().interactable = true;
             ES.SetSelectedGameObject(spirit2);
         }else{
