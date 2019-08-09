@@ -81,7 +81,6 @@ public class BattleMenu : MonoBehaviour{
 
     //Select action type (Attack/Defend/Item/Run)
     public void AskForAction(){
-        Creature Defender;
         if (ES.GetComponent<TurnManager>().whoWins().Equals("Player")){
             Debug.Log("Player Wins");
             PersistentStats.PlayerHasMoved = true;
