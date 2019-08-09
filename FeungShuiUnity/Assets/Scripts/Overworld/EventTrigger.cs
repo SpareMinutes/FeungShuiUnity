@@ -5,14 +5,9 @@ using UnityEngine.SceneManagement;
 public class EventTrigger : MonoBehaviour {
     public UnityEvent onInteract;
 
-    // Start is called before the first frame update
-    void Start() {
-    }
+    [SerializeField]
+    private GameObject Canvas;
 
-    // Update is called once per frame
-    void Update() {
-        
-    }
 
     public void StartBattle(){
         //save the players current position and rotation
@@ -26,7 +21,9 @@ public class EventTrigger : MonoBehaviour {
         SceneManager.LoadScene("Battle_GUI", LoadSceneMode.Single);
     }
 
+
     public void UIMessage () {
         Debug.Log("A message (for now)");
+        Canvas.SetActive(true);
     }
 }
