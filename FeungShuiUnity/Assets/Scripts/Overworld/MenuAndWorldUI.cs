@@ -16,7 +16,7 @@ public class MenuAndWorldUI : MonoBehaviour{
         Message.GetComponent<Button>().interactable = false;
         Message.SetActive(false);
         Player.GetComponent<Walk>().canWalk = true;
-        Invoke("reActivateInteract", 1);
+        Invoke("reActivateInteract", 0.0167f);
     }
 
     private void reActivateInteract () {
