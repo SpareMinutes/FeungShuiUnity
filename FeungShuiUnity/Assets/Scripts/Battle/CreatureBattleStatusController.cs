@@ -14,9 +14,9 @@ public class CreatureBattleStatusController : MonoBehaviour {
 
     // Update is called once per frame
     void Update(){
-        float width = Target.currentActiveHealth>0 ? Mathf.Max(0.25f, 7.5f*(Target.currentActiveHealth/Target.maxActiveHealth)) : 0;
+        float width = Target.currentActiveHealth>0 ? Mathf.Max(0.25f, 6f*(Target.currentActiveHealth/Target.maxActiveHealth)) : 0;
         Stamina.transform.localScale = new Vector3(width, 1, 0);
-        width = Target.currentCriticalHealth>0 ? Mathf.Max(0.25f, 4f*(Target.currentCriticalHealth/Target.maxCriticalHealth)) : 0;
+        width = Target.currentCriticalHealth>0 ? Mathf.Max(0.25f, 3f*(Target.currentCriticalHealth/Target.maxCriticalHealth)) : 0;
         Critical.transform.localScale = new Vector3(width, 1, 0);
         if (Target.currentActiveHealth <= 0){
             //remove Target from the Turn manager list
