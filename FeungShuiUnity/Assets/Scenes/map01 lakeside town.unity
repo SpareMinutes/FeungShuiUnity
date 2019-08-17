@@ -170,7 +170,7 @@ PrefabInstance:
     - target: {fileID: 7041208782141400047, guid: 60a912dff5e9e784aa77429c0e38e37f,
         type: 3}
       propertyPath: m_RootOrder
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7041208782141400047, guid: 60a912dff5e9e784aa77429c0e38e37f,
         type: 3}
@@ -189,6 +189,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 60a912dff5e9e784aa77429c0e38e37f, type: 3}
+--- !u!1 &156026757 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7041208782141400035, guid: 60a912dff5e9e784aa77429c0e38e37f,
+    type: 3}
+  m_PrefabInstance: {fileID: 156026756}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &171657938
 GameObject:
   m_ObjectHideFlags: 0
@@ -52471,12 +52477,6 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
---- !u!4 &347955501 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 7041208782141400047, guid: 60a912dff5e9e784aa77429c0e38e37f,
-    type: 3}
-  m_PrefabInstance: {fileID: 156026756}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &681493893
 GameObject:
   m_ObjectHideFlags: 0
@@ -52522,7 +52522,7 @@ Transform:
   - {fileID: 799510857}
   - {fileID: 1576135624}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &704771215
 GameObject:
@@ -52535,6 +52535,7 @@ GameObject:
   - component: {fileID: 704771218}
   - component: {fileID: 704771217}
   - component: {fileID: 704771216}
+  - component: {fileID: 704771219}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -52601,12 +52602,31 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 704771215}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -15}
+  m_LocalPosition: {x: 0, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 347955501}
-  m_RootOrder: 1
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &704771219
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 704771215}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13fa029c6bb4f284d9443991771b9c7c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 156026757}
+  bounds:
+    serializedVersion: 2
+    x: -536
+    y: -418
+    width: 1072
+    height: 896
 --- !u!1 &799510856
 GameObject:
   m_ObjectHideFlags: 0
