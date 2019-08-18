@@ -7,9 +7,19 @@ using UnityEngine.EventSystems;
 public class MenuAndWorldUI : MonoBehaviour{
     public EventSystem ES;
     [SerializeField]
-    private GameObject Player, Canvas, Message, Text;
+    private GameObject Player, Canvas, Message, Text, Menu;
+    private bool isMenuOpen = false;
 
-    public void Start () {
+    public void Update () {
+        if (Input.GetKeyDown(KeyCode.Escape)) {
+            if (isMenuOpen) {
+                //menu is open so close it
+                CloseMenu();
+            } else {
+                OpenMenu();
+            }
+            
+        } 
     }
 
     public void disableButton(){
@@ -31,5 +41,20 @@ public class MenuAndWorldUI : MonoBehaviour{
         Message.GetComponent<Button>().interactable = true;
         ES.SetSelectedGameObject(Message);
         Text.GetComponent<Text>().text = msg;
+    }
+
+    public void OpenMenu () {
+        //doesnt do anything but this is where ill put the code to open the in game menu
+        Menu.SetActive(true);
+        isMenuOpen = true;
+        ES.SetSelectedGameObject(GameObject.Find("Button_1"));
+        Player.GetComponent<Walk>().canWalk = false;
+    }
+
+    public void CloseMenu () {
+        //this is mainly for if theres anything else we want to put here
+        Menu.SetActive(false);
+        isMenuOpen = false;
+        Player.GetComponent<Walk>().canWalk = true;
     }
 }

@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 public class EventTrigger : MonoBehaviour {
     public UnityEvent onInteract;
 
-    public void StartBattle(){
+        public void StartBattle(){
         //save the players current position and rotation
         GameObject player = GameObject.Find("WalkableCharacter");
         if (player != null) {
@@ -18,10 +18,8 @@ public class EventTrigger : MonoBehaviour {
     }
 
     public void UIMessage(string msg){
-        GameObject.Find("Canvas").GetComponent<MenuAndWorldUI>().ShowMessage(msg);
+        GameObject.Find("InGameUI").GetComponent<MenuAndWorldUI>().ShowMessage(msg);
     }
 
-    public void OpenMenu () {
-        //doesnt do anything but this is where ill put the code to open the in game menu
-    }
+    
 }
