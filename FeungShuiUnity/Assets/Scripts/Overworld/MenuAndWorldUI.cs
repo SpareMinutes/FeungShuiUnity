@@ -20,12 +20,12 @@ public class MenuAndWorldUI : MonoBehaviour{
     }
 
     private void reActivateInteract () {
-        Player.transform.GetChild(1).gameObject.SetActive(true);
+        Player.transform.GetChild(0).gameObject.SetActive(true);
     }
 
     public void ShowMessage(string msg){
         Debug.Log("A message (for now)");
-        Player.transform.GetChild(1).gameObject.SetActive(false);
+        Player.transform.GetChild(0).gameObject.SetActive(false);
         Player.GetComponent<Walk>().canWalk = false;
         Message.SetActive(true);
         Message.GetComponent<Button>().interactable = true;
