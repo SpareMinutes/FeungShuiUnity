@@ -28,6 +28,11 @@ public class Walk : MonoBehaviour{
         if (canWalk) {
             OmnidirectionalMovement();
             //StiffMovement();
+        } else {
+            //set movement to zero to stop the player moving in the menu
+            gameObject.GetComponent<Rigidbody2D>().velocity = new Vector3 (0,0,0);
+            //set animator to idle animation instead of walking
+            animator.SetBool("isWalking", false);
         }
     }
 

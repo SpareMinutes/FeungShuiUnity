@@ -7,7 +7,7 @@ using UnityEngine.EventSystems;
 public class MenuAndWorldUI : MonoBehaviour{
     public EventSystem ES;
     [SerializeField]
-    private GameObject Player, Canvas, Message, Text, Menu;
+    private GameObject Player, Canvas, Message, Text, Menu, Button1;
     private bool isMenuOpen = false;
 
     public void Update () {
@@ -47,7 +47,7 @@ public class MenuAndWorldUI : MonoBehaviour{
         //doesnt do anything but this is where ill put the code to open the in game menu
         Menu.SetActive(true);
         isMenuOpen = true;
-        ES.SetSelectedGameObject(GameObject.Find("Button_1"));
+        ES.SetSelectedGameObject(Button1);
         Player.GetComponent<Walk>().canWalk = false;
     }
 
