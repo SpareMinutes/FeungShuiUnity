@@ -7,15 +7,29 @@ using UnityEngine.EventSystems;
 public class MenuAndWorldUI : MonoBehaviour{
     public EventSystem ES;
     [SerializeField]
-    private GameObject Player, Canvas, Message, Text, Menu, Button1;
+    private GameObject Player, Canvas, Message, Text, Menu;
     private bool isMenuOpen = false;
+    private GameObject Selected;
 
-    public void Update () {
+    public void Start(){
+        Selected = ES.firstSelectedGameObject;
+    }
+
+    public void Update (){
+        //Ensures clicking doesn't deselect buttons
+        if (ES.currentSelectedGameObject != Selected)
+        {
+            if (ES.currentSelectedGameObject == null)
+                ES.SetSelectedGameObject(Selected);
+            else
+                Selected = ES.currentSelectedGameObject;
+        }
+
         if (Input.GetKeyDown(KeyCode.Escape)) {
             if (isMenuOpen) {
                 //menu is open so close it
                 CloseMenu();
-            } else {
+            } else if(!Message.active){
                 OpenMenu();
             }
             
@@ -47,7 +61,8 @@ public class MenuAndWorldUI : MonoBehaviour{
         //doesnt do anything but this is where ill put the code to open the in game menu
         Menu.SetActive(true);
         isMenuOpen = true;
-        ES.SetSelectedGameObject(Button1);
+        ES.SetSelectedGameObject(null);
+        ES.SetSelectedGameObject(Selected);
         Player.GetComponent<Walk>().canWalk = false;
     }
 

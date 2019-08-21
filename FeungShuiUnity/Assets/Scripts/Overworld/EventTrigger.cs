@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 public class EventTrigger : MonoBehaviour {
     public UnityEvent onInteract;
 
-        public void StartBattle(){
+    public void StartBattle(){
         //save the players current position and rotation
         GameObject player = GameObject.Find("WalkableCharacter");
         if (player != null) {
