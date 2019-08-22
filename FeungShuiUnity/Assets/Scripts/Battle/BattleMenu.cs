@@ -100,6 +100,7 @@ public class BattleMenu : MonoBehaviour{
                 GameObject.Find("Attack").GetComponent<Button>().interactable = true;
                 GameObject.Find("Defend").GetComponent<Button>().interactable = true;
                 GameObject.Find("Item").GetComponent<Button>().interactable = true;
+                GameObject.Find("Spirits").GetComponent<Button>().interactable = true;
                 GameObject.Find("Run").GetComponent<Button>().interactable = true;
                 ES.SetSelectedGameObject(GameObject.Find("Attack"));
             }else{
@@ -117,6 +118,7 @@ public class BattleMenu : MonoBehaviour{
         GameObject.Find("Attack").GetComponent<Button>().interactable = false;
         GameObject.Find("Defend").GetComponent<Button>().interactable = false;
         GameObject.Find("Item").GetComponent<Button>().interactable = false;
+        GameObject.Find("Spirits").GetComponent<Button>().interactable = false;
         GameObject.Find("Run").GetComponent<Button>().interactable = false;
         ES.SetSelectedGameObject(attackButtons[0]); //Set the first (upper left) attack as the currently highlighed button
         //Goes through the list of moves of a creature and displays them in the rightmost text as selectable buttons

@@ -9183,6 +9183,12 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!1 &687982546 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7689022480451687864, guid: 737839d04245d774e9c247effc421d20,
+    type: 3}
+  m_PrefabInstance: {fileID: 7689022480732719959}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &706286526
 GameObject:
   m_ObjectHideFlags: 0
@@ -9495,7 +9501,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76c392e42b5098c458856cdf6ecaaaa1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_FirstSelected: {fileID: 0}
+  m_FirstSelected: {fileID: 687982546}
   m_sendNavigationEvents: 1
   m_DragThreshold: 10
 --- !u!4 &963515318
@@ -15337,10 +15343,10 @@ MonoBehaviour:
   target: {fileID: 1232001643}
   bounds:
     serializedVersion: 2
-    x: -120
-    y: -176
-    width: 240
-    height: 352
+    x: -119.5
+    y: -175.5
+    width: 239
+    height: 351
 --- !u!1 &1232001643 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7041208782141400035, guid: 60a912dff5e9e784aa77429c0e38e37f,
