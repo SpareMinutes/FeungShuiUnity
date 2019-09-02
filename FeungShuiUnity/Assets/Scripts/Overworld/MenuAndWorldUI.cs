@@ -9,30 +9,38 @@ public class MenuAndWorldUI : MonoBehaviour{
     [SerializeField]
     private GameObject Player, Canvas, Message, Text, Menu;
     private bool isMenuOpen = false;
-    private GameObject Selected;
+    private GameObject SelectedMenu, SelectedMessage;
 
     public void Start(){
-        Selected = ES.firstSelectedGameObject;
+        SelectedMenu = Menu.transform.GetChild(0).gameObject;
+        SelectedMessage = Message;
     }
 
     public void Update (){
         //Ensures clicking doesn't deselect buttons
-        if (ES.currentSelectedGameObject != Selected)
-        {
-            if (ES.currentSelectedGameObject == null)
-                ES.SetSelectedGameObject(Selected);
-            else
-                Selected = ES.currentSelectedGameObject;
+        
+        if (ES.currentSelectedGameObject != SelectedMenu || ES.currentSelectedGameObject != SelectedMessage) {
+            
+            if (ES.currentSelectedGameObject == null) {
+                if (isMenuOpen) {
+                    //menu is open 
+                    ES.SetSelectedGameObject(SelectedMenu);
+                } else if (Message.activeSelf) {
+                    //message is open
+                    ES.SetSelectedGameObject(SelectedMessage);
+                } else {
+                    //the UI isnt open
+                }
+            }
         }
 
         if (Input.GetKeyDown(KeyCode.Escape)) {
             if (isMenuOpen) {
                 //menu is open so close it
                 CloseMenu();
-            } else if(!Message.active){
+            } else if(!Message.activeSelf){
                 OpenMenu();
             }
-            
         } 
     }
 
@@ -49,7 +57,7 @@ public class MenuAndWorldUI : MonoBehaviour{
 
     public void ShowMessage(string msg){
         Debug.Log("A message (for now)");
-        Player.transform.GetChild(0).gameObject.SetActive(false);
+        Player.transform.GetChild(0).gameObject.SetActive(false); //gets the first object that is the players child (in this case the interact area)
         Player.GetComponent<Walk>().canWalk = false;
         Message.SetActive(true);
         Message.GetComponent<Button>().interactable = true;
@@ -62,7 +70,7 @@ public class MenuAndWorldUI : MonoBehaviour{
         Menu.SetActive(true);
         isMenuOpen = true;
         ES.SetSelectedGameObject(null);
-        ES.SetSelectedGameObject(Selected);
+        ES.SetSelectedGameObject(SelectedMenu);
         Player.GetComponent<Walk>().canWalk = false;
     }
 

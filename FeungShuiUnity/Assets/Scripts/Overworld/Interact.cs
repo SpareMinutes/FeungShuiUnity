@@ -19,22 +19,19 @@ public class Interact : MonoBehaviour{
 
         //press enter
         if (Input.GetButtonDown("Submit")){
-            Debug.Log("attempted to interact");
-
             List<Collider2D> lookedAt = new List<Collider2D>();
             ContactFilter2D filter = new ContactFilter2D();
             filter.useTriggers = true;
             area.GetComponent<PolygonCollider2D>().OverlapCollider(filter, lookedAt);
-            Debug.Log(lookedAt.Count);
+            
             foreach(Collider2D coll in lookedAt){
-                Debug.Log(coll.gameObject.name);
                 EventTrigger e = coll.GetComponent<EventTrigger>();
+                //checking the object exists in-game and has the Interactable tag
                 if (e != null && coll.gameObject.tag.Equals("Interactable")) {
                     e.onInteract.Invoke();
                     break;
                 }
             }
-            Debug.Log("\n");
         }
 
     }
