@@ -5,5 +5,5 @@ public class PersistentStats : MonoBehaviour {
     public static bool PlayerHasMoved = false;
     public static float PlayerPosX;
     public static float PlayerPosY;
-    //public static float PlayerRotZ;
+    public static int PlayerRotation = 0;
 }

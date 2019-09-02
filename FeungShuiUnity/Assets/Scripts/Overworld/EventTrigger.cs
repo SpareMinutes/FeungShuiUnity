@@ -11,7 +11,8 @@ public class EventTrigger : MonoBehaviour {
         if (player != null) {
             PersistentStats.PlayerPosX = player.transform.position.x;
             PersistentStats.PlayerPosY = player.transform.position.y;
-            //PersistentStats.PlayerRotZ = player.transform.rotation.z;
+            PersistentStats.PlayerRotation = player.GetComponent<Animator>().GetInteger("angle");
+            Debug.Log(PersistentStats.PlayerRotation);
         }
         //load the battle scene
         SceneManager.LoadScene("Battle_GUI", LoadSceneMode.Single);

@@ -15,7 +15,7 @@ public class Walk : MonoBehaviour{
     void Start() {
         if (PersistentStats.PlayerHasMoved) {
             gameObject.transform.position = new Vector2(PersistentStats.PlayerPosX, PersistentStats.PlayerPosY);
-            //gameObject.transform.rotation = Quaternion.Euler(0,0,PersistentStats.PlayerRotZ);
+            gameObject.GetComponent<Animator>().SetInteger("angle", PersistentStats.PlayerRotation);
             PersistentStats.PlayerHasMoved = false;
         }
 
