@@ -17,6 +17,10 @@ public class Walk : MonoBehaviour{
             gameObject.transform.position = new Vector2(PersistentStats.PlayerPosX, PersistentStats.PlayerPosY);
             gameObject.GetComponent<Animator>().SetInteger("angle", PersistentStats.PlayerRotation);
             PersistentStats.PlayerHasMoved = false;
+        } else if (PersistentStats.SceneChanged) {
+            gameObject.transform.position = new Vector2(PersistentStats.SceneChangePosX, PersistentStats.SceneChangePosY);
+            gameObject.GetComponent<Animator>().SetInteger("angle", 90);
+            PersistentStats.SceneChanged = false;
         }
 
         walkingHorizontally = false;
