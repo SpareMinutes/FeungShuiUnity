@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 2443570463832303523}
   - component: {fileID: 4225038206714183726}
   - component: {fileID: 8318314664364277187}
+  - component: {fileID: 5826954868639577949}
   m_Layer: 0
   m_Name: WalkableCharacter
   m_TagString: Untagged
@@ -205,6 +206,30 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!114 &5826954868639577949
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7041208782141400035}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a09cd2430015e4d46ba8398efa886376, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MapGrid:
+  - Maps:
+    - map E6 lakeside town
+    - map F6
+    - map G6 riverside town
+  Row: 0
+  Col: 0
+  Player: {fileID: 0}
+  NorthBound: {fileID: 0}
+  SouthBound: {fileID: 0}
+  EastBound: {fileID: 0}
+  WestBound: {fileID: 0}
 --- !u!1 &8789598799098068688
 GameObject:
   m_ObjectHideFlags: 0

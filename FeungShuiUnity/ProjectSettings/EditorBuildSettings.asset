@@ -12,6 +12,12 @@ EditorBuildSettings:
     path: Assets/Scenes/Battle_GUI.unity
     guid: cac38fa964892164db8d804fe9278c69
   - enabled: 1
+    path: Assets/Scenes/map E6 lakeside town.unity
+    guid: 0eae2fcc8f08ad445bb53448fd4523dd
+  - enabled: 1
     path: Assets/Scenes/map F6.unity
     guid: 60cebeecc907a3c468b51cb4713b8716
+  - enabled: 1
+    path: Assets/Scenes/map G6 riverside town.unity
+    guid: 8a8b7b798d553034cba8fb50a618d654
   m_configObjects: {}
