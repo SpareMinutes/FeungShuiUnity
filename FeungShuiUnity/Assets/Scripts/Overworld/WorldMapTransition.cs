@@ -4,6 +4,8 @@ using UnityEngine.SceneManagement;
 
 public class WorldMapTransition : MonoBehaviour {
     [SerializeField]
+    private float offset;
+    [SerializeField]
     private MapRow[] MapGrid;
     [SerializeField]
     private int Row, Col;
@@ -11,6 +13,15 @@ public class WorldMapTransition : MonoBehaviour {
     private BoxCollider2D NorthBound, SouthBound, EastBound, WestBound;
 
     public void TransitionHorizontal(bool eastward) {
+        //keep the same y but the x position is the other side of the map
+        PersistentStats.SceneChangePosY = gameObject.transform.position.y;
+        if (eastward) {
+            PersistentStats.SceneChangePosX = -(1600 - offset);
+        } else {
+            PersistentStats.SceneChangePosX = 1600  - offset;
+        }
+        PersistentStats.SceneChanged = true;
+
         int newCol = Col + (eastward ? 1 : -1);
         try {
             Debug.Log(MapGrid[Row].Maps[newCol]);
@@ -24,6 +35,15 @@ public class WorldMapTransition : MonoBehaviour {
     }
 
     public void TransitionVertical(bool southward) {
+        //x stays the same and y inverts
+        PersistentStats.SceneChangePosX = gameObject.transform.position.x;
+        if (southward) {
+            PersistentStats.SceneChangePosY = 1600 - offset;
+        } else {
+            PersistentStats.SceneChangePosY = -(1550 - offset);
+        }
+        PersistentStats.SceneChanged = true;
+
         int newRow = Row + (southward ? 1 : -1);
         try {
             Debug.Log(MapGrid[Row].Maps[newRow]);
@@ -37,6 +57,7 @@ public class WorldMapTransition : MonoBehaviour {
     }
 
     private void OnTriggerEnter2D(Collider2D collision) {
+    
         try {
             if (collision.Equals(NorthBound))
                 TransitionVertical(false);
