@@ -15,7 +15,7 @@ public class WorldMapTransition : MonoBehaviour {
     public void TransitionHorizontal(bool eastward) {
         //keep the same y but the x position is the other side of the map
         PersistentStats.SceneChangePosY = gameObject.transform.position.y;
-        PersistentStats.SceneChangePosX = eastward ? (-(1600 - offset)) : (1600 - offset);
+        PersistentStats.SceneChangePosX = eastward ? -1580 : 1580;
         /*if (eastward) {
             PersistentStats.SceneChangePosX = -(1600 - offset);
         } else {
@@ -38,7 +38,7 @@ public class WorldMapTransition : MonoBehaviour {
     public void TransitionVertical(bool southward) {
         //x stays the same and y inverts
         PersistentStats.SceneChangePosX = gameObject.transform.position.x;
-        PersistentStats.SceneChangePosX = southward ? (1600 - offset) : (-(1600 - offset));
+        PersistentStats.SceneChangePosX = southward ? 1580 : -1580;
         PersistentStats.SceneChanged = true;
 
         int newRow = Row + (southward ? 1 : -1);
