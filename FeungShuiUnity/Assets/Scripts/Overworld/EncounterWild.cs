@@ -10,15 +10,12 @@ public class EncounterWild : MonoBehaviour{
     private float Counter;
     [SerializeField]
     private EventTrigger Trigger;
-    public bool rollEnable;
 
     public void Start(){
         Counter = 0;
     }
 
     public void FixedUpdate(){
-        if (!rollEnable) return;
-         
         if(GetComponent<Animator>().GetBool("isWalking"))
             Counter += Time.fixedDeltaTime;
         if (Counter >= 1){
