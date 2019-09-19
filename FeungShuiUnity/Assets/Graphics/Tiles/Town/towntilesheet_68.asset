@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 13312, guid: 0000000000000000e000000000000000, type: 0}
   m_Name: towntilesheet_68
   m_EditorClassIdentifier: 
-  m_Sprite: {fileID: 63281650923411313, guid: fdfdefc3f198a7f4b9f362d2b9054e66, type: 3}
+  m_Sprite: {fileID: 4439164860585038523, guid: fdfdefc3f198a7f4b9f362d2b9054e66,
+    type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Transform:
     e00: 1
