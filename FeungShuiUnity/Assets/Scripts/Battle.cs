@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Battle : MonoBehaviour{
-    [SerializeField]
-    private Creature[] party;
+    public Creature[] Party;
 
     // Start is called before the first frame update
     void Start(){

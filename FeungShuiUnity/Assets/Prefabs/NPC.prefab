@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 2443570463832303523}
   - component: {fileID: 8318314664364277187}
   - component: {fileID: 3260618459433251310}
+  - component: {fileID: 5130397813065119071}
   m_Layer: 0
   m_Name: NPC
   m_TagString: Untagged
@@ -172,6 +173,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bcb1ff0bcdca9404781909aca7ab6e7f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  party: []
+--- !u!61 &5130397813065119071
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7041208782141400035}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 14, y: 16}
+    newSize: {x: 0.34, y: 0.48}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 10, y: 14}
+  m_EdgeRadius: 0
 --- !u!1 &8789598799098068688
 GameObject:
   m_ObjectHideFlags: 0
