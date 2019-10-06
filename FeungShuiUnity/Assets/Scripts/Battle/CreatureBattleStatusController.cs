@@ -2,14 +2,44 @@
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
+//Encapsulates Creature for use in battle
 public class CreatureBattleStatusController : MonoBehaviour {
     public Creature Target;
     public GameObject Name, Critical, Stamina, Mana;
     public EventSystem ES;
 
+    private float currentAttack;
+    private float currentDefense;
+    private float currentIntelligence;
+    private float currentResistance;
+    private float currentSpeed;
+
+    private float preDefenseMoveDefense;
+    private float preDefenseMoveResistance;
+
     // Start is called before the first frame update
     void Start(){
         Name.GetComponent<Text>().text = Target.displayName;
+
+        /*
+        //pick a random nature
+        this.personality = Natures2.personalityKeys[Random.Range(0,Natures2.personalityKeys.Count)];
+        this.statModifiers = Natures2.personalityDict[this.personality];
+
+        //this is where the stats will be generated based off (real thing)
+
+        //for testing purposes i'll add moves manually here
+        foreach (string name in moveNames) {
+            Moves.Add(MovesMaster.Master[name]);
+        }
+        */
+        currentAttack = Target.baseAttack;
+        currentDefense = Target.baseDefense;
+        currentIntelligence = Target.baseIntelligence;
+        currentResistance = Target.baseResistance;
+        currentSpeed = Target.baseSpeed;
+        preDefenseMoveDefense = currentDefense;
+        preDefenseMoveResistance = currentResistance;
     }
 
     // Update is called once per frame
@@ -20,7 +50,7 @@ public class CreatureBattleStatusController : MonoBehaviour {
         Critical.transform.localScale = new Vector3(width, 1, 0);
         if (Target.currentActiveHealth <= 0){
             //remove Target from the Turn manager list
-            ES.GetComponent<TurnManager>().removeFromPlay(Target);
+            ES.GetComponent<TurnManager>().removeFromPlay(this);
             this.gameObject.SetActive(false);
 
             //To do: ask for replacement
@@ -29,5 +59,46 @@ public class CreatureBattleStatusController : MonoBehaviour {
                 //enemy AI would just choose a random non fainted spirit from their party
                 //selecton would happen at the end of combat in the menu (todo)
         }
+    }
+
+    public Creature GetCreature() {
+        return Target;
+    }
+
+    public float getAttack(bool Physical) {
+        if (Physical) {
+            return this.currentAttack;
+        } else {
+            return this.currentIntelligence;
+        }
+    }
+
+    public float getDefense(bool Physical) {
+        if (Physical) {
+            return this.currentDefense;
+        } else {
+            return this.currentResistance;
+        }
+    }
+
+    public float getSpeed() {
+        return currentSpeed;
+    }
+
+    public void doDefenseMove() {
+        //for now just increase defense and special defense by a bunch (very techincal i know)
+        //these variables are if you buff your defenses other than this move (eg harden in pokemon)
+        preDefenseMoveDefense = currentDefense;
+        preDefenseMoveResistance = currentResistance;
+
+        //multiplies the defenses by 2 (up for change)
+        this.currentDefense *= 2;
+        this.currentResistance *= 2;
+    }
+
+    public void relieveDefenseMove() {
+        currentDefense = preDefenseMoveDefense;
+        currentResistance = preDefenseMoveResistance;
+
     }
 }

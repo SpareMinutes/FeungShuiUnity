@@ -130,7 +130,6 @@ GameObject:
   m_Component:
   - component: {fileID: 35394308}
   - component: {fileID: 35394307}
-  - component: {fileID: 35394306}
   m_Layer: 0
   m_Name: Alice (CPU)
   m_TagString: Untagged
@@ -138,35 +137,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &35394306
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 35394305}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 65e0bb09327c0824baaf1e11de773df3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  displayName: Alice
-  maxActiveHealth: 40
-  maxCriticalHealth: 20
-  currentCriticalHealth: 20
-  currentActiveHealth: 40
-  baseAttack: 6
-  baseDefense: 6
-  baseIntelligence: 6
-  baseResistance: 6
-  baseSpeed: 6
-  playerOwned: 0
-  type: Beast
-  moveNames:
-  - Scratch
-  - Explosion
-  - RazorLeaf
-  - Howl
 --- !u!212 &35394307
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -240,7 +210,6 @@ GameObject:
   m_Component:
   - component: {fileID: 67951009}
   - component: {fileID: 67951008}
-  - component: {fileID: 67951007}
   m_Layer: 0
   m_Name: Charlie (Player)
   m_TagString: Untagged
@@ -248,35 +217,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &67951007
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 67951006}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 65e0bb09327c0824baaf1e11de773df3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  displayName: Charlie
-  maxActiveHealth: 40
-  maxCriticalHealth: 20
-  currentCriticalHealth: 20
-  currentActiveHealth: 40
-  baseAttack: 8
-  baseDefense: 8
-  baseIntelligence: 8
-  baseResistance: 8
-  baseSpeed: 8
-  playerOwned: 1
-  type: Beast
-  moveNames:
-  - RazorLeaf
-  - Howl
-  - Recover
-  - Surf
 --- !u!212 &67951008
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -452,10 +392,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   takeTurns:
-  - {fileID: 35394306}
-  - {fileID: 202960356}
-  - {fileID: 67951007}
-  - {fileID: 302500750}
+  - {fileID: 840205975}
+  - {fileID: 1546327424}
+  - {fileID: 697713220}
+  - {fileID: 310602272}
 --- !u!1 &109781285
 GameObject:
   m_ObjectHideFlags: 0
@@ -865,7 +805,6 @@ GameObject:
   m_Component:
   - component: {fileID: 202960358}
   - component: {fileID: 202960357}
-  - component: {fileID: 202960356}
   m_Layer: 0
   m_Name: Bob (CPU)
   m_TagString: Untagged
@@ -873,35 +812,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &202960356
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 202960355}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 65e0bb09327c0824baaf1e11de773df3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  displayName: Bob
-  maxActiveHealth: 40
-  maxCriticalHealth: 20
-  currentCriticalHealth: 20
-  currentActiveHealth: 40
-  baseAttack: 7
-  baseDefense: 7
-  baseIntelligence: 7
-  baseResistance: 7
-  baseSpeed: 7
-  playerOwned: 0
-  type: Beast
-  moveNames:
-  - Pound
-  - Surf
-  - Recover
-  - HealPulse
 --- !u!212 &202960357
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -981,7 +891,6 @@ GameObject:
   m_Component:
   - component: {fileID: 302500752}
   - component: {fileID: 302500751}
-  - component: {fileID: 302500750}
   m_Layer: 0
   m_Name: Dave (Player)
   m_TagString: Untagged
@@ -989,35 +898,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &302500750
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 302500749}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 65e0bb09327c0824baaf1e11de773df3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  displayName: Dave
-  maxActiveHealth: 40
-  maxCriticalHealth: 20
-  currentCriticalHealth: 20
-  currentActiveHealth: 40
-  baseAttack: 9
-  baseDefense: 9
-  baseIntelligence: 9
-  baseResistance: 9
-  baseSpeed: 9
-  playerOwned: 1
-  type: Beast
-  moveNames:
-  - Scratch
-  - Surf
-  - HealPulse
-  - Explosion
 --- !u!212 &302500751
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1087,6 +967,18 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 785058651}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &310602272 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4561586968900990242, guid: 54a6266877bc3d942bb5fc23a5772b59,
+    type: 3}
+  m_PrefabInstance: {fileID: 785058651}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 310602267}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ecde46ac1db082442b8370c426ede9da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &329073177
 GameObject:
   m_ObjectHideFlags: 0
@@ -1760,6 +1652,18 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 785058651}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &697713220 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 968885170478888424, guid: 54a6266877bc3d942bb5fc23a5772b59,
+    type: 3}
+  m_PrefabInstance: {fileID: 785058651}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 697713215}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ecde46ac1db082442b8370c426ede9da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &785058651
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1876,24 +1780,184 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 968885170478888424, guid: 54a6266877bc3d942bb5fc23a5772b59,
         type: 3}
+      propertyPath: Target.moveNames.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 968885170478888424, guid: 54a6266877bc3d942bb5fc23a5772b59,
+        type: 3}
       propertyPath: Target
       value: 
-      objectReference: {fileID: 202960356}
+      objectReference: {fileID: 0}
     - target: {fileID: 968885170478888424, guid: 54a6266877bc3d942bb5fc23a5772b59,
         type: 3}
       propertyPath: ES
       value: 
       objectReference: {fileID: 86151457}
+    - target: {fileID: 968885170478888424, guid: 54a6266877bc3d942bb5fc23a5772b59,
+        type: 3}
+      propertyPath: Target.displayName
+      value: Bob
+      objectReference: {fileID: 0}
+    - target: {fileID: 968885170478888424, guid: 54a6266877bc3d942bb5fc23a5772b59,
+        type: 3}
+      propertyPath: Target.maxActiveHealth
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 968885170478888424, guid: 54a6266877bc3d942bb5fc23a5772b59,
+        type: 3}
+      propertyPath: Target.maxCriticalHealth
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 968885170478888424, guid: 54a6266877bc3d942bb5fc23a5772b59,
+        type: 3}
+      propertyPath: Target.currentCriticalHealth
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 968885170478888424, guid: 54a6266877bc3d942bb5fc23a5772b59,
+        type: 3}
+      propertyPath: Target.currentActiveHealth
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 968885170478888424, guid: 54a6266877bc3d942bb5fc23a5772b59,
+        type: 3}
+      propertyPath: Target.baseAttack
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 968885170478888424, guid: 54a6266877bc3d942bb5fc23a5772b59,
+        type: 3}
+      propertyPath: Target.baseDefense
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 968885170478888424, guid: 54a6266877bc3d942bb5fc23a5772b59,
+        type: 3}
+      propertyPath: Target.baseIntelligence
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 968885170478888424, guid: 54a6266877bc3d942bb5fc23a5772b59,
+        type: 3}
+      propertyPath: Target.baseResistance
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 968885170478888424, guid: 54a6266877bc3d942bb5fc23a5772b59,
+        type: 3}
+      propertyPath: Target.baseSpeed
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 968885170478888424, guid: 54a6266877bc3d942bb5fc23a5772b59,
+        type: 3}
+      propertyPath: Target.type
+      value: Beast
+      objectReference: {fileID: 0}
+    - target: {fileID: 968885170478888424, guid: 54a6266877bc3d942bb5fc23a5772b59,
+        type: 3}
+      propertyPath: Target.moveNames.Array.data[0]
+      value: Pound
+      objectReference: {fileID: 0}
+    - target: {fileID: 968885170478888424, guid: 54a6266877bc3d942bb5fc23a5772b59,
+        type: 3}
+      propertyPath: Target.moveNames.Array.data[1]
+      value: Surf
+      objectReference: {fileID: 0}
+    - target: {fileID: 968885170478888424, guid: 54a6266877bc3d942bb5fc23a5772b59,
+        type: 3}
+      propertyPath: Target.moveNames.Array.data[2]
+      value: Recover
+      objectReference: {fileID: 0}
+    - target: {fileID: 968885170478888424, guid: 54a6266877bc3d942bb5fc23a5772b59,
+        type: 3}
+      propertyPath: Target.moveNames.Array.data[3]
+      value: HealPulse
+      objectReference: {fileID: 0}
+    - target: {fileID: 4561586968900990242, guid: 54a6266877bc3d942bb5fc23a5772b59,
+        type: 3}
+      propertyPath: Target.moveNames.Array.size
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 4561586968900990242, guid: 54a6266877bc3d942bb5fc23a5772b59,
         type: 3}
       propertyPath: Target
       value: 
-      objectReference: {fileID: 35394306}
+      objectReference: {fileID: 0}
     - target: {fileID: 4561586968900990242, guid: 54a6266877bc3d942bb5fc23a5772b59,
         type: 3}
       propertyPath: ES
       value: 
       objectReference: {fileID: 86151457}
+    - target: {fileID: 4561586968900990242, guid: 54a6266877bc3d942bb5fc23a5772b59,
+        type: 3}
+      propertyPath: Target.displayName
+      value: Alice
+      objectReference: {fileID: 0}
+    - target: {fileID: 4561586968900990242, guid: 54a6266877bc3d942bb5fc23a5772b59,
+        type: 3}
+      propertyPath: Target.maxActiveHealth
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 4561586968900990242, guid: 54a6266877bc3d942bb5fc23a5772b59,
+        type: 3}
+      propertyPath: Target.maxCriticalHealth
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 4561586968900990242, guid: 54a6266877bc3d942bb5fc23a5772b59,
+        type: 3}
+      propertyPath: Target.currentCriticalHealth
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 4561586968900990242, guid: 54a6266877bc3d942bb5fc23a5772b59,
+        type: 3}
+      propertyPath: Target.currentActiveHealth
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 4561586968900990242, guid: 54a6266877bc3d942bb5fc23a5772b59,
+        type: 3}
+      propertyPath: Target.baseAttack
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4561586968900990242, guid: 54a6266877bc3d942bb5fc23a5772b59,
+        type: 3}
+      propertyPath: Target.baseDefense
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4561586968900990242, guid: 54a6266877bc3d942bb5fc23a5772b59,
+        type: 3}
+      propertyPath: Target.baseIntelligence
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4561586968900990242, guid: 54a6266877bc3d942bb5fc23a5772b59,
+        type: 3}
+      propertyPath: Target.baseResistance
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4561586968900990242, guid: 54a6266877bc3d942bb5fc23a5772b59,
+        type: 3}
+      propertyPath: Target.baseSpeed
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4561586968900990242, guid: 54a6266877bc3d942bb5fc23a5772b59,
+        type: 3}
+      propertyPath: Target.type
+      value: Beast
+      objectReference: {fileID: 0}
+    - target: {fileID: 4561586968900990242, guid: 54a6266877bc3d942bb5fc23a5772b59,
+        type: 3}
+      propertyPath: Target.moveNames.Array.data[0]
+      value: Scratch
+      objectReference: {fileID: 0}
+    - target: {fileID: 4561586968900990242, guid: 54a6266877bc3d942bb5fc23a5772b59,
+        type: 3}
+      propertyPath: Target.moveNames.Array.data[1]
+      value: Explosion
+      objectReference: {fileID: 0}
+    - target: {fileID: 4561586968900990242, guid: 54a6266877bc3d942bb5fc23a5772b59,
+        type: 3}
+      propertyPath: Target.moveNames.Array.data[2]
+      value: RazorLeaf
+      objectReference: {fileID: 0}
+    - target: {fileID: 4561586968900990242, guid: 54a6266877bc3d942bb5fc23a5772b59,
+        type: 3}
+      propertyPath: Target.moveNames.Array.data[3]
+      value: Howl
+      objectReference: {fileID: 0}
     - target: {fileID: 3912492965501921897, guid: 54a6266877bc3d942bb5fc23a5772b59,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
@@ -2040,6 +2104,18 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 8972471322283780080}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &840205975 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 968885170478888424, guid: 54a6266877bc3d942bb5fc23a5772b59,
+    type: 3}
+  m_PrefabInstance: {fileID: 8972471322283780080}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 840205970}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ecde46ac1db082442b8370c426ede9da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &847684254 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8972471321990268270, guid: 54a6266877bc3d942bb5fc23a5772b59,
@@ -2834,6 +2910,18 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 8972471322283780080}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1546327424 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4561586968900990242, guid: 54a6266877bc3d942bb5fc23a5772b59,
+    type: 3}
+  m_PrefabInstance: {fileID: 8972471322283780080}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1546327419}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ecde46ac1db082442b8370c426ede9da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1552161345
 GameObject:
   m_ObjectHideFlags: 0
@@ -4222,24 +4310,194 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 968885170478888424, guid: 54a6266877bc3d942bb5fc23a5772b59,
         type: 3}
+      propertyPath: Target.moveNames.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 968885170478888424, guid: 54a6266877bc3d942bb5fc23a5772b59,
+        type: 3}
       propertyPath: Target
       value: 
-      objectReference: {fileID: 302500750}
+      objectReference: {fileID: 0}
     - target: {fileID: 968885170478888424, guid: 54a6266877bc3d942bb5fc23a5772b59,
         type: 3}
       propertyPath: ES
       value: 
       objectReference: {fileID: 86151457}
+    - target: {fileID: 968885170478888424, guid: 54a6266877bc3d942bb5fc23a5772b59,
+        type: 3}
+      propertyPath: Target.displayName
+      value: Dave
+      objectReference: {fileID: 0}
+    - target: {fileID: 968885170478888424, guid: 54a6266877bc3d942bb5fc23a5772b59,
+        type: 3}
+      propertyPath: Target.maxActiveHealth
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 968885170478888424, guid: 54a6266877bc3d942bb5fc23a5772b59,
+        type: 3}
+      propertyPath: Target.maxCriticalHealth
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 968885170478888424, guid: 54a6266877bc3d942bb5fc23a5772b59,
+        type: 3}
+      propertyPath: Target.currentCriticalHealth
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 968885170478888424, guid: 54a6266877bc3d942bb5fc23a5772b59,
+        type: 3}
+      propertyPath: Target.currentActiveHealth
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 968885170478888424, guid: 54a6266877bc3d942bb5fc23a5772b59,
+        type: 3}
+      propertyPath: Target.baseAttack
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 968885170478888424, guid: 54a6266877bc3d942bb5fc23a5772b59,
+        type: 3}
+      propertyPath: Target.baseDefense
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 968885170478888424, guid: 54a6266877bc3d942bb5fc23a5772b59,
+        type: 3}
+      propertyPath: Target.baseIntelligence
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 968885170478888424, guid: 54a6266877bc3d942bb5fc23a5772b59,
+        type: 3}
+      propertyPath: Target.baseResistance
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 968885170478888424, guid: 54a6266877bc3d942bb5fc23a5772b59,
+        type: 3}
+      propertyPath: Target.baseSpeed
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 968885170478888424, guid: 54a6266877bc3d942bb5fc23a5772b59,
+        type: 3}
+      propertyPath: Target.playerOwned
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 968885170478888424, guid: 54a6266877bc3d942bb5fc23a5772b59,
+        type: 3}
+      propertyPath: Target.type
+      value: Beast
+      objectReference: {fileID: 0}
+    - target: {fileID: 968885170478888424, guid: 54a6266877bc3d942bb5fc23a5772b59,
+        type: 3}
+      propertyPath: Target.moveNames.Array.data[0]
+      value: Scratch
+      objectReference: {fileID: 0}
+    - target: {fileID: 968885170478888424, guid: 54a6266877bc3d942bb5fc23a5772b59,
+        type: 3}
+      propertyPath: Target.moveNames.Array.data[1]
+      value: Surf
+      objectReference: {fileID: 0}
+    - target: {fileID: 968885170478888424, guid: 54a6266877bc3d942bb5fc23a5772b59,
+        type: 3}
+      propertyPath: Target.moveNames.Array.data[2]
+      value: HealPulse
+      objectReference: {fileID: 0}
+    - target: {fileID: 968885170478888424, guid: 54a6266877bc3d942bb5fc23a5772b59,
+        type: 3}
+      propertyPath: Target.moveNames.Array.data[3]
+      value: Explosion
+      objectReference: {fileID: 0}
+    - target: {fileID: 4561586968900990242, guid: 54a6266877bc3d942bb5fc23a5772b59,
+        type: 3}
+      propertyPath: Target.moveNames.Array.size
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 4561586968900990242, guid: 54a6266877bc3d942bb5fc23a5772b59,
         type: 3}
       propertyPath: Target
       value: 
-      objectReference: {fileID: 67951007}
+      objectReference: {fileID: 0}
     - target: {fileID: 4561586968900990242, guid: 54a6266877bc3d942bb5fc23a5772b59,
         type: 3}
       propertyPath: ES
       value: 
       objectReference: {fileID: 86151457}
+    - target: {fileID: 4561586968900990242, guid: 54a6266877bc3d942bb5fc23a5772b59,
+        type: 3}
+      propertyPath: Target.displayName
+      value: Charlie
+      objectReference: {fileID: 0}
+    - target: {fileID: 4561586968900990242, guid: 54a6266877bc3d942bb5fc23a5772b59,
+        type: 3}
+      propertyPath: Target.maxActiveHealth
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 4561586968900990242, guid: 54a6266877bc3d942bb5fc23a5772b59,
+        type: 3}
+      propertyPath: Target.maxCriticalHealth
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 4561586968900990242, guid: 54a6266877bc3d942bb5fc23a5772b59,
+        type: 3}
+      propertyPath: Target.currentCriticalHealth
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 4561586968900990242, guid: 54a6266877bc3d942bb5fc23a5772b59,
+        type: 3}
+      propertyPath: Target.currentActiveHealth
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 4561586968900990242, guid: 54a6266877bc3d942bb5fc23a5772b59,
+        type: 3}
+      propertyPath: Target.baseAttack
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4561586968900990242, guid: 54a6266877bc3d942bb5fc23a5772b59,
+        type: 3}
+      propertyPath: Target.baseDefense
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4561586968900990242, guid: 54a6266877bc3d942bb5fc23a5772b59,
+        type: 3}
+      propertyPath: Target.baseIntelligence
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4561586968900990242, guid: 54a6266877bc3d942bb5fc23a5772b59,
+        type: 3}
+      propertyPath: Target.baseResistance
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4561586968900990242, guid: 54a6266877bc3d942bb5fc23a5772b59,
+        type: 3}
+      propertyPath: Target.baseSpeed
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4561586968900990242, guid: 54a6266877bc3d942bb5fc23a5772b59,
+        type: 3}
+      propertyPath: Target.playerOwned
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4561586968900990242, guid: 54a6266877bc3d942bb5fc23a5772b59,
+        type: 3}
+      propertyPath: Target.type
+      value: Beast
+      objectReference: {fileID: 0}
+    - target: {fileID: 4561586968900990242, guid: 54a6266877bc3d942bb5fc23a5772b59,
+        type: 3}
+      propertyPath: Target.moveNames.Array.data[0]
+      value: RazorLeaf
+      objectReference: {fileID: 0}
+    - target: {fileID: 4561586968900990242, guid: 54a6266877bc3d942bb5fc23a5772b59,
+        type: 3}
+      propertyPath: Target.moveNames.Array.data[1]
+      value: Howl
+      objectReference: {fileID: 0}
+    - target: {fileID: 4561586968900990242, guid: 54a6266877bc3d942bb5fc23a5772b59,
+        type: 3}
+      propertyPath: Target.moveNames.Array.data[2]
+      value: Recover
+      objectReference: {fileID: 0}
+    - target: {fileID: 4561586968900990242, guid: 54a6266877bc3d942bb5fc23a5772b59,
+        type: 3}
+      propertyPath: Target.moveNames.Array.data[3]
+      value: Surf
+      objectReference: {fileID: 0}
     - target: {fileID: 3912492965501921897, guid: 54a6266877bc3d942bb5fc23a5772b59,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size

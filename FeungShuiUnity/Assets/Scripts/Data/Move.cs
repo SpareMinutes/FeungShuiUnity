@@ -13,7 +13,7 @@ public class Move {
     private float CritChance;
     private bool AttackType;
     Dictionary<string, List<string>> Effects;
-    private Creature Attacker, Defender;
+    private CreatureBattleStatusController Attacker, Defender;
 
 
     public Move (int power, float accuracy, float cost, string type, float critChance, bool attacktype, Target attackTarget, Dictionary<string, List<string>> effects) {
@@ -27,7 +27,7 @@ public class Move {
         this.Effects = effects;
     }
 
-    public void execute (Creature attacker, Creature defender) {
+    public void execute (CreatureBattleStatusController attacker, CreatureBattleStatusController defender) {
         this.Attacker = attacker;
         this.Defender = defender;
         if (Effects != null)
@@ -36,8 +36,8 @@ public class Move {
     }
 
     public float getModifier() {
-        string attackingType = Attacker.getType();
-        string defendingType = Defender.getType();
+        string attackingType = Attacker.GetCreature().getType();
+        string defendingType = Defender.GetCreature().getType();
 
         float typeMultiplier = 1.0f;
         if (Matchups.getStrongTypeEffectiveness(this.Type).Contains(defendingType)) {
@@ -84,19 +84,19 @@ public class Move {
     }
 
     public void PercentDamage(string damagePcnt, string useCurrent){
-        float damageToTake = float.Parse(damagePcnt) * (useCurrent.Equals("true") ? Defender.currentActiveHealth : Defender.maxActiveHealth);
+        float damageToTake = float.Parse(damagePcnt) * (useCurrent.Equals("true") ? Defender.GetCreature().currentActiveHealth : Defender.GetCreature().maxActiveHealth);
         ApplyDamage(damageToTake);
     }
     
     private void ApplyDamage(float damageToTake){
-        if(Defender.currentActiveHealth > damageToTake){
-            Defender.currentActiveHealth -= damageToTake;
+        if(Defender.GetCreature().currentActiveHealth > damageToTake){
+            Defender.GetCreature().currentActiveHealth -= damageToTake;
         }else {
-            damageToTake -= Defender.currentActiveHealth;
-            Defender.currentActiveHealth = 0;
-            Defender.currentCriticalHealth = Mathf.Max(0, Defender.currentCriticalHealth - damageToTake);
+            damageToTake -= Defender.GetCreature().currentActiveHealth;
+            Defender.GetCreature().currentActiveHealth = 0;
+            Defender.GetCreature().currentCriticalHealth = Mathf.Max(0, Defender.GetCreature().currentCriticalHealth - damageToTake);
         }
-        Defender.currentActiveHealth = Mathf.Min(Defender.currentActiveHealth, Defender.maxActiveHealth);
+        Defender.GetCreature().currentActiveHealth = Mathf.Min(Defender.GetCreature().currentActiveHealth, Defender.GetCreature().maxActiveHealth);
     }
 
     public void Buff(string stat, string modifier){

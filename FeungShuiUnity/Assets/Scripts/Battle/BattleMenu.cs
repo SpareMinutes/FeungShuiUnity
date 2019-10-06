@@ -13,10 +13,10 @@ public class BattleMenu : MonoBehaviour{
     private Move SelectedMove;
     //Used to force only one selection to be cancelled per cancel button press
     private bool CancelHeld;
-    private Creature Attacker;
-    private List<Creature> Defenders; //just to support having several targets
+    private CreatureBattleStatusController Attacker;
+    private List<CreatureBattleStatusController> Defenders; //just to support having several targets
     private string moveUsed;
-    private List<Creature> toExculdeFromSelection;
+    private List<CreatureBattleStatusController> toExculdeFromSelection;
     public GameObject[] spiritStatuses, attackButtons, toggles;
     public GameObject ProgressButton;
 
@@ -30,8 +30,8 @@ public class BattleMenu : MonoBehaviour{
         IsSelectingAttack = false;
         Moves.SetActive(false);
         SelectedMove = null;
-        Defenders = new List<Creature> { };
-        toExculdeFromSelection = new List<Creature>() { }; //blank list
+        Defenders = new List<CreatureBattleStatusController> { };
+        toExculdeFromSelection = new List<CreatureBattleStatusController>() { }; //blank list
         AskForAction();
     }
 
@@ -94,8 +94,8 @@ public class BattleMenu : MonoBehaviour{
                 Attacker = ES.GetComponent<TurnManager>().getNextSpirit();
                 Attacker.relieveDefenseMove(); //get rid of the defense move on their next turn 
             }
-            if (Attacker.isPlayerOwned()){
-                ShowMessage("What will " + Attacker.displayName + " do?");
+            if (Attacker.GetCreature().isPlayerOwned()){
+                ShowMessage("What will " + Attacker.GetCreature().displayName + " do?");
                 //Enable action type buttons
                 GameObject.Find("Attack").GetComponent<Button>().interactable = true;
                 GameObject.Find("Defend").GetComponent<Button>().interactable = true;
@@ -123,8 +123,8 @@ public class BattleMenu : MonoBehaviour{
         ES.SetSelectedGameObject(attackButtons[0]); //Set the first (upper left) attack as the currently highlighed button
         //Goes through the list of moves of a creature and displays them in the rightmost text as selectable buttons
         int i = 0;
-        while (i < Attacker.moveNames.Count){
-            attackButtons[i].GetComponentInChildren<Text>().text = Attacker.moveNames[i];
+        while (i < Attacker.GetCreature().moveNames.Count){
+            attackButtons[i].GetComponentInChildren<Text>().text = Attacker.GetCreature().moveNames[i];
             attackButtons[i].GetComponent<Button>().interactable = true;
             i++;
         }
@@ -141,14 +141,14 @@ public class BattleMenu : MonoBehaviour{
         //since it has no targets it doesnt need a target selection
         //show/remove appropriate buttons
         //show message that the spririt used defend
-        ShowMessage(Attacker.displayName + " used Defend!");
+        ShowMessage(Attacker.GetCreature().displayName + " used Defend!");
         //progress the turn cycle
         LoadProgress();
     }
 
     public void SelectItem(){
         Debug.Log("Item (WIP)");
-        ShowMessage("" + Attacker.displayName + " used an [ITEM] (WIP)");
+        ShowMessage("" + Attacker.GetCreature().displayName + " used an [ITEM] (WIP)");
         LoadProgress();
     }
 
@@ -175,8 +175,8 @@ public class BattleMenu : MonoBehaviour{
 
     //Called when the oppoenent is selected
     public void DoAttack(){
-        foreach (Creature Defender in Defenders){
-            ShowMessage(Attacker.displayName + " used " + moveUsed + " on " + Defender.displayName + ".");
+        foreach (CreatureBattleStatusController Defender in Defenders){
+            ShowMessage(Attacker.GetCreature().displayName + " used " + moveUsed + " on " + Defender.GetCreature().displayName + ".");
             SelectedMove.execute(Attacker, Defender);
         }
         resetSelection();
@@ -190,7 +190,7 @@ public class BattleMenu : MonoBehaviour{
     private int findAttacker(){
         for (int i = 1; i <= 2; i++){
             GameObject spirit = spiritStatuses[i - 1];
-            if (spirit.activeSelf && spirit.GetComponent<CreatureBattleStatusController>().Target == Attacker){
+            if (spirit.activeSelf && spirit.GetComponent<CreatureBattleStatusController>().Target == Attacker.GetCreature()) {
                 return (i-1);
             }
         }
@@ -199,7 +199,7 @@ public class BattleMenu : MonoBehaviour{
 
     //Called by defender when they're selected telling script to target them
     public void LoadDefender(){
-        Defenders.Add(Selected.GetComponent<CreatureBattleStatusController>().Target);
+        Defenders.Add(Selected.GetComponent<CreatureBattleStatusController>());
         //disable the spirit buttons
         for (int i = 1; i <= 4; i++){
             GameObject spirit = spiritStatuses[i - 1];
@@ -211,7 +211,7 @@ public class BattleMenu : MonoBehaviour{
 
     //Called for having multiple enemies
     public void LoadDefenders(){
-        List<Creature> activeCreatures = ES.GetComponent<TurnManager>().getAllActive();
+        List<CreatureBattleStatusController> activeCreatures = ES.GetComponent<TurnManager>().getAllActive();
         Defenders = activeCreatures.Except(toExculdeFromSelection).ToList();
         //disable the button
         GameObject.Find("SelectMultipleButton").GetComponent<Button>().interactable = false;
@@ -301,7 +301,7 @@ public class BattleMenu : MonoBehaviour{
         if (ES.GetComponent<TurnManager>().getActivePlayerControlled().Count == 2){ /*to handle if there isnt 2 player controlled alive*/
             GameObject selectableSpirit = null;
             GameObject spirit = spiritStatuses[0];
-            if (spirit.GetComponent<CreatureBattleStatusController>().Target == Attacker){
+            if (spirit.GetComponent<CreatureBattleStatusController>().Target == Attacker.GetCreature()) {
                 //change it to be the other player controlled
                 selectableSpirit = spiritStatuses[1];
             }else{
@@ -358,7 +358,7 @@ public class BattleMenu : MonoBehaviour{
     }
 
     private void EnemyAI () {
-        Creature Defender;
+        CreatureBattleStatusController Defender;
         // AI part //
         /* AI needs to:
             - decide whether to attack or defend or use an item (for wild spirits they shouldnt be able to use items)
@@ -370,8 +370,8 @@ public class BattleMenu : MonoBehaviour{
 
         if (todo == 0) {
             //this should choose a random move from the enemy's move set (even if they have less than 4 moves)
-            int randNum = Random.Range(0, Attacker.moveNames.Count);
-            moveUsed = Attacker.moveNames[randNum];
+            int randNum = Random.Range(0, Attacker.GetCreature().moveNames.Count);
+            moveUsed = Attacker.GetCreature().moveNames[randNum];
             SelectedMove = MovesMaster.Find(moveUsed);
 
             switch (SelectedMove.AttackTarget) {
@@ -398,7 +398,7 @@ public class BattleMenu : MonoBehaviour{
                     DoAttack();
                     break;
                 case Move.Target.Single:
-                    List<Creature> toChoose = ES.GetComponent<TurnManager>().getActivePlayerControlled();
+                    List<CreatureBattleStatusController> toChoose = ES.GetComponent<TurnManager>().getActivePlayerControlled();
                     int randNum2 = Random.Range(0, toChoose.Count);
                     Defender = toChoose[randNum2];
                     Defenders.Add(Defender);
@@ -414,11 +414,11 @@ public class BattleMenu : MonoBehaviour{
             LoadDefend();
         } else if (todo == 2) {
             Debug.Log("Item (WIP)");
-            ShowMessage("" + Attacker.displayName + " used an [ITEM] (WIP)");
+            ShowMessage("" + Attacker.GetCreature().displayName + " used an [ITEM] (WIP)");
             LoadProgress();
         } else if (todo == 3) {
             Debug.Log("Switch Spirit (WIP)");
-            ShowMessage("" + Attacker.displayName + " switched (WIP)");
+            ShowMessage("" + Attacker.GetCreature().displayName + " switched (WIP)");
             LoadProgress();
         }
     }
