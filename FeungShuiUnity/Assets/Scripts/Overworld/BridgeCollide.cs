@@ -15,7 +15,7 @@ public class BridgeCollide : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
-        bool onBridge = player.transform.position.z < (0-height);
+        bool onBridge = player.GetComponent<SpriteRenderer>().sortingOrder-2 >= height;
         foreach(GameObject wall in onWalls) {
             EdgeCollider2D ec = (EdgeCollider2D)wall.GetComponent<EdgeCollider2D>();
             ec.enabled = onBridge;

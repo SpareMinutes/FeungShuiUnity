@@ -5,6 +5,7 @@ public class ChangeHeight : MonoBehaviour {
     public GameObject player;
 
     void OnTriggerEnter2D(Collider2D other) {
+        player.GetComponent<SpriteRenderer>().sortingOrder = 2 + height;
         player.transform.position = new Vector3(player.transform.position.x, player.transform.position.y, -0.1f - height);
     }
 }
