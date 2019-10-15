@@ -25,13 +25,13 @@ public class EventTrigger : MonoBehaviour {
 
     public void StartTrainerBattle() {
         OpposingParty = GetComponentInParent<Battle>().Party;
-        Invoke("LoadOpponent", 0.1f);
         StartBattle();
+        SceneManager.sceneLoaded += LoadOpponent;
     }
 
-    private void LoadOpponent() {
-        Debug.Log("Run");
+    private void LoadOpponent(Scene scene, LoadSceneMode mode) {
         GameObject.Find("Spirit4Status").GetComponent<CreatureBattleStatusController>().Target = OpposingParty[0];
         GameObject.Find("Spirit3Status").GetComponent<CreatureBattleStatusController>().Target = OpposingParty[1];
+        SceneManager.sceneLoaded -= LoadOpponent;
     }
 }
