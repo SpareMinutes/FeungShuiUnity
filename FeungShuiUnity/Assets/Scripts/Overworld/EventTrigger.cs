@@ -1,10 +1,17 @@
 ﻿using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 
 public class EventTrigger : MonoBehaviour {
     public UnityEvent onInteract;
     private Creature[] OpposingParty;
+
+    private void Update() {
+        //Does not work
+        //if (!SceneManager.GetActiveScene().Equals(SceneManager.GetSceneByName("Battle_GUI")))
+        //    GameObject.Find("EventSystem").GetComponent<EventSystem>().enabled = true;
+    }
 
     public void StartBattle(){
         //save the players current position and rotation
@@ -16,7 +23,9 @@ public class EventTrigger : MonoBehaviour {
             //Debug.Log(PersistentStats.PlayerRotation);
         }
         //load the battle scene
-        SceneManager.LoadSceneAsync("Battle_GUI", LoadSceneMode.Single);
+        Time.timeScale = 0;
+        GameObject.Find("EventSystem").GetComponent<EventSystem>().enabled = false;
+        SceneManager.LoadSceneAsync("Battle_GUI", LoadSceneMode.Additive);
     }
 
     public void UIMessage(string msg){
