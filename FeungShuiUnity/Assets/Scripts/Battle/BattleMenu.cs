@@ -8,11 +8,9 @@ using UnityEngine.SceneManagement;
 public class BattleMenu : MonoBehaviour{
     public EventSystem ES;
     public GameObject Message, Moves;
-    private GameObject Selected;
+    private GameObject Selected, OES;
     private bool IsSelectingAttack;
     private Move SelectedMove;
-    //Used to force only one selection to be cancelled per cancel button press
-    private bool CancelHeld;
     private CreatureBattleStatusController Attacker;
     private List<CreatureBattleStatusController> Defenders; //just to support having several targets
     private string moveUsed;
@@ -25,6 +23,9 @@ public class BattleMenu : MonoBehaviour{
 	*	---------------------------	*/
 
     void Start(){
+        OES = GameObject.Find("EventSystem");
+        OES.SetActive(false);
+        GameObject.Find("InGameUI").GetComponent<MenuAndWorldUI>().enabled = false;
         ES.GetComponent<TurnManager>().Init();
         Selected = ES.firstSelectedGameObject;
         IsSelectingAttack = false;
@@ -44,7 +45,7 @@ public class BattleMenu : MonoBehaviour{
                 Selected = ES.currentSelectedGameObject;
         }
         //Called when the the cancel button is pressed (esc)
-        if (Input.GetAxis("Cancel") != 0){
+        if (Input.GetButtonDown("Cancel")){
             if (SelectedMove != null){ //Cancel target selection and return to move selection
                 if (spiritStatuses[2].activeSelf)
                     spiritStatuses[2].GetComponent<Button>().interactable = false;
@@ -55,14 +56,10 @@ public class BattleMenu : MonoBehaviour{
                 resetSelection();
                 IsSelectingAttack = true;
                 GameObject.Find("SelectMultipleButton").GetComponent<Button>().interactable = false;
-            }else if (IsSelectingAttack && !CancelHeld){ //Cancel move selection and return to action selection
+            }else if (IsSelectingAttack){ //Cancel move selection and return to action selection
                 AskForAction();
             }
-            CancelHeld = true;
         }
-        //Cancel button has been released, reenable canceling
-        else
-            CancelHeld = false;
     }
 
     /*	---------------------------
@@ -83,13 +80,11 @@ public class BattleMenu : MonoBehaviour{
     public void AskForAction(){
         if (ES.GetComponent<TurnManager>().whoWins().Equals("Player")){
             Debug.Log("Player Wins");
-            PersistentStats.PlayerHasMoved = true;
-            SceneManager.LoadScene("TestEnvironment", LoadSceneMode.Single);
-        }else if (ES.GetComponent<TurnManager>().whoWins().Equals("Computer")){
+            EndBattle();
+        } else if (ES.GetComponent<TurnManager>().whoWins().Equals("Computer")){
             Debug.Log("Player Looses");
-            PersistentStats.PlayerHasMoved = true;
-            SceneManager.LoadScene("TestEnvironment", LoadSceneMode.Single);
-        }else if (ES.GetComponent<TurnManager>().whoWins().Equals("No-one")){
+            EndBattle();
+        } else if (ES.GetComponent<TurnManager>().whoWins().Equals("No-one")){
             if (!IsSelectingAttack){
                 Attacker = ES.GetComponent<TurnManager>().getNextSpirit();
                 Attacker.relieveDefenseMove(); //get rid of the defense move on their next turn 
@@ -153,10 +148,8 @@ public class BattleMenu : MonoBehaviour{
     }
 
     public void Run(){
-        //telling the script to use the new player coordinates saved when the battle was engaged
-        PersistentStats.PlayerHasMoved = true;
-        //load the world again (probably also want to save the scene view for the route the player was last in)
-        SceneManager.LoadScene("TestEnvironment", LoadSceneMode.Single);
+        //TODO: Add code to decide whether running is possible
+        EndBattle();
     }
 
     private void LoadProgress () {
@@ -357,6 +350,10 @@ public class BattleMenu : MonoBehaviour{
         ES.SetSelectedGameObject(button);
     }
 
+    /*	---------------------------
+	*	Utility functions
+	*	---------------------------	*/
+
     private void EnemyAI () {
         CreatureBattleStatusController Defender;
         // AI part //
@@ -421,5 +418,19 @@ public class BattleMenu : MonoBehaviour{
             ShowMessage("" + Attacker.GetCreature().displayName + " switched (WIP)");
             LoadProgress();
         }
+    }
+
+    private void EndBattle() {
+        //load the world again (probably also want to save the scene view for the route the player was last in)
+        SceneManager.UnloadSceneAsync("Battle_GUI");
+        SceneManager.sceneUnloaded += ReenableOES;
+    }
+
+    private void ReenableOES(Scene scene) {
+        OES.SetActive(true);
+        Time.timeScale = 1;
+        GameObject.Find("WalkableCharacter").transform.GetChild(0).gameObject.SetActive(true);
+        GameObject.Find("InGameUI").GetComponent<MenuAndWorldUI>().enabled = false;
+        SceneManager.sceneUnloaded -= ReenableOES;
     }
 }

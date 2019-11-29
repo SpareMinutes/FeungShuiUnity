@@ -24,7 +24,7 @@ public class EventTrigger : MonoBehaviour {
         }
         //load the battle scene
         Time.timeScale = 0;
-        GameObject.Find("EventSystem").GetComponent<EventSystem>().enabled = false;
+        GameObject.Find("WalkableCharacter").transform.GetChild(0).gameObject.SetActive(false);
         SceneManager.LoadSceneAsync("Battle_GUI", LoadSceneMode.Additive);
     }
 

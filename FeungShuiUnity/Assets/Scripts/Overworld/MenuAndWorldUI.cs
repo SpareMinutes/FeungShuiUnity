@@ -34,7 +34,7 @@ public class MenuAndWorldUI : MonoBehaviour{
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.Escape)) {
+        if (Input.GetButtonDown("Cancel")) {
             if (isMenuOpen) {
                 //menu is open so close it
                 CloseMenu();
