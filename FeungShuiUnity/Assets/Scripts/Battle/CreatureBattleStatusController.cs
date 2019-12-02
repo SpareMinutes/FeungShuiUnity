@@ -18,7 +18,8 @@ public class CreatureBattleStatusController : MonoBehaviour {
     private float preDefenseMoveResistance;
 
     // Start is called before the first frame update
-    void Start(){
+    void Start() {
+        Target.Init();
         Name.GetComponent<Text>().text = Target.displayName;
 
         /*
@@ -30,14 +31,14 @@ public class CreatureBattleStatusController : MonoBehaviour {
 
         //for testing purposes i'll add moves manually here
         foreach (string name in moveNames) {
-            Moves.Add(MovesMaster.Master[name]);
+            Moves.Add(MovesTable.Master[name]);
         }
         */
-        currentAttack = Target.baseAttack;
-        currentDefense = Target.baseDefense;
-        currentIntelligence = Target.baseIntelligence;
-        currentResistance = Target.baseResistance;
-        currentSpeed = Target.baseSpeed;
+        currentAttack = Target.getAttack();
+        currentDefense = Target.getDefense();
+        currentIntelligence = Target.getIntelligence();
+        currentResistance = Target.getResistance();
+        currentSpeed = Target.getSpeed();
         preDefenseMoveDefense = currentDefense;
         preDefenseMoveResistance = currentResistance;
     }

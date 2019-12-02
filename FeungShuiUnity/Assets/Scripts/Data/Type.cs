@@ -1,7 +1,7 @@
-﻿public enum Type{  
+﻿public enum Type{
     Fire,
-    Electricity,
-    Plant,
+    Thunder,
+    Wood,
     Beast,
     Water,
     Ice,
@@ -10,5 +10,6 @@
     Earth,
     Wind,
     Light,
-    Dark
+    Dark,
+    None
 }

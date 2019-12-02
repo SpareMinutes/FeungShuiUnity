@@ -225,7 +225,7 @@ public class BattleMenu : MonoBehaviour{
     //Called when a move is selected
     public void LoadAttack(){
         moveUsed = ES.currentSelectedGameObject.GetComponentInChildren<Text>().text;
-        SelectedMove = MovesMaster.Find(moveUsed); //gets the move out of database
+        SelectedMove = MovesTable.Find(moveUsed); //gets the move out of database
         //switch/case statement dealing with targeting type
         switch (SelectedMove.AttackTarget) {
             case Move.Target.Single:
@@ -369,7 +369,7 @@ public class BattleMenu : MonoBehaviour{
             //this should choose a random move from the enemy's move set (even if they have less than 4 moves)
             int randNum = Random.Range(0, Attacker.GetCreature().moveNames.Count);
             moveUsed = Attacker.GetCreature().moveNames[randNum];
-            SelectedMove = MovesMaster.Find(moveUsed);
+            SelectedMove = MovesTable.Find(moveUsed);
 
             switch (SelectedMove.AttackTarget) {
                 case Move.Target.All:

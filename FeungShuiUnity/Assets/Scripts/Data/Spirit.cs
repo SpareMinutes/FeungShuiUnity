@@ -6,10 +6,10 @@ public class Spirit{
     Species species;
     Nature nature;
     //0-exp, 1-health, 2-attack, 3-defense, 4-intelligence, 5-resistance, 6-speed
-    float[] scaleFactors;
+    int[] scaleFactors;
     int health, totalExp;
 
-    public Spirit(Species spIn, Nature natIn, float[] factorsIn, int startLevel){
+    public Spirit(Species spIn, Nature natIn, int[] factorsIn, int startLevel){
         this.species = spIn;
         this.nature = natIn;
         this.scaleFactors = factorsIn;

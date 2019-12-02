@@ -36,8 +36,8 @@ public class Move {
     }
 
     public float getModifier() {
-        string attackingType = Attacker.GetCreature().getType();
-        string defendingType = Defender.GetCreature().getType();
+        string attackingType = Attacker.GetCreature().getType().ToString();
+        string defendingType = Defender.GetCreature().getType().ToString();
 
         float typeMultiplier = 1.0f;
         if (Matchups.getStrongTypeEffectiveness(this.Type).Contains(defendingType)) {
