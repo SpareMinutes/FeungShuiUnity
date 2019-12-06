@@ -7,6 +7,7 @@ public class CreatureBattleStatusController : MonoBehaviour {
     public Creature Target;
     public GameObject Name, Critical, Stamina, Mana;
     public EventSystem ES;
+    public Image sprite;
 
     private float currentAttack;
     private float currentDefense;
@@ -41,6 +42,7 @@ public class CreatureBattleStatusController : MonoBehaviour {
         currentSpeed = Target.getSpeed();
         preDefenseMoveDefense = currentDefense;
         preDefenseMoveResistance = currentResistance;
+        sprite.GetComponent<Image>().sprite = Resources.Load<Sprite>("Spirits/" + Target.speciesName);
     }
 
     // Update is called once per frame
