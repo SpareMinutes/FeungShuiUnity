@@ -75,7 +75,7 @@ public class Move {
         //float damageToTake = ((numerator/50) + 2)*modifier;
 
         //my way
-        float damageToTake = this.Power * (relevantAttackStat / relevantDefenseStat) * modifier;
+        float damageToTake = Mathf.Floor((this.Power * relevantAttackStat*(3/2) * modifier) / (relevantDefenseStat));
         ApplyDamage(damageToTake);
     }
 

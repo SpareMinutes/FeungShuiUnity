@@ -1,16 +1,21 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class TurnManager : MonoBehaviour{   
+public class TurnManager : MonoBehaviour{
     [SerializeField]
     private List<CreatureBattleStatusController> takeTurns;
+    [SerializeField]
+    private Text[] TurnLabels;
+    private List<CreatureBattleStatusController> remove;
     private int turnIndex = 0;
     private Queue<CreatureBattleStatusController> Upcoming;
 
     public void Init(){
         sortBySpeed();
         Upcoming = new Queue<CreatureBattleStatusController>();
+        remove = new List<CreatureBattleStatusController>();
         CalcUpcoming();
     }
 
@@ -26,30 +31,40 @@ public class TurnManager : MonoBehaviour{
         var items = from pair in speedMapping orderby pair.Value descending select pair;
 
         foreach (KeyValuePair<CreatureBattleStatusController, float> pair in items) {
-            //Debug.Log(pair.Key.getSpeed());
             returnList.Add(pair.Key);
-            //Debug.Log(pair.Key.displayName);
         }
         takeTurns =  returnList;
     }
 
     public void CalcUpcoming(){
-        while (Upcoming.Count() < 20){
+        if (remove.Count() != 0) {
+            Queue<CreatureBattleStatusController> NowUpcoming = new Queue<CreatureBattleStatusController>();
+            while (Upcoming.Count() > 0) {
+                CreatureBattleStatusController creature = Upcoming.Dequeue();
+                if (!remove.Contains(creature))
+                    NowUpcoming.Enqueue(creature);
+            }
+            remove.Clear();
+        }
+        while (Upcoming.Count() < 6){
             turnIndex++;
-            foreach(CreatureBattleStatusController CreatureBattleStatusController in takeTurns){
+            foreach(CreatureBattleStatusController creature in takeTurns){
                 //To do: get a better formula
-                if (turnIndex % (1000 - CreatureBattleStatusController.getSpeed()) == 0){
-                    Upcoming.Enqueue(CreatureBattleStatusController);
+                if (turnIndex % (1000 - creature.getSpeed()) == 0){
+                    Upcoming.Enqueue(creature);
                 }
             }
+        }
+        for(int i=0; i<5; i++) {
+            TurnLabels[i].text = Upcoming.ElementAt<CreatureBattleStatusController>(i).Target.displayName;
         }
     }
 
     public List<CreatureBattleStatusController> getActivePlayerControlled () {
         List<CreatureBattleStatusController> dummyList = new List<CreatureBattleStatusController>();
-        foreach (CreatureBattleStatusController CreatureBattleStatusController in takeTurns) {
-            if (CreatureBattleStatusController.GetCreature().isPlayerOwned()) {
-                dummyList.Add(CreatureBattleStatusController);
+        foreach (CreatureBattleStatusController creature in takeTurns) {
+            if (creature.GetCreature().isPlayerOwned()) {
+                dummyList.Add(creature);
             }
         }
         return dummyList;
@@ -57,9 +72,9 @@ public class TurnManager : MonoBehaviour{
 
     public List<CreatureBattleStatusController> getActiveEnemies () {
         List<CreatureBattleStatusController> dummyList = new List<CreatureBattleStatusController>();
-        foreach (CreatureBattleStatusController CreatureBattleStatusController in takeTurns) {
-            if (!CreatureBattleStatusController.GetCreature().isPlayerOwned()) {
-                dummyList.Add(CreatureBattleStatusController);
+        foreach (CreatureBattleStatusController creature in takeTurns) {
+            if (!creature.GetCreature().isPlayerOwned()) {
+                dummyList.Add(creature);
             }
         }
         return dummyList;
@@ -70,17 +85,14 @@ public class TurnManager : MonoBehaviour{
     }
 
     public CreatureBattleStatusController getNextSpirit () {
-        CreatureBattleStatusController next = Upcoming.Dequeue();
-        //Debug.Log(next.name);
         CalcUpcoming();
+        CreatureBattleStatusController next = Upcoming.Dequeue();
         return next;
     }
 
-    public void removeFromPlay (CreatureBattleStatusController CreatureBattleStatusController) {
-        takeTurns.Remove(CreatureBattleStatusController);
-        Upcoming = new Queue<CreatureBattleStatusController>();
-        sortBySpeed();
-        CalcUpcoming();
+    public void removeFromPlay (CreatureBattleStatusController creature) {
+        takeTurns.Remove(creature);
+        remove.Add(creature);
     }
 
     public string whoWins () {

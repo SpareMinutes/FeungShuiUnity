@@ -142,7 +142,6 @@ public class BattleMenu : MonoBehaviour{
     }
 
     public void SelectItem(){
-        Debug.Log("Item (WIP)");
         ShowMessage("" + Attacker.GetCreature().displayName + " used an [ITEM] (WIP)");
         LoadProgress();
     }
@@ -410,11 +409,9 @@ public class BattleMenu : MonoBehaviour{
         } else if (todo == 1) {
             LoadDefend();
         } else if (todo == 2) {
-            Debug.Log("Item (WIP)");
             ShowMessage("" + Attacker.GetCreature().displayName + " used an [ITEM] (WIP)");
             LoadProgress();
         } else if (todo == 3) {
-            Debug.Log("Switch Spirit (WIP)");
             ShowMessage("" + Attacker.GetCreature().displayName + " switched (WIP)");
             LoadProgress();
         }
