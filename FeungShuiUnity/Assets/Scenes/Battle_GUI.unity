@@ -97,7 +97,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -146,7 +146,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 21047576}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -99.9375}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1552161349}
@@ -1214,6 +1214,11 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 938848044527931150, guid: a7941cb9f105553498b852cd23f05712,
+        type: 3}
+      propertyPath: m_Text
+      value: Turn2
+      objectReference: {fileID: 0}
     - target: {fileID: 938848046265389476, guid: a7941cb9f105553498b852cd23f05712,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1273,11 +1278,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 938848044527931150, guid: a7941cb9f105553498b852cd23f05712,
-        type: 3}
-      propertyPath: m_Text
-      value: Turn2
       objectReference: {fileID: 0}
     - target: {fileID: 938848046265389477, guid: a7941cb9f105553498b852cd23f05712,
         type: 3}
@@ -1896,6 +1896,11 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 938848044527931150, guid: a7941cb9f105553498b852cd23f05712,
+        type: 3}
+      propertyPath: m_Text
+      value: Turn5
+      objectReference: {fileID: 0}
     - target: {fileID: 938848046265389476, guid: a7941cb9f105553498b852cd23f05712,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1955,11 +1960,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 938848044527931150, guid: a7941cb9f105553498b852cd23f05712,
-        type: 3}
-      propertyPath: m_Text
-      value: Turn5
       objectReference: {fileID: 0}
     - target: {fileID: 938848046265389477, guid: a7941cb9f105553498b852cd23f05712,
         type: 3}
@@ -2309,6 +2309,11 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 938848044527931150, guid: a7941cb9f105553498b852cd23f05712,
+        type: 3}
+      propertyPath: m_Text
+      value: Turn3
+      objectReference: {fileID: 0}
     - target: {fileID: 938848046265389476, guid: a7941cb9f105553498b852cd23f05712,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2368,11 +2373,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 938848044527931150, guid: a7941cb9f105553498b852cd23f05712,
-        type: 3}
-      propertyPath: m_Text
-      value: Turn3
       objectReference: {fileID: 0}
     - target: {fileID: 938848046265389477, guid: a7941cb9f105553498b852cd23f05712,
         type: 3}
@@ -3291,10 +3291,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 32
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 1600, y: 900}
+  m_ReferenceResolution: {x: 240, y: 160}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
@@ -3310,7 +3310,7 @@ Canvas:
   m_GameObject: {fileID: 1552161345}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 1
+  m_RenderMode: 0
   m_Camera: {fileID: 1812085864}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
@@ -4168,6 +4168,11 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 938848044527931150, guid: a7941cb9f105553498b852cd23f05712,
+        type: 3}
+      propertyPath: m_Text
+      value: Turn4
+      objectReference: {fileID: 0}
     - target: {fileID: 938848046265389476, guid: a7941cb9f105553498b852cd23f05712,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4227,11 +4232,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 938848044527931150, guid: a7941cb9f105553498b852cd23f05712,
-        type: 3}
-      propertyPath: m_Text
-      value: Turn4
       objectReference: {fileID: 0}
     - target: {fileID: 938848046265389477, guid: a7941cb9f105553498b852cd23f05712,
         type: 3}
@@ -4604,6 +4604,11 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 938848044527931150, guid: a7941cb9f105553498b852cd23f05712,
+        type: 3}
+      propertyPath: m_Text
+      value: Turn1
+      objectReference: {fileID: 0}
     - target: {fileID: 938848046265389476, guid: a7941cb9f105553498b852cd23f05712,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4663,11 +4668,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 938848044527931150, guid: a7941cb9f105553498b852cd23f05712,
-        type: 3}
-      propertyPath: m_Text
-      value: Turn1
       objectReference: {fileID: 0}
     - target: {fileID: 938848046265389477, guid: a7941cb9f105553498b852cd23f05712,
         type: 3}
