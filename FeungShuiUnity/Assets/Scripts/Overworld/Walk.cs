@@ -44,27 +44,22 @@ public class Walk : MonoBehaviour{
         //get inputs (controller or keyboard)
         HorizontalDirection = Input.GetAxisRaw("Horizontal");
         VerticalDirection = Input.GetAxisRaw("Vertical");
+        Vector2 Direction = new Vector2(HorizontalDirection, VerticalDirection);
 
         //normalize keyboard inputs
-        float hypotenuse = Mathf.Sqrt(Mathf.Pow(HorizontalDirection, 2)+ Mathf.Pow(VerticalDirection, 2));
-        if (hypotenuse > 1){
-            HorizontalDirection /= hypotenuse;
-            VerticalDirection /= hypotenuse;
+        if (Direction.magnitude > 1){
+            Direction /= Direction.magnitude;
         }
 
-        float angle = Mathf.Atan2(VerticalDirection, HorizontalDirection);
+        float angle = Mathf.Atan2(Direction.x, Direction.y);
 
         //seting up the animator settings
-        animator.SetBool("isWalking", hypotenuse>0);
-        if(hypotenuse>0)
-            animator.SetInteger("angle", (int)Mathf.Round((angle*(180/Mathf.PI))+45));
-        
-
-        float newX = HorizontalDirection*speed*Time.fixedDeltaTime*640;
-        float newY = VerticalDirection *speed *Time.fixedDeltaTime*640;
+        animator.SetBool("isWalking", Direction.magnitude>0);
+        if(Direction.magnitude > 0)
+            animator.SetInteger("angle", (int)(Mathf.Rad2Deg*angle)+45);
 
         //moving the player character around
-        gameObject.GetComponent<Rigidbody2D>().velocity = new Vector3(newX, newY, 0);
+        gameObject.GetComponent<Rigidbody2D>().velocity = Direction * speed * Time.fixedDeltaTime * 640;
     }
 
     private void StiffMovement () {
