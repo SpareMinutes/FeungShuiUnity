@@ -6,18 +6,19 @@ using Pathfinding;
 public abstract class SimpleAI : MonoBehaviour{
     int currentWaypoint = 0;
     public float nextWaypointDistance;
-    Path path;
-    Seeker seeker;
-    Rigidbody2D rb;
+    protected Path path;
+    protected Seeker seeker;
+    protected Rigidbody2D rb;
     Animator anim;
 
-    void Start(){
+    protected void Start(){
+        Debug.Log("Start");
         seeker = GetComponent<Seeker>();
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
     }
 
-    void OnPathComplete(Path p) {
+    protected void OnPathComplete(Path p) {
         if (!p.error) {
             path = p;
             currentWaypoint = 0;
@@ -26,6 +27,7 @@ public abstract class SimpleAI : MonoBehaviour{
 
     // Update is called once per frame
     void Update(){
+        anim.SetBool("isWalking", rb.velocity.magnitude > 0);
         if (path == null)
             return;
         if(currentWaypoint >= path.vectorPath.Count) {
@@ -34,9 +36,12 @@ public abstract class SimpleAI : MonoBehaviour{
         }
 
         Vector2 direction = ((Vector2)path.vectorPath[currentWaypoint] - rb.position).normalized;
-        anim.SetInteger("angle", (int)(Mathf.Rad2Deg*Mathf.Atan2(direction.x, direction.y)));
-        Vector2 force = direction * Time.deltaTime;
-        rb.AddForce(force);
+        int angle = (int)(Mathf.Rad2Deg * Mathf.Atan2(direction.x, direction.y)) + 45;
+        if (angle < -90)
+            angle += 360;
+        anim.SetInteger("angle", angle);
+        Vector2 force = direction * 50 ;
+        rb.velocity = force;
 
         float distance = Vector2.Distance(rb.position, path.vectorPath[currentWaypoint]);
         if (distance < nextWaypointDistance)
