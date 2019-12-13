@@ -15,7 +15,7 @@ public class Interact : MonoBehaviour{
     // Update is called once per frame
     void Update(){
         //controls where the interaction area is compared to the player (NESW)
-        area.transform.rotation = Quaternion.Euler(0, 0, animator.GetInteger("angle") + 45);
+        area.transform.rotation = Quaternion.Euler(0, 0, 225-animator.GetInteger("angle"));
 
         //press enter
         if (Input.GetButtonDown("Submit")){
