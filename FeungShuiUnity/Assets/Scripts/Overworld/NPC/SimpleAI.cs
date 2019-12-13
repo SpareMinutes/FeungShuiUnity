@@ -35,7 +35,13 @@ public abstract class SimpleAI : MonoBehaviour{
             return;
         }
 
-        Vector2 direction = ((Vector2)path.vectorPath[currentWaypoint] - rb.position).normalized;
+        Vector2 direction = ((Vector2)path.vectorPath[currentWaypoint] - rb.position);
+        if(direction.magnitude > 30) {
+            Debug.Log("Recalculating");
+            path = seeker.StartPath(rb.position, path.vectorPath[path.vectorPath.Count - 1], OnPathComplete);
+            return;
+        }    
+        direction = direction.normalized;
         int angle = (int)(Mathf.Rad2Deg * Mathf.Atan2(direction.x, direction.y)) + 45;
         if (angle < -90)
             angle += 360;
