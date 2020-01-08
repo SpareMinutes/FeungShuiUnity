@@ -7,7 +7,7 @@ using UnityEngine.EventSystems;
 public class MenuAndWorldUI : MonoBehaviour{
     public EventSystem ES;
     [SerializeField]
-    private GameObject Player, Canvas, Message, Text, Menu;
+    private GameObject Player, Canvas, Message, Text, Menu, Bag;
     private bool isMenuOpen = false;
     private GameObject SelectedMenu, SelectedMessage;
 
@@ -79,5 +79,31 @@ public class MenuAndWorldUI : MonoBehaviour{
         Menu.SetActive(false);
         isMenuOpen = false;
         Player.GetComponent<Walk>().canWalk = true;
+    }
+
+    public void OpenSummary () {
+        //will be called when the summary button is pressed from the menu
+        ShowMessage("This will show the summary of the adventure so far.");
+    }
+
+    public void OpenParty () {
+        //will be called when the party option is selected fromt the menu
+        ShowMessage("This will show the spirit party.");
+    }
+
+    public void OpenBag () {
+        //opens the players bag when selected form the menu
+        ShowMessage("This will show the player inventory.");
+    }
+
+    public void Save () {
+        //will be called when the player selects save from the menu
+        //for right now doesnt do anything
+        ShowMessage("This will save the game.");
+    }
+
+    public void OpenOptions () {
+        //opens the ingame options menu from the menu
+        ShowMessage("This will show the options.");
     }
 }
