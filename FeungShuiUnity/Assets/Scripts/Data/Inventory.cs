@@ -29,7 +29,15 @@ public class Inventory : MonoBehaviour{
     public void Add (Item item) {
         //this fucntion is used for all items to add an item to the inventory
         //it will sort the item into the right list
-        tabs[item.tab].Add(item);
+        if (tabs[item.tab].Contains(item)) {
+            //then the item is already in the inventory so we want to just increase its amount
+            int index = tabs[item.tab].IndexOf(item); //just makes it a little clearer
+            tabs[item.tab][index].amount ++;
+        } else {
+            //we want to add it to the list
+            tabs[item.tab].Add(item);
+        }
+        
     }
     
     public List<Item> GetList (BagTabs tab) {

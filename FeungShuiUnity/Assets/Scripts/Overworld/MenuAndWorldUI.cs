@@ -8,7 +8,7 @@ public class MenuAndWorldUI : MonoBehaviour{
     public EventSystem ES;
     [SerializeField]
     private GameObject Player, Canvas, Message, Text, Menu, Bag;
-    private bool isMenuOpen = false;
+    private bool isMenuOpen, isBagOpen = false;
     private GameObject SelectedMenu, SelectedMessage, SelectedBag;
 
     public void Start(){
@@ -39,7 +39,10 @@ public class MenuAndWorldUI : MonoBehaviour{
         }
 
         if (Input.GetButtonDown("Cancel")) {
-            if (isMenuOpen) {
+            if (isBagOpen) {
+                CloseBag();
+                //put other sub menu things here, check the escape menu last
+            } else if (isMenuOpen) {
                 //menu is open so close it
                 CloseMenu();
                 Player.GetComponent<Walk>().canWalk = true; //this is so that you can open different menus from the escape menu
@@ -47,6 +50,19 @@ public class MenuAndWorldUI : MonoBehaviour{
                 OpenMenu();
             }
         } 
+
+        if (isBagOpen) {
+            //this handles the left/right arrows for bag tab changes
+            if (Input.GetKeyDown(KeyCode.LeftArrow)) {
+                //then we want change the tab to the left
+                ChangeTabLeft();
+            }
+
+            if (Input.GetKeyDown(KeyCode.RightArrow)) {
+                //then we want to change tab to the right
+                ChangeTabRight();
+            } 
+        }
     }
 
     public void disableButton(){
@@ -104,7 +120,8 @@ public class MenuAndWorldUI : MonoBehaviour{
         //have some sort of initialising thing for the bag here
         //to organise the items
 
-        Player.GetComponent<Walk>().canWalk = false; 
+        Player.GetComponent<Walk>().canWalk = false;
+        isBagOpen = true;
         Bag.SetActive(true);
         ES.SetSelectedGameObject(null);
         ES.SetSelectedGameObject(SelectedBag);
@@ -112,8 +129,18 @@ public class MenuAndWorldUI : MonoBehaviour{
 
     public void CloseBag () {
         Bag.SetActive(false);
-        isMenuOpen = false;
+        isBagOpen = false;
         Player.GetComponent<Walk>().canWalk = true;
+    }
+
+    public void ChangeTabLeft () {
+        //shift active tab to the left
+        Debug.Log("left");
+    }
+
+    public void ChangeTabRight () {
+        //shift active tab to the right
+        Debug.Log("right");
     }
 
     public void Save () {

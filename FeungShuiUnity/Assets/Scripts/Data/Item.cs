@@ -1,18 +1,17 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
+//using UnityEngine;
 
-public class Item : MonoBehaviour {
+public class Item {
 
     public BagTabs tab; //will be what tab the item should go in (made manually in the editor)
-    public int amount; //will keep track of how many of this item hte plaer has in their inventory
+    public int amount = 0; //will keep track of how many of this item hte plaer has in their inventory
+    public string displayName;
 
-    //should have some kind of variable to determine an items functuality
-
-
-    public void use () {
-        //this function will be called when the item in used
-        //becuase each should have 
+    //need to have a similar thing to the move to determine what their effect is
+    public Item (string name, BagTabs bagTab) {
+        displayName = name;
+        tab = bagTab;
     }
     
 }
