@@ -9,28 +9,32 @@ public class MenuAndWorldUI : MonoBehaviour{
     [SerializeField]
     private GameObject Player, Canvas, Message, Text, Menu, Bag;
     private bool isMenuOpen = false;
-    private GameObject SelectedMenu, SelectedMessage;
+    private GameObject SelectedMenu, SelectedMessage, SelectedBag;
 
     public void Start(){
         SelectedMenu = Menu.transform.GetChild(0).gameObject;
         SelectedMessage = Message;
+        SelectedBag = Bag.transform.GetChild(1).gameObject; //should select the first button, if the bag is layered correctly
     }
 
     public void Update (){
         //Ensures clicking doesn't deselect buttons
+        GameObject selected = ES.currentSelectedGameObject;
         
-        if (ES.currentSelectedGameObject != SelectedMenu || ES.currentSelectedGameObject != SelectedMessage) {
+        if (selected != SelectedMenu || selected != SelectedMessage || selected != SelectedBag) {
             
-            if (ES.currentSelectedGameObject == null) {
+            if (selected == null) {
                 if (isMenuOpen) {
                     //menu is open 
                     ES.SetSelectedGameObject(SelectedMenu);
                 } else if (Message.activeSelf) {
                     //message is open
                     ES.SetSelectedGameObject(SelectedMessage);
-                } else {
-                    //the UI isnt open
-                }
+                } else if (Bag.activeSelf) {
+                    //the bag is open
+                    ES.SetSelectedGameObject(SelectedBag);
+                } 
+                //else nothing is open
             }
         }
 
@@ -38,6 +42,7 @@ public class MenuAndWorldUI : MonoBehaviour{
             if (isMenuOpen) {
                 //menu is open so close it
                 CloseMenu();
+                Player.GetComponent<Walk>().canWalk = true; //this is so that you can open different menus from the escape menu
             } else if(!Message.activeSelf){
                 OpenMenu();
             }
@@ -78,12 +83,13 @@ public class MenuAndWorldUI : MonoBehaviour{
         //this is mainly for if theres anything else we want to put here
         Menu.SetActive(false);
         isMenuOpen = false;
-        Player.GetComponent<Walk>().canWalk = true;
+        //Player.GetComponent<Walk>().canWalk = true;
     }
 
     public void OpenSummary () {
         //will be called when the summary button is pressed from the menu
         ShowMessage("This will show the summary of the adventure so far.");
+
     }
 
     public void OpenParty () {
@@ -93,7 +99,21 @@ public class MenuAndWorldUI : MonoBehaviour{
 
     public void OpenBag () {
         //opens the players bag when selected form the menu
-        ShowMessage("This will show the player inventory.");
+        //ShowMessage("This will show the player inventory.");
+
+        //have some sort of initialising thing for the bag here
+        //to organise the items
+
+        Player.GetComponent<Walk>().canWalk = false; 
+        Bag.SetActive(true);
+        ES.SetSelectedGameObject(null);
+        ES.SetSelectedGameObject(SelectedBag);
+    }
+
+    public void CloseBag () {
+        Bag.SetActive(false);
+        isMenuOpen = false;
+        Player.GetComponent<Walk>().canWalk = true;
     }
 
     public void Save () {
