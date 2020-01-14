@@ -2,27 +2,23 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum BagTabs {
-        //these names are up for change (and probably should be)
-        BattleItems, //things like potions and paralyze heals etc...
-        HeldItems, //these are for held items like leftovers, or megastones
-        KeyItems, //these are the key items from pokemon, basically story items that are needed for the plot or quests or something
-        Other //these are items that dont fit into the other categories, like evolutions items, pokeballs, that kindna stuff
-}
 
 public class Inventory : MonoBehaviour{
 
-    public Dictionary<BagTabs, List<Item>> tabs = new Dictionary<BagTabs, List<Item>>();
+    public Dictionary<string, List<Item>> tabs = new Dictionary<string, List<Item>>();
 
     public void Start () {
-        //becuase Inventory is instanceble anything can have an inventory and can store any items the player can
-        /* tabs = new Dictionary<BagTabs, List<Item>>() 
+        
+        tabs = new Dictionary<string, List<Item>>() 
             {
-                {BattleItems, new List<Item>()},
-                {HeldItems, new List<Item>()},
-                {KeyItems, new List<Item>()},
-                {Other, new List<Item>()}
-            }; */
+                {"BattleItems", new List<Item>{new Item("itemone","BattleItems",0,0), 
+                    new Item("itemtwo","BattleItems",0,0), new Item("itemthree","BattleItems",0,0), 
+                    new Item("itemfour","BattleItems",0,0), new Item("itemfive","BattleItems",0,0), 
+                    new Item("itemsix","BattleItems",0,0), new Item("itemseven","BattleItems",0,0)}},
+                {"HeldItems", new List<Item>()},
+                {"KeyItems", new List<Item>()},
+                {"Other", new List<Item>()}
+            };
     }
 
 
@@ -40,7 +36,7 @@ public class Inventory : MonoBehaviour{
         
     }
     
-    public List<Item> GetList (BagTabs tab) {
+    public List<Item> GetList (string tab) {
         //returns the list of items in the tab given
         //should be called by the 
         return tabs[tab];

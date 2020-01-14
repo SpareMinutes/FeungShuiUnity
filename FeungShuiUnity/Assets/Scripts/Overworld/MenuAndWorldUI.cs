@@ -11,10 +11,15 @@ public class MenuAndWorldUI : MonoBehaviour{
     private bool isMenuOpen, isBagOpen = false;
     private GameObject SelectedMenu, SelectedMessage, SelectedBag;
 
+    private List<string> bagTabs;
+    private int currentTabIndex = 0;
+    private List<Item> currentItems;
+    private int offset = -2;
+
     public void Start(){
         SelectedMenu = Menu.transform.GetChild(0).gameObject;
         SelectedMessage = Message;
-        SelectedBag = Bag.transform.GetChild(1).gameObject; //should select the first button, if the bag is layered correctly
+        SelectedBag = Bag.transform.GetChild(1).GetChild(2).gameObject; //should select the item button if hte layering is correct
     }
 
     public void Update (){
@@ -55,13 +60,41 @@ public class MenuAndWorldUI : MonoBehaviour{
             //this handles the left/right arrows for bag tab changes
             if (Input.GetKeyDown(KeyCode.LeftArrow)) {
                 //then we want change the tab to the left
-                ChangeTabLeft();
+                currentTabIndex--;
             }
 
             if (Input.GetKeyDown(KeyCode.RightArrow)) {
                 //then we want to change tab to the right
-                ChangeTabRight();
-            } 
+                currentTabIndex++;
+            }
+
+            if (Input.GetKeyDown(KeyCode.UpArrow)) {
+                Debug.Log(offset);
+                //offset = Mathf.Clamp(offset++, -2, currentItems.Count + 2);
+                offset --;
+                if (offset < -2) {
+                    offset = -2;
+                } else if (offset > currentItems.Count -2) {
+                    offset = currentItems.Count - 2;
+                }
+                //else the offset is fine
+                Debug.Log(offset);
+                UpdateItemList();
+            }
+
+            if (Input.GetKeyDown(KeyCode.DownArrow)) {
+                Debug.Log(offset);
+                //offset = Mathf.Clamp(offset--, -2, currentItems.Count + 2);
+                offset ++;
+                if (offset < -2) {
+                    offset = -2;
+                } else if (offset > currentItems.Count -2) {
+                    offset = currentItems.Count - 2;
+                }
+                //else the offset is fine
+                Debug.Log(offset);
+                UpdateItemList();
+            }
         }
     }
 
@@ -116,31 +149,50 @@ public class MenuAndWorldUI : MonoBehaviour{
     public void OpenBag () {
         //opens the players bag when selected form the menu
         //ShowMessage("This will show the player inventory.");
-
-        //have some sort of initialising thing for the bag here
-        //to organise the items
-
-        Player.GetComponent<Walk>().canWalk = false;
         isBagOpen = true;
         Bag.SetActive(true);
         ES.SetSelectedGameObject(null);
         ES.SetSelectedGameObject(SelectedBag);
+        Player.GetComponent<Walk>().canWalk = false;
+
+        //set up bag here:
+        Inventory inventory = GameObject.Find("WalkableCharacter").GetComponent<Inventory>();
+        //bag tab
+        bagTabs = new List<string>(inventory.tabs.Keys);
+        int tabTitleIndex = 2;
+        Bag.transform.GetChild(tabTitleIndex).GetComponent<Text>().text = bagTabs[currentTabIndex%bagTabs.Count]; 
+            //this shouldn't come up with an IndexOutOfBounds Exception
+        
+        //item lineup
+        currentItems = inventory.GetList(bagTabs[currentTabIndex%bagTabs.Count]);
+        UpdateItemList();
+        
+    }
+
+    private void UpdateItemList () {
+        int ItemIndex = 1; //for clarity in the the GetChild
+
+        for (int i = 0; i < 5; i++) {
+            string item;
+            if (i+offset < 0 || i+offset >= currentItems.Count) {
+                //this is to account for the 2 above and below the actual item button
+                item = " ";
+            } else {
+                item = currentItems[i + offset].displayName;
+            }
+            //then set the item text to the item
+            Bag.transform.GetChild(ItemIndex).GetChild(i).GetComponentInChildren<Text>().text = item;
+        }
+    }
+
+    public void useItem () {
+        //function for the item button
     }
 
     public void CloseBag () {
         Bag.SetActive(false);
         isBagOpen = false;
         Player.GetComponent<Walk>().canWalk = true;
-    }
-
-    public void ChangeTabLeft () {
-        //shift active tab to the left
-        Debug.Log("left");
-    }
-
-    public void ChangeTabRight () {
-        //shift active tab to the right
-        Debug.Log("right");
     }
 
     public void Save () {
