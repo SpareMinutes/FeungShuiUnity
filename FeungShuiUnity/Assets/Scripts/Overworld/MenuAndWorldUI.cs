@@ -69,7 +69,6 @@ public class MenuAndWorldUI : MonoBehaviour{
             }
 
             if (Input.GetKeyDown(KeyCode.UpArrow)) {
-                Debug.Log(offset);
                 //offset = Mathf.Clamp(offset++, -2, currentItems.Count + 2);
                 offset --;
                 if (offset < -2) {
@@ -78,12 +77,10 @@ public class MenuAndWorldUI : MonoBehaviour{
                     offset = currentItems.Count - 2;
                 }
                 //else the offset is fine
-                Debug.Log(offset);
                 UpdateItemList();
             }
 
             if (Input.GetKeyDown(KeyCode.DownArrow)) {
-                Debug.Log(offset);
                 //offset = Mathf.Clamp(offset--, -2, currentItems.Count + 2);
                 offset ++;
                 if (offset < -2) {
@@ -92,7 +89,6 @@ public class MenuAndWorldUI : MonoBehaviour{
                     offset = currentItems.Count - 2;
                 }
                 //else the offset is fine
-                Debug.Log(offset);
                 UpdateItemList();
             }
         }
@@ -185,8 +181,9 @@ public class MenuAndWorldUI : MonoBehaviour{
         }
     }
 
-    public void useItem () {
+    public void UseItem () {
         //function for the item button
+        currentItems[offset + 2].use();
     }
 
     public void CloseBag () {
