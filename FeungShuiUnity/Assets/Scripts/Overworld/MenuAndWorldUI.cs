@@ -85,8 +85,8 @@ public class MenuAndWorldUI : MonoBehaviour{
                 offset ++;
                 if (offset < -2) {
                     offset = -2;
-                } else if (offset > currentItems.Count -2) {
-                    offset = currentItems.Count - 2;
+                } else if (offset > currentItems.Count - 3) {
+                    offset = currentItems.Count - 3;
                 }
                 //else the offset is fine
                 UpdateItemList();
@@ -166,13 +166,14 @@ public class MenuAndWorldUI : MonoBehaviour{
     }
 
     private void UpdateItemList () {
-        int ItemIndex = 1; //for clarity in the the GetChild
+        int ItemIndex = 1; //for clarity in the the GetChild function
+        Debug.Log(offset);
 
         for (int i = 0; i < 5; i++) {
             string item;
             if (i+offset < 0 || i+offset >= currentItems.Count) {
                 //this is to account for the 2 above and below the actual item button
-                item = " ";
+                item = "--";
             } else {
                 item = currentItems[i + offset].displayName;
             }
@@ -184,6 +185,7 @@ public class MenuAndWorldUI : MonoBehaviour{
     public void UseItem () {
         //function for the item button
         currentItems[offset + 2].use();
+        Debug.Log(currentItems[offset + 2].displayName);
     }
 
     public void CloseBag () {

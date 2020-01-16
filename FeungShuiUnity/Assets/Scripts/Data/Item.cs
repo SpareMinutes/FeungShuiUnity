@@ -1,8 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 
-public class Item : MonoBehaviour{
+
+public class Item {
 
     public string tab; //will be what tab the item should go in (made manually in the editor)
     public int amount = 0; //will keep track of how many of this item hte plaer has in their inventory
@@ -27,8 +27,7 @@ public class Item : MonoBehaviour{
         switch (function) {
             //each case is a different type of item, each item only has one function
             case 0 : {
-                Debug.Log(displayName);
-                Debug.Log("item with function 0 was used");
+                
                 break;
             }
             case 1 : {
