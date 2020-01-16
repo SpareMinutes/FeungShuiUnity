@@ -61,11 +61,15 @@ public class MenuAndWorldUI : MonoBehaviour{
             if (Input.GetKeyDown(KeyCode.LeftArrow)) {
                 //then we want change the tab to the left
                 currentTabIndex--;
+                offset = -2;
+                UpdateItemList();
             }
 
             if (Input.GetKeyDown(KeyCode.RightArrow)) {
                 //then we want to change tab to the right
                 currentTabIndex++;
+                offset = -2;
+                UpdateItemList();
             }
 
             if (Input.GetKeyDown(KeyCode.UpArrow)) {
@@ -152,22 +156,24 @@ public class MenuAndWorldUI : MonoBehaviour{
         Player.GetComponent<Walk>().canWalk = false;
 
         //set up bag here:
-        Inventory inventory = GameObject.Find("WalkableCharacter").GetComponent<Inventory>();
+        Inventory inventory = Player.GetComponent<Inventory>();
+        
         //bag tab
         bagTabs = new List<string>(inventory.tabs.Keys);
-        int tabTitleIndex = 2;
-        Bag.transform.GetChild(tabTitleIndex).GetComponent<Text>().text = bagTabs[currentTabIndex%bagTabs.Count]; 
-            //this shouldn't come up with an IndexOutOfBounds Exception
         
         //item lineup
-        currentItems = inventory.GetList(bagTabs[currentTabIndex%bagTabs.Count]);
         UpdateItemList();
         
     }
 
     private void UpdateItemList () {
         int ItemIndex = 1; //for clarity in the the GetChild function
-        Debug.Log(offset);
+        //Debug.Log(offset);
+        Inventory inventory = Player.GetComponent<Inventory>();
+        currentItems = inventory.GetList(bagTabs[currentTabIndex%bagTabs.Count]);
+
+        int tabTitleIndex = 2;
+        Bag.transform.GetChild(tabTitleIndex).GetComponent<Text>().text = bagTabs[currentTabIndex%bagTabs.Count]; 
 
         for (int i = 0; i < 5; i++) {
             string item;
