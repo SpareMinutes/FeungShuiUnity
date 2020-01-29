@@ -7,9 +7,9 @@ using UnityEngine.EventSystems;
 public class MenuAndWorldUI : MonoBehaviour{
     public EventSystem ES;
     [SerializeField]
-    private GameObject Player, Canvas, Message, Text, Menu, Bag;
-    private bool isMenuOpen, isBagOpen = false;
-    private GameObject SelectedMenu, SelectedMessage, SelectedBag;
+    private GameObject Player, Canvas, Message, Text, Menu, Bag, Party;
+    private bool isMenuOpen, isBagOpen, isPartyOpen = false;
+    private GameObject SelectedMenu, SelectedMessage, SelectedBag, SelectedParty;
 
     private List<string> bagTabs;
     private int currentTabIndex = 0;
@@ -20,6 +20,7 @@ public class MenuAndWorldUI : MonoBehaviour{
         SelectedMenu = Menu.transform.GetChild(0).gameObject;
         SelectedMessage = Message;
         SelectedBag = Bag.transform.GetChild(1).GetChild(2).gameObject; //should select the item button if hte layering is correct
+        SelectedParty = Party.transform.GetChild(1).gameObject;
     }
 
     public void Update (){
@@ -46,7 +47,8 @@ public class MenuAndWorldUI : MonoBehaviour{
         if (Input.GetButtonDown("Cancel")) {
             if (isBagOpen) {
                 CloseBag();
-                //put other sub menu things here, check the escape menu last
+            } else if (isPartyOpen) {
+                CloseParty();
             } else if (isMenuOpen) {
                 //menu is open so close it
                 CloseMenu();
@@ -143,7 +145,18 @@ public class MenuAndWorldUI : MonoBehaviour{
 
     public void OpenParty () {
         //will be called when the party option is selected fromt the menu
-        ShowMessage("This will show the spirit party.");
+        //ShowMessage("This will show the spirit party.");
+        isPartyOpen = true;
+        Party.SetActive(true);
+        ES.SetSelectedGameObject(null);
+        ES.SetSelectedGameObject(SelectedParty);
+        Player.GetComponent<Walk>().canWalk = false;
+    }
+
+    public void CloseParty () {
+        Party.SetActive(false);
+        isPartyOpen = false;
+        Player.GetComponent<Walk>().canWalk = true;
     }
 
     public void OpenBag () {
