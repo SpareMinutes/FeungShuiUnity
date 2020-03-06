@@ -3,82 +3,82 @@
 public abstract class Matchups{
     //Type effectiveness dictionaries
     //this is for types that the key type deals EXTRA damage to
-    private static Dictionary<string,List<string>> strongTypeEffectiveness = new Dictionary<string,List<string>>{
-        {"Fire", new List<string>{"Wood", "Metal", "Ice"}},
-        {"Wood", new List<string>{"Water", "Earth", "Smog"}},
-        {"Water", new List<string>{"Metal", "Fire", "Sky"}},
-        {"Metal", new List<string>{"Earth", "Wood", "Thunder"}},
-        {"Earth", new List<string>{"Fire", "Water", "Beast"}},
-        {"Thunder", new List<string>{"Wood", "Beast"}},
-        {"Beast", new List<string>{"Water", "Ice"}},
-        {"Ice", new List<string>{"Metal", "Smog"}},
-        {"Smog", new List<string>{"Earth", "Sky"}},
-        {"Sky", new List<string>{"Fire", "Thunder"}},
-        {"Light", new List<string>{"Dark"}},
-        {"Dark", new List<string>{"Light"}}
+    private static Dictionary<Type,List<Type>> strongTypeEffectiveness = new Dictionary<Type,List<Type>>{
+        {Type.Fire, new List<Type>{Type.Wood, Type.Metal, Type.Ice}},
+        {Type.Wood, new List<Type>{Type.Water, Type.Earth, Type.Smog}},
+        {Type.Water, new List<Type>{Type.Metal, Type.Fire, Type.Sky}},
+        {Type.Metal, new List<Type>{Type.Earth, Type.Wood, Type.Thunder}},
+        {Type.Earth, new List<Type>{Type.Fire, Type.Water, Type.Beast}},
+        {Type.Thunder, new List<Type>{Type.Wood, Type.Beast}},
+        {Type.Beast, new List<Type>{Type.Water, Type.Ice}},
+        {Type.Ice, new List<Type>{Type.Metal, Type.Smog}},
+        {Type.Smog, new List<Type>{Type.Earth, Type.Sky}},
+        {Type.Sky, new List<Type>{Type.Fire, Type.Thunder}},
+        {Type.Light, new List<Type>{Type.Dark}},
+        {Type.Dark, new List<Type>{Type.Light}}
     }; 
 
      //this is for types that the key type deals LESS damage to
-    private static Dictionary<string,List<string>> weakTypeEffectiveness = new Dictionary<string,List<string>>{
-        {"Fire", new List<string>{"Earth", "Water", "Sky", "Fire"}},
-        {"Wood", new List<string>{"Fire", "Metal", "Thunder", "Wood"}},
-        {"Water", new List<string>{"Wood", "Earth", "Beast", "Water"}},
-        {"Metal", new List<string>{"Water", "Fire", "Ice", "Metal"}},
-        {"Earth", new List<string>{"Metal", "Wood", "Smog", "Earth"}},
-        {"Thunder", new List<string>{"Metal", "Sky", "Thunder"}},
-        {"Beast", new List<string>{"Earth", "Thunder", "Beast"}},
-        {"Ice", new List<string>{"Fire", "Beast", "Ice"}},
-        {"Smog", new List<string>{"Wood", "Ice", "Smog"}},
-        {"Sky", new List<string>{"Water", "Smog", "Sky"}},
-        {"Light", new List<string>{"Light"}},
-        {"Dark", new List<string>{"Dark"}}
+    private static Dictionary<Type,List<Type>> weakTypeEffectiveness = new Dictionary<Type,List<Type>>{
+        {Type.Fire, new List<Type>{Type.Earth, Type.Water, Type.Sky, Type.Fire}},
+        {Type.Wood, new List<Type>{Type.Fire, Type.Metal, Type.Thunder, Type.Wood}},
+        {Type.Water, new List<Type>{Type.Wood, Type.Earth, Type.Beast, Type.Water}},
+        {Type.Metal, new List<Type>{Type.Water, Type.Fire, Type.Ice, Type.Metal}},
+        {Type.Earth, new List<Type>{Type.Metal, Type.Wood, Type.Smog, Type.Earth}},
+        {Type.Thunder, new List<Type>{Type.Metal, Type.Sky, Type.Thunder}},
+        {Type.Beast, new List<Type>{Type.Earth, Type.Thunder, Type.Beast}},
+        {Type.Ice, new List<Type>{Type.Fire, Type.Beast, Type.Ice}},
+        {Type.Smog, new List<Type>{Type.Wood, Type.Ice, Type.Smog}},
+        {Type.Sky, new List<Type>{Type.Water, Type.Smog, Type.Sky}},
+        {Type.Light, new List<Type>{Type.Light}},
+        {Type.Dark, new List<Type>{Type.Dark}}
     };
 
     //used mainly for STAB bonuses maybe also for semi type effectiveness (?)
     //linked is for secondary STAB bonuses
-    private static Dictionary<string, List<string>> linkedTypes = new Dictionary<string, List<string>>{
-        {"Fire", new List<string>{"Lightning","Earth"}},
-        {"Earth", new List<string>{"Sky","Metal"}},
-        {"Metal", new List<string>{"Stone","Water"}},
-        {"Water", new List<string>{"Ice","Wood"}},
-        {"Wood", new List<string>{"Beast","Fire"}},
-        {"Lighting", new List<string>{"Fire"}},
-        {"Sky", new List<string>{"Earth"}},
-        {"Stone", new List<string>{"Metal"}},
-        {"Ice", new List<string>{"Water"}},
-        {"Beast", new List<string>{"Wood"}},
-        {"Light", new List<string>{}},
-        {"Dark", new List<string>{}}
+    private static Dictionary<Type, List<Type>> linkedTypes = new Dictionary<Type, List<Type>>{
+        {Type.Fire, new List<Type>{Type.Thunder,Type.Earth}},
+        {Type.Earth, new List<Type>{Type.Sky,Type.Metal}},
+        {Type.Metal, new List<Type>{Type.Stone,Type.Water}},
+        {Type.Water, new List<Type>{Type.Ice,Type.Wood}},
+        {Type.Wood, new List<Type>{Type.Beast,Type.Fire}},
+        {Type.Thunder, new List<Type>{Type.Fire}},
+        {Type.Sky, new List<Type>{Type.Earth}},
+        {Type.Stone, new List<Type>{Type.Metal}},
+        {Type.Ice, new List<Type>{Type.Water}},
+        {Type.Beast, new List<Type>{Type.Wood}},
+        {Type.Light, new List<Type>{}},
+        {Type.Dark, new List<Type>{}}
     };
     //unlinked is for secondary STAB losses
-    private static Dictionary<string,List<string>> unlinkedTypes = new Dictionary<string,List<string>> {
-        {"Fire", new List<string>{"Metal","Water"}},
-        {"Earth", new List<string>{"Water","Wood"}},
-        {"Metal", new List<string>{"Fire","Wood"}},
-        {"Water", new List<string>{"Fire","Erth"}},
-        {"Wood", new List<string>{"Metal","Earth"}},
-        {"Lightning", new List<string>{}},
-        {"Sky", new List<string>{}},
-        {"Stone", new List<string>{}},
-        {"Ice", new List<string>{}},
-        {"Beast", new List<string>{}},
-        {"Light", new List<string>{"Dark"}},
-        {"Dark", new List<string>{"Light"}}
+    private static Dictionary<Type,List<Type>> unlinkedTypes = new Dictionary<Type,List<Type>> {
+        {Type.Fire, new List<Type>{Type.Metal,Type.Water}},
+        {Type.Earth, new List<Type>{Type.Water,Type.Wood}},
+        {Type.Metal, new List<Type>{Type.Fire,Type.Wood}},
+        {Type.Water, new List<Type>{Type.Fire,Type.Earth}},
+        {Type.Wood, new List<Type>{Type.Metal,Type.Earth}},
+        {Type.Thunder, new List<Type>{}},
+        {Type.Sky, new List<Type>{}},
+        {Type.Stone, new List<Type>{}},
+        {Type.Ice, new List<Type>{}},
+        {Type.Beast, new List<Type>{}},
+        {Type.Light, new List<Type>{Type.Dark}},
+        {Type.Dark, new List<Type>{Type.Light}}
     };
 
-    public static List<string> getStrongTypeEffectiveness (string type) {
+    public static List<Type> getStrongTypeEffectiveness (Type type) {
         return strongTypeEffectiveness[type];
     }
 
-    public static List<string> getWeakTypeEffectiveness (string type) {
+    public static List<Type> getWeakTypeEffectiveness (Type type) {
         return weakTypeEffectiveness[type];
     }
 
-    public static List<string> getLinkedTypes (string type) {
+    public static List<Type> getLinkedTypes (Type type) {
         return linkedTypes[type];
     }
 
-    public static List<string> getUnlinkedTypes (string type) {
+    public static List<Type> getUnlinkedTypes (Type type) {
         return unlinkedTypes[type];
     }
 }

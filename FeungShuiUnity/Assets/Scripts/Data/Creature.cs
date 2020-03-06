@@ -13,8 +13,12 @@ public class Creature{
     public float maxActiveHealth;
     public float maxCriticalHealth;
     public float maxMana;
+    //dont need to edit these in the editor, but they are needed by other scripts so theyll stay public
+    [HideInInspector] 
     public float currentCriticalHealth;
+    [HideInInspector]
     public float currentActiveHealth;
+    [HideInInspector]
     public float currentMana;
 
     private int attack;
@@ -34,7 +38,7 @@ public class Creature{
     private string personality;
     private List<float> statModifiers;
     //testing only
-    public List<string> moveNames;
+    public List<MoveName> moveNames;
     private List<Move> Moves;
 
     private static Dictionary<Creature, float> friendshipDict = new Dictionary<Creature, float>();

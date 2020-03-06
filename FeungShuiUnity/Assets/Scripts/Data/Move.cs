@@ -1,22 +1,36 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
-public class Move {
+public enum MoveName {
+    //bit nicer than a string for a name (also works as a drop down in hte inspector)
+    Scratch, Pound, Surf, Recover, HealPulse, Explosion, RazorLeaf, Howl
+}
+
+[CreateAssetMenu()]
+public class Move : ScriptableObject{
     // this class is to store all the moves in the game and relevant methods
     // moves that have a bonus effect will bge subclasses of this one
     public Target AttackTarget;
 
+    [SerializeField]
     private int Power;
+    [SerializeField]
     private float Accuracy;
+    [SerializeField]
     private float Cost;
-    private string Type; // allows for polytyping moves. probably will only ever be at most 2 types
+    [SerializeField]
+    private Type Type;
+    [SerializeField]
     private float CritChance;
-    private bool AttackType;
-    Dictionary<string, List<string>> Effects;
+    [SerializeField]
+    private bool MakesContact;
+    [SerializeField]
+    private List<Effect> Effects;
     private CreatureBattleStatusController Attacker, Defender;
 
 
-    public Move (int power, float accuracy, float cost, string type, float critChance, bool attacktype, Target attackTarget, Dictionary<string, List<string>> effects) {
+    /* public Move (int power, float accuracy, float cost, Type type, float critChance, bool attacktype, Target attackTarget, Dictionary<string, List<string>> effects) {
         this.Power = power;
         this.Accuracy = accuracy;
         this.Cost = cost;
@@ -25,19 +39,21 @@ public class Move {
         this.AttackType = attacktype;
         this.AttackTarget = attackTarget;
         this.Effects = effects;
-    }
+    } */
 
     public void execute (CreatureBattleStatusController attacker, CreatureBattleStatusController defender) {
         this.Attacker = attacker;
         this.Defender = defender;
         if (Effects != null)
-            foreach (KeyValuePair<string, List<string>> effect in Effects)
-                this.GetType().GetMethod(effect.Key).Invoke(this, effect.Value.ToArray());
+            foreach (Effect effect in Effects) {
+                object[] things = {effect.damage, effect.useCurrent};
+                this.GetType().GetMethod(effect.getStringName()).Invoke(this, things);
+            }
     }
 
     public float getModifier() {
-        string attackingType = Attacker.GetCreature().getType().ToString();
-        string defendingType = Defender.GetCreature().getType().ToString();
+        Type attackingType = Attacker.GetCreature().getType();
+        Type defendingType = Defender.GetCreature().getType();
 
         float typeMultiplier = 1.0f;
         if (Matchups.getStrongTypeEffectiveness(this.Type).Contains(defendingType)) {
@@ -65,8 +81,8 @@ public class Move {
     }
 
     public void Damage(){
-        float relevantAttackStat = Attacker.getAttack(AttackType);
-        float relevantDefenseStat = Defender.getDefense(AttackType);
+        float relevantAttackStat = Attacker.getAttack(MakesContact);
+        float relevantDefenseStat = Defender.getDefense(MakesContact);
         float modifier = getModifier(); // used for type advantages and stuff
 
         //pokemon way (with magic numbers) 
@@ -79,12 +95,12 @@ public class Move {
         ApplyDamage(damageToTake);
     }
 
-    public void FixedDamage(string damageToTake){
-        ApplyDamage(int.Parse(damageToTake));
+    public void FixedDamage(float damageToTake){
+        ApplyDamage(damageToTake);
     }
 
-    public void PercentDamage(string damagePcnt, string useCurrent){
-        float damageToTake = float.Parse(damagePcnt) * (useCurrent.Equals("true") ? Defender.GetCreature().currentActiveHealth : Defender.GetCreature().maxActiveHealth);
+    public void PercentDamage(float damagePcnt, bool useCurrent){
+        float damageToTake = damagePcnt * (useCurrent ? Defender.GetCreature().currentActiveHealth : Defender.GetCreature().maxActiveHealth);
         ApplyDamage(damageToTake);
     }
     
@@ -99,9 +115,19 @@ public class Move {
         Defender.GetCreature().currentActiveHealth = Mathf.Min(Defender.GetCreature().currentActiveHealth, Defender.GetCreature().maxActiveHealth);
     }
 
-    public void Buff(string stat, string modifier){
+    public void Buff(float stat, bool notUsed, float modifier){
         //placeholder
         Debug.Log("used Buff (WIP)");
+    }
+
+    public void RecoilDamage(float percentDamage) {
+        //damages the user for a percentage of their health
+            //used as a secondary effect, no move SHOULD just hurt the user and do nothing else
+        CreatureBattleStatusController oldAttacker = Attacker;
+        Defender = Attacker;
+        float damageToTake = Defender.GetCreature().currentActiveHealth*percentDamage;
+        ApplyDamage(damageToTake);
+        Attacker = oldAttacker; //just to set it right again
     }
 
     public enum Target{

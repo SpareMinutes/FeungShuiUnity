@@ -277,7 +277,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ae0dcb2ccbe131458c5d424603f4242, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  eventSystem: {fileID: 0}
+  eventSystem: {fileID: 35603826}
   gameState: 0
   inBattleCreatures:
   - {fileID: 635024638}

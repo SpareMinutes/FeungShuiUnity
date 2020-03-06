@@ -13,7 +13,7 @@ public class BattleMenu : MonoBehaviour{
     private Move SelectedMove;
     private CreatureBattleStatusController Attacker;
     private List<CreatureBattleStatusController> Defenders; //just to support having several targets
-    private string moveUsed;
+    private MoveName moveUsed;
     private List<CreatureBattleStatusController> toExculdeFromSelection;
     public GameObject[] spiritStatuses, attackButtons, toggles;
     public GameObject ProgressButton;
@@ -119,7 +119,7 @@ public class BattleMenu : MonoBehaviour{
         //Goes through the list of moves of a creature and displays them in the rightmost text as selectable buttons
         int i = 0;
         while (i < Attacker.GetCreature().moveNames.Count){
-            attackButtons[i].GetComponentInChildren<Text>().text = Attacker.GetCreature().moveNames[i];
+            attackButtons[i].GetComponentInChildren<Text>().text = Attacker.GetCreature().moveNames[i].ToString();
             attackButtons[i].GetComponent<Button>().interactable = true;
             i++;
         }
@@ -223,8 +223,8 @@ public class BattleMenu : MonoBehaviour{
 
     //Called when a move is selected
     public void LoadAttack(){
-        moveUsed = ES.currentSelectedGameObject.GetComponentInChildren<Text>().text;
-        SelectedMove = MovesTable.Find(moveUsed); //gets the move out of database
+        //moveUsed = ES.currentSelectedGameObject.GetComponentInChildren<Text>().text;
+        SelectedMove = null; //MovesTable.Find(moveUsed); //gets the move out of database
         //switch/case statement dealing with targeting type
         switch (SelectedMove.AttackTarget) {
             case Move.Target.Single:
@@ -368,7 +368,7 @@ public class BattleMenu : MonoBehaviour{
             //this should choose a random move from the enemy's move set (even if they have less than 4 moves)
             int randNum = Random.Range(0, Attacker.GetCreature().moveNames.Count);
             moveUsed = Attacker.GetCreature().moveNames[randNum];
-            SelectedMove = MovesTable.Find(moveUsed);
+            SelectedMove = null; //MovesTable.Find(moveUsed);
 
             switch (SelectedMove.AttackTarget) {
                 case Move.Target.All:

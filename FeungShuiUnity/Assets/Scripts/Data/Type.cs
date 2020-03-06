@@ -8,6 +8,8 @@
     Metal,
     Stone,
     Earth,
+    Sky,
+    Smog,
     Wind,
     Light,
     Dark,
