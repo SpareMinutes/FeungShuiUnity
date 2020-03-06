@@ -8,7 +8,9 @@ public class CreatureBattleStatusController : MonoBehaviour {
     public GameObject Name, Critical, Stamina, Mana;
     public EventSystem ES;
     public Image sprite;
-
+    
+    [HideInInspector]
+    public bool isDefending = false;
     private float currentAttack;
     private float currentDefense;
     private float currentIntelligence;
@@ -99,6 +101,8 @@ public class CreatureBattleStatusController : MonoBehaviour {
         //multiplies the defenses by 2 (up for change)
         this.currentDefense *= 2;
         this.currentResistance *= 2;
+
+        isDefending = true;
     }
 
     public void relieveDefenseMove() {
