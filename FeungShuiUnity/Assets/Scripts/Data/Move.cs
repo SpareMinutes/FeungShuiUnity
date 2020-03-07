@@ -120,15 +120,16 @@ public class Move : ScriptableObject{
         Debug.Log("used Buff (WIP)");
     }
 
-    public void RecoilDamage(float percentDamage, bool _2) {
+    /* public void RecoilDamage(float percentDamage, bool _2) {
         //damages the user for a percentage of their health
-            //used as a secondary effect, no move SHOULD just hurt the user and do nothing else
+            //used as a secondary effect, no move SHOULD not just hurt the user and do nothing else
         CreatureBattleStatusController oldAttacker = Attacker;
         Defender = Attacker;
-        float damageToTake = Defender.GetCreature().currentActiveHealth*percentDamage;
+        float damageToTake = (Defender.GetCreature().currentActiveHealth)*percentDamage;
+        Debug.Log(damageToTake);
         ApplyDamage(damageToTake);
         Attacker = oldAttacker; //just to set it right again
-    }
+    } */
 
     public enum Target{
         Self,

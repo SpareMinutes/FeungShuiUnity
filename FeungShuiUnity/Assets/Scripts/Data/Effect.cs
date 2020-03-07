@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public enum EffectType {
-    Damage, FixedDamage, PercentageDamage, Buff, RecoilDamage
+    Damage, FixedDamage, PercentageDamage, Buff, /*RecoilDamage*/
 }
 
 

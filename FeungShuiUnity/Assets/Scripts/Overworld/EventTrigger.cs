@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class EventTrigger : MonoBehaviour {
     public UnityEvent onInteract;
     private Creature[] OpposingParty;
+    private Creature[] PlayerParty;
 
     private void Update() {
         //Does not work
@@ -34,13 +35,16 @@ public class EventTrigger : MonoBehaviour {
 
     public void StartTrainerBattle() {
         OpposingParty = GetComponentInParent<Battle>().Party;
+        PlayerParty = GameObject.Find("WalkableCharacter").GetComponent<Battle>().Party;
         StartBattle();
-        SceneManager.sceneLoaded += LoadOpponent;
+        SceneManager.sceneLoaded += LoadParties;
     }
 
-    private void LoadOpponent(Scene scene, LoadSceneMode mode) {
+    private void LoadParties(Scene scene, LoadSceneMode mode) {
         GameObject.Find("Spirit4Status").GetComponent<CreatureBattleStatusController>().Target = OpposingParty[0];
         GameObject.Find("Spirit3Status").GetComponent<CreatureBattleStatusController>().Target = OpposingParty[1];
-        SceneManager.sceneLoaded -= LoadOpponent;
+        GameObject.Find("Spirit2Status").GetComponent<CreatureBattleStatusController>().Target = PlayerParty[0];
+        GameObject.Find("Spirit1Status").GetComponent<CreatureBattleStatusController>().Target = PlayerParty[1];
+        SceneManager.sceneLoaded -= LoadParties;
     }
 }

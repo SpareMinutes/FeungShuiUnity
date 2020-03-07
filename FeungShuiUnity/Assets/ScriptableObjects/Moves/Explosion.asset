@@ -23,6 +23,3 @@ MonoBehaviour:
   - effectType: 0
     damage: 0
     useCurrent: 0
-  - effectType: 4
-    damage: 1
-    useCurrent: 0

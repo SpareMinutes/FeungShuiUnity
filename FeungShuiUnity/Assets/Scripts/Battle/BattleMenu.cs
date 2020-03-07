@@ -224,8 +224,8 @@ public class BattleMenu : MonoBehaviour{
     }
 
     //Called when a move is selected
-    public void LoadAttack(){
-        //moveUsed = ES.currentSelectedGameObject.GetComponentInChildren<Text>().text;
+    public void LoadAttack(int index){
+        moveUsed = Attacker.Target.moveNames[index];
         SelectedMove = MovesTable.Find(moveUsed); //gets the move out of database
         //switch/case statement dealing with targeting type
         switch (SelectedMove.AttackTarget) {
