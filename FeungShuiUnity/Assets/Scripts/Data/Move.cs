@@ -46,8 +46,8 @@ public class Move : ScriptableObject{
         this.Defender = defender;
         if (Effects != null)
             foreach (Effect effect in Effects) {
-                object[] things = {effect.damage, effect.useCurrent};
-                this.GetType().GetMethod(effect.getStringName()).Invoke(this, things);
+                //object[] things = {effect.damage, effect.useCurrent};
+                this.GetType().GetMethod(effect.getStringName()).Invoke(this, new object[] {effect.damage, effect.useCurrent});
             }
     }
 
@@ -80,7 +80,7 @@ public class Move : ScriptableObject{
         return  typeMultiplier * stabMultiplier* critMultiplier;
     }
 
-    public void Damage(){
+    public void Damage(float _1, bool _2){
         float relevantAttackStat = Attacker.getAttack(MakesContact);
         float relevantDefenseStat = Defender.getDefense(MakesContact);
         float modifier = getModifier(); // used for type advantages and stuff
@@ -95,7 +95,7 @@ public class Move : ScriptableObject{
         ApplyDamage(damageToTake);
     }
 
-    public void FixedDamage(float damageToTake){
+    public void FixedDamage(float damageToTake, bool _2){
         ApplyDamage(damageToTake);
     }
 
@@ -115,12 +115,12 @@ public class Move : ScriptableObject{
         Defender.GetCreature().currentActiveHealth = Mathf.Min(Defender.GetCreature().currentActiveHealth, Defender.GetCreature().maxActiveHealth);
     }
 
-    public void Buff(float stat, bool notUsed, float modifier){
+    public void Buff(float stat, bool _2/* , float modifier */){
         //placeholder
         Debug.Log("used Buff (WIP)");
     }
 
-    public void RecoilDamage(float percentDamage) {
+    public void RecoilDamage(float percentDamage, bool _2) {
         //damages the user for a percentage of their health
             //used as a secondary effect, no move SHOULD just hurt the user and do nothing else
         CreatureBattleStatusController oldAttacker = Attacker;

@@ -17,12 +17,14 @@ public class BattleMenu : MonoBehaviour{
     private List<CreatureBattleStatusController> toExculdeFromSelection;
     public GameObject[] spiritStatuses, attackButtons, toggles;
     public GameObject ProgressButton;
+    public MovesTable movesTable;
 
     /*	---------------------------
 	*	General functions
 	*	---------------------------	*/
 
     void Start(){
+        movesTable.Init(); //initialise the movesTable dict
         OES = GameObject.Find("EventSystem");
         OES.SetActive(false);
         GameObject.Find("InGameUI").GetComponent<MenuAndWorldUI>().enabled = false;
@@ -224,7 +226,7 @@ public class BattleMenu : MonoBehaviour{
     //Called when a move is selected
     public void LoadAttack(){
         //moveUsed = ES.currentSelectedGameObject.GetComponentInChildren<Text>().text;
-        SelectedMove = null; //MovesTable.Find(moveUsed); //gets the move out of database
+        SelectedMove = MovesTable.Find(moveUsed); //gets the move out of database
         //switch/case statement dealing with targeting type
         switch (SelectedMove.AttackTarget) {
             case Move.Target.Single:
@@ -368,7 +370,7 @@ public class BattleMenu : MonoBehaviour{
             //this should choose a random move from the enemy's move set (even if they have less than 4 moves)
             int randNum = Random.Range(0, Attacker.GetCreature().moveNames.Count);
             moveUsed = Attacker.GetCreature().moveNames[randNum];
-            SelectedMove = null; //MovesTable.Find(moveUsed);
+            SelectedMove = MovesTable.Find(moveUsed);
 
             switch (SelectedMove.AttackTarget) {
                 case Move.Target.All:

@@ -13,7 +13,7 @@ public class MovesTable : ScriptableObject {
         return Master[name];
     }
 
-    public void Start () {
+    public void Init () {
         //this should just populate the dictionary to make lookups easier
         foreach (MoveName key in keys) {
             Master.Add(key, values[keys.IndexOf(key)]); //assuming that both lists are made equally
