@@ -11,7 +11,7 @@ public class MenuAndWorldUI : MonoBehaviour{
     private bool isMenuOpen, isBagOpen, isPartyOpen = false;
     private GameObject SelectedMenu, SelectedMessage, SelectedBag, SelectedParty;
 
-    private List<string> bagTabs;
+    private List<BagTab> bagTabs;
     private int currentTabIndex = 0;
     private List<Item> currentItems;
     private int offset = -2;
@@ -172,7 +172,7 @@ public class MenuAndWorldUI : MonoBehaviour{
         Inventory inventory = Player.GetComponent<Inventory>();
         
         //bag tab
-        bagTabs = new List<string>(inventory.tabs.Keys);
+        bagTabs = new List<BagTab>(inventory.tabs.Keys);
         
         //item lineup
         UpdateItemList();
@@ -186,7 +186,7 @@ public class MenuAndWorldUI : MonoBehaviour{
         currentItems = inventory.GetList(bagTabs[currentTabIndex%bagTabs.Count]);
 
         int tabTitleIndex = 2;
-        Bag.transform.GetChild(tabTitleIndex).GetComponent<Text>().text = bagTabs[currentTabIndex%bagTabs.Count]; 
+        Bag.transform.GetChild(tabTitleIndex).GetComponent<Text>().text = bagTabs[currentTabIndex%bagTabs.Count].ToString(); 
 
         for (int i = 0; i < 5; i++) {
             string item;
@@ -204,7 +204,7 @@ public class MenuAndWorldUI : MonoBehaviour{
     public void UseItem () {
         //function for the item button
         currentItems[offset + 2].use();
-        Debug.Log(currentItems[offset + 2].displayName);
+        //Debug.Log(currentItems[offset + 2].displayName);
     }
 
     public void CloseBag () {

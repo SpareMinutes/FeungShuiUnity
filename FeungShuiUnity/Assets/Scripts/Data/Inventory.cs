@@ -2,14 +2,30 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum BagTab {
+    BattleItems,
+    HeldItems,
+    KeyItems,
+    Other
+}
 
 public class Inventory : MonoBehaviour{
 
-    public Dictionary<string, List<Item>> tabs = new Dictionary<string, List<Item>>();
+    public List<Item> BattleItems, HeldItems, KeyItems, Other = new List<Item>();
+
+    public Dictionary<BagTab, List<Item>> tabs = new Dictionary<BagTab, List<Item>>();
 
     public void Start () {
+
+        //init the dictionary for look ups later on
+        tabs = new Dictionary<BagTab, List<Item>>() {
+            {BagTab.BattleItems, BattleItems},
+            {BagTab.HeldItems, HeldItems},
+            {BagTab.KeyItems, KeyItems},
+            {BagTab.Other, Other}
+        };
         
-        tabs = new Dictionary<string, List<Item>>() 
+        /* tabs = new Dictionary<string, List<Item>>() 
             {
                 {"BattleItems", new List<Item>{new Item("itemone","BattleItems",0,0), 
                     new Item("itemtwo","BattleItems",0,0), new Item("itemthree","BattleItems",0,0), 
@@ -18,7 +34,7 @@ public class Inventory : MonoBehaviour{
                 {"HeldItems", new List<Item>()},
                 {"KeyItems", new List<Item>()},
                 {"Other", new List<Item>()}
-            };
+            }; */
     }
 
 
@@ -36,7 +52,7 @@ public class Inventory : MonoBehaviour{
         
     }
     
-    public List<Item> GetList (string tab) {
+    public List<Item> GetList (BagTab tab) {
         //returns the list of items in the tab given
         //should be called by the 
         return tabs[tab];
