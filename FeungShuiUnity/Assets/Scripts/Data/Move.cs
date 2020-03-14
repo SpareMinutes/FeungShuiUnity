@@ -20,16 +20,27 @@ public class Move : ScriptableObject{
     private bool MakesContact;
     [SerializeField]
     private List<Effect> Effects;
-    
+
     private CreatureBattleStatusController Attacker, Defender;
 
-    public void execute (CreatureBattleStatusController attacker, CreatureBattleStatusController defender) {
-        this.Attacker = attacker;
-        this.Defender = defender;
-        if (Effects != null)
-            foreach (Effect effect in Effects) {
-                effect.execute(attacker, defender, getModifier(), MakesContact);
+    public bool execute (CreatureBattleStatusController attacker, CreatureBattleStatusController defender) {
+        //put a check for accuracy here:
+            //if it fails the attack misses
+        if (Random.Range(0.0f, 1.0f) <= Accuracy) {
+            //then the move hits
+            this.Attacker = attacker;
+            this.Defender = defender;
+            if (Effects != null) {
+                foreach (Effect effect in Effects) {
+                    effect.execute(attacker, defender, getModifier(), MakesContact);
+                }
             }
+            return true;
+        } else {
+            //move misses
+            return false;
+        }
+        
     }
 
     public float getModifier() {

@@ -167,8 +167,13 @@ public class BattleMenu : MonoBehaviour{
     //Called when the oppoenent is selected
     public void DoAttack(){
         foreach (CreatureBattleStatusController Defender in Defenders){
-            ShowMessage(Attacker.GetCreature().displayName + " used " + SelectedMove.name + " on " + Defender.GetCreature().displayName + ".");
-            SelectedMove.execute(Attacker, Defender);
+            if (SelectedMove.execute(Attacker, Defender)) {
+                //attack hit
+                ShowMessage(Attacker.GetCreature().displayName + " used " + SelectedMove.name + " on " + Defender.GetCreature().displayName + ".");
+            } else {
+                //attack missed
+                ShowMessage(SelectedMove.name + " missed.");
+            }
         }
         resetSelection();
 
