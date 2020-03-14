@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class WanderAI : SimpleAI {
     public Collider2D bounds;
-    void Start() {
+    new void Start() {
         base.Start();
         NextPath();
     }
@@ -24,7 +24,7 @@ public class WanderAI : SimpleAI {
         seeker.StartPath(rb.position, dest, OnPathComplete);
     }
 
-    void OnPathComplete(Path p) {
+    new void OnPathComplete(Path p) {
         Debug.Log("Done");
         base.OnPathComplete(p);
         //Invoke("NextPath", Random.Range(0f, 0.5f) + Random.Range(0f, 0.5f));

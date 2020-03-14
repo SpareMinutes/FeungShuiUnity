@@ -4,10 +4,10 @@ using UnityEngine;
 public class PathAI : SimpleAI{
     public Waypoint[] waypoints;
 
-    // Start is called before the first frame update
+    /* // Start is called before the first frame update
     void Start(){
         
-    }
+    } */
 
     // Update is called once per frame
     public void Update(){

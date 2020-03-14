@@ -19,4 +19,7 @@ MonoBehaviour:
   Type: 0
   CritChance: 0
   MakesContact: 0
-  Effects: []
+  Effects:
+  - effectType: 2
+    damage: 0.5
+    useCurrent: 0
