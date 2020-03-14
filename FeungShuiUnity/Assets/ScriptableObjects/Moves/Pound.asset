@@ -13,7 +13,6 @@ MonoBehaviour:
   m_Name: Pound
   m_EditorClassIdentifier: 
   AttackTarget: 2
-  Power: 5
   Accuracy: 1
   Cost: 1
   Type: 3
@@ -21,5 +20,5 @@ MonoBehaviour:
   MakesContact: 1
   Effects:
   - effectType: 0
-    damage: 0
+    power: 5
     useCurrent: 0

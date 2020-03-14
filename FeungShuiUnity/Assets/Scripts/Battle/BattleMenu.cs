@@ -13,18 +13,15 @@ public class BattleMenu : MonoBehaviour{
     private Move SelectedMove;
     private CreatureBattleStatusController Attacker;
     private List<CreatureBattleStatusController> Defenders; //just to support having several targets
-    private MoveName moveUsed;
     private List<CreatureBattleStatusController> toExculdeFromSelection;
     public GameObject[] spiritStatuses, attackButtons, toggles;
     public GameObject ProgressButton;
-    public MovesTable movesTable;
 
     /*	---------------------------
 	*	General functions
 	*	---------------------------	*/
 
     void Start(){
-        movesTable.Init(); //initialise the movesTable dict
         OES = GameObject.Find("EventSystem");
         OES.SetActive(false);
         GameObject.Find("InGameUI").GetComponent<MenuAndWorldUI>().enabled = false;
@@ -120,8 +117,8 @@ public class BattleMenu : MonoBehaviour{
         ES.SetSelectedGameObject(attackButtons[0]); //Set the first (upper left) attack as the currently highlighed button
         //Goes through the list of moves of a creature and displays them in the rightmost text as selectable buttons
         int i = 0;
-        while (i < Attacker.GetCreature().moveNames.Count){
-            attackButtons[i].GetComponentInChildren<Text>().text = Attacker.GetCreature().moveNames[i].ToString();
+        while (i < Attacker.GetCreature().Moves.Count){
+            attackButtons[i].GetComponentInChildren<Text>().text = Attacker.GetCreature().Moves[i].ToString();
             attackButtons[i].GetComponent<Button>().interactable = true;
             i++;
         }
@@ -170,7 +167,7 @@ public class BattleMenu : MonoBehaviour{
     //Called when the oppoenent is selected
     public void DoAttack(){
         foreach (CreatureBattleStatusController Defender in Defenders){
-            ShowMessage(Attacker.GetCreature().displayName + " used " + moveUsed + " on " + Defender.GetCreature().displayName + ".");
+            ShowMessage(Attacker.GetCreature().displayName + " used " + SelectedMove.name + " on " + Defender.GetCreature().displayName + ".");
             SelectedMove.execute(Attacker, Defender);
         }
         resetSelection();
@@ -225,8 +222,7 @@ public class BattleMenu : MonoBehaviour{
 
     //Called when a move is selected
     public void LoadAttack(int index){
-        moveUsed = Attacker.Target.moveNames[index];
-        SelectedMove = MovesTable.Find(moveUsed); //gets the move out of database
+        SelectedMove = Attacker.Target.Moves[index];
         //switch/case statement dealing with targeting type
         switch (SelectedMove.AttackTarget) {
             case Move.Target.Single:
@@ -368,9 +364,8 @@ public class BattleMenu : MonoBehaviour{
 
         if (todo == 0) {
             //this should choose a random move from the enemy's move set (even if they have less than 4 moves)
-            int randNum = Random.Range(0, Attacker.GetCreature().moveNames.Count);
-            moveUsed = Attacker.GetCreature().moveNames[randNum];
-            SelectedMove = MovesTable.Find(moveUsed);
+            int randNum = Random.Range(0, Attacker.GetCreature().Moves.Count);
+            SelectedMove = Attacker.GetCreature().Moves[randNum];
 
             switch (SelectedMove.AttackTarget) {
                 case Move.Target.All:

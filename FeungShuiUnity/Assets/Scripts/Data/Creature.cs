@@ -37,9 +37,7 @@ public class Creature{
     private Type type; //only single type for now
     private string personality;
     private List<float> statModifiers;
-    //testing only
-    public List<MoveName> moveNames;
-    private List<Move> Moves;
+    public List<Move> Moves;
 
     private static Dictionary<Creature, float> friendshipDict = new Dictionary<Creature, float>();
     private float trainerFriendship; // because the player isnt of type Creature

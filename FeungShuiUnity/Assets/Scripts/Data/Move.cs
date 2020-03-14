@@ -2,19 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum MoveName {
-    //bit nicer than a string for a name (also works as a drop down in hte inspector)
-    Scratch, Pound, Surf, Recover, HealPulse, Explosion, RazorLeaf, Howl
-}
-
 [CreateAssetMenu()]
 public class Move : ScriptableObject{
     // this class is to store all the moves in the game and relevant methods
     // moves that have a bonus effect will bge subclasses of this one
     public Target AttackTarget;
 
-    /* [SerializeField]
-    private int Power; */
     [SerializeField]
     private float Accuracy;
     [SerializeField]
@@ -27,6 +20,7 @@ public class Move : ScriptableObject{
     private bool MakesContact;
     [SerializeField]
     private List<Effect> Effects;
+    
     private CreatureBattleStatusController Attacker, Defender;
 
     public void execute (CreatureBattleStatusController attacker, CreatureBattleStatusController defender) {
