@@ -10,16 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c23e9da98fcaa93488ff0bfddb2fe502, type: 3}
-  m_Name: HealPulse
+  m_Name: Timber
   m_EditorClassIdentifier: 
-  AttackTarget: 0
-  Power: 0
-  Accuracy: 0
-  Cost: 0
-  Type: 0
+  AttackTarget: 2
+  Accuracy: 0.75
+  Cost: 0.4
+  Type: 2
   CritChance: 0
-  MakesContact: 0
+  MakesContact: 1
   Effects:
-  - effectType: 2
-    damage: 0.5
+  - effectType: 0
+    statusEffect: 0
+    stat: 0
+    power: 75
+    statusChance: 0
     useCurrent: 0

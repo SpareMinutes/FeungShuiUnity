@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c23e9da98fcaa93488ff0bfddb2fe502, type: 3}
-  m_Name: Scratch
+  m_Name: Pound
   m_EditorClassIdentifier: 
   AttackTarget: 2
   Accuracy: 1
@@ -18,7 +18,4 @@ MonoBehaviour:
   Type: 3
   CritChance: 0.01
   MakesContact: 1
-  Effects:
-  - effectType: 0
-    power: 2
-    useCurrent: 0
+  Effects: []

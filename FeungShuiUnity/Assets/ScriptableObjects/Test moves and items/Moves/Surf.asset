@@ -10,15 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c23e9da98fcaa93488ff0bfddb2fe502, type: 3}
-  m_Name: RazorLeaf
+  m_Name: Surf
   m_EditorClassIdentifier: 
-  AttackTarget: 3
-  Accuracy: 1
+  AttackTarget: 5
+  Accuracy: 0.9
   Cost: 1
-  Type: 2
-  CritChance: 0
+  Type: 4
+  CritChance: 0.01
   MakesContact: 0
-  Effects:
-  - effectType: 0
-    power: 8
-    useCurrent: 0
+  Effects: []

@@ -11,6 +11,12 @@ public class CreatureBattleStatusController : MonoBehaviour {
     
     [HideInInspector]
     public bool isDefending = false;
+    public StatusEffect statusEffect;
+    [HideInInspector]
+    public float wearOffChance = 0;
+    [HideInInspector]
+    public float statusPower;
+    
     private float currentAttack;
     private float currentDefense;
     private float currentIntelligence;
@@ -25,18 +31,6 @@ public class CreatureBattleStatusController : MonoBehaviour {
         Target.Init();
         Name.GetComponent<Text>().text = Target.displayName;
 
-        /*
-        //pick a random nature
-        this.personality = Natures2.personalityKeys[Random.Range(0,Natures2.personalityKeys.Count)];
-        this.statModifiers = Natures2.personalityDict[this.personality];
-
-        //this is where the stats will be generated based off (real thing)
-
-        //for testing purposes i'll add moves manually here
-        foreach (string name in moveNames) {
-            Moves.Add(MovesTable.Master[name]);
-        }
-        */
         currentAttack = Target.getAttack();
         currentDefense = Target.getDefense();
         currentIntelligence = Target.getIntelligence();

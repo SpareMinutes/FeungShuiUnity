@@ -151,8 +151,89 @@ public class BattleMenu : MonoBehaviour{
     }
 
     private void LoadProgress () {
-        ProgressButton.GetComponent<Button>().interactable = true;
-        ES.SetSelectedGameObject(ProgressButton);
+        //END of turn status effects go here, start of turn status effects go in AskForAction
+        switch (Attacker.statusEffect) {
+            case StatusEffect.None : {
+                //then nothing should happen because nothing is effecting the active creature
+                break;
+            } 
+            case StatusEffect.Blind : {
+                //will wear off
+                checkWearOff();
+                break;
+            } case StatusEffect.Burn : {
+                //detract health from the attacker
+                detractHealth();
+                //will not wear off
+                checkWearOff();
+                break;
+            } case StatusEffect.Exhaustion: {
+                //will wear off
+                checkWearOff();
+                break;
+            } case StatusEffect.FrostBite : {
+                //detract health from the attacker
+                detractHealth();
+                //will not wear off
+                break;
+            } case StatusEffect.Paralysis : {
+                //will not wear off
+                break;
+            } case StatusEffect.Poison : {
+                //detract health from the attacker
+                detractHealth();
+                //will not wear off
+                break;
+            } case StatusEffect.Rabid : {
+                //will wear off
+                checkWearOff();
+                break;
+            } case StatusEffect.Shaken : {
+                //will wear off
+                checkWearOff();
+                break;
+            } case StatusEffect.Sleep : {
+                //will wear off
+                checkWearOff();
+                break;
+            } case StatusEffect.Tangle : {
+                //will wear off
+                checkWearOff();
+                break;
+            } case StatusEffect.WaterLogged : {
+                //will wear off
+                checkWearOff();
+                break;
+            } case StatusEffect.WindBlown : {
+                //will wear off
+                checkWearOff();
+                break;
+            }
+
+            default : {
+                //then progress the turn cycle as normal
+                ProgressButton.GetComponent<Button>().interactable = true;
+                ES.SetSelectedGameObject(ProgressButton);
+                break;
+            }
+        }
+        
+    }
+    private void detractHealth () {
+        //a helper method for the status effects
+    }
+    private void checkWearOff () {
+        //another helper method for the status effects
+        if (Random.Range(0.0001f, 1.0f) <= Attacker.wearOffChance) {
+            //then the effect wears off
+            Attacker.wearOffChance = 0; //reset the chance for another status effect
+            ShowMessage(Attacker.statusEffect.ToString() + " wore off.");
+            Attacker.statusEffect = StatusEffect.None;
+        } else {
+            //increase the chance of wearing off for next turn
+            //this means that it is eventually guarenteed to wear off
+            Attacker.wearOffChance += Attacker.statusPower;
+        }
     }
 
     public void Progress () {
