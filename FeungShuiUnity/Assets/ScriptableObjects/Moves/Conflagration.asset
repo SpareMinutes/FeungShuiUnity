@@ -23,11 +23,11 @@ MonoBehaviour:
     statusEffect: 0
     stat: 0
     power: 75
-    statusChance: 0
-    useCurrent: 0
+    chance: 0
+    useCurrentHealth: 0
   - effectType: 4
     statusEffect: 0
     stat: 6
-    power: -1
-    statusChance: 0
-    useCurrent: 0
+    power: -0.2
+    chance: 1
+    useCurrentHealth: 0

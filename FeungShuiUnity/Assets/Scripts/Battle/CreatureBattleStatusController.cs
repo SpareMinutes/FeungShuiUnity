@@ -12,10 +12,6 @@ public class CreatureBattleStatusController : MonoBehaviour {
     [HideInInspector]
     public bool isDefending = false;
     public StatusEffect statusEffect;
-    [HideInInspector]
-    public float wearOffChance = 0;
-    [HideInInspector]
-    public float statusPower;
     
     private float currentAttack;
     private float currentDefense;
@@ -25,6 +21,9 @@ public class CreatureBattleStatusController : MonoBehaviour {
 
     private float preDefenseMoveDefense;
     private float preDefenseMoveResistance;
+
+    private Stat statChangedFromStatus;
+    private float statChangeAmount;
 
     // Start is called before the first frame update
     void Start() {
@@ -103,5 +102,55 @@ public class CreatureBattleStatusController : MonoBehaviour {
         currentDefense = preDefenseMoveDefense;
         currentResistance = preDefenseMoveResistance;
 
+    }
+
+    public void ApplyDamage (float damageToTake, CreatureBattleStatusController damageTarget) {
+        if(damageTarget.GetCreature().currentActiveHealth > damageToTake){
+            damageTarget.GetCreature().currentActiveHealth -= damageToTake;
+        } else {
+            damageToTake -= damageTarget.GetCreature().currentActiveHealth;
+            damageTarget.GetCreature().currentActiveHealth = 0;
+            damageTarget.GetCreature().currentCriticalHealth = Mathf.Max(0, damageTarget.GetCreature().currentCriticalHealth - damageToTake);
+        }
+        damageTarget.GetCreature().currentActiveHealth = Mathf.Min(damageTarget.GetCreature().currentActiveHealth, damageTarget.GetCreature().maxActiveHealth);
+    }
+
+    public void ChangeStatFromStatus (Stat stat, float amount) {
+        statChangedFromStatus = stat;
+        statChangeAmount = amount;
+        changeStat(statChangedFromStatus, statChangeAmount);
+    }
+
+    public void RestoreStatFromStatus () {
+        statChangedFromStatus = Stat.None;
+        statChangeAmount = 1;
+        changeStat(statChangedFromStatus, 1/statChangeAmount);
+    }
+
+    private void changeStat (Stat stat, float amount) {
+        //just used for when status effects change the stats while they are affected by the status
+        switch (statChangedFromStatus) {
+            case Stat.Attack : {
+                //change attack
+                currentAttack *= amount;
+                break;
+            }case Stat.Defense : {
+                //change attack
+                currentDefense *= amount;
+                break;
+            } case Stat.Intelligence : {
+                //change attack
+                currentIntelligence *= amount;
+                break;
+            } case Stat.Resistance : {
+                //change attack
+                currentResistance *= amount;
+                break;
+            } case Stat.Speed : {
+                //change attack
+                currentSpeed *= amount;
+                break;
+            }
+        }
     }
 }

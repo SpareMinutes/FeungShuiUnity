@@ -6,7 +6,7 @@ public enum EffectType {
     Damage, FixedDamage, PercentageDamage, Status, BuffSelf, BuffTarget
 }
 public enum StatusEffect {
-    None=0, Burn, FrostBite, Rabid, Poison, Blind, Paralysis, WaterLogged, Tangle, Exhaustion, Shaken, WindBlown, Sleep
+    None=0, Burn, FrostBite, Rabid, Poison, Paralysis
 }
 public enum Stat {
     None = 0, HP, Attack, Defense, Intelligence, Resistance, Speed
@@ -19,9 +19,16 @@ public class Effect {
     public EffectType effectType;
     public StatusEffect statusEffect;
     public Stat stat;
+    /* [Tooltip(@"usage (set to -ve for healing moves):
+    Damage:             the power value of the move
+    FixedDamage:        the fixed amount of damage for the move
+    Percentage:         will take power as value from 0-1 for the percentage of health that the move will deal as damage
+    Status:             the additive value for the chance that the status will wear off (ie. setting value to 0 will never wear off, nad setting it to 0.1 will increase the chance by 10% every turn)
+    BuffSelf/Targer:    the magnitude of the buff as a percentage")] */
     public float power;
-    public float statusChance;
-    public bool useCurrent;
+    public float chance;
+    [Tooltip("Only used for the PercentageDamage effectType")]
+    public bool useCurrentHealth;
 
     private CreatureBattleStatusController user, target;
     private float damageModifier;
@@ -59,21 +66,24 @@ public class Effect {
 
         //calculate damage formula
         float damageToTake = Mathf.Floor((power * relevantAttackStat*(3/2) * damageModifier) / (relevantDefenseStat));
-        ApplyDamage(damageToTake, target);
+        user.ApplyDamage(damageToTake, target);
     }
 
     private void FixedDamage () {
-        ApplyDamage(power, target);
+        //no filters on the damage, will deal the exact power as damage points to the target
+        user.ApplyDamage(power, target);
     }
 
     private void PercentageDamage () {
-        float damageToTake = power * (useCurrent ? target.GetCreature().currentActiveHealth : target.GetCreature().maxActiveHealth);
-        ApplyDamage(damageToTake, target);
+        float damageToTake = power * (useCurrentHealth ? target.GetCreature().currentActiveHealth : target.GetCreature().maxActiveHealth);
+        user.ApplyDamage(damageToTake, target);
     }
 
     private void Buff () {
         Debug.Log("used Buff (WIP)");
-        //will probably make an enum so it knows which stat to buff, then buff it by the power amount
+        //usage:
+            //power: how much the stat is changed by (%)
+            //chance: the chance of the stat change happening
     }
 
     private void Status () {
@@ -82,23 +92,29 @@ public class Effect {
             //chance : for the chance that the move will apply the status effect to the target
             //power : for how much it increases the change of wearing off each time (handled in BattleMenu.cs)
                 //meaning that having it at 1 means that at the end of next turn it will wear off (chance = 100%)
-
-        if (Random.Range(0.0001f, 1.0f) <= statusChance) {
+        float randNum = Random.Range(0.0f, 1.0f);
+        if (randNum != 0 && randNum <= chance) {
             //then the status effect gets applied
             target.statusEffect = statusEffect;
-            target.statusPower = power;
+
+            float changeAmount = 0.25f; //overall how much it changes the stat by
+            switch (statusEffect) {
+                case StatusEffect.Burn : {
+                    //lower attack
+                    target.ChangeStatFromStatus(Stat.Attack, 1 - changeAmount);
+                    break;
+                } case StatusEffect.Paralysis : {
+                    //lower speed
+                    target.ChangeStatFromStatus(Stat.Speed, 1 - changeAmount);
+                    break;
+                } case StatusEffect.Rabid : {
+                    //raise attack
+                    target.ChangeStatFromStatus(Stat.Attack, 1 + changeAmount);
+                    break;
+                }
+            }
+
             Debug.Log("gave " + target.statusEffect.ToString() + "to " + target.Target.displayName);
         }
-    }
-
-    private void ApplyDamage (float damageToTake, CreatureBattleStatusController damageTarget) {
-        if(damageTarget.GetCreature().currentActiveHealth > damageToTake){
-            damageTarget.GetCreature().currentActiveHealth -= damageToTake;
-        } else {
-            damageToTake -= damageTarget.GetCreature().currentActiveHealth;
-            damageTarget.GetCreature().currentActiveHealth = 0;
-            damageTarget.GetCreature().currentCriticalHealth = Mathf.Max(0, damageTarget.GetCreature().currentCriticalHealth - damageToTake);
-        }
-        damageTarget.GetCreature().currentActiveHealth = Mathf.Min(damageTarget.GetCreature().currentActiveHealth, damageTarget.GetCreature().maxActiveHealth);
     }
 }

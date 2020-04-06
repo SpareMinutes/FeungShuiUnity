@@ -22,12 +22,12 @@ MonoBehaviour:
   - effectType: 0
     statusEffect: 0
     stat: 0
-    power: 0
-    statusChance: 0
-    useCurrent: 0
+    power: 95
+    chance: 0
+    useCurrentHealth: 0
   - effectType: 4
     statusEffect: 0
     stat: 5
     power: -1
-    statusChance: 0
-    useCurrent: 0
+    chance: 0.25
+    useCurrentHealth: 0

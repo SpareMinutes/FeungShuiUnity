@@ -88,18 +88,130 @@ public class BattleMenu : MonoBehaviour{
                 Attacker = ES.GetComponent<TurnManager>().getNextSpirit();
                 Attacker.relieveDefenseMove(); //get rid of the defense move on their next turn 
             }
-            if (Attacker.GetCreature().isPlayerOwned()){
-                ShowMessage("What will " + Attacker.GetCreature().displayName + " do?");
-                //Enable action type buttons
-                GameObject.Find("Attack").GetComponent<Button>().interactable = true;
-                GameObject.Find("Defend").GetComponent<Button>().interactable = true;
-                GameObject.Find("Item").GetComponent<Button>().interactable = true;
-                GameObject.Find("Spirits").GetComponent<Button>().interactable = true;
-                GameObject.Find("Run").GetComponent<Button>().interactable = true;
-                ES.SetSelectedGameObject(GameObject.Find("Attack"));
-            }else{
-                EnemyAI();
+            //Status effects that take place at the START of the turn go here
+            float randNum = Random.Range(0.0f,1.0f);
+            float FrostBiteChance = 0.5f;
+            float ParalysisChance = 0.5f;
+            float RabidChance = 0.5f;
+            bool StatusHappened = false;
+            switch (Attacker.statusEffect) {
+                case StatusEffect.FrostBite : {
+                    //chance of no action
+                    if (randNum <= FrostBiteChance) {
+                        //then no action occurs
+                        StatusHappened = true;
+                        ShowMessage(Attacker.Target.displayName + " did not take an action due to Frost Bite.");
+                    }
+                    break;
+                } case StatusEffect.Paralysis : {
+                    //chance of no action
+                    if (randNum <= ParalysisChance) {
+                        //then no action occurs
+                        StatusHappened = true;
+                        ShowMessage(Attacker.Target.displayName + " did not take an action due to Paralysis.");
+                        LoadProgress();
+                    }
+                    break;
+                } case StatusEffect.Rabid : {
+                    //chance of random action
+                    if (randNum <= RabidChance) {
+                        //then a random action occurs
+                        StatusHappened = true;
+                        RandomAction();
+                    }
+                    break;
+                } default : {
+                    if (!StatusHappened) {
+                        NormalAskForAction();
+                    }
+                    break;
+                }
             }
+        }
+    }
+    private void NormalAskForAction () {
+        if (Attacker.GetCreature().isPlayerOwned()){
+            ShowMessage("What will " + Attacker.GetCreature().displayName + " do?");
+            //Enable action type buttons
+            GameObject.Find("Attack").GetComponent<Button>().interactable = true;
+            GameObject.Find("Defend").GetComponent<Button>().interactable = true;
+            GameObject.Find("Item").GetComponent<Button>().interactable = true;
+            GameObject.Find("Spirits").GetComponent<Button>().interactable = true;
+            GameObject.Find("Run").GetComponent<Button>().interactable = true;
+            ES.SetSelectedGameObject(GameObject.Find("Attack"));
+        }else{
+            EnemyAI();
+        }
+    }
+    private void RandomAction () {
+        //here the eidolon will choose a random move
+        int randNum = Random.Range(1, 6+1); //the +1 since Random.Range(int min, int max) is exclusive on max
+        if (randNum <= 4) {
+            //then choose a move with index [randNum]
+            Move move = Attacker.Target.Moves[randNum];
+            TurnManager turnManager = ES.GetComponent<TurnManager>();
+            //for now the targets will conform to what the moves would be normally
+                /*
+                * but maybe this could be simplified down becuase the ediolon is rabid and may not have cohesive thoughts 
+                */
+            switch (move.AttackTarget) {
+                case Move.Target.All : {
+                    Defenders =  turnManager.getAllActive();
+                    DoAttack();
+                    break;
+                } case Move.Target.Ally : {
+                    if (Attacker.Target.isPlayerOwned()) {
+                        Defenders = turnManager.getActivePlayerControlled();
+                    } else {
+                        Defenders = turnManager.getActiveEnemies();
+                    }
+                    Defenders.Remove(Attacker);
+                    DoAttack();
+                    break;
+                } case Move.Target.Double : {
+                    if (Attacker.Target.isPlayerOwned()) {
+                        Defenders = turnManager.getActiveEnemies();
+                    } else {
+                        Defenders = turnManager.getActivePlayerControlled();
+                    }
+                    DoAttack();
+                    break;
+                } case Move.Target.Others : {
+                    Defenders = turnManager.getAllActive();
+                    Defenders.Remove(Attacker);
+                    DoAttack();
+                    break;
+                } case Move.Target.Self : {
+                    Defenders.Clear();
+                    Defenders.Add(Attacker);
+                    DoAttack();
+                    break;
+                } case Move.Target.Single : {
+                    List<CreatureBattleStatusController> toChoose = turnManager.getAllActive();
+                    int randNum2 = Random.Range(0, toChoose.Count);
+                    Defenders.Clear();
+                    Defenders.Add(toChoose[randNum2]);
+                    DoAttack();
+                    break;
+                } case Move.Target.Team : {
+                    if (Attacker.Target.isPlayerOwned()) {
+                        Defenders = turnManager.getActivePlayerControlled();
+                    } else {
+                        Defenders = turnManager.getActiveEnemies();
+                    }
+                    DoAttack();
+                    break;
+                }
+            }
+        } else if (randNum == 5) {
+            //defend action
+            LoadDefend();
+        } else if (randNum == 6) {
+            //hurt itself
+            float damageToTake = (1/16)*Attacker.Target.maxActiveHealth;
+            Attacker.ApplyDamage(damageToTake, Attacker);
+            ShowMessage(Attacker.Target.displayName + " hurt itself in its rage.");
+            LoadProgress();
         }
     }
 
@@ -153,86 +265,65 @@ public class BattleMenu : MonoBehaviour{
     private void LoadProgress () {
         //END of turn status effects go here, start of turn status effects go in AskForAction
         switch (Attacker.statusEffect) {
-            case StatusEffect.None : {
-                //then nothing should happen because nothing is effecting the active creature
-                break;
-            } 
-            case StatusEffect.Blind : {
-                //will wear off
-                checkWearOff();
-                break;
-            } case StatusEffect.Burn : {
-                //detract health from the attacker
-                detractHealth();
-                //will not wear off
-                checkWearOff();
-                break;
-            } case StatusEffect.Exhaustion: {
-                //will wear off
-                checkWearOff();
+            case StatusEffect.Burn : {
+                //hp drain (END)
+                //lowers attack
+                //does not wear off
+                HPDrain();
                 break;
             } case StatusEffect.FrostBite : {
-                //detract health from the attacker
-                detractHealth();
-                //will not wear off
+                //chance of no action (START)
+                //hp drain (END)
+                //does not wear off
+                HPDrain();
                 break;
             } case StatusEffect.Paralysis : {
-                //will not wear off
+                //chance of no action (START)
+                //speed down
+                //does not wear off
                 break;
             } case StatusEffect.Poison : {
-                //detract health from the attacker
-                detractHealth();
-                //will not wear off
+                //hp drain (END)
+                //mana drain (END)
+                //does not wear off
+                HPDrain();
+                ManaDrain();
                 break;
             } case StatusEffect.Rabid : {
-                //will wear off
+                //chance of random action (START)
+                //attack up
+                //does wear off
                 checkWearOff();
-                break;
-            } case StatusEffect.Shaken : {
-                //will wear off
-                checkWearOff();
-                break;
-            } case StatusEffect.Sleep : {
-                //will wear off
-                checkWearOff();
-                break;
-            } case StatusEffect.Tangle : {
-                //will wear off
-                checkWearOff();
-                break;
-            } case StatusEffect.WaterLogged : {
-                //will wear off
-                checkWearOff();
-                break;
-            } case StatusEffect.WindBlown : {
-                //will wear off
-                checkWearOff();
-                break;
-            }
-
-            default : {
-                //then progress the turn cycle as normal
-                ProgressButton.GetComponent<Button>().interactable = true;
-                ES.SetSelectedGameObject(ProgressButton);
                 break;
             }
         }
+
+        //then progress the turn cycle as normal
+        ProgressButton.GetComponent<Button>().interactable = true;
+        ES.SetSelectedGameObject(ProgressButton);
         
     }
-    private void detractHealth () {
+    private void HPDrain () {
         //a helper method for the status effects
+        float reducingFactor = 1/16; // 1/16 is what pokemon uses for burn/poison
+        Attacker.ApplyDamage(reducingFactor*Attacker.Target.maxActiveHealth, Attacker);
+        ShowMessage("drained hp from " + Attacker.Target.displayName + ".");
+    }
+    private void ManaDrain () {
+        //helper for the status effects
+        float reducingFactor = 1/16;
+        Attacker.Target.currentMana = Mathf.Max(0, Attacker.Target.currentMana - reducingFactor*Attacker.Target.maxMana);
+        ShowMessage("drained mana from " + Attacker.Target.displayName + ".");
     }
     private void checkWearOff () {
         //another helper method for the status effects
-        if (Random.Range(0.0001f, 1.0f) <= Attacker.wearOffChance) {
-            //then the effect wears off
-            Attacker.wearOffChance = 0; //reset the chance for another status effect
+        float wearOffChance = 0.4f; //hardcoded 40% chance of wearing off every turn
+        float randNum = Random.Range(0.0f, 1.0f);
+        if (randNum <= wearOffChance) {
+            //then the status will wear off
             ShowMessage(Attacker.statusEffect.ToString() + " wore off.");
             Attacker.statusEffect = StatusEffect.None;
-        } else {
-            //increase the chance of wearing off for next turn
-            //this means that it is eventually guarenteed to wear off
-            Attacker.wearOffChance += Attacker.statusPower;
+            Attacker.RestoreStatFromStatus();
         }
     }
 

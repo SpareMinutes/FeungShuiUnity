@@ -23,17 +23,17 @@ MonoBehaviour:
     statusEffect: 0
     stat: 0
     power: 75
-    statusChance: 0
-    useCurrent: 0
+    chance: 0
+    useCurrentHealth: 0
   - effectType: 5
     statusEffect: 0
     stat: 3
     power: -1
-    statusChance: 0
-    useCurrent: 0
+    chance: 0.25
+    useCurrentHealth: 0
   - effectType: 5
     statusEffect: 0
     stat: 5
     power: -1
-    statusChance: 0
-    useCurrent: 0
+    chance: 0.25
+    useCurrentHealth: 0
