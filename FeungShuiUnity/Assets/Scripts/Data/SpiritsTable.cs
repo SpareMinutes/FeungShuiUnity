@@ -8,7 +8,8 @@ public class SpiritsTable {
         {"Mostone", new Species(Type.Earth, Type.None, new int[]{100, 75, 90, 120, 65, 80, 45})},
         {"Oculune", new Species(Type.Dark, Type.Beast, new int[]{95, 80, 120, 75, 90, 65, 100})},
         {"Otulcat", new Species(Type.Earth, Type.None, new int[]{75, 90, 60, 70, 80, 75, 80})},
-        {"Vivix", new Species(Type.Wood, Type.None, new int[]{90, 120, 75, 65, 90, 120, 100})}
+        {"Vivix", new Species(Type.Wood, Type.None, new int[]{90, 120, 75, 65, 90, 120, 100})},
+        {"Shadhex", new Species(Type.Dark, Type.None, new int[]{80, 90, 30, 90, 100, 55, 70})}
     };
 
     public static Species Find(string name) {
