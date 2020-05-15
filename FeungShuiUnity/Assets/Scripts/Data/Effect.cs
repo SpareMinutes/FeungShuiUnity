@@ -65,7 +65,7 @@ public class Effect {
         float relevantDefenseStat = target.getDefense(MakesContact);
 
         //calculate damage formula
-        float damageToTake = Mathf.Floor((power * relevantAttackStat*(3/2) * damageModifier) / (relevantDefenseStat));
+        float damageToTake = Mathf.Floor((power * Mathf.Pow(relevantAttackStat, 3/2f) * damageModifier) / (relevantDefenseStat * 15));
         user.ApplyDamage(damageToTake, target);
     }
 
