@@ -10,18 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c23e9da98fcaa93488ff0bfddb2fe502, type: 3}
-  m_Name: AuroraCurtain
+  m_Name: testThun1NP
   m_EditorClassIdentifier: 
   AttackTarget: 2
-  Accuracy: 0.9
-  Cost: 30
-  Type: 5
+  Accuracy: 100
+  Cost: 0
+  Type: 1
   CritChance: 0
   MakesContact: 0
   Effects:
   - effectType: 0
     statusEffect: 0
     stat: 0
-    power: 45
+    power: 50
     chance: 0
     useCurrentHealth: 0

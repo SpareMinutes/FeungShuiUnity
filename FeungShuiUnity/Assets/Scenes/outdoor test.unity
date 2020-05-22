@@ -633,7 +633,7 @@ PrefabInstance:
     - target: {fileID: 3260618459433251310, guid: 69093a0667999a44c910cf7374f494cc,
         type: 3}
       propertyPath: Party.Array.data[0].speciesName
-      value: Strython
+      value: Otulcat
       objectReference: {fileID: 0}
     - target: {fileID: 3260618459433251310, guid: 69093a0667999a44c910cf7374f494cc,
         type: 3}
@@ -643,17 +643,17 @@ PrefabInstance:
     - target: {fileID: 3260618459433251310, guid: 69093a0667999a44c910cf7374f494cc,
         type: 3}
       propertyPath: Party.Array.data[0].totalExp
-      value: 1000
+      value: 130000
       objectReference: {fileID: 0}
     - target: {fileID: 3260618459433251310, guid: 69093a0667999a44c910cf7374f494cc,
         type: 3}
       propertyPath: Party.Array.data[1].speciesName
-      value: Strython
+      value: Shadhex
       objectReference: {fileID: 0}
     - target: {fileID: 3260618459433251310, guid: 69093a0667999a44c910cf7374f494cc,
         type: 3}
       propertyPath: Party.Array.data[1].totalExp
-      value: 1000
+      value: 130000
       objectReference: {fileID: 0}
     - target: {fileID: 3260618459433251310, guid: 69093a0667999a44c910cf7374f494cc,
         type: 3}
@@ -801,7 +801,7 @@ PrefabInstance:
     - target: {fileID: 8318314664364277187, guid: 69093a0667999a44c910cf7374f494cc,
         type: 3}
       propertyPath: onInteract.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8318314664364277187, guid: 69093a0667999a44c910cf7374f494cc,
         type: 3}
@@ -816,7 +816,7 @@ PrefabInstance:
     - target: {fileID: 8318314664364277187, guid: 69093a0667999a44c910cf7374f494cc,
         type: 3}
       propertyPath: onInteract.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: UIMessage
+      value: StartTrainerBattle
       objectReference: {fileID: 0}
     - target: {fileID: 8318314664364277187, guid: 69093a0667999a44c910cf7374f494cc,
         type: 3}
@@ -848,8 +848,7 @@ PrefabInstance:
       propertyPath: onInteract.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
       objectReference: {fileID: 1747764867}
-    m_RemovedComponents:
-    - {fileID: 3260618459433251310, guid: 69093a0667999a44c910cf7374f494cc, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 69093a0667999a44c910cf7374f494cc, type: 3}
 --- !u!1 &62827773
 GameObject:
@@ -7321,7 +7320,7 @@ PrefabInstance:
     - target: {fileID: 3260618459433251310, guid: 69093a0667999a44c910cf7374f494cc,
         type: 3}
       propertyPath: Party.Array.data[0].speciesName
-      value: Strython
+      value: Mostone
       objectReference: {fileID: 0}
     - target: {fileID: 3260618459433251310, guid: 69093a0667999a44c910cf7374f494cc,
         type: 3}
@@ -7331,17 +7330,17 @@ PrefabInstance:
     - target: {fileID: 3260618459433251310, guid: 69093a0667999a44c910cf7374f494cc,
         type: 3}
       propertyPath: Party.Array.data[0].totalExp
-      value: 1000
+      value: 130000
       objectReference: {fileID: 0}
     - target: {fileID: 3260618459433251310, guid: 69093a0667999a44c910cf7374f494cc,
         type: 3}
       propertyPath: Party.Array.data[1].speciesName
-      value: Strython
+      value: Fantabel
       objectReference: {fileID: 0}
     - target: {fileID: 3260618459433251310, guid: 69093a0667999a44c910cf7374f494cc,
         type: 3}
       propertyPath: Party.Array.data[1].totalExp
-      value: 1000
+      value: 130000
       objectReference: {fileID: 0}
     - target: {fileID: 3260618459433251310, guid: 69093a0667999a44c910cf7374f494cc,
         type: 3}
@@ -22658,7 +22657,7 @@ PrefabInstance:
     - target: {fileID: 3260618459433251310, guid: 69093a0667999a44c910cf7374f494cc,
         type: 3}
       propertyPath: Party.Array.data[0].speciesName
-      value: Strython
+      value: Mostone
       objectReference: {fileID: 0}
     - target: {fileID: 3260618459433251310, guid: 69093a0667999a44c910cf7374f494cc,
         type: 3}
@@ -22668,17 +22667,17 @@ PrefabInstance:
     - target: {fileID: 3260618459433251310, guid: 69093a0667999a44c910cf7374f494cc,
         type: 3}
       propertyPath: Party.Array.data[0].totalExp
-      value: 1000
+      value: 130000
       objectReference: {fileID: 0}
     - target: {fileID: 3260618459433251310, guid: 69093a0667999a44c910cf7374f494cc,
         type: 3}
       propertyPath: Party.Array.data[1].speciesName
-      value: Strython
+      value: Oculune
       objectReference: {fileID: 0}
     - target: {fileID: 3260618459433251310, guid: 69093a0667999a44c910cf7374f494cc,
         type: 3}
       propertyPath: Party.Array.data[1].totalExp
-      value: 1000
+      value: 130000
       objectReference: {fileID: 0}
     - target: {fileID: 3260618459433251310, guid: 69093a0667999a44c910cf7374f494cc,
         type: 3}
@@ -22741,7 +22740,7 @@ PrefabInstance:
     - target: {fileID: 3260618459433251310, guid: 69093a0667999a44c910cf7374f494cc,
         type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7041208782141400035, guid: 69093a0667999a44c910cf7374f494cc,
         type: 3}
@@ -22831,7 +22830,7 @@ PrefabInstance:
     - target: {fileID: 8318314664364277187, guid: 69093a0667999a44c910cf7374f494cc,
         type: 3}
       propertyPath: onInteract.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8318314664364277187, guid: 69093a0667999a44c910cf7374f494cc,
         type: 3}
@@ -22846,7 +22845,7 @@ PrefabInstance:
     - target: {fileID: 8318314664364277187, guid: 69093a0667999a44c910cf7374f494cc,
         type: 3}
       propertyPath: onInteract.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: UIMessage
+      value: StartTrainerBattle
       objectReference: {fileID: 0}
     - target: {fileID: 8318314664364277187, guid: 69093a0667999a44c910cf7374f494cc,
         type: 3}
@@ -22863,8 +22862,7 @@ PrefabInstance:
       propertyPath: onInteract.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
       value: La la la! Hello! La la...
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 3260618459433251310, guid: 69093a0667999a44c910cf7374f494cc, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 69093a0667999a44c910cf7374f494cc, type: 3}
 --- !u!1 &1460513086
 GameObject:
@@ -24244,7 +24242,7 @@ PrefabInstance:
     - target: {fileID: 3260618459433251310, guid: 69093a0667999a44c910cf7374f494cc,
         type: 3}
       propertyPath: Party.Array.data[0].speciesName
-      value: Strython
+      value: Vivix
       objectReference: {fileID: 0}
     - target: {fileID: 3260618459433251310, guid: 69093a0667999a44c910cf7374f494cc,
         type: 3}
@@ -24254,7 +24252,7 @@ PrefabInstance:
     - target: {fileID: 3260618459433251310, guid: 69093a0667999a44c910cf7374f494cc,
         type: 3}
       propertyPath: Party.Array.data[0].totalExp
-      value: 1000
+      value: 130000
       objectReference: {fileID: 0}
     - target: {fileID: 3260618459433251310, guid: 69093a0667999a44c910cf7374f494cc,
         type: 3}
@@ -24264,7 +24262,7 @@ PrefabInstance:
     - target: {fileID: 3260618459433251310, guid: 69093a0667999a44c910cf7374f494cc,
         type: 3}
       propertyPath: Party.Array.data[1].totalExp
-      value: 1000
+      value: 130000
       objectReference: {fileID: 0}
     - target: {fileID: 3260618459433251310, guid: 69093a0667999a44c910cf7374f494cc,
         type: 3}
@@ -24286,44 +24284,41 @@ PrefabInstance:
         type: 3}
       propertyPath: Party.Array.data[0].Moves.Array.data[1]
       value: 
-      objectReference: {fileID: 11400000, guid: 92cd34cc3a17ac84aafd999fc68b0330,
+      objectReference: {fileID: 11400000, guid: 472f8c238c4ac6640907aeb93dd38300,
         type: 2}
     - target: {fileID: 3260618459433251310, guid: 69093a0667999a44c910cf7374f494cc,
         type: 3}
       propertyPath: Party.Array.data[0].Moves.Array.data[2]
       value: 
-      objectReference: {fileID: 11400000, guid: 472f8c238c4ac6640907aeb93dd38300,
+      objectReference: {fileID: 11400000, guid: e04c0c536d4db4b4c975d9269a85724b,
         type: 2}
     - target: {fileID: 3260618459433251310, guid: 69093a0667999a44c910cf7374f494cc,
         type: 3}
       propertyPath: Party.Array.data[0].Moves.Array.data[3]
       value: 
-      objectReference: {fileID: 11400000, guid: 4ba494eb5b67b5b43aac4fb8972081ac,
-        type: 2}
+      objectReference: {fileID: 0}
     - target: {fileID: 3260618459433251310, guid: 69093a0667999a44c910cf7374f494cc,
         type: 3}
       propertyPath: Party.Array.data[1].Moves.Array.data[0]
       value: 
-      objectReference: {fileID: 11400000, guid: cba1a319514308246b57e9f31a7b4d8d,
+      objectReference: {fileID: 11400000, guid: af817c8ab423ce44f85b39883f244257,
         type: 2}
     - target: {fileID: 3260618459433251310, guid: 69093a0667999a44c910cf7374f494cc,
         type: 3}
       propertyPath: Party.Array.data[1].Moves.Array.data[1]
       value: 
-      objectReference: {fileID: 11400000, guid: 823ec1f685ea617438e014dc9d49051a,
+      objectReference: {fileID: 11400000, guid: 92cd34cc3a17ac84aafd999fc68b0330,
         type: 2}
     - target: {fileID: 3260618459433251310, guid: 69093a0667999a44c910cf7374f494cc,
         type: 3}
       propertyPath: Party.Array.data[1].Moves.Array.data[2]
       value: 
-      objectReference: {fileID: 11400000, guid: 976bab745c300e74daa957317b8ed0a6,
-        type: 2}
+      objectReference: {fileID: 0}
     - target: {fileID: 3260618459433251310, guid: 69093a0667999a44c910cf7374f494cc,
         type: 3}
       propertyPath: Party.Array.data[1].Moves.Array.data[3]
       value: 
-      objectReference: {fileID: 11400000, guid: c16f3156ed0e52f4e88bfc3c719d3653,
-        type: 2}
+      objectReference: {fileID: 0}
     - target: {fileID: 7041208782141400035, guid: 69093a0667999a44c910cf7374f494cc,
         type: 3}
       propertyPath: m_Name
@@ -24412,7 +24407,7 @@ PrefabInstance:
     - target: {fileID: 8318314664364277187, guid: 69093a0667999a44c910cf7374f494cc,
         type: 3}
       propertyPath: onInteract.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8318314664364277187, guid: 69093a0667999a44c910cf7374f494cc,
         type: 3}
@@ -24427,7 +24422,7 @@ PrefabInstance:
     - target: {fileID: 8318314664364277187, guid: 69093a0667999a44c910cf7374f494cc,
         type: 3}
       propertyPath: onInteract.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: UIMessage
+      value: StartTrainerBattle
       objectReference: {fileID: 0}
     - target: {fileID: 8318314664364277187, guid: 69093a0667999a44c910cf7374f494cc,
         type: 3}
@@ -24459,8 +24454,7 @@ PrefabInstance:
       propertyPath: onInteract.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
       objectReference: {fileID: 984594535}
-    m_RemovedComponents:
-    - {fileID: 3260618459433251310, guid: 69093a0667999a44c910cf7374f494cc, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 69093a0667999a44c910cf7374f494cc, type: 3}
 --- !u!1 &1664370642
 GameObject:
@@ -25438,7 +25432,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Party:
   - displayName: test1
-    speciesName: Shadhex
+    speciesName: Oculune
     maxActiveHealth: 40
     maxCriticalHealth: 20
     maxMana: 0
@@ -25448,10 +25442,10 @@ MonoBehaviour:
     totalExp: 130000
     playerOwned: 1
     Moves:
-    - {fileID: 11400000, guid: 4d42eadc15583c948b264a7a4caaef84, type: 2}
-    - {fileID: 11400000, guid: e04c0c536d4db4b4c975d9269a85724b, type: 2}
-    - {fileID: 11400000, guid: c16f3156ed0e52f4e88bfc3c719d3653, type: 2}
-    - {fileID: 11400000, guid: 976bab745c300e74daa957317b8ed0a6, type: 2}
+    - {fileID: 11400000, guid: a0a2b0e2249dbd44c9f6f3d727e627f6, type: 2}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
   - displayName: test2
     speciesName: Vivix
     maxActiveHealth: 40
