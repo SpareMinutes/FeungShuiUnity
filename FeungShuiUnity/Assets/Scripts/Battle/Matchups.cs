@@ -3,6 +3,8 @@
 public abstract class Matchups{
     //Type effectiveness dictionaries
     //this is for types that the key type deals EXTRA damage to
+    //eg Fire deals STRONG damage to Wood, Metal, and Ice typed eidolons 
+    // value types are weak to key type
     private static Dictionary<Type,List<Type>> strongTypeEffectiveness = new Dictionary<Type,List<Type>>{
         {Type.Fire, new List<Type>{Type.Wood, Type.Metal, Type.Ice}},
         {Type.Wood, new List<Type>{Type.Water, Type.Earth, Type.Smog}},
@@ -19,6 +21,8 @@ public abstract class Matchups{
     }; 
 
      //this is for types that the key type deals LESS damage to
+     //eg Fire deals WEAK damage to Earth, Water, Sky, and Fire typed eidolons
+     // value types are resistant to key type
     private static Dictionary<Type,List<Type>> weakTypeEffectiveness = new Dictionary<Type,List<Type>>{
         {Type.Fire, new List<Type>{Type.Earth, Type.Water, Type.Sky, Type.Fire}},
         {Type.Wood, new List<Type>{Type.Fire, Type.Metal, Type.Thunder, Type.Wood}},
@@ -34,7 +38,7 @@ public abstract class Matchups{
         {Type.Dark, new List<Type>{Type.Dark}}
     };
 
-    //used mainly for STAB bonuses maybe also for semi type effectiveness (?)
+    /* //used mainly for STAB bonuses maybe also for semi type effectiveness (?)
     //linked is for secondary STAB bonuses
     private static Dictionary<Type, List<Type>> linkedTypes = new Dictionary<Type, List<Type>>{
         {Type.Fire, new List<Type>{Type.Thunder,Type.Earth}},
@@ -64,7 +68,7 @@ public abstract class Matchups{
         {Type.Beast, new List<Type>{}},
         {Type.Light, new List<Type>{Type.Dark}},
         {Type.Dark, new List<Type>{Type.Light}}
-    };
+    }; */
 
     public static List<Type> getStrongTypeEffectiveness (Type type) {
         return strongTypeEffectiveness[type];
@@ -74,11 +78,11 @@ public abstract class Matchups{
         return weakTypeEffectiveness[type];
     }
 
-    public static List<Type> getLinkedTypes (Type type) {
+    /* public static List<Type> getLinkedTypes (Type type) {
         return linkedTypes[type];
     }
 
     public static List<Type> getUnlinkedTypes (Type type) {
         return unlinkedTypes[type];
-    }
+    } */
 }

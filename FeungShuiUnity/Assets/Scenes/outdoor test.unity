@@ -7570,7 +7570,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 276649502}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 725bed86a13166d4788166c6ae474df3, type: 3}
   m_Name: 
@@ -12584,7 +12584,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 984594535}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 725bed86a13166d4788166c6ae474df3, type: 3}
   m_Name: 
@@ -24296,7 +24296,8 @@ PrefabInstance:
         type: 3}
       propertyPath: Party.Array.data[0].Moves.Array.data[3]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 11400000, guid: dd7bf131638d3964f8ef1a04b3b2df86,
+        type: 2}
     - target: {fileID: 3260618459433251310, guid: 69093a0667999a44c910cf7374f494cc,
         type: 3}
       propertyPath: Party.Array.data[1].Moves.Array.data[0]
@@ -24313,12 +24314,14 @@ PrefabInstance:
         type: 3}
       propertyPath: Party.Array.data[1].Moves.Array.data[2]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 11400000, guid: ba76ce695a3bfb04a835b175f204c6a2,
+        type: 2}
     - target: {fileID: 3260618459433251310, guid: 69093a0667999a44c910cf7374f494cc,
         type: 3}
       propertyPath: Party.Array.data[1].Moves.Array.data[3]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 11400000, guid: 97400def106c77a4a88f4f14164aab2d,
+        type: 2}
     - target: {fileID: 7041208782141400035, guid: 69093a0667999a44c910cf7374f494cc,
         type: 3}
       propertyPath: m_Name
@@ -24792,7 +24795,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1747764867}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 725bed86a13166d4788166c6ae474df3, type: 3}
   m_Name: 
@@ -25200,7 +25203,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1833291131}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 725bed86a13166d4788166c6ae474df3, type: 3}
   m_Name: 
@@ -25443,9 +25446,9 @@ MonoBehaviour:
     playerOwned: 1
     Moves:
     - {fileID: 11400000, guid: a0a2b0e2249dbd44c9f6f3d727e627f6, type: 2}
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
+    - {fileID: 11400000, guid: 69538c00f41b93043ac23a55bfae97e0, type: 2}
+    - {fileID: 11400000, guid: 704e3b52cc69d004b9d93f9f41cfeb84, type: 2}
+    - {fileID: 11400000, guid: dd7bf131638d3964f8ef1a04b3b2df86, type: 2}
   - displayName: test2
     speciesName: Vivix
     maxActiveHealth: 40

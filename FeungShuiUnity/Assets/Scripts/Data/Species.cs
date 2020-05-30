@@ -28,4 +28,12 @@ public class Species{
     public int[] getStats() {
         return baseStats;
     }
+
+    public Type getPType () {
+        return typeP;
+    }
+
+    public Type getSType () {
+        return typeS;
+    }
 }

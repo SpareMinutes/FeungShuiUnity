@@ -62,8 +62,11 @@ public class Creature{
         return (int)Mathf.Pow(totalExp,1/3f);
     }
 
-    public Type getType() {
-        return this.type;
+    public Type getPType() {
+        return species.getPType();
+    }
+    public Type getSType() {
+        return species.getSType();
     }
 
     public float getMaxActiveHealth() {

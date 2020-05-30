@@ -44,32 +44,56 @@ public class Move : ScriptableObject{
     }
 
     public float getModifier() {
-        Type attackingType = Attacker.GetCreature().getType();
-        Type defendingType = Defender.GetCreature().getType();
+        Type attackingPType = Attacker.GetCreature().getPType();
+        Type attackingSType = Attacker.GetCreature().getSType();
+        Type defendingPType = Defender.GetCreature().getPType();
+        Type defendingSType = Defender.GetCreature().getSType();
+        //Debug.Log(attackingPType);
+        //Debug.Log(defendingPType);
 
-        float typeMultiplier = 1.0f;
-        if (Matchups.getStrongTypeEffectiveness(this.Type).Contains(defendingType)) {
-            typeMultiplier = 2.0f;
-        } else if (Matchups.getWeakTypeEffectiveness(this.Type).Contains(defendingType)) {
-            typeMultiplier = 0.5f;
+        List<Type> strongMatchups = Matchups.getStrongTypeEffectiveness(this.Type);
+
+        float weakTypeMultiplier = 1.0f; //default
+        if (strongMatchups.Contains(defendingPType) && strongMatchups.Contains(defendingSType)) {
+            //if BOTH defending types are weak to attacking move type
+            weakTypeMultiplier = 4.0f;
+        } else if (strongMatchups.Contains(defendingPType) || strongMatchups.Contains(defendingSType)) {
+            //if ONE of the defending types is weak to the attacking move type
+            weakTypeMultiplier = 2.0f;
         }
 
-        float stabMultiplier = 1.0f;
-        if (attackingType == Type) {
-            stabMultiplier = 2.0f;
-        } else if (Matchups.getLinkedTypes(attackingType).Contains(this.Type)) {
+        List<Type> weakMatchups = Matchups.getWeakTypeEffectiveness(this.Type);
+
+        float resistantTypeMultiplier = 1.0f; //default
+        if (weakMatchups.Contains(defendingPType) && weakMatchups.Contains(defendingSType)) {
+            //if BOTH defending types are resistant to attacking move type
+            resistantTypeMultiplier = 0.25f;
+        } else if (weakMatchups.Contains(defendingPType) || weakMatchups.Contains(defendingSType)) {
+            //if ONE of the defending types is resistant to the attacking move type
+            resistantTypeMultiplier = 0.5f;
+        }
+
+        float stabMultiplier = 1.0f; //default
+        if (attackingPType == this.Type || attackingSType == this.Type) {
+            //since moves only have 1 type only need to do an OR check
+            stabMultiplier = 1.5f;
+        }
+        //dont need this 
+        /* else if (Matchups.getLinkedTypes(attackingType).Contains(this.Type)) {
             stabMultiplier = 1.5f;
         } else if (Matchups.getUnlinkedTypes(attackingType).Contains(this.Type)) {
             stabMultiplier = 0.75f;
-        }
+        } */ 
 
         float critMultiplier = 1.0f;
         float random = Random.Range(0,1);
         if (this.CritChance > random) {
-            critMultiplier = 3.0f;
+            critMultiplier = 2.0f;
         }
-
-        return  typeMultiplier * stabMultiplier* critMultiplier;
+        Debug.Log("modifier values: " + resistantTypeMultiplier.ToString() + " " + weakTypeMultiplier.ToString() + " "
+        + stabMultiplier.ToString() + " " + critMultiplier.ToString());
+        
+        return  resistantTypeMultiplier * weakTypeMultiplier * stabMultiplier* critMultiplier;
     }
 
     public enum Target{
