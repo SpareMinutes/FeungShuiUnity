@@ -204,7 +204,7 @@ public class MenuAndWorldUI : MonoBehaviour{
     public void UseItem () {
         //function for the item button
         currentItems[offset + 2].use();
-        //Debug.Log(currentItems[offset + 2].displayName);
+        Debug.Log(currentItems[offset + 2].displayName);
     }
 
     public void CloseBag () {

@@ -16,11 +16,6 @@ public class WorldMapTransition : MonoBehaviour {
         //keep the same y but the x position is the other side of the map
         PersistentStats.SceneChangePosY = gameObject.transform.position.y;
         PersistentStats.SceneChangePosX = eastward ? -1580 : 1580;
-        /*if (eastward) {
-            PersistentStats.SceneChangePosX = -(1600 - offset);
-        } else {
-            PersistentStats.SceneChangePosX = 1600 - offset;
-        }*/
         PersistentStats.SceneChanged = true;
 
         int newCol = Col + (eastward ? 1 : -1);
