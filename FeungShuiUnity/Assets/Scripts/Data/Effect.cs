@@ -66,7 +66,7 @@ public class Effect {
 
         //calculate damage formula
         //Debug.Log(damageModifier);
-        float damageToTake = Mathf.Floor((power * Mathf.Pow(relevantAttackStat, 3/2f) * damageModifier) / (relevantDefenseStat * 10));
+        float damageToTake = Mathf.Floor((power * Mathf.Pow(relevantAttackStat, 3/2f) * damageModifier) / (relevantDefenseStat * 15));
         user.ApplyDamage(damageToTake, target);
     }
 

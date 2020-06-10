@@ -26,4 +26,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Testing Scenes/indoor test.unity
     guid: edf05fc5792114845a16b9e1fce53049
+  - enabled: 1
+    path: Assets/Scenes/Testing Scenes/cave test area.unity
+    guid: b56a9ec09c1269b43acf3ef853a680fd
   m_configObjects: {}

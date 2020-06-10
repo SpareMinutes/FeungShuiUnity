@@ -1845,6 +1845,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: WalkableCharacter
       objectReference: {fileID: 0}
+    - target: {fileID: 7041208782141400045, guid: 60a912dff5e9e784aa77429c0e38e37f,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: a8dfedbfd1504e6408160de972d5ad7c, type: 2}
     - target: {fileID: 7041208782141400046, guid: 60a912dff5e9e784aa77429c0e38e37f,
         type: 3}
       propertyPath: m_Materials.Array.data[0]

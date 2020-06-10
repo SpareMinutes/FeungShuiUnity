@@ -48,7 +48,7 @@ public class Creature{
         //TODO: factor in upgrade points and multipliers
         //0-health, 1-mana, 2-attack, 3-defense, 4-intelligence, 5-resistance, 6-speed
         int[] baseStats = species.getStats();
-        maxActiveHealth = (int)Mathf.Floor((baseStats[0] * level / 50.0f) + 10);
+        maxActiveHealth = (int)Mathf.Floor((baseStats[0] * level / 25.0f) + 10);
         currentActiveHealth = maxActiveHealth;
         maxMana = (int)Mathf.Floor((baseStats[1] * level / 50.0f) + 5);
         attack = (int)Mathf.Floor((baseStats[2] * level / 50.0f) + 5);
