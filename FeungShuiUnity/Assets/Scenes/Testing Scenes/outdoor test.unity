@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -6568,7 +6568,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 276649502}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 725bed86a13166d4788166c6ae474df3, type: 3}
   m_Name: 
@@ -6947,6 +6947,11 @@ PrefabInstance:
         type: 3}
       propertyPath: ES
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8863851292449889813, guid: 60a912dff5e9e784aa77429c0e38e37f,
+        type: 3}
+      propertyPath: speed
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 60a912dff5e9e784aa77429c0e38e37f, type: 3}
@@ -9715,7 +9720,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 984594535}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 725bed86a13166d4788166c6ae474df3, type: 3}
   m_Name: 
@@ -18826,7 +18831,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 9100000, guid: 8e026e0241d64f640bb7d93a29dd8628, type: 2}
+      objectReference: {fileID: 9100000, guid: c057e617823c1264ab9c28fea6ab3141, type: 2}
     - target: {fileID: 7041208782141400046, guid: 69093a0667999a44c910cf7374f494cc,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -19598,7 +19603,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 9100000, guid: ee329754e6bb4bf4f84f41c9979a54d2, type: 2}
+      objectReference: {fileID: 9100000, guid: d788c993d51375d44a8349da8f671715, type: 2}
     - target: {fileID: 7041208782141400046, guid: 69093a0667999a44c910cf7374f494cc,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -19667,7 +19672,7 @@ PrefabInstance:
     - target: {fileID: 8318314664364277187, guid: 69093a0667999a44c910cf7374f494cc,
         type: 3}
       propertyPath: onInteract.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 1
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 8318314664364277187, guid: 69093a0667999a44c910cf7374f494cc,
         type: 3}
@@ -19682,7 +19687,7 @@ PrefabInstance:
     - target: {fileID: 8318314664364277187, guid: 69093a0667999a44c910cf7374f494cc,
         type: 3}
       propertyPath: onInteract.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: StartTrainerBattle
+      value: UIMessage
       objectReference: {fileID: 0}
     - target: {fileID: 8318314664364277187, guid: 69093a0667999a44c910cf7374f494cc,
         type: 3}
@@ -19697,7 +19702,7 @@ PrefabInstance:
     - target: {fileID: 8318314664364277187, guid: 69093a0667999a44c910cf7374f494cc,
         type: 3}
       propertyPath: onInteract.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
-      value: What do you want?
+      value: Why don't you check out the cave?
       objectReference: {fileID: 0}
     - target: {fileID: 8318314664364277187, guid: 69093a0667999a44c910cf7374f494cc,
         type: 3}
@@ -19763,7 +19768,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1747764867}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 725bed86a13166d4788166c6ae474df3, type: 3}
   m_Name: 
@@ -19795,7 +19800,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1833291131}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 725bed86a13166d4788166c6ae474df3, type: 3}
   m_Name: 
