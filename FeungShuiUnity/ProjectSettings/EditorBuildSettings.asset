@@ -41,4 +41,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/other/lime lake.unity
     guid: 086f1c374ab0344499103b110f30fae2
+  - enabled: 1
+    path: Assets/Scenes/other/north east swamp.unity
+    guid: 8b22a6e16b9511d40bb0c04d8f848c0b
   m_configObjects: {}
