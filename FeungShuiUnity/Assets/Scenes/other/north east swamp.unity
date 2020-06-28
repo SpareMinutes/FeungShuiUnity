@@ -41472,7 +41472,7 @@ GameObject:
   - component: {fileID: 1265778164}
   - component: {fileID: 1265778163}
   m_Layer: 0
-  m_Name: east to lime lake (1)
+  m_Name: east to lime lake (lower)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -41713,7 +41713,7 @@ GameObject:
   - component: {fileID: 1531388420}
   - component: {fileID: 1531388419}
   m_Layer: 0
-  m_Name: east to lime lake
+  m_Name: ' east to lime lake (upper)'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

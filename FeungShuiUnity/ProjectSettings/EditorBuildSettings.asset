@@ -47,4 +47,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/other/river east of lime lake.unity
     guid: 271737b0b20ee2d44951884ece8c6a8e
+  - enabled: 1
+    path: Assets/Scenes/other/perdice.unity
+    guid: 35a78cc252d40504584e860309b226e2
   m_configObjects: {}
