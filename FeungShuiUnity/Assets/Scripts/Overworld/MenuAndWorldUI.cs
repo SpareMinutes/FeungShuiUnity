@@ -1,4 +1,4 @@
-﻿using System.Collections;
+﻿using System.Linq;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -8,6 +8,7 @@ public class MenuAndWorldUI : MonoBehaviour{
     public EventSystem ES;
     [SerializeField]
     private GameObject Player, Canvas, Message, Text, Menu, Bag, Party, Arrow, AnswerBox;
+    private Interaction activeInteraction;
     [SerializeField]
     private GameObject[] Answers, AnswerBG;
     private bool isMenuOpen, isBagOpen, isPartyOpen = false;
@@ -15,6 +16,7 @@ public class MenuAndWorldUI : MonoBehaviour{
 
     private List<BagTab> bagTabs;
     private int currentTabIndex = 0;
+    private int shownAnswers = 0;
     private List<Item> currentItems;
     private int offset = -2;
 
@@ -29,21 +31,22 @@ public class MenuAndWorldUI : MonoBehaviour{
         //Ensures clicking doesn't deselect buttons
         GameObject selected = ES.currentSelectedGameObject;
         
-        if (selected != SelectedMenu || selected != SelectedMessage || selected != SelectedBag) {
-            
-            if (selected == null) {
-                if (isMenuOpen) {
-                    //menu is open 
-                    ES.SetSelectedGameObject(SelectedMenu);
-                } else if (Message.activeSelf) {
-                    //message is open
-                    ES.SetSelectedGameObject(SelectedMessage);
-                } else if (Bag.activeSelf) {
-                    //the bag is open
-                    ES.SetSelectedGameObject(SelectedBag);
-                } 
-                //else nothing is open
+        if (selected == null) {
+            if (isMenuOpen) {
+                //menu is open 
+                ES.SetSelectedGameObject(SelectedMenu);
+            } else if (Message.activeSelf) {
+                //message is open
+                ES.SetSelectedGameObject(SelectedMessage);
+            } else if (Bag.activeSelf) {
+                //the bag is open
+                ES.SetSelectedGameObject(SelectedBag);
             }
+            //else nothing is open
+        }
+        if (shownAnswers > 0 && !Answers.Contains(selected)) {
+            //answers are shown
+            ES.SetSelectedGameObject(Answers[9]);
         }
 
         if (Input.GetButtonDown("Cancel")) {
@@ -106,6 +109,7 @@ public class MenuAndWorldUI : MonoBehaviour{
         Message.GetComponent<Button>().interactable = false;
         Message.SetActive(false);
         Player.GetComponent<Walk>().canWalk = true;
+        activeInteraction = null;
         Invoke("reActivateInteract", 0.0167f);
     }
 
@@ -123,18 +127,30 @@ public class MenuAndWorldUI : MonoBehaviour{
         Text.GetComponent<Text>().text = msg;
     }
 
+    public void SetActiveInteraction(Interaction target) {
+        activeInteraction = target;
+    }
+
+    public void AdvanceMessage() {
+        shownAnswers = 0;
+        if (!activeInteraction.RunStep())
+            disableButton();
+    }
+
     public void ShowAnswers(string[] options) {
         AnswerBox.SetActive(true);
-        Debug.Log("Run");
+        shownAnswers = options.Length;
         int offset = Answers.Length - options.Length;
         int maxLen = 0;
         //Fill in text. Also count length of longest option for use later
         for (int i=0; i<options.Length; i++) {
             Answers[offset + i].GetComponent<Text>().text = options[i];
             maxLen = Mathf.Max(maxLen, options[i].Length);
+            Answers[i].SetActive(true);
         }
         for(int i=0; i<offset; i++) {
             Answers[i].GetComponent<Text>().text = "";
+            Answers[i].SetActive(false);
         }
         //Set box height
         for(int i=6; i<9; i++) {
@@ -154,6 +170,12 @@ public class MenuAndWorldUI : MonoBehaviour{
             RectTransform rt = AnswerBG[i].GetComponent<RectTransform>();
             rt.transform.localScale = new Vector3((float)(1.5 * maxLen), rt.transform.localScale.y, 1);
         }
+    }
+
+    public void RunAnswer(int selection) {
+        AnswerBox.SetActive(false);
+        shownAnswers = 0;
+        activeInteraction.RunAnswer(selection);
     }
 
     public void OpenMenu () {

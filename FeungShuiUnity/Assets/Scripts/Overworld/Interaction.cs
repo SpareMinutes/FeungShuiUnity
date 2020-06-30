@@ -5,28 +5,48 @@ using UnityEngine;
 public class Interaction : MonoBehaviour {
     public int startBranch;
     public InteractionBranch[] branches;
+    private int[] resultBranches;
     int currBranch, currStep;
 
     // Start is called before the first frame update
     void Start(){
-        currBranch = startBranch;
-        currStep = 0;
+        SetBranch(startBranch);
     }
 
-    public void RunStep() {
-        InteractionStep step = branches[currBranch].steps[currStep];
-        switch (step.type) {
-            case StepType.Question:
-                GameObject.Find("InGameUI").GetComponent<MenuAndWorldUI>().ShowMessage(step.message, false);
-                GameObject.Find("InGameUI").GetComponent<MenuAndWorldUI>().ShowAnswers(step.strings);
-                break;
-            case StepType.Simple:
-                GameObject.Find("InGameUI").GetComponent<MenuAndWorldUI>().ShowMessage(step.message, true);
-                break;
-            case StepType.Battle:
-                GetComponent<Battle>().StartBattle();
-                break;
+    public bool RunStep() {
+        try {
+            InteractionStep step = branches[currBranch].steps[currStep];
+            switch (step.type) {
+                case StepType.Question:
+                    resultBranches = new int[10];
+                    for(int i=0; i<step.ints.Length; i++) {
+                        resultBranches[10 - step.ints.Length + i] = step.ints[i];
+                    }
+                    GameObject.Find("InGameUI").GetComponent<MenuAndWorldUI>().ShowMessage(step.message, false);
+                    GameObject.Find("InGameUI").GetComponent<MenuAndWorldUI>().ShowAnswers(step.strings);
+                    GameObject.Find("InGameUI").GetComponent<MenuAndWorldUI>().SetActiveInteraction(this);
+                    break;
+                case StepType.Simple:
+                    GameObject.Find("InGameUI").GetComponent<MenuAndWorldUI>().ShowMessage(step.message, true);
+                    GameObject.Find("InGameUI").GetComponent<MenuAndWorldUI>().SetActiveInteraction(this);
+                    break;
+                case StepType.Battle:
+                    GameObject.Find("InGameUI").GetComponent<MenuAndWorldUI>().disableButton();
+                    GetComponent<Battle>().StartBattle();
+                    break;
+            }
+            currStep++;
+            return true;
+        } catch (System.IndexOutOfRangeException e) {
+            //the branch has ended
+            SetBranch(startBranch);
+            return false;
         }
+    }
+
+    public void RunAnswer(int selection) {
+        SetBranch(resultBranches[selection]);
+        RunStep();
     }
 
     public void SetBranch(int branch) {
