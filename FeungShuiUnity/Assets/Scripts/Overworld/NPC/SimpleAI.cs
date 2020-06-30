@@ -12,7 +12,7 @@ public abstract class SimpleAI : MonoBehaviour{
     Animator anim;
 
     protected void Start(){
-        Debug.Log("Start");
+        //Debug.Log("Start");
         seeker = GetComponent<Seeker>();
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
@@ -37,7 +37,7 @@ public abstract class SimpleAI : MonoBehaviour{
 
         Vector2 direction = ((Vector2)path.vectorPath[currentWaypoint] - rb.position);
         if(direction.magnitude > 30) {
-            Debug.Log("Recalculating");
+            //Debug.Log("Recalculating");
             path = seeker.StartPath(rb.position, path.vectorPath[path.vectorPath.Count - 1], OnPathComplete);
             return;
         }    

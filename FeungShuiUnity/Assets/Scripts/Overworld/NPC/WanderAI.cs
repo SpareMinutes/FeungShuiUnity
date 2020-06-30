@@ -20,12 +20,12 @@ public class WanderAI : SimpleAI {
             Vector2 offset = Random.insideUnitCircle * 100;
             dest = new Vector2(this.transform.position.x + offset.x, this.transform.position.y + offset.y);
         } while (bounds != null && !bounds.OverlapPoint(dest));
-        Debug.Log("(" + dest.x + ", " + dest.y + ")");
+        //Debug.Log("(" + dest.x + ", " + dest.y + ")");
         seeker.StartPath(rb.position, dest, OnPathComplete);
     }
 
     new void OnPathComplete(Path p) {
-        Debug.Log("Done");
+        //Debug.Log("Done");
         base.OnPathComplete(p);
         //Invoke("NextPath", Random.Range(0f, 0.5f) + Random.Range(0f, 0.5f));
     }
