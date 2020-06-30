@@ -7,7 +7,9 @@ using UnityEngine.EventSystems;
 public class MenuAndWorldUI : MonoBehaviour{
     public EventSystem ES;
     [SerializeField]
-    private GameObject Player, Canvas, Message, Text, Menu, Bag, Party;
+    private GameObject Player, Canvas, Message, Text, Menu, Bag, Party, Arrow, AnswerBox;
+    [SerializeField]
+    private GameObject[] Answers, AnswerBG;
     private bool isMenuOpen, isBagOpen, isPartyOpen = false;
     private GameObject SelectedMenu, SelectedMessage, SelectedBag, SelectedParty;
 
@@ -111,14 +113,47 @@ public class MenuAndWorldUI : MonoBehaviour{
         Player.transform.GetChild(0).gameObject.SetActive(true);
     }
 
-    public void ShowMessage(string msg){
-        Debug.Log("A message (for now)");
+    public void ShowMessage(string msg, bool useArrow){
         Player.transform.GetChild(0).gameObject.SetActive(false); //gets the first object that is the players child (in this case the interact area)
         Player.GetComponent<Walk>().canWalk = false;
         Message.SetActive(true);
-        Message.GetComponent<Button>().interactable = true;
+        Message.GetComponent<Button>().interactable = useArrow;
+        Arrow.SetActive(useArrow);
         ES.SetSelectedGameObject(Message);
         Text.GetComponent<Text>().text = msg;
+    }
+
+    public void ShowAnswers(string[] options) {
+        AnswerBox.SetActive(true);
+        Debug.Log("Run");
+        int offset = Answers.Length - options.Length;
+        int maxLen = 0;
+        //Fill in text. Also count length of longest option for use later
+        for (int i=0; i<options.Length; i++) {
+            Answers[offset + i].GetComponent<Text>().text = options[i];
+            maxLen = Mathf.Max(maxLen, options[i].Length);
+        }
+        for(int i=0; i<offset; i++) {
+            Answers[i].GetComponent<Text>().text = "";
+        }
+        //Set box height
+        for(int i=6; i<9; i++) {
+            RectTransform rt = AnswerBG[i].GetComponent<RectTransform>();
+            rt.position = new Vector3(rt.position.x, 10*options.Length+40, 0);
+        }
+        for (int i = 3; i < 6; i++) {
+            RectTransform rt = AnswerBG[i].GetComponent<RectTransform>();
+            rt.transform.localScale = new Vector3(rt.transform.localScale.x, (float)(2.5*options.Length-0.25), 1);
+        }
+        //Set box width
+        for (int i = 2; i <= 8; i+=3) {
+            RectTransform rt = AnswerBG[i].GetComponent<RectTransform>();
+            rt.position = new Vector3(6*maxLen+9, rt.position.y, 0);
+        }
+        for (int i = 1; i <= 7; i+=3) {
+            RectTransform rt = AnswerBG[i].GetComponent<RectTransform>();
+            rt.transform.localScale = new Vector3((float)(1.5 * maxLen), rt.transform.localScale.y, 1);
+        }
     }
 
     public void OpenMenu () {
@@ -139,7 +174,7 @@ public class MenuAndWorldUI : MonoBehaviour{
 
     public void OpenSummary () {
         //will be called when the summary button is pressed from the menu
-        ShowMessage("This will show the summary of the adventure so far.");
+        ShowMessage("This will show the summary of the adventure so far.", true);
 
     }
 
@@ -216,11 +251,11 @@ public class MenuAndWorldUI : MonoBehaviour{
     public void Save () {
         //will be called when the player selects save from the menu
         //for right now doesnt do anything
-        ShowMessage("This will save the game.");
+        ShowMessage("This will save the game.", true);
     }
 
     public void OpenOptions () {
         //opens the ingame options menu from the menu
-        ShowMessage("This will show the options.");
+        ShowMessage("This will show the options.", true);
     }
 }

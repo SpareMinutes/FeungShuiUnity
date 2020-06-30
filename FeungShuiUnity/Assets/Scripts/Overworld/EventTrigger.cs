@@ -3,6 +3,7 @@ using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 
+[System.Obsolete("Replaced with Interaction")]
 public class EventTrigger : MonoBehaviour {
     public UnityEvent onInteract;
     private Creature[] OpposingParty;
@@ -30,7 +31,7 @@ public class EventTrigger : MonoBehaviour {
     }
 
     public void UIMessage(string msg){
-        GameObject.Find("InGameUI").GetComponent<MenuAndWorldUI>().ShowMessage(msg);
+        GameObject.Find("InGameUI").GetComponent<MenuAndWorldUI>().ShowMessage(msg, true);
     }
 
     public void StartTrainerBattle() {

@@ -626,7 +626,7 @@ PrefabInstance:
     - target: {fileID: 7041208782141400047, guid: 69093a0667999a44c910cf7374f494cc,
         type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7041208782141400047, guid: 69093a0667999a44c910cf7374f494cc,
         type: 3}
@@ -9912,6 +9912,26 @@ MonoBehaviour:
   tagPenalties: 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
   graphMask:
     value: -1
+--- !u!114 &984594538
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 984594535}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 111fba68faa99cd49866c39b03f99e97, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startBranch: 0
+  branches:
+  - branchName: default
+    steps:
+    - message: Why don't you check out the cave?
+      strings: []
+      ints: 
+      type: 0
 --- !u!114 &984594539 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8318314664364277187, guid: 69093a0667999a44c910cf7374f494cc,
@@ -20652,7 +20672,7 @@ PrefabInstance:
     - target: {fileID: 7041208782141400047, guid: 69093a0667999a44c910cf7374f494cc,
         type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 7041208782141400047, guid: 69093a0667999a44c910cf7374f494cc,
         type: 3}
@@ -20708,6 +20728,11 @@ PrefabInstance:
         type: 3}
       propertyPath: onInteract.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
       value: La la la! Hello! La la...
+      objectReference: {fileID: 0}
+    - target: {fileID: 8318314664364277187, guid: 69093a0667999a44c910cf7374f494cc,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 69093a0667999a44c910cf7374f494cc, type: 3}
@@ -20830,7 +20855,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 1
   data:
-    dataString: UEsDBBQAAAgIAABQIewhZnxSWgIAAAEFAAALACQAZ3JhcGgwLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQF1VE1z2jAQ/SuMzg1jICS4t9YhpAcSJqSTiy/CWmMNsuTRR/ga/ntXso1dOj1Zfu/t7tvV2mfCpakgs0ovNGdLxYB8HxB/Jt8GHfkCB7pVcs1P0Go+ObOFF9GgeaeWK8RHPsyoEqzm2Q+5FV4cIegkz5Uu52wLiTLWIJxTYQAprayPlgidB+SAj7vYhxzxNH70pxOe4mhwwWMG0oLupK2wldUqJzNBywqYt9yJJ6N4MnxoIuqXIJfYVKMcTYfxw8wXUkJw09gi9liFthNaGYdNoYBxim0GL9EwRqAAvi2sN90Pf8tzA7ZxqOnxiWucV52X/FT1EEtqdrXNLyqcrzSe1tbqpMt/+LtRoHOtype27ijyNWzBs907PWbU2N6U+/BTZ30UprWnYkc3Aj4LkK9qoZWTDEmrnQ91BsZP3eu1taSAbNfhtdUb0FX/vyvfwyV0f0gELzdhkvc1sBYqTDxsAmi8oF9oOOyJaVIg6l38NvBBt/2Faohnro1FqulSensb5bSXknmYme/G2URpCQFuTFcgqbDHFaaxt1d4w/XK3jDP1H86TfGGa7+Im5AAd/oouqFWan+9LFOo/RJM8eas4BI60554xTklSsp6w/ozacPWTuc064VtHWd/rxaJp3TKNlHG2GZyP3vM73J4HG8iiGfjaZbndELC7nGJfVKxqo0248Fbk11yiXvW/lEGC02rsO1M0/2Cn0rVGzmXuVpnGkC+1RmuxkFjEfw42ZxxHNAarOUy3Dc5p0SobAcsvSZKQ6fzg9U07bKkpOJfynokJUn4haTkQi5/AFBLAwQUAAAICAAAUCHs8Es69WwAAAB3AAAACQAkAG1ldGEuanNvbgoAIAAAAAAAAQAYAACAPtXesZ0BAIA+1d6xnQEAgD7V3rGdAatWKkstKs7Mz1OyUjDRM9Kz0FFQSi9KLMgoBgoYgjilmSkgdrSSpWmiaUqSQXJKSpKxiYV5mm5aqrlRkkGqpYWRaXJaWqKxUixQfUllQapfYm4qRE9AYklGWmZeSmZeup57UWaKO8hopdhaAFBLAQItABQAAAgIAABQIewhZnxSWgIAAAEFAAALACQAAAAAAAAAAAAAAAAAAABncmFwaDAuanNvbgoAIAAAAAAAAQAYAACAPtXesZ0BAIA+1d6xnQEAgD7V3rGdAVBLAQItABQAAAgIAABQIezwSzr1bAAAAHcAAAAJACQAAAAAAAAAAAAAAKcCAABtZXRhLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQFQSwUGAAAAAAIAAgC4AAAAXgMAAAAA
+    dataString: UEsDBBQAAAgIAACYn+shZnxSWgIAAAEFAAALACQAZ3JhcGgwLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQF1VE1z2jAQ/SuMzg1jICS4t9YhpAcSJqSTiy/CWmMNsuTRR/ga/ntXso1dOj1Zfu/t7tvV2mfCpakgs0ovNGdLxYB8HxB/Jt8GHfkCB7pVcs1P0Go+ObOFF9GgeaeWK8RHPsyoEqzm2Q+5FV4cIegkz5Uu52wLiTLWIJxTYQAprayPlgidB+SAj7vYhxzxNH70pxOe4mhwwWMG0oLupK2wldUqJzNBywqYt9yJJ6N4MnxoIuqXIJfYVKMcTYfxw8wXUkJw09gi9liFthNaGYdNoYBxim0GL9EwRqAAvi2sN90Pf8tzA7ZxqOnxiWucV52X/FT1EEtqdrXNLyqcrzSe1tbqpMt/+LtRoHOtype27ijyNWzBs907PWbU2N6U+/BTZ30UprWnYkc3Aj4LkK9qoZWTDEmrnQ91BsZP3eu1taSAbNfhtdUb0FX/vyvfwyV0f0gELzdhkvc1sBYqTDxsAmi8oF9oOOyJaVIg6l38NvBBt/2Faohnro1FqulSensb5bSXknmYme/G2URpCQFuTFcgqbDHFaaxt1d4w/XK3jDP1H86TfGGa7+Im5AAd/oouqFWan+9LFOo/RJM8eas4BI60554xTklSsp6w/ozacPWTuc064VtHWd/rxaJp3TKNlHG2GZyP3vM73J4HG8iiGfjaZbndELC7nGJfVKxqo0248Fbk11yiXvW/lEGC02rsO1M0/2Cn0rVGzmXuVpnGkC+1RmuxkFjEfw42ZxxHNAarOUy3Dc5p0SobAcsvSZKQ6fzg9U07bKkpOJfynokJUn4haTkQi5/AFBLAwQUAAAICAAAmJ/r8Es69WwAAAB3AAAACQAkAG1ldGEuanNvbgoAIAAAAAAAAQAYAACAPtXesZ0BAIA+1d6xnQEAgD7V3rGdAatWKkstKs7Mz1OyUjDRM9Kz0FFQSi9KLMgoBgoYgjilmSkgdrSSpWmiaUqSQXJKSpKxiYV5mm5aqrlRkkGqpYWRaXJaWqKxUixQfUllQapfYm4qRE9AYklGWmZeSmZeup57UWaKO8hopdhaAFBLAQItABQAAAgIAACYn+shZnxSWgIAAAEFAAALACQAAAAAAAAAAAAAAAAAAABncmFwaDAuanNvbgoAIAAAAAAAAQAYAACAPtXesZ0BAIA+1d6xnQEAgD7V3rGdAVBLAQItABQAAAgIAACYn+vwSzr1bAAAAHcAAAAJACQAAAAAAAAAAAAAAKcCAABtZXRhLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQFQSwUGAAAAAAIAAgC4AAAAXgMAAAAA
     upgradeData: 
     file_cachedStartup: {fileID: 0}
     data_cachedStartup: 
@@ -21612,6 +21637,70 @@ MonoBehaviour:
   tagPenalties: 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
   graphMask:
     value: -1
+--- !u!114 &1833291134
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1833291131}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 111fba68faa99cd49866c39b03f99e97, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startBranch: 0
+  branches:
+  - branchName: default
+    steps:
+    - message: You looking to fight?
+      strings:
+      - Yes
+      - No
+      ints: 0100000002000000
+      type: 1
+  - branchName: yes
+    steps:
+    - message: You gonna to regret messing with me.
+      strings: []
+      ints: 
+      type: 0
+    - message: 
+      strings: []
+      ints: 03000000040000000500000006000000
+      type: 2
+  - branchName: no
+    steps:
+    - message: Then get out of my face.
+      strings: []
+      ints: 
+      type: 0
+  - branchName: on win
+    steps:
+    - message: You shoulda backed off when you had the chance.
+      strings: []
+      ints: 
+      type: 0
+  - branchName: on defeat
+    steps:
+    - message: Fine. You win.
+      strings: []
+      ints: 
+      type: 0
+  - branchName: rematch
+    steps:
+    - message: Back for more?
+      strings:
+      - Yes
+      - No
+      ints: 0100000002000000
+      type: 1
+  - branchName: defeated
+    steps:
+    - message: I got nothin more to say to ya.
+      strings: []
+      ints: 
+      type: 0
 --- !u!114 &1833291136 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8318314664364277187, guid: 69093a0667999a44c910cf7374f494cc,
@@ -21619,7 +21708,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 1422368482}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1833291131}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4d84136921c6d6b428ec5113d016f4a6, type: 3}
   m_Name: 

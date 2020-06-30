@@ -26,8 +26,12 @@ public class Interact : MonoBehaviour{
             
             foreach(Collider2D coll in lookedAt){
                 EventTrigger e = coll.GetComponent<EventTrigger>();
+                Interaction i = coll.GetComponent<Interaction>();
                 //checking the object exists in-game and has the Interactable tag
-                if (e != null && coll.gameObject.tag.Equals("Interactable")) {
+                if (i != null && coll.gameObject.tag.Equals("Interactable")) {
+                    i.RunStep();
+                    break;
+                }else if (e != null && coll.gameObject.tag.Equals("Interactable")) {
                     e.onInteract.Invoke();
                     break;
                 }
