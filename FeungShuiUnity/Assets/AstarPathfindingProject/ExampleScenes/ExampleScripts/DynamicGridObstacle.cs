@@ -73,10 +73,11 @@ namespace Pathfinding {
 
 		protected override void Awake () {
 			base.Awake();
+
 			coll = GetComponent<Collider>();
 			coll2D = GetComponent<Collider2D>();
 			tr = transform;
-			if (coll == null && coll2D == null) {
+			if (coll == null && coll2D == null && Application.isPlaying) {
 				throw new System.Exception("A collider or 2D collider must be attached to the GameObject(" + gameObject.name + ") for the DynamicGridObstacle to work");
 			}
 
@@ -87,12 +88,18 @@ namespace Pathfinding {
 		}
 
 		public override void OnPostScan () {
+			// Make sure we find the collider
+			// AstarPath.Awake may run before Awake on this component
+			if (coll == null) Awake();
+
 			// In case the object was in the scene from the start and the graphs
 			// were scanned then we ignore the first update since it is unnecessary.
-			prevEnabled = colliderEnabled;
+			if (coll != null) prevEnabled = colliderEnabled;
 		}
 
 		void Update () {
+			if (!Application.isPlaying) return;
+
 			if (coll == null && coll2D == null) {
 				Debug.LogError("Removed collider from DynamicGridObstacle", this);
 				enabled = false;
@@ -174,10 +181,10 @@ namespace Pathfinding {
 					AstarPath.active.UpdateGraphs(newBounds);
 				}
 
-	#if ASTARDEBUG
+#if ASTARDEBUG
 				Debug.DrawLine(prevBounds.min, prevBounds.max, Color.yellow);
 				Debug.DrawLine(newBounds.min, newBounds.max, Color.red);
-	#endif
+#endif
 				prevBounds = newBounds;
 			}
 

@@ -154,10 +154,15 @@ namespace Pathfinding {
 			EditorGUI.BeginChangeCheck();
 			float newNodeSize;
 			if (graph.inspectorGridMode == InspectorGridMode.Hexagonal) {
-				graph.inspectorHexagonSizeMode = (InspectorGridHexagonNodeSize)EditorGUILayout.EnumPopup(new GUIContent("Hexagon dimension"), graph.inspectorHexagonSizeMode);
+				EditorGUILayout.BeginHorizontal();
+				EditorGUILayout.BeginVertical();
+				graph.inspectorHexagonSizeMode = (InspectorGridHexagonNodeSize)EditorGUILayout.EnumPopup(new GUIContent("Hexagon Dimension"), graph.inspectorHexagonSizeMode);
 				float hexagonSize = GridGraph.ConvertNodeSizeToHexagonSize(graph.inspectorHexagonSizeMode, graph.nodeSize);
 				hexagonSize = (float)System.Math.Round(hexagonSize, 5);
 				newNodeSize = GridGraph.ConvertHexagonSizeToNodeSize(graph.inspectorHexagonSizeMode, EditorGUILayout.FloatField(hexagonSizeContents[(int)graph.inspectorHexagonSizeMode], hexagonSize));
+				EditorGUILayout.EndVertical();
+				if (graph.inspectorHexagonSizeMode != InspectorGridHexagonNodeSize.NodeSize) GUILayout.Box("", AstarPathEditor.astarSkin.FindStyle(graph.inspectorHexagonSizeMode == InspectorGridHexagonNodeSize.Diameter ? "HexagonDiameter" : "HexagonWidth"));
+				EditorGUILayout.EndHorizontal();
 			} else {
 				newNodeSize = EditorGUILayout.FloatField(new GUIContent("Node size", "The size of a single node. The size is the side of the node square in world units"), graph.nodeSize);
 			}
@@ -365,8 +370,8 @@ namespace Pathfinding {
 			if (graph.erodeIterations > 0) {
 				EditorGUI.indentLevel++;
 				graph.erosionUseTags = EditorGUILayout.Toggle(new GUIContent("Erosion Uses Tags", "Instead of making nodes unwalkable, " +
-						"nodes will have their tag set to a value corresponding to their erosion level, " +
-						"which is a quite good measurement of their distance to the closest wall.\nSee online documentation for more info."),
+					"nodes will have their tag set to a value corresponding to their erosion level, " +
+					"which is a quite good measurement of their distance to the closest wall.\nSee online documentation for more info."),
 					graph.erosionUseTags);
 				if (graph.erosionUseTags) {
 					EditorGUI.indentLevel++;

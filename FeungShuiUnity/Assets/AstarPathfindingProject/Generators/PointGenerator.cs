@@ -31,6 +31,7 @@ namespace Pathfinding {
 	/// [Open online documentation to see images]
 	/// </summary>
 	[JsonOptIn]
+	[Pathfinding.Util.Preserve]
 	public class PointGraph : NavGraph {
 		/// <summary>Childs of this transform are treated as nodes</summary>
 		[JsonMember]
@@ -345,7 +346,7 @@ namespace Pathfinding {
 
 			if (root == null) {
 				// If there is no root object, try to find nodes with the specified tag instead
-				GameObject[] gos = searchTag != null ? GameObject.FindGameObjectsWithTag(searchTag) : null;
+				GameObject[] gos = searchTag != null? GameObject.FindGameObjectsWithTag (searchTag) : null;
 
 				if (gos == null) {
 					nodes = new PointNode[0];
@@ -440,10 +441,10 @@ namespace Pathfinding {
 						float dist;
 						if (IsValidConnection(node, other, out dist)) {
 							connections.Add(new Connection(
-									other,
-									/// <summary>TODO: Is this equal to .costMagnitude</summary>
-									(uint)Mathf.RoundToInt(dist*Int3.FloatPrecision)
-									));
+								other,
+								/// <summary>TODO: Is this equal to .costMagnitude</summary>
+								(uint)Mathf.RoundToInt(dist*Int3.FloatPrecision)
+								));
 						}
 					}
 					node.connections = connections.ToArray();

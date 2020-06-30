@@ -44,7 +44,8 @@ namespace Pathfinding {
 		/// [Open online documentation to see images]
 		/// </summary>
 		public static List<Vector3> GetContours (NavGraph graph) {
-			List<Vector3> result = ListPool<Vector3>.Claim();
+			List<Vector3> result = ListPool<Vector3>.Claim ();
+
 			if (graph is INavmesh) {
 				GetContours(graph as INavmesh, (vertices, cycle) => {
 					for (int j = cycle ? vertices.Count - 1 : 0, i = 0; i < vertices.Count; j = i, i++) {
@@ -159,6 +160,7 @@ namespace Pathfinding {
 		public static void GetContours (GridGraph grid, System.Action<Vector3[]> callback, float yMergeThreshold, GridNodeBase[] nodes = null) {
 			// Set of all allowed nodes or null if all nodes are allowed
 			HashSet<GridNodeBase> nodeSet = nodes != null ? new HashSet<GridNodeBase>(nodes) : null;
+
 			// Use all nodes if the nodes parameter is null
 			nodes = nodes ?? grid.nodes;
 			int[] neighbourXOffsets = grid.neighbourXOffsets;
@@ -167,7 +169,7 @@ namespace Pathfinding {
 			var offsetMultiplier = grid.neighbours == NumNeighbours.Six ? 1/3f : 0.5f;
 
 			if (nodes != null) {
-				var trace = ListPool<Vector3>.Claim();
+				var trace = ListPool<Vector3>.Claim ();
 				var seenStates = new HashSet<int>();
 
 				for (int i = 0; i < nodes.Length; i++) {
@@ -228,6 +230,30 @@ namespace Pathfinding {
 									}
 								}
 
+								// Simplify the contour a bit around the start point.
+								// Otherwise we might return a cycle which was not as simplified as possible and the number of vertices
+								// would depend on where in the cycle the algorithm started to traverse the contour.
+								if (trace.Count >= 3) {
+									var v0 = trace[trace.Count-2];
+									var v1 = trace[trace.Count-1];
+									var v1d = v1 - v0;
+									var v2d = trace[0] - v0;
+									// Replace the previous point if it is colinear with the point just before it and just after it (the current point), because that point wouldn't add much information, but it would add CPU overhead
+									if (!(((Mathf.Abs(v1d.x) > 0.01f || Mathf.Abs(v2d.x) > 0.01f) && (Mathf.Abs(v1d.z) > 0.01f || Mathf.Abs(v2d.z) > 0.01f)) || (Mathf.Abs(v1d.y) > yMergeThreshold || Mathf.Abs(v2d.y) > yMergeThreshold))) {
+										trace.RemoveAt(trace.Count - 1);
+									}
+								}
+
+								if (trace.Count >= 3) {
+									var v0 = trace[trace.Count-1];
+									var v1 = trace[0];
+									var v1d = v1 - v0;
+									var v2d = trace[1] - v0;
+									// Replace the previous point if it is colinear with the point just before it and just after it (the current point), because that point wouldn't add much information, but it would add CPU overhead
+									if (!(((Mathf.Abs(v1d.x) > 0.01f || Mathf.Abs(v2d.x) > 0.01f) && (Mathf.Abs(v1d.z) > 0.01f || Mathf.Abs(v2d.z) > 0.01f)) || (Mathf.Abs(v1d.y) > yMergeThreshold || Mathf.Abs(v2d.y) > yMergeThreshold))) {
+										trace.RemoveAt(0);
+									}
+								}
 								var result = trace.ToArray();
 								grid.transform.Transform(result);
 								callback(result);
@@ -236,7 +262,7 @@ namespace Pathfinding {
 					}
 				}
 
-				ListPool<Vector3>.Release(ref trace);
+				ListPool<Vector3>.Release (ref trace);
 			}
 		}
 #endif

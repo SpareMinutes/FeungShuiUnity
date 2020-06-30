@@ -46,12 +46,12 @@ namespace Pathfinding {
 		/// </summary>
 		public bool splitAtEveryPortal;
 
-	#if UNITY_EDITOR
+#if UNITY_EDITOR
 		[UnityEditor.MenuItem("CONTEXT/Seeker/Add Funnel Modifier")]
 		public static void AddComp (UnityEditor.MenuCommand command) {
 			(command.context as Component).gameObject.AddComponent(typeof(FunnelModifier));
 		}
-	#endif
+#endif
 
 		public override int Order { get { return 10; } }
 
@@ -60,7 +60,7 @@ namespace Pathfinding {
 				return;
 			}
 
-			List<Vector3> funnelPath = ListPool<Vector3>.Claim();
+			List<Vector3> funnelPath = ListPool<Vector3>.Claim ();
 
 			// Split the path into different parts (separated by custom links)
 			// and run the funnel algorithm on each of them in turn
@@ -82,9 +82,9 @@ namespace Pathfinding {
 					var portals = Funnel.ConstructFunnelPortals(p.path, part);
 					var result = Funnel.Calculate(portals, unwrap, splitAtEveryPortal);
 					funnelPath.AddRange(result);
-					ListPool<Vector3>.Release(ref portals.left);
-					ListPool<Vector3>.Release(ref portals.right);
-					ListPool<Vector3>.Release(ref result);
+					ListPool<Vector3>.Release (ref portals.left);
+					ListPool<Vector3>.Release (ref portals.right);
+					ListPool<Vector3>.Release (ref result);
 				} else {
 					// non-link parts will add the start/end points for the adjacent parts.
 					// So if there is no non-link part before this one, then we need to add the start point of the link
@@ -99,9 +99,9 @@ namespace Pathfinding {
 			}
 
 			UnityEngine.Assertions.Assert.IsTrue(funnelPath.Count >= 1);
-			ListPool<Funnel.PathPart>.Release(ref parts);
+			ListPool<Funnel.PathPart>.Release (ref parts);
 			// Pool the previous vectorPath
-			ListPool<Vector3>.Release(ref p.vectorPath);
+			ListPool<Vector3>.Release (ref p.vectorPath);
 			p.vectorPath = funnelPath;
 		}
 	}
