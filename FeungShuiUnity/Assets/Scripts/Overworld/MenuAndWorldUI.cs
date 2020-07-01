@@ -155,7 +155,7 @@ public class MenuAndWorldUI : MonoBehaviour{
         //Set box height
         for(int i=6; i<9; i++) {
             RectTransform rt = AnswerBG[i].GetComponent<RectTransform>();
-            rt.position = new Vector3(rt.position.x, 10*options.Length+40, 0);
+            rt.localPosition = new Vector3(rt.localPosition.x, 10*options.Length-1, 0);
         }
         for (int i = 3; i < 6; i++) {
             RectTransform rt = AnswerBG[i].GetComponent<RectTransform>();
@@ -164,7 +164,7 @@ public class MenuAndWorldUI : MonoBehaviour{
         //Set box width
         for (int i = 2; i <= 8; i+=3) {
             RectTransform rt = AnswerBG[i].GetComponent<RectTransform>();
-            rt.position = new Vector3(6*maxLen+9, rt.position.y, 0);
+            rt.localPosition = new Vector3(6*maxLen, rt.localPosition.y, 0);
         }
         for (int i = 1; i <= 7; i+=3) {
             RectTransform rt = AnswerBG[i].GetComponent<RectTransform>();

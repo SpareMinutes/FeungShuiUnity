@@ -7288,7 +7288,6 @@ MonoBehaviour:
   - {fileID: 4804283068463396293}
   - {fileID: 7142474327712882014}
   - {fileID: 4870514612589984298}
-  selected: {fileID: 0}
 --- !u!114 &7244583257985372691
 MonoBehaviour:
   m_ObjectHideFlags: 0
