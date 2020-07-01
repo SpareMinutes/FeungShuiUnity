@@ -29,13 +29,20 @@ public class Interaction : MonoBehaviour {
                 case StepType.Simple:
                     GameObject.Find("InGameUI").GetComponent<MenuAndWorldUI>().ShowMessage(step.message, true);
                     GameObject.Find("InGameUI").GetComponent<MenuAndWorldUI>().SetActiveInteraction(this);
+                    currStep++;
                     break;
                 case StepType.Battle:
                     GameObject.Find("InGameUI").GetComponent<MenuAndWorldUI>().disableButton();
                     GetComponent<Battle>().StartBattle();
                     break;
+                case StepType.RandomBranch:
+                    int branch = (int)Random.Range(0, step.ints.Length - 0.0000001f);
+                    SetBranch(step.ints[branch]);
+                    break;
+                case StepType.SetStart:
+                    SetStartBranch(step.ints[0]);
+                    break;
             }
-            currStep++;
             return true;
         } catch (System.IndexOutOfRangeException e) {
             //the branch has ended
@@ -52,6 +59,10 @@ public class Interaction : MonoBehaviour {
     public void SetBranch(int branch) {
         currBranch = branch;
         currStep = 0;
+    }
+
+    public void SetStartBranch(int branch) {
+        startBranch = branch;
     }
 
     [System.Serializable]
@@ -72,6 +83,8 @@ public class Interaction : MonoBehaviour {
     public enum StepType {
         Simple, //Message: text to show
         Question, //Message: text to show, Strings: options, Ints: coresponding branch to switch to; Not yet implemented
-        Battle //Ints: branch to play... [0]-upon victory, [1]-upon defeat, [2]-when rematched, [3]-when talked to again after defeat
+        Battle, //Ints: branch to play... [0]-upon victory, [1]-upon defeat, [2]-when rematched, [3]-when talked to again after defeat
+        RandomBranch, //Ints: possible branches
+        SetStart //Ints[0]: New starting branch branch
     }
 }

@@ -9853,11 +9853,27 @@ MonoBehaviour:
   branches:
   - branchName: default
     steps:
+    - message: 
+      strings: []
+      ints: 0100000002000000
+      type: 3
+  - branchName: cave
+    steps:
     - message: Why don't you check out the cave?
       strings: []
       ints: 
       type: 0
     - message: Maybe you'll find something in there.
+      strings: []
+      ints: 
+      type: 0
+  - branchName: house
+    steps:
+    - message: Why don't you check out the southeast house?
+      strings: []
+      ints: 
+      type: 0
+    - message: Just remember to knock first.
       strings: []
       ints: 
       type: 0
@@ -21639,7 +21655,7 @@ MonoBehaviour:
       type: 2
   - branchName: no
     steps:
-    - message: Then get out of my face.
+    - message: Then get outa my face.
       strings: []
       ints: 
       type: 0
