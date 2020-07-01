@@ -42,6 +42,11 @@ public class Interaction : MonoBehaviour {
                 case StepType.SetStart:
                     SetStartBranch(step.ints[0]);
                     break;
+                case StepType.Goto:
+                    currBranch = step.ints[0];
+                    currStep = step.ints[1];
+                    RunStep();
+                    break;
             }
             return true;
         } catch (System.IndexOutOfRangeException e) {
@@ -85,6 +90,7 @@ public class Interaction : MonoBehaviour {
         Question, //Message: text to show, Strings: options, Ints: coresponding branch to switch to; Not yet implemented
         Battle, //Ints: branch to play... [0]-upon victory, [1]-upon defeat, [2]-when rematched, [3]-when talked to again after defeat
         RandomBranch, //Ints: possible branches
-        SetStart //Ints[0]: New starting branch branch
+        SetStart, //Ints[0]: New starting branch branch
+        Goto //Ints[0]: new branch, Ints[1]: new step
     }
 }

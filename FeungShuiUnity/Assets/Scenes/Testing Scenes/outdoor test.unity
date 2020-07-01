@@ -6605,6 +6605,10 @@ MonoBehaviour:
       strings: []
       ints: 
       type: 0
+    - message: 
+      strings: []
+      ints: 0000000000000000
+      type: 5
 --- !u!114 &276649504
 MonoBehaviour:
   m_ObjectHideFlags: 0
