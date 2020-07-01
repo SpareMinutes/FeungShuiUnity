@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -1104,8 +1104,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 483683642}
-  - component: {fileID: 483683641}
   - component: {fileID: 483683640}
+  - component: {fileID: 483683641}
   m_Layer: 0
   m_Name: cooktop
   m_TagString: Interactable
@@ -1148,23 +1148,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 483683639}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4d84136921c6d6b428ec5113d016f4a6, type: 3}
+  m_Script: {fileID: 11500000, guid: 111fba68faa99cd49866c39b03f99e97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onInteract:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 483683641}
-        m_MethodName: UIMessage
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: Mm! Something good is cooking! Stay for dinner?
-          m_BoolArgument: 0
-        m_CallState: 2
+  startBranch: 0
+  branches:
+  - branchName: 
+    steps:
+    - message: Mm! Something good is cooking! Stay for dinner?
+      strings: []
+      ints: 
+      type: 0
 --- !u!4 &483683642
 Transform:
   m_ObjectHideFlags: 0

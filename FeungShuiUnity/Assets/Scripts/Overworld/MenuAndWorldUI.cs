@@ -146,7 +146,7 @@ public class MenuAndWorldUI : MonoBehaviour{
         for (int i=0; i<options.Length; i++) {
             Answers[offset + i].GetComponent<Text>().text = options[i];
             maxLen = Mathf.Max(maxLen, options[i].Length);
-            Answers[i].SetActive(true);
+            Answers[offset + i].SetActive(true);
         }
         for(int i=0; i<offset; i++) {
             Answers[i].GetComponent<Text>().text = "";

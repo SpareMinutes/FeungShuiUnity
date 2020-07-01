@@ -305,18 +305,26 @@ MonoBehaviour:
   tagPenalties: 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
   graphMask:
     value: -1
---- !u!114 &21070998 stripped
+--- !u!114 &21070997
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8318314664364277187, guid: 69093a0667999a44c910cf7374f494cc,
-    type: 3}
-  m_PrefabInstance: {fileID: 306078409}
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 21070995}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4d84136921c6d6b428ec5113d016f4a6, type: 3}
+  m_Script: {fileID: 11500000, guid: 111fba68faa99cd49866c39b03f99e97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  startBranch: 0
+  branches:
+  - branchName: 
+    steps:
+    - message: If you keep heading north from here you'll get into the mountains.
+      strings: []
+      ints: 
+      type: 0
 --- !u!4 &21071003 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7041208782141400047, guid: 69093a0667999a44c910cf7374f494cc,
@@ -7589,7 +7597,7 @@ PrefabInstance:
         type: 3}
       propertyPath: onInteract.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 276649503}
+      objectReference: {fileID: 0}
     - target: {fileID: 8318314664364277187, guid: 69093a0667999a44c910cf7374f494cc,
         type: 3}
       propertyPath: onInteract.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
@@ -7605,7 +7613,8 @@ PrefabInstance:
       propertyPath: ES
       value: 
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8318314664364277187, guid: 69093a0667999a44c910cf7374f494cc, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 69093a0667999a44c910cf7374f494cc, type: 3}
 --- !u!1 &276649502 stripped
 GameObject:
@@ -7613,18 +7622,26 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 276649501}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &276649503 stripped
+--- !u!114 &276649503
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8318314664364277187, guid: 69093a0667999a44c910cf7374f494cc,
-    type: 3}
-  m_PrefabInstance: {fileID: 276649501}
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 276649502}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4d84136921c6d6b428ec5113d016f4a6, type: 3}
+  m_Script: {fileID: 11500000, guid: 111fba68faa99cd49866c39b03f99e97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  startBranch: 0
+  branches:
+  - branchName: 
+    steps:
+    - message: 
+      strings: []
+      ints: 
+      type: 2
 --- !u!114 &276649504
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8286,7 +8303,7 @@ PrefabInstance:
         type: 3}
       propertyPath: onInteract.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 21070998}
+      objectReference: {fileID: 0}
     - target: {fileID: 8318314664364277187, guid: 69093a0667999a44c910cf7374f494cc,
         type: 3}
       propertyPath: onInteract.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
@@ -8309,6 +8326,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 3260618459433251310, guid: 69093a0667999a44c910cf7374f494cc, type: 3}
+    - {fileID: 8318314664364277187, guid: 69093a0667999a44c910cf7374f494cc, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 69093a0667999a44c910cf7374f494cc, type: 3}
 --- !u!1001 &325410394
 PrefabInstance:
@@ -8851,7 +8869,7 @@ PrefabInstance:
         type: 3}
       propertyPath: onInteract.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1435993142}
+      objectReference: {fileID: 0}
     - target: {fileID: 8318314664364277187, guid: 69093a0667999a44c910cf7374f494cc,
         type: 3}
       propertyPath: onInteract.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
@@ -8874,6 +8892,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 3260618459433251310, guid: 69093a0667999a44c910cf7374f494cc, type: 3}
+    - {fileID: 8318314664364277187, guid: 69093a0667999a44c910cf7374f494cc, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 69093a0667999a44c910cf7374f494cc, type: 3}
 --- !u!1 &348534236
 GameObject:
@@ -9514,18 +9533,26 @@ MonoBehaviour:
   tagPenalties: 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
   graphMask:
     value: -1
---- !u!114 &469238899 stripped
+--- !u!114 &469238898
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8318314664364277187, guid: 69093a0667999a44c910cf7374f494cc,
-    type: 3}
-  m_PrefabInstance: {fileID: 1332090776}
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 469238896}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4d84136921c6d6b428ec5113d016f4a6, type: 3}
+  m_Script: {fileID: 11500000, guid: 111fba68faa99cd49866c39b03f99e97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  startBranch: 0
+  branches:
+  - branchName: 
+    steps:
+    - message: Hello! This is our ceramics studio and our kilns.
+      strings: []
+      ints: 
+      type: 0
 --- !u!4 &469238904 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7041208782141400047, guid: 69093a0667999a44c910cf7374f494cc,
@@ -10592,7 +10619,7 @@ PrefabInstance:
         type: 3}
       propertyPath: onInteract.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1385870860}
+      objectReference: {fileID: 0}
     - target: {fileID: 8318314664364277187, guid: 69093a0667999a44c910cf7374f494cc,
         type: 3}
       propertyPath: onInteract.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
@@ -10616,6 +10643,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 3260618459433251310, guid: 69093a0667999a44c910cf7374f494cc, type: 3}
+    - {fileID: 8318314664364277187, guid: 69093a0667999a44c910cf7374f494cc, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 69093a0667999a44c910cf7374f494cc, type: 3}
 --- !u!1 &684256074
 GameObject:
@@ -14532,8 +14560,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1133417229}
-  - component: {fileID: 1133417228}
   - component: {fileID: 1133417227}
+  - component: {fileID: 1133417228}
   m_Layer: 0
   m_Name: old pots (1)
   m_TagString: Interactable
@@ -14588,23 +14616,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 1133417226}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4d84136921c6d6b428ec5113d016f4a6, type: 3}
+  m_Script: {fileID: 11500000, guid: 111fba68faa99cd49866c39b03f99e97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onInteract:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1133417228}
-        m_MethodName: UIMessage
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: Grass and plants grow among old pots.
-          m_BoolArgument: 0
-        m_CallState: 2
+  startBranch: 0
+  branches:
+  - branchName: 
+    steps:
+    - message: Grass and plants grow among old pots.
+      strings: []
+      ints: 
+      type: 0
 --- !u!4 &1133417229
 Transform:
   m_ObjectHideFlags: 0
@@ -14866,8 +14888,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1218576817}
-  - component: {fileID: 1218576816}
   - component: {fileID: 1218576815}
+  - component: {fileID: 1218576816}
   m_Layer: 0
   m_Name: sign
   m_TagString: Interactable
@@ -14910,23 +14932,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 1218576814}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4d84136921c6d6b428ec5113d016f4a6, type: 3}
+  m_Script: {fileID: 11500000, guid: 111fba68faa99cd49866c39b03f99e97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onInteract:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1218576816}
-        m_MethodName: UIMessage
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: Temoku, town of earth and fire
-          m_BoolArgument: 0
-        m_CallState: 2
+  startBranch: 0
+  branches:
+  - branchName: 
+    steps:
+    - message: Temoku, town of earth and fire
+      strings: []
+      ints: 
+      type: 0
 --- !u!4 &1218576817
 Transform:
   m_ObjectHideFlags: 0
@@ -26641,7 +26657,7 @@ PrefabInstance:
         type: 3}
       propertyPath: onInteract.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 469238899}
+      objectReference: {fileID: 0}
     - target: {fileID: 8318314664364277187, guid: 69093a0667999a44c910cf7374f494cc,
         type: 3}
       propertyPath: onInteract.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
@@ -26664,6 +26680,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 3260618459433251310, guid: 69093a0667999a44c910cf7374f494cc, type: 3}
+    - {fileID: 8318314664364277187, guid: 69093a0667999a44c910cf7374f494cc, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 69093a0667999a44c910cf7374f494cc, type: 3}
 --- !u!1 &1339308550
 GameObject:
@@ -26812,18 +26829,27 @@ MonoBehaviour:
   tagPenalties: 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
   graphMask:
     value: -1
---- !u!114 &1385870860 stripped
+--- !u!114 &1385870859
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8318314664364277187, guid: 69093a0667999a44c910cf7374f494cc,
-    type: 3}
-  m_PrefabInstance: {fileID: 641489390}
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1385870857}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4d84136921c6d6b428ec5113d016f4a6, type: 3}
+  m_Script: {fileID: 11500000, guid: 111fba68faa99cd49866c39b03f99e97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  startBranch: 0
+  branches:
+  - branchName: 
+    steps:
+    - message: If this next load comes out good, I'll be off to the Oylispo markets
+        tomorrow.
+      strings: []
+      ints: 
+      type: 0
 --- !u!4 &1385870865 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7041208782141400047, guid: 69093a0667999a44c910cf7374f494cc,
@@ -27112,18 +27138,26 @@ MonoBehaviour:
   tagPenalties: 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
   graphMask:
     value: -1
---- !u!114 &1435993142 stripped
+--- !u!114 &1435993141
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8318314664364277187, guid: 69093a0667999a44c910cf7374f494cc,
-    type: 3}
-  m_PrefabInstance: {fileID: 325410394}
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1435993139}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4d84136921c6d6b428ec5113d016f4a6, type: 3}
+  m_Script: {fileID: 11500000, guid: 111fba68faa99cd49866c39b03f99e97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  startBranch: 0
+  branches:
+  - branchName: 
+    steps:
+    - message: Headed down to Lime Lake? Enjoy!
+      strings: []
+      ints: 
+      type: 0
 --- !u!4 &1435993147 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7041208782141400047, guid: 69093a0667999a44c910cf7374f494cc,
@@ -27314,8 +27348,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1470909118}
-  - component: {fileID: 1470909117}
   - component: {fileID: 1470909116}
+  - component: {fileID: 1470909117}
   m_Layer: 0
   m_Name: old pots
   m_TagString: Interactable
@@ -27368,23 +27402,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 1470909115}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4d84136921c6d6b428ec5113d016f4a6, type: 3}
+  m_Script: {fileID: 11500000, guid: 111fba68faa99cd49866c39b03f99e97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onInteract:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1470909117}
-        m_MethodName: UIMessage
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 'A pile of discarded pottery. '
-          m_BoolArgument: 0
-        m_CallState: 2
+  startBranch: 0
+  branches:
+  - branchName: 
+    steps:
+    - message: 'A pile of discarded pottery. '
+      strings: []
+      ints: 
+      type: 0
 --- !u!4 &1470909118
 Transform:
   m_ObjectHideFlags: 0

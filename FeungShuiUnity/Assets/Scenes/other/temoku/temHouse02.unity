@@ -807,8 +807,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 209085390}
-  - component: {fileID: 209085389}
   - component: {fileID: 209085388}
+  - component: {fileID: 209085389}
   m_Layer: 0
   m_Name: pots
   m_TagString: Interactable
@@ -859,23 +859,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 209085387}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4d84136921c6d6b428ec5113d016f4a6, type: 3}
+  m_Script: {fileID: 11500000, guid: 111fba68faa99cd49866c39b03f99e97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onInteract:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 209085389}
-        m_MethodName: UIMessage
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: All sorts of interesting pots with weird glazes. Experiments?
-          m_BoolArgument: 0
-        m_CallState: 2
+  startBranch: 0
+  branches:
+  - branchName: 
+    steps:
+    - message: All sorts of interesting pots with weird glazes. Experiments?
+      strings: []
+      ints: 
+      type: 0
 --- !u!4 &209085390
 Transform:
   m_ObjectHideFlags: 0
@@ -2498,8 +2492,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1431238822}
-  - component: {fileID: 1431238821}
   - component: {fileID: 1431238820}
+  - component: {fileID: 1431238821}
   m_Layer: 0
   m_Name: window (1)
   m_TagString: Interactable
@@ -2542,23 +2536,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 1431238819}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4d84136921c6d6b428ec5113d016f4a6, type: 3}
+  m_Script: {fileID: 11500000, guid: 111fba68faa99cd49866c39b03f99e97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onInteract:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1431238821}
-        m_MethodName: UIMessage
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: There's a clear view of the kilns up on the hill.
-          m_BoolArgument: 0
-        m_CallState: 2
+  startBranch: 0
+  branches:
+  - branchName: 
+    steps:
+    - message: There's a clear view of the kilns up on the hill.
+      strings: []
+      ints: 
+      type: 0
 --- !u!4 &1431238822
 Transform:
   m_ObjectHideFlags: 0
@@ -2701,8 +2689,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1591448174}
-  - component: {fileID: 1591448173}
   - component: {fileID: 1591448172}
+  - component: {fileID: 1591448173}
   m_Layer: 0
   m_Name: window
   m_TagString: Interactable
@@ -2745,23 +2733,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 1591448171}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4d84136921c6d6b428ec5113d016f4a6, type: 3}
+  m_Script: {fileID: 11500000, guid: 111fba68faa99cd49866c39b03f99e97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onInteract:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1591448173}
-        m_MethodName: UIMessage
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: There's a clear view of the kilns up on the hill.
-          m_BoolArgument: 0
-        m_CallState: 2
+  startBranch: 0
+  branches:
+  - branchName: 
+    steps:
+    - message: There's a clear view of the kilns up on the hill.
+      strings: []
+      ints: 
+      type: 0
 --- !u!4 &1591448174
 Transform:
   m_ObjectHideFlags: 0

@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -17602,7 +17602,7 @@ PrefabInstance:
         type: 3}
       propertyPath: onInteract.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 462162842}
+      objectReference: {fileID: 0}
     - target: {fileID: 8318314664364277187, guid: 69093a0667999a44c910cf7374f494cc,
         type: 3}
       propertyPath: onInteract.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
@@ -17626,6 +17626,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 3260618459433251310, guid: 69093a0667999a44c910cf7374f494cc, type: 3}
+    - {fileID: 8318314664364277187, guid: 69093a0667999a44c910cf7374f494cc, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 69093a0667999a44c910cf7374f494cc, type: 3}
 --- !u!1001 &183157535
 PrefabInstance:
@@ -17999,18 +18000,27 @@ MonoBehaviour:
   tagPenalties: 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
   graphMask:
     value: -1
---- !u!114 &462162842 stripped
+--- !u!114 &462162841
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8318314664364277187, guid: 69093a0667999a44c910cf7374f494cc,
-    type: 3}
-  m_PrefabInstance: {fileID: 173596977}
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 462162838}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4d84136921c6d6b428ec5113d016f4a6, type: 3}
+  m_Script: {fileID: 11500000, guid: 111fba68faa99cd49866c39b03f99e97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  startBranch: 0
+  branches:
+  - branchName: 
+    steps:
+    - message: If I don't pull these weeds out, they'll become monsters and eat me
+        in my sleep!
+      strings: []
+      ints: 
+      type: 0
 --- !u!1 &712508049
 GameObject:
   m_ObjectHideFlags: 0
@@ -68351,8 +68361,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1260026857}
-  - component: {fileID: 1260026856}
   - component: {fileID: 1260026855}
+  - component: {fileID: 1260026856}
   m_Layer: 0
   m_Name: silk sign
   m_TagString: Interactable
@@ -68395,23 +68405,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 1260026854}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4d84136921c6d6b428ec5113d016f4a6, type: 3}
+  m_Script: {fileID: 11500000, guid: 111fba68faa99cd49866c39b03f99e97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onInteract:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1260026856}
-        m_MethodName: UIMessage
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: Perdice Silk, farming fine faberics
-          m_BoolArgument: 0
-        m_CallState: 2
+  startBranch: 0
+  branches:
+  - branchName: 
+    steps:
+    - message: Perdice Silk, farming fine faberics
+      strings: []
+      ints: 
+      type: 0
 --- !u!4 &1260026857
 Transform:
   m_ObjectHideFlags: 0
@@ -68604,8 +68608,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1855814990}
-  - component: {fileID: 1855814989}
   - component: {fileID: 1855814988}
+  - component: {fileID: 1855814989}
   m_Layer: 0
   m_Name: sign
   m_TagString: Interactable
@@ -68648,23 +68652,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 1855814987}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4d84136921c6d6b428ec5113d016f4a6, type: 3}
+  m_Script: {fileID: 11500000, guid: 111fba68faa99cd49866c39b03f99e97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onInteract:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1855814989}
-        m_MethodName: UIMessage
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: Perdice, town of silk and soil
-          m_BoolArgument: 0
-        m_CallState: 2
+  startBranch: 0
+  branches:
+  - branchName: 
+    steps:
+    - message: Perdice, town of silk and soil
+      strings: []
+      ints: 
+      type: 0
 --- !u!4 &1855814990
 Transform:
   m_ObjectHideFlags: 0

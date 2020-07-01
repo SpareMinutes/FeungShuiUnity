@@ -662,7 +662,7 @@ PrefabInstance:
         type: 3}
       propertyPath: onInteract.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1747764871}
+      objectReference: {fileID: 0}
     - target: {fileID: 8318314664364277187, guid: 69093a0667999a44c910cf7374f494cc,
         type: 3}
       propertyPath: onInteract.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
@@ -698,7 +698,8 @@ PrefabInstance:
       propertyPath: onInteract.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
       objectReference: {fileID: 1747764867}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8318314664364277187, guid: 69093a0667999a44c910cf7374f494cc, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 69093a0667999a44c910cf7374f494cc, type: 3}
 --- !u!4 &60721093 stripped
 Transform:
@@ -6533,7 +6534,7 @@ PrefabInstance:
         type: 3}
       propertyPath: onInteract.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 276649503}
+      objectReference: {fileID: 0}
     - target: {fileID: 8318314664364277187, guid: 69093a0667999a44c910cf7374f494cc,
         type: 3}
       propertyPath: onInteract.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
@@ -6549,7 +6550,8 @@ PrefabInstance:
       propertyPath: ES
       value: 
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8318314664364277187, guid: 69093a0667999a44c910cf7374f494cc, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 69093a0667999a44c910cf7374f494cc, type: 3}
 --- !u!1 &276649502 stripped
 GameObject:
@@ -6557,18 +6559,52 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 276649501}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &276649503 stripped
+--- !u!114 &276649503
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8318314664364277187, guid: 69093a0667999a44c910cf7374f494cc,
-    type: 3}
-  m_PrefabInstance: {fileID: 276649501}
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 276649502}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4d84136921c6d6b428ec5113d016f4a6, type: 3}
+  m_Script: {fileID: 11500000, guid: 111fba68faa99cd49866c39b03f99e97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  startBranch: 0
+  branches:
+  - branchName: start
+    steps:
+    - message: Okay, first I'm gonna say some stuff. Then I'm gonna ask you a question.
+      strings: []
+      ints: 
+      type: 0
+    - message: Did you get all that?
+      strings:
+      - Yes
+      - No
+      ints: 0100000002000000
+      type: 1
+  - branchName: Yes
+    steps:
+    - message: Okay! Great!
+      strings: []
+      ints: 
+      type: 0
+    - message: 'That was all, we''re gonna battle now. '
+      strings: []
+      ints: 
+      type: 0
+    - message: 
+      strings: []
+      ints: 
+      type: 2
+  - branchName: No
+    steps:
+    - message: Okay, here we go again.
+      strings: []
+      ints: 
+      type: 0
 --- !u!114 &276649504
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9869,8 +9905,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1218576817}
-  - component: {fileID: 1218576816}
   - component: {fileID: 1218576815}
+  - component: {fileID: 1218576818}
   m_Layer: 0
   m_Name: sign
   m_TagString: Interactable
@@ -9904,32 +9940,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 16, y: 16}
   m_EdgeRadius: 0
---- !u!114 &1218576816
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1218576814}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4d84136921c6d6b428ec5113d016f4a6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  onInteract:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1218576816}
-        m_MethodName: UIMessage
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: Welcome to the outdoor test area!
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!4 &1218576817
 Transform:
   m_ObjectHideFlags: 0
@@ -9944,6 +9954,73 @@ Transform:
   m_Father: {fileID: 1591191731}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1218576818
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1218576814}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 111fba68faa99cd49866c39b03f99e97, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startBranch: 0
+  branches:
+  - branchName: text
+    steps:
+    - message: Welcome to the outdoor test area!
+      strings: []
+      ints: 
+      type: 0
+    - message: 'This is the area where we test things outdoors! '
+      strings: []
+      ints: 
+      type: 0
+    - message: 'For example: '
+      strings: []
+      ints: 
+      type: 0
+    - message: Would you like to know about what's north, south, east, or west?
+      strings:
+      - North
+      - South
+      - East
+      - West
+      - I don't really care much.
+      ints: 0100000002000000030000000400000005000000
+      type: 1
+  - branchName: North
+    steps:
+    - message: Really there's not much, it's just a test area after all.
+      strings: []
+      ints: 
+      type: 0
+  - branchName: South
+    steps:
+    - message: Really there's not much, it's just a test area after all.
+      strings: []
+      ints: 
+      type: 0
+  - branchName: East
+    steps:
+    - message: Really there's not much, it's just a test area after all.
+      strings: []
+      ints: 
+      type: 0
+  - branchName: West
+    steps:
+    - message: Really there's not much, it's just a test area after all.
+      strings: []
+      ints: 
+      type: 0
+  - branchName: I don't really care much.
+    steps:
+    - message: The sign sighs, looking slightly dejected.
+      strings: []
+      ints: 
+      type: 0
 --- !u!1 &1240128781
 GameObject:
   m_ObjectHideFlags: 0
@@ -20589,7 +20666,7 @@ PrefabInstance:
         type: 3}
       propertyPath: onInteract.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1833291136}
+      objectReference: {fileID: 0}
     - target: {fileID: 8318314664364277187, guid: 69093a0667999a44c910cf7374f494cc,
         type: 3}
       propertyPath: onInteract.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
@@ -20615,7 +20692,8 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8318314664364277187, guid: 69093a0667999a44c910cf7374f494cc, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 69093a0667999a44c910cf7374f494cc, type: 3}
 --- !u!4 &1422368483 stripped
 Transform:
@@ -20736,7 +20814,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 1
   data:
-    dataString: UEsDBBQAAAgIAACYn+shZnxSWgIAAAEFAAALACQAZ3JhcGgwLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQF1VE1z2jAQ/SuMzg1jICS4t9YhpAcSJqSTiy/CWmMNsuTRR/ga/ntXso1dOj1Zfu/t7tvV2mfCpakgs0ovNGdLxYB8HxB/Jt8GHfkCB7pVcs1P0Go+ObOFF9GgeaeWK8RHPsyoEqzm2Q+5FV4cIegkz5Uu52wLiTLWIJxTYQAprayPlgidB+SAj7vYhxzxNH70pxOe4mhwwWMG0oLupK2wldUqJzNBywqYt9yJJ6N4MnxoIuqXIJfYVKMcTYfxw8wXUkJw09gi9liFthNaGYdNoYBxim0GL9EwRqAAvi2sN90Pf8tzA7ZxqOnxiWucV52X/FT1EEtqdrXNLyqcrzSe1tbqpMt/+LtRoHOtype27ijyNWzBs907PWbU2N6U+/BTZ30UprWnYkc3Aj4LkK9qoZWTDEmrnQ91BsZP3eu1taSAbNfhtdUb0FX/vyvfwyV0f0gELzdhkvc1sBYqTDxsAmi8oF9oOOyJaVIg6l38NvBBt/2Faohnro1FqulSensb5bSXknmYme/G2URpCQFuTFcgqbDHFaaxt1d4w/XK3jDP1H86TfGGa7+Im5AAd/oouqFWan+9LFOo/RJM8eas4BI60554xTklSsp6w/ozacPWTuc064VtHWd/rxaJp3TKNlHG2GZyP3vM73J4HG8iiGfjaZbndELC7nGJfVKxqo0248Fbk11yiXvW/lEGC02rsO1M0/2Cn0rVGzmXuVpnGkC+1RmuxkFjEfw42ZxxHNAarOUy3Dc5p0SobAcsvSZKQ6fzg9U07bKkpOJfynokJUn4haTkQi5/AFBLAwQUAAAICAAAmJ/r5RL4dG0AAAB4AAAACQAkAG1ldGEuanNvbgoAIAAAAAAAAQAYAACAPtXesZ0BAIA+1d6xnQEAgD7V3rGdAatWKkstKs7Mz1OyUjDRM9IzNNVRUEovSizIKAaKGII4pZkpIHa0kqVpomlKkkFySkqSsYmFeZpuWqq5UZJBqqWFkWlyWlqisVIsUH1JZUGqX2JuKkRPQGJJRlpmXkpmXrqee1FmijvIaKXYWgBQSwECLQAUAAAICAAAmJ/rIWZ8UloCAAABBQAACwAkAAAAAAAAAAAAAAAAAAAAZ3JhcGgwLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQFQSwECLQAUAAAICAAAmJ/r5RL4dG0AAAB4AAAACQAkAAAAAAAAAAAAAACnAgAAbWV0YS5qc29uCgAgAAAAAAABABgAAIA+1d6xnQEAgD7V3rGdAQCAPtXesZ0BUEsFBgAAAAACAAIAuAAAAF8DAAAAAA==
+    dataString: UEsDBBQAAAgIAACAn+shZnxSWgIAAAEFAAALACQAZ3JhcGgwLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQF1VE1z2jAQ/SuMzg1jICS4t9YhpAcSJqSTiy/CWmMNsuTRR/ga/ntXso1dOj1Zfu/t7tvV2mfCpakgs0ovNGdLxYB8HxB/Jt8GHfkCB7pVcs1P0Go+ObOFF9GgeaeWK8RHPsyoEqzm2Q+5FV4cIegkz5Uu52wLiTLWIJxTYQAprayPlgidB+SAj7vYhxzxNH70pxOe4mhwwWMG0oLupK2wldUqJzNBywqYt9yJJ6N4MnxoIuqXIJfYVKMcTYfxw8wXUkJw09gi9liFthNaGYdNoYBxim0GL9EwRqAAvi2sN90Pf8tzA7ZxqOnxiWucV52X/FT1EEtqdrXNLyqcrzSe1tbqpMt/+LtRoHOtype27ijyNWzBs907PWbU2N6U+/BTZ30UprWnYkc3Aj4LkK9qoZWTDEmrnQ91BsZP3eu1taSAbNfhtdUb0FX/vyvfwyV0f0gELzdhkvc1sBYqTDxsAmi8oF9oOOyJaVIg6l38NvBBt/2Faohnro1FqulSensb5bSXknmYme/G2URpCQFuTFcgqbDHFaaxt1d4w/XK3jDP1H86TfGGa7+Im5AAd/oouqFWan+9LFOo/RJM8eas4BI60554xTklSsp6w/ozacPWTuc064VtHWd/rxaJp3TKNlHG2GZyP3vM73J4HG8iiGfjaZbndELC7nGJfVKxqo0248Fbk11yiXvW/lEGC02rsO1M0/2Cn0rVGzmXuVpnGkC+1RmuxkFjEfw42ZxxHNAarOUy3Dc5p0SobAcsvSZKQ6fzg9U07bKkpOJfynokJUn4haTkQi5/AFBLAwQUAAAICAAAgJ/r5RL4dG0AAAB4AAAACQAkAG1ldGEuanNvbgoAIAAAAAAAAQAYAACAPtXesZ0BAIA+1d6xnQEAgD7V3rGdAatWKkstKs7Mz1OyUjDRM9IzNNVRUEovSizIKAaKGII4pZkpIHa0kqVpomlKkkFySkqSsYmFeZpuWqq5UZJBqqWFkWlyWlqisVIsUH1JZUGqX2JuKkRPQGJJRlpmXkpmXrqee1FmijvIaKXYWgBQSwECLQAUAAAICAAAgJ/rIWZ8UloCAAABBQAACwAkAAAAAAAAAAAAAAAAAAAAZ3JhcGgwLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQFQSwECLQAUAAAICAAAgJ/r5RL4dG0AAAB4AAAACQAkAAAAAAAAAAAAAACnAgAAbWV0YS5qc29uCgAgAAAAAAABABgAAIA+1d6xnQEAgD7V3rGdAQCAPtXesZ0BUEsFBgAAAAACAAIAuAAAAF8DAAAAAA==
     upgradeData: 
     file_cachedStartup: {fileID: 0}
     data_cachedStartup: 
@@ -21459,18 +21537,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nextWaypointDistance: 6.5
   bounds: {fileID: 1417259446}
---- !u!114 &1747764871 stripped
+--- !u!114 &1747764871
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8318314664364277187, guid: 69093a0667999a44c910cf7374f494cc,
-    type: 3}
-  m_PrefabInstance: {fileID: 60721092}
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1747764867}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4d84136921c6d6b428ec5113d016f4a6, type: 3}
+  m_Script: {fileID: 11500000, guid: 111fba68faa99cd49866c39b03f99e97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  startBranch: 0
+  branches:
+  - branchName: 
+    steps:
+    - message: 
+      strings: []
+      ints: 
+      type: 2
 --- !u!1 &1833291131 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7041208782141400035, guid: 69093a0667999a44c910cf7374f494cc,
@@ -21583,18 +21669,6 @@ MonoBehaviour:
       strings: []
       ints: 
       type: 0
---- !u!114 &1833291136 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8318314664364277187, guid: 69093a0667999a44c910cf7374f494cc,
-    type: 3}
-  m_PrefabInstance: {fileID: 1422368482}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1833291131}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4d84136921c6d6b428ec5113d016f4a6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1889817023
 GameObject:
   m_ObjectHideFlags: 0
