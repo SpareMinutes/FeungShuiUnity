@@ -41,6 +41,7 @@ public class Interaction : MonoBehaviour {
                     break;
                 case StepType.SetStart:
                     SetStartBranch(step.ints[0]);
+                    RunStep();
                     break;
                 case StepType.Goto:
                     currBranch = step.ints[0];
