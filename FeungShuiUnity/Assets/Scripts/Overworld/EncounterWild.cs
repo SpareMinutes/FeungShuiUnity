@@ -9,7 +9,7 @@ public class EncounterWild : MonoBehaviour{
     private Tilemap Background;
     private float Counter;
     [SerializeField]
-    private EventTrigger Trigger;
+    private Battle Player;
 
     public void Start(){
         Counter = 0;
@@ -28,7 +28,7 @@ public class EncounterWild : MonoBehaviour{
             float roll = Random.Range(0f, 1f);
             Debug.Log("Rolled for encounter on " + type);
             if (roll < rate)
-                Trigger.StartBattle();
+                Player.StartBattle();
             Counter -= 1;
         }
     }   

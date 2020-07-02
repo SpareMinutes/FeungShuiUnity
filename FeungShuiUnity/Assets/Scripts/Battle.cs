@@ -3,7 +3,7 @@ using UnityEngine.SceneManagement;
 
 public class Battle : MonoBehaviour{
     public Creature[] Party;
-    private Creature[] PlayerParty;
+    private Creature[] PlayerParty, OpposingParty;
 
     // Start is called before the first frame update
     void Start(){
@@ -21,6 +21,12 @@ public class Battle : MonoBehaviour{
         Time.timeScale = 0;
         GameObject.Find("WalkableCharacter").transform.GetChild(0).gameObject.SetActive(false);
         SceneManager.LoadSceneAsync("Battle_GUI", LoadSceneMode.Additive);
+    }
+
+    public void StartTrainerBattle() {
+        OpposingParty = GetComponentInParent<Battle>().Party;
+        PlayerParty = GameObject.Find("WalkableCharacter").GetComponent<Battle>().Party;
+        StartBattle();
         SceneManager.sceneLoaded += LoadParties;
     }
 

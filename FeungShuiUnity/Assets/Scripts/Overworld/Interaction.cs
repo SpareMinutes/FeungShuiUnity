@@ -33,7 +33,7 @@ public class Interaction : MonoBehaviour {
                     break;
                 case StepType.Battle:
                     GameObject.Find("InGameUI").GetComponent<MenuAndWorldUI>().disableButton();
-                    GetComponent<Battle>().StartBattle();
+                    GetComponent<Battle>().StartTrainerBattle();
                     break;
                 case StepType.RandomBranch:
                     int branch = (int)Random.Range(0, step.ints.Length - 0.0000001f);

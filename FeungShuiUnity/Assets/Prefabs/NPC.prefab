@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 7041208782141400045}
   - component: {fileID: 465495010}
   - component: {fileID: 2443570463832303523}
-  - component: {fileID: 8318314664364277187}
   - component: {fileID: 3260618459433251310}
   - component: {fileID: 5130397813065119071}
   m_Layer: 0
@@ -52,6 +51,7 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -144,23 +144,6 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 12, y: 16}
   m_Direction: 0
---- !u!114 &8318314664364277187
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7041208782141400035}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4d84136921c6d6b428ec5113d016f4a6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  onInteract:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
 --- !u!114 &3260618459433251310
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -173,7 +156,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bcb1ff0bcdca9404781909aca7ab6e7f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  party: []
+  Party: []
 --- !u!61 &5130397813065119071
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -25,14 +25,10 @@ public class Interact : MonoBehaviour{
             area.GetComponent<PolygonCollider2D>().OverlapCollider(filter, lookedAt);
             
             foreach(Collider2D coll in lookedAt){
-                EventTrigger e = coll.GetComponent<EventTrigger>();
                 Interaction i = coll.GetComponent<Interaction>();
                 //checking the object exists in-game and has the Interactable tag
                 if (i != null && coll.gameObject.tag.Equals("Interactable")) {
                     i.RunStep();
-                    break;
-                }else if (e != null && coll.gameObject.tag.Equals("Interactable")) {
-                    e.onInteract.Invoke();
                     break;
                 }
             }
