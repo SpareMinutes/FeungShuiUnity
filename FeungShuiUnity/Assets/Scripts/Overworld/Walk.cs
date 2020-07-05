@@ -14,11 +14,11 @@ public class Walk : MonoBehaviour{
 
     void Start() {
         if (PersistentStats.PlayerHasMoved) {
-            gameObject.transform.position = new Vector2(PersistentStats.PlayerPosX, PersistentStats.PlayerPosY);
+            gameObject.transform.position = new Vector3(PersistentStats.PlayerPosX, PersistentStats.PlayerPosY, -1);
             gameObject.GetComponent<Animator>().SetInteger("angle", PersistentStats.PlayerRotation);
             PersistentStats.PlayerHasMoved = false;
         } else if (PersistentStats.SceneChanged) {
-            gameObject.transform.position = new Vector2(PersistentStats.SceneChangePosX, PersistentStats.SceneChangePosY);
+            gameObject.transform.position = new Vector3(PersistentStats.SceneChangePosX, PersistentStats.SceneChangePosY, -1);
             gameObject.GetComponent<Animator>().SetInteger("angle", 90);
             PersistentStats.SceneChanged = false;
         }
