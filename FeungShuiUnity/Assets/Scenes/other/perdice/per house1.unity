@@ -679,11 +679,6 @@ PrefabInstance:
       propertyPath: ES
       value: 
       objectReference: {fileID: 0}
-    - target: {fileID: 8863851292449889813, guid: 60a912dff5e9e784aa77429c0e38e37f,
-        type: 3}
-      propertyPath: speed
-      value: 7
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 60a912dff5e9e784aa77429c0e38e37f, type: 3}
 --- !u!1 &183157536 stripped
@@ -851,7 +846,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 255790188}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -49.555748, y: 27.11148, z: -290.50742}
+  m_LocalPosition: {x: -49.555748, y: 27.11148, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1944244483}
@@ -912,7 +907,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.17743015, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -923,7 +918,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 6.322775, y: 1}
   m_EdgeRadius: 0
 --- !u!4 &340606742
 Transform:
@@ -933,7 +928,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 340606739}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 25.655748, y: 13.788521, z: -2803.1802}
+  m_LocalPosition: {x: 25.655748, y: 13.788521, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 255790189}
@@ -1125,7 +1120,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: -0.2365551}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -1136,7 +1131,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1, y: 11.645573}
   m_EdgeRadius: 0
 --- !u!4 &354101122
 Transform:
@@ -1146,7 +1141,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 354101119}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 115.35575, y: -18.41148, z: -2803.1802}
+  m_LocalPosition: {x: 115.35575, y: -18.41148, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 255790189}
@@ -2434,7 +2429,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1257874449}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 57.75575, y: -79.11148, z: -285.36758}
+  m_LocalPosition: {x: 57.75575, y: -79.11148, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 255790189}
@@ -2473,7 +2468,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 1
   data:
-    dataString: UEsDBBQAAAgIAACAn+shZnxSWgIAAAEFAAALACQAZ3JhcGgwLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQF1VE1z2jAQ/SuMzg1jICS4t9YhpAcSJqSTiy/CWmMNsuTRR/ga/ntXso1dOj1Zfu/t7tvV2mfCpakgs0ovNGdLxYB8HxB/Jt8GHfkCB7pVcs1P0Go+ObOFF9GgeaeWK8RHPsyoEqzm2Q+5FV4cIegkz5Uu52wLiTLWIJxTYQAprayPlgidB+SAj7vYhxzxNH70pxOe4mhwwWMG0oLupK2wldUqJzNBywqYt9yJJ6N4MnxoIuqXIJfYVKMcTYfxw8wXUkJw09gi9liFthNaGYdNoYBxim0GL9EwRqAAvi2sN90Pf8tzA7ZxqOnxiWucV52X/FT1EEtqdrXNLyqcrzSe1tbqpMt/+LtRoHOtype27ijyNWzBs907PWbU2N6U+/BTZ30UprWnYkc3Aj4LkK9qoZWTDEmrnQ91BsZP3eu1taSAbNfhtdUb0FX/vyvfwyV0f0gELzdhkvc1sBYqTDxsAmi8oF9oOOyJaVIg6l38NvBBt/2Faohnro1FqulSensb5bSXknmYme/G2URpCQFuTFcgqbDHFaaxt1d4w/XK3jDP1H86TfGGa7+Im5AAd/oouqFWan+9LFOo/RJM8eas4BI60554xTklSsp6w/ozacPWTuc064VtHWd/rxaJp3TKNlHG2GZyP3vM73J4HG8iiGfjaZbndELC7nGJfVKxqo0248Fbk11yiXvW/lEGC02rsO1M0/2Cn0rVGzmXuVpnGkC+1RmuxkFjEfw42ZxxHNAarOUy3Dc5p0SobAcsvSZKQ6fzg9U07bKkpOJfynokJUn4haTkQi5/AFBLAwQUAAAICAAAgJ/r8Es69WwAAAB3AAAACQAkAG1ldGEuanNvbgoAIAAAAAAAAQAYAACAPtXesZ0BAIA+1d6xnQEAgD7V3rGdAatWKkstKs7Mz1OyUjDRM9Kz0FFQSi9KLMgoBgoYgjilmSkgdrSSpWmiaUqSQXJKSpKxiYV5mm5aqrlRkkGqpYWRaXJaWqKxUixQfUllQapfYm4qRE9AYklGWmZeSmZeup57UWaKO8hopdhaAFBLAQItABQAAAgIAACAn+shZnxSWgIAAAEFAAALACQAAAAAAAAAAAAAAAAAAABncmFwaDAuanNvbgoAIAAAAAAAAQAYAACAPtXesZ0BAIA+1d6xnQEAgD7V3rGdAVBLAQItABQAAAgIAACAn+vwSzr1bAAAAHcAAAAJACQAAAAAAAAAAAAAAKcCAABtZXRhLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQFQSwUGAAAAAAIAAgC4AAAAXgMAAAAA
+    dataString: UEsDBBQAAAgIAACAn+shZnxSWgIAAAEFAAALACQAZ3JhcGgwLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQF1VE1z2jAQ/SuMzg1jICS4t9YhpAcSJqSTiy/CWmMNsuTRR/ga/ntXso1dOj1Zfu/t7tvV2mfCpakgs0ovNGdLxYB8HxB/Jt8GHfkCB7pVcs1P0Go+ObOFF9GgeaeWK8RHPsyoEqzm2Q+5FV4cIegkz5Uu52wLiTLWIJxTYQAprayPlgidB+SAj7vYhxzxNH70pxOe4mhwwWMG0oLupK2wldUqJzNBywqYt9yJJ6N4MnxoIuqXIJfYVKMcTYfxw8wXUkJw09gi9liFthNaGYdNoYBxim0GL9EwRqAAvi2sN90Pf8tzA7ZxqOnxiWucV52X/FT1EEtqdrXNLyqcrzSe1tbqpMt/+LtRoHOtype27ijyNWzBs907PWbU2N6U+/BTZ30UprWnYkc3Aj4LkK9qoZWTDEmrnQ91BsZP3eu1taSAbNfhtdUb0FX/vyvfwyV0f0gELzdhkvc1sBYqTDxsAmi8oF9oOOyJaVIg6l38NvBBt/2Faohnro1FqulSensb5bSXknmYme/G2URpCQFuTFcgqbDHFaaxt1d4w/XK3jDP1H86TfGGa7+Im5AAd/oouqFWan+9LFOo/RJM8eas4BI60554xTklSsp6w/ozacPWTuc064VtHWd/rxaJp3TKNlHG2GZyP3vM73J4HG8iiGfjaZbndELC7nGJfVKxqo0248Fbk11yiXvW/lEGC02rsO1M0/2Cn0rVGzmXuVpnGkC+1RmuxkFjEfw42ZxxHNAarOUy3Dc5p0SobAcsvSZKQ6fzg9U07bKkpOJfynokJUn4haTkQi5/AFBLAwQUAAAICAAAgJ/r5RL4dG0AAAB4AAAACQAkAG1ldGEuanNvbgoAIAAAAAAAAQAYAACAPtXesZ0BAIA+1d6xnQEAgD7V3rGdAatWKkstKs7Mz1OyUjDRM9IzNNVRUEovSizIKAaKGII4pZkpIHa0kqVpomlKkkFySkqSsYmFeZpuWqq5UZJBqqWFkWlyWlqisVIsUH1JZUGqX2JuKkRPQGJJRlpmXkpmXrqee1FmijvIaKXYWgBQSwECLQAUAAAICAAAgJ/rIWZ8UloCAAABBQAACwAkAAAAAAAAAAAAAAAAAAAAZ3JhcGgwLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQFQSwECLQAUAAAICAAAgJ/r5RL4dG0AAAB4AAAACQAkAAAAAAAAAAAAAACnAgAAbWV0YS5qc29uCgAgAAAAAAABABgAAIA+1d6xnQEAgD7V3rGdAQCAPtXesZ0BUEsFBgAAAAACAAIAuAAAAF8DAAAAAA==
     upgradeData: 
     file_cachedStartup: {fileID: 0}
     data_cachedStartup: 
@@ -3091,7 +3086,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1944244481}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 43.95575, y: 29.28852, z: 114.02016}
+  m_LocalPosition: {x: 43.95575, y: 29.28852, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 255790189}
