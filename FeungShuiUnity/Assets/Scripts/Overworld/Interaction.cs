@@ -14,7 +14,6 @@ public class Interaction : MonoBehaviour {
     }
 
     public bool RunStep() {
-        Debug.Log(currBranch + "-" + currStep);
         try {
             InteractionStep step = branches[currBranch].steps[currStep];
             switch (step.type) {
@@ -52,10 +51,13 @@ public class Interaction : MonoBehaviour {
                     RunStep();
                     break;
                 case StepType.SetMusic:
-                    AudioSource source = GameObject.Find("Music").GetComponent<AudioSource>();
-                    if (source != null) {
-                        source.clip = step.Obj == null ? null : (AudioClip)step.Obj;
-                        source.Play();
+                    AudioSource source = GameObject.Find(step.strings[0]).GetComponent<AudioSource>();
+                    if (source != null){
+                        source.volume = step.ints[0] / 1000.0f;
+                        if (source.clip==null || !source.clip.Equals(step.Obj)) {
+                            source.clip = step.Obj == null ? null : (AudioClip)step.Obj;
+                            source.Play();
+                        }
                     }
                     currStep++;
                     RunStep();
@@ -107,6 +109,6 @@ public class Interaction : MonoBehaviour {
         RandomBranch, //Ints: possible branches
         SetStart, //Ints[0]: New starting branch branch
         Goto, //Ints[0]: new branch, Ints[1]: new step
-        SetMusic //Obj:
+        SetMusic //Ints[0]: the new volume in tenths of a percent (1000=100%), Strings[0]: the name of the audio source object, //Obj: the sound track
     }
 }
