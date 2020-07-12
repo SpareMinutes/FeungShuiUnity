@@ -14,6 +14,7 @@ public class Interaction : MonoBehaviour {
     }
 
     public bool RunStep() {
+        Debug.Log(currBranch + "-" + currStep);
         try {
             InteractionStep step = branches[currBranch].steps[currStep];
             switch (step.type) {
@@ -38,9 +39,11 @@ public class Interaction : MonoBehaviour {
                 case StepType.RandomBranch:
                     int branch = (int)Random.Range(0, step.ints.Length - 0.0000001f);
                     SetBranch(step.ints[branch]);
+                    RunStep();
                     break;
                 case StepType.SetStart:
                     SetStartBranch(step.ints[0]);
+                    currStep++;
                     RunStep();
                     break;
                 case StepType.Goto:
@@ -48,11 +51,21 @@ public class Interaction : MonoBehaviour {
                     currStep = step.ints[1];
                     RunStep();
                     break;
+                case StepType.SetMusic:
+                    AudioSource source = GameObject.Find("Music").GetComponent<AudioSource>();
+                    if (source != null) {
+                        source.clip = step.Obj == null ? null : (AudioClip)step.Obj;
+                        source.Play();
+                    }
+                    currStep++;
+                    RunStep();
+                    break;
             }
             return true;
         } catch (System.IndexOutOfRangeException e) {
             //the branch has ended
             SetBranch(startBranch);
+            GameObject.Find("InGameUI").GetComponent<MenuAndWorldUI>().disableButton();
             return false;
         }
     }
@@ -84,6 +97,7 @@ public class Interaction : MonoBehaviour {
         public string[] strings;
         public int[] ints;
         public StepType type;
+        public Object Obj;
     }
 
     public enum StepType {
@@ -92,6 +106,7 @@ public class Interaction : MonoBehaviour {
         Battle, //Ints: branch to play... [0]-upon victory, [1]-upon defeat, [2]-when rematched, [3]-when talked to again after defeat
         RandomBranch, //Ints: possible branches
         SetStart, //Ints[0]: New starting branch branch
-        Goto //Ints[0]: new branch, Ints[1]: new step
+        Goto, //Ints[0]: new branch, Ints[1]: new step
+        SetMusic //Obj:
     }
 }

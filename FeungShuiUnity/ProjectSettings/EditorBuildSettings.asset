@@ -6,11 +6,14 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Testing Scenes/outdoor test.unity
-    guid: 51f1f960de065214d8b578429c16d053
+    path: Assets/Scenes/other/temoku/temoku.unity
+    guid: e3232af4af02c98499ab1014d0874231
   - enabled: 0
     path: Assets/Scenes/old maps/TestEnvironment.unity
     guid: aede70f0ae2b0b54f8f23804a350afa7
+  - enabled: 1
+    path: Assets/Scenes/Testing Scenes/outdoor test.unity
+    guid: 51f1f960de065214d8b578429c16d053
   - enabled: 1
     path: Assets/Scenes/old maps/map G6 riverside town.unity
     guid: 8a8b7b798d553034cba8fb50a618d654
@@ -29,9 +32,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Testing Scenes/cave test area.unity
     guid: b56a9ec09c1269b43acf3ef853a680fd
-  - enabled: 1
-    path: Assets/Scenes/other/temoku/temoku.unity
-    guid: e3232af4af02c98499ab1014d0874231
   - enabled: 1
     path: Assets/Scenes/other/temoku/temHouse01.unity
     guid: 6c1dfa6f766f39141a0ae416a09ff210

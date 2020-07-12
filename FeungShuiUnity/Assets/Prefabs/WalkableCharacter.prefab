@@ -283,6 +283,7 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 0, y: 0}
-      - {x: -10, y: -20}
-      - {x: 10, y: -20}
+    - - {x: 8, y: -16}
+      - {x: 0, y: 0}
+      - {x: -8, y: -16}
+      - {x: 0, y: -20}
