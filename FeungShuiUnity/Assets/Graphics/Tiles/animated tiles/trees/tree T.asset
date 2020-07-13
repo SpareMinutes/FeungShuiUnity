@@ -41,6 +41,8 @@ MonoBehaviour:
   - {fileID: 5087077730003017029, guid: 6c99349191b500746aeb4450a6fac349, type: 3}
   - {fileID: 5087077730003017029, guid: 6c99349191b500746aeb4450a6fac349, type: 3}
   - {fileID: 5087077730003017029, guid: 6c99349191b500746aeb4450a6fac349, type: 3}
+  - {fileID: 5087077730003017029, guid: 6c99349191b500746aeb4450a6fac349, type: 3}
+  - {fileID: 5087077730003017029, guid: 6c99349191b500746aeb4450a6fac349, type: 3}
   m_MinSpeed: 5
   m_MaxSpeed: 5
   m_AnimationStartTime: 0

@@ -40,6 +40,8 @@ MonoBehaviour:
   - {fileID: -3706988898395808339, guid: d4eee0d4f2798dd408470413104803ad, type: 3}
   - {fileID: -3706988898395808339, guid: d4eee0d4f2798dd408470413104803ad, type: 3}
   - {fileID: -3706988898395808339, guid: d4eee0d4f2798dd408470413104803ad, type: 3}
+  - {fileID: -3706988898395808339, guid: d4eee0d4f2798dd408470413104803ad, type: 3}
+  - {fileID: -3706988898395808339, guid: d4eee0d4f2798dd408470413104803ad, type: 3}
   - {fileID: -5273173876129491976, guid: d4eee0d4f2798dd408470413104803ad, type: 3}
   m_MinSpeed: 5
   m_MaxSpeed: 5
