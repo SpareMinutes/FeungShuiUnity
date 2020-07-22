@@ -13,6 +13,12 @@ public class Interaction : MonoBehaviour {
         SetBranch(startBranch);
     }
 
+    public void Begin() {
+        currBranch = startBranch;
+        currStep = 0;
+        RunStep();
+    }
+
     public bool RunStep() {
         try {
             InteractionStep step = branches[currBranch].steps[currStep];

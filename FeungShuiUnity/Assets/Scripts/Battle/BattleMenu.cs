@@ -601,7 +601,7 @@ public class BattleMenu : MonoBehaviour{
         OES.SetActive(true);
         Time.timeScale = 1;
         GameObject.Find("WalkableCharacter").transform.GetChild(0).gameObject.SetActive(true);
-        GameObject.Find("InGameUI").GetComponent<MenuAndWorldUI>().enabled = false;
+        GameObject.Find("InGameUI").GetComponent<MenuAndWorldUI>().enabled = true;
         SceneManager.sceneUnloaded -= ReenableOES;
     }
 }

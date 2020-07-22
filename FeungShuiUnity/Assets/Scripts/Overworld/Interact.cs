@@ -28,7 +28,7 @@ public class Interact : MonoBehaviour{
                 Interaction i = coll.GetComponent<Interaction>();
                 //checking the object exists in-game and has the Interactable tag
                 if (i != null && coll.gameObject.tag.Equals("Interactable")) {
-                    i.RunStep();
+                    i.Begin();
                     break;
                 }
             }
