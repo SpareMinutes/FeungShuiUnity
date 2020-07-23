@@ -19,6 +19,10 @@ public class Interaction : MonoBehaviour {
         RunStep();
     }
 
+    public InteractionStep getCurrStep() {
+        return branches[currBranch].steps[currStep];
+    }
+
     public bool RunStep() {
         try {
             InteractionStep step = branches[currBranch].steps[currStep];

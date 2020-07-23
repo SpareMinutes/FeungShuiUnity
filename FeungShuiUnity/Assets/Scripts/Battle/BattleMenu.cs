@@ -16,6 +16,8 @@ public class BattleMenu : MonoBehaviour{
     private List<CreatureBattleStatusController> toExculdeFromSelection;
     public GameObject[] spiritStatuses, attackButtons, toggles;
     public GameObject ProgressButton;
+    public Interaction interaction;
+    private bool playerWon;
 
     /*	---------------------------
 	*	General functions
@@ -79,9 +81,11 @@ public class BattleMenu : MonoBehaviour{
     public void AskForAction(){
         if (ES.GetComponent<TurnManager>().whoWins().Equals("Player")){
             Debug.Log("Player Wins");
+            playerWon = true;
             EndBattle();
         } else if (ES.GetComponent<TurnManager>().whoWins().Equals("Computer")){
             Debug.Log("Player Looses");
+            playerWon = false;
             EndBattle();
         } else if (ES.GetComponent<TurnManager>().whoWins().Equals("No-one")){
             if (!IsSelectingAttack){
@@ -259,6 +263,7 @@ public class BattleMenu : MonoBehaviour{
 
     public void Run(){
         //TODO: Add code to decide whether running is possible
+        playerWon = false;
         EndBattle();
     }
 
@@ -602,6 +607,11 @@ public class BattleMenu : MonoBehaviour{
         Time.timeScale = 1;
         GameObject.Find("WalkableCharacter").transform.GetChild(0).gameObject.SetActive(true);
         GameObject.Find("InGameUI").GetComponent<MenuAndWorldUI>().enabled = true;
+        if (interaction != null) {
+            interaction.SetBranch(interaction.getCurrStep().ints[playerWon ? 1 : 0]);
+            interaction.RunStep();
+            interaction = null;
+        }
         SceneManager.sceneUnloaded -= ReenableOES;
     }
 }
