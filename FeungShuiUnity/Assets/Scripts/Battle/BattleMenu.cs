@@ -608,8 +608,13 @@ public class BattleMenu : MonoBehaviour{
         GameObject.Find("WalkableCharacter").transform.GetChild(0).gameObject.SetActive(true);
         GameObject.Find("InGameUI").GetComponent<MenuAndWorldUI>().enabled = true;
         if (interaction != null) {
-            interaction.SetBranch(interaction.getCurrStep().ints[playerWon ? 1 : 0]);
-            interaction.RunStep();
+            //Find the first active battle node to signal the result of the battle. Assumes only one battle will be active at once.
+            foreach(InteractionNode node in interaction.graph.activeNodes) {
+                if (typeof(BattleNode).IsInstanceOfType(node)) {
+                    ((BattleNode)node).Finish(playerWon);
+                    break;
+                }
+            }
             interaction = null;
         }
         SceneManager.sceneUnloaded -= ReenableOES;

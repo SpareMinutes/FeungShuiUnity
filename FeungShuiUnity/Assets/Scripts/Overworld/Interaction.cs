@@ -7,6 +7,7 @@ public class Interaction : MonoBehaviour {
     public InteractionBranch[] branches;
     private int[] resultBranches;
     int currBranch, currStep;
+    public InteractionGraph graph;
 
     // Start is called before the first frame update
     void Start(){
@@ -14,9 +15,10 @@ public class Interaction : MonoBehaviour {
     }
 
     public void Begin() {
-        currBranch = startBranch;
-        currStep = 0;
-        RunStep();
+        graph.Execute();
+        //currBranch = startBranch;
+        //currStep = 0;
+        //RunStep();
     }
 
     public InteractionStep getCurrStep() {
@@ -34,11 +36,11 @@ public class Interaction : MonoBehaviour {
                     }
                     GameObject.Find("InGameUI").GetComponent<MenuAndWorldUI>().ShowMessage(step.message, false);
                     GameObject.Find("InGameUI").GetComponent<MenuAndWorldUI>().ShowAnswers(step.strings);
-                    GameObject.Find("InGameUI").GetComponent<MenuAndWorldUI>().SetActiveInteraction(this);
+                    //GameObject.Find("InGameUI").GetComponent<MenuAndWorldUI>().SetActiveInteraction(this);
                     break;
                 case StepType.Simple:
                     GameObject.Find("InGameUI").GetComponent<MenuAndWorldUI>().ShowMessage(step.message, true);
-                    GameObject.Find("InGameUI").GetComponent<MenuAndWorldUI>().SetActiveInteraction(this);
+                    //GameObject.Find("InGameUI").GetComponent<MenuAndWorldUI>().SetActiveInteraction(this);
                     currStep++;
                     break;
                 case StepType.Battle:

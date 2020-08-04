@@ -1,0 +1,232 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-8178195965836618425
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6de7d6fcca1e0c4f81464cb288c6f18, type: 3}
+  m_Name: End
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 504, y: 104}
+  ports:
+    keys:
+    - previous
+    values:
+    - _fieldName: previous
+      _node: {fileID: -8178195965836618425}
+      _typeQualifiedName: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: next
+        node: {fileID: 2106185982217413400}
+        reroutePoints: []
+      - fieldName: next
+        node: {fileID: 6463945438656938105}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  previous: 0
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49eefe0138aa81d48a07e253beecd405, type: 3}
+  m_Name: StartBattleMusic
+  m_EditorClassIdentifier: 
+  nodes:
+  - {fileID: 2718714109010313824}
+  - {fileID: 2106185982217413400}
+  - {fileID: 1423059453971140578}
+  - {fileID: 6463945438656938105}
+  - {fileID: -8178195965836618425}
+  Start: {fileID: 2718714109010313824}
+  activeNodes: []
+--- !u!114 &1423059453971140578
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d762cbf92c108af4c88a8fa8e4737aa5, type: 3}
+  m_Name: Text
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: -24, y: 72}
+  ports:
+    keys:
+    - previous
+    - next
+    values:
+    - _fieldName: previous
+      _node: {fileID: 1423059453971140578}
+      _typeQualifiedName: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: next
+        node: {fileID: 2718714109010313824}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: next
+      _node: {fileID: 1423059453971140578}
+      _typeQualifiedName: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: previous
+        node: {fileID: 2106185982217413400}
+        reroutePoints: []
+      - fieldName: previous
+        node: {fileID: 6463945438656938105}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  message: start battle music
+  previous: 0
+  next: 0
+--- !u!114 &2106185982217413400
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e716b3efc1868f444843149694082f2f, type: 3}
+  m_Name: Music
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 216, y: -8}
+  ports:
+    keys:
+    - previous
+    - next
+    values:
+    - _fieldName: previous
+      _node: {fileID: 2106185982217413400}
+      _typeQualifiedName: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: next
+        node: {fileID: 1423059453971140578}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: next
+      _node: {fileID: 2106185982217413400}
+      _typeQualifiedName: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: previous
+        node: {fileID: -8178195965836618425}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  previous: 0
+  next: 0
+  SourceName: battle
+  Volume: 100
+  Clip: {fileID: 8300000, guid: 49f62a7d9eee96b4b9d92c79604bc9a8, type: 3}
+--- !u!114 &2718714109010313824
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ab7c509a137df2488ece12ddc56dec2, type: 3}
+  m_Name: Start
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: -264, y: 104}
+  ports:
+    keys:
+    - next
+    values:
+    - _fieldName: next
+      _node: {fileID: 2718714109010313824}
+      _typeQualifiedName: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: previous
+        node: {fileID: 1423059453971140578}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  next: 0
+--- !u!114 &6463945438656938105
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e716b3efc1868f444843149694082f2f, type: 3}
+  m_Name: Music
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 216, y: 152}
+  ports:
+    keys:
+    - previous
+    - next
+    values:
+    - _fieldName: previous
+      _node: {fileID: 6463945438656938105}
+      _typeQualifiedName: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: next
+        node: {fileID: 1423059453971140578}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: next
+      _node: {fileID: 6463945438656938105}
+      _typeQualifiedName: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: previous
+        node: {fileID: -8178195965836618425}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  previous: 0
+  next: 0
+  SourceName: not battle
+  Volume: 0
+  Clip: {fileID: 8300000, guid: d73f22e1c0045aa499ff0b984e58d1c9, type: 3}

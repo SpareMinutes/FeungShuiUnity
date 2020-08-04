@@ -1,0 +1,342 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-3525985262677969742
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ab7c509a137df2488ece12ddc56dec2, type: 3}
+  m_Name: Start
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: -440, y: 8}
+  ports:
+    keys:
+    - next
+    values:
+    - _fieldName: next
+      _node: {fileID: -3525985262677969742}
+      _typeQualifiedName: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: previous
+        node: {fileID: 975251048482160318}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  next: 0
+--- !u!114 &-1057464680733415114
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d762cbf92c108af4c88a8fa8e4737aa5, type: 3}
+  m_Name: Text
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 280, y: -88}
+  ports:
+    keys:
+    - previous
+    - next
+    values:
+    - _fieldName: previous
+      _node: {fileID: -1057464680733415114}
+      _typeQualifiedName: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: next
+        node: {fileID: 3169440803881853299}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: next
+      _node: {fileID: -1057464680733415114}
+      _typeQualifiedName: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: previous
+        node: {fileID: 1174520939175486168}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  message: Maybe you'll find something in there.
+  previous: 0
+  next: 0
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49eefe0138aa81d48a07e253beecd405, type: 3}
+  m_Name: RandomTest
+  m_EditorClassIdentifier: 
+  nodes:
+  - {fileID: -3525985262677969742}
+  - {fileID: 975251048482160318}
+  - {fileID: 3169440803881853299}
+  - {fileID: -1057464680733415114}
+  - {fileID: 5445698510195774669}
+  - {fileID: 5531495843508349892}
+  - {fileID: 1174520939175486168}
+  Start: {fileID: -3525985262677969742}
+  activeNodes: []
+--- !u!114 &975251048482160318
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88a596b84917ea1438683fd97755214b, type: 3}
+  m_Name: Random
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: -200, y: -24}
+  ports:
+    keys:
+    - previous
+    - outcomes
+    - outcomes 0
+    - outcomes 1
+    values:
+    - _fieldName: previous
+      _node: {fileID: 975251048482160318}
+      _typeQualifiedName: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: next
+        node: {fileID: -3525985262677969742}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: outcomes
+      _node: {fileID: 975251048482160318}
+      _typeQualifiedName: System.Collections.Generic.List`1[[System.Int32, mscorlib,
+        Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]], mscorlib,
+        Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: outcomes 0
+      _node: {fileID: 975251048482160318}
+      _typeQualifiedName: System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: previous
+        node: {fileID: 3169440803881853299}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 1
+    - _fieldName: outcomes 1
+      _node: {fileID: 975251048482160318}
+      _typeQualifiedName: System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: previous
+        node: {fileID: 5445698510195774669}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 1
+  previous: 0
+  outcomes: 0000000000000000
+--- !u!114 &1174520939175486168
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6de7d6fcca1e0c4f81464cb288c6f18, type: 3}
+  m_Name: End
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 568, y: 56}
+  ports:
+    keys:
+    - previous
+    values:
+    - _fieldName: previous
+      _node: {fileID: 1174520939175486168}
+      _typeQualifiedName: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: next
+        node: {fileID: -1057464680733415114}
+        reroutePoints: []
+      - fieldName: next
+        node: {fileID: 5531495843508349892}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  previous: 0
+--- !u!114 &3169440803881853299
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d762cbf92c108af4c88a8fa8e4737aa5, type: 3}
+  m_Name: Text
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 40, y: -88}
+  ports:
+    keys:
+    - previous
+    - next
+    values:
+    - _fieldName: previous
+      _node: {fileID: 3169440803881853299}
+      _typeQualifiedName: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: outcomes 0
+        node: {fileID: 975251048482160318}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: next
+      _node: {fileID: 3169440803881853299}
+      _typeQualifiedName: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: previous
+        node: {fileID: -1057464680733415114}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  message: Why don't you check out the cave?
+  previous: 0
+  next: 0
+--- !u!114 &5445698510195774669
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d762cbf92c108af4c88a8fa8e4737aa5, type: 3}
+  m_Name: Text
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 40, y: 56}
+  ports:
+    keys:
+    - previous
+    - next
+    values:
+    - _fieldName: previous
+      _node: {fileID: 5445698510195774669}
+      _typeQualifiedName: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: outcomes 1
+        node: {fileID: 975251048482160318}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: next
+      _node: {fileID: 5445698510195774669}
+      _typeQualifiedName: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: previous
+        node: {fileID: 5531495843508349892}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  message: Why don't you check out the southeast house?
+  previous: 0
+  next: 0
+--- !u!114 &5531495843508349892
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d762cbf92c108af4c88a8fa8e4737aa5, type: 3}
+  m_Name: Text
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 280, y: 56}
+  ports:
+    keys:
+    - previous
+    - next
+    values:
+    - _fieldName: previous
+      _node: {fileID: 5531495843508349892}
+      _typeQualifiedName: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: next
+        node: {fileID: 5445698510195774669}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: next
+      _node: {fileID: 5531495843508349892}
+      _typeQualifiedName: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: previous
+        node: {fileID: 1174520939175486168}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  message: Just remember to knock first.
+  previous: 0
+  next: 0

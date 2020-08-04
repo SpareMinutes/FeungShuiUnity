@@ -8,7 +8,7 @@ public class MenuAndWorldUI : MonoBehaviour{
     public EventSystem ES;
     [SerializeField]
     private GameObject Player, Canvas, Message, Text, Menu, Bag, Party, Arrow, AnswerBox;
-    private Interaction activeInteraction;
+    private InteractionNode activeNode;
     [SerializeField]
     private GameObject[] Answers, AnswerBG;
     private bool isMenuOpen, isBagOpen, isPartyOpen = false;
@@ -109,7 +109,7 @@ public class MenuAndWorldUI : MonoBehaviour{
         Message.GetComponent<Button>().interactable = false;
         Message.SetActive(false);
         Player.GetComponent<Walk>().canWalk = true;
-        activeInteraction = null;
+        activeNode = null;
         Invoke("reActivateInteract", 0.0167f);
     }
 
@@ -127,14 +127,15 @@ public class MenuAndWorldUI : MonoBehaviour{
         Text.GetComponent<Text>().text = msg;
     }
 
-    public void SetActiveInteraction(Interaction target) {
-        activeInteraction = target;
+    public void SetActiveNode(InteractionNode target) {
+        activeNode = target;
     }
 
     public void AdvanceMessage() {
         shownAnswers = 0;
-        if (!activeInteraction.RunStep())
-            disableButton();
+        activeNode.ExecuteNext(activeNode.GetOutputPort("next"));
+        //if (!activeNode.RunStep())
+        //    disableButton();
     }
 
     public void ShowAnswers(string[] options) {
@@ -173,9 +174,10 @@ public class MenuAndWorldUI : MonoBehaviour{
     }
 
     public void RunAnswer(int selection) {
+        selection -= 10 - shownAnswers;
         AnswerBox.SetActive(false);
         shownAnswers = 0;
-        activeInteraction.RunAnswer(selection);
+        activeNode.ExecuteNext(activeNode.GetOutputPort("answers " + selection));
     }
 
     public void OpenMenu () {
