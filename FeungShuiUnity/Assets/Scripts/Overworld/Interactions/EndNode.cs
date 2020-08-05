@@ -6,9 +6,9 @@ public class EndNode : InteractionNode {
 
     public override void Execute() {
         GameObject.Find("InGameUI").GetComponent<MenuAndWorldUI>().disableButton();
-        graph.activeNodes.Clear();
+        ((InteractionGraph)graph).activeNodes.Clear();
         try {
-            GameObject obj = graph.GetConnectedObject();
+            GameObject obj = ((InteractionGraph)graph).GetConnectedObject();
             obj.GetComponent<WanderAI>().enabled = true;
         } catch (NullReferenceException e) {
 

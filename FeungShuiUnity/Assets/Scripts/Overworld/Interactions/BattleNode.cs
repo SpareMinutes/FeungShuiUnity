@@ -9,11 +9,11 @@ public class BattleNode : InteractionNode {
     public override void Execute() {
         GameObject.Find("InGameUI").GetComponent<MenuAndWorldUI>().disableButton();
         GameObject.Find("InGameUI").GetComponent<MenuAndWorldUI>().SetActiveNode(this);
-        graph.GetConnectedObject().GetComponent<Battle>().StartTrainerBattle();
+        ((InteractionGraph)graph).GetConnectedObject().GetComponent<Battle>().StartTrainerBattle();
     }
 
     public void Finish(bool result) {
-        graph.Start = result ? afterDefeat : onRematch;
+        ((InteractionGraph)graph).Start = result ? afterDefeat : onRematch;
         ExecuteNext(GetOutputPort(result ? "onDefeat" : "onVictory"));
     }
 }
