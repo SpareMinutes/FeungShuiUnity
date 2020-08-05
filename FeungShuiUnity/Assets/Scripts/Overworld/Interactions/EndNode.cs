@@ -1,13 +1,17 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System;
 using UnityEngine;
-using XNode;
 
 public class EndNode : InteractionNode {
     [Input(backingValue = ShowBackingValue.Never)] public bool previous;
 
     public override void Execute() {
         GameObject.Find("InGameUI").GetComponent<MenuAndWorldUI>().disableButton();
-        ((InteractionGraph)graph).activeNodes.Clear();
+        graph.activeNodes.Clear();
+        try {
+            GameObject obj = graph.GetConnectedObject();
+            obj.GetComponent<WanderAI>().enabled = true;
+        } catch (NullReferenceException e) {
+
+        }
     }
 }

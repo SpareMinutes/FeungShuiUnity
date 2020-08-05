@@ -1,9 +1,11 @@
-﻿using XNode;
+﻿using UnityEngine;
+using XNode;
 
 public abstract class InteractionNode : Node {
+    public new InteractionGraph graph;
 
-	// Use this for initialization
-	protected override void Init() {
+    // Use this for initialization
+    protected override void Init() {
 		base.Init();
 		
 	}
@@ -16,11 +18,11 @@ public abstract class InteractionNode : Node {
     public abstract void Execute();
 
     public void ExecuteNext(NodePort nextPort) {
-        ((InteractionGraph)graph).activeNodes.Remove(this);
+        graph.activeNodes.Remove(this);
         for (int i = 0; i < nextPort.ConnectionCount; i++) {
             NodePort connection = nextPort.GetConnection(i);
             InteractionNode next = (InteractionNode)connection.node;
-            ((InteractionGraph)graph).activeNodes.Add(next);
+            graph.activeNodes.Add(next);
             next.Execute();
         }
     }
