@@ -19,9 +19,7 @@ public class BattleMenu : MonoBehaviour{
     public Interaction interaction;
     private bool playerWon;
 
-    /*	---------------------------
-	*	General functions
-	*	---------------------------	*/
+    #region General
 
     void Start(){
         OES = GameObject.Find("EventSystem");
@@ -63,9 +61,9 @@ public class BattleMenu : MonoBehaviour{
         }
     }
 
-    /*	---------------------------
-	*	Main menu functions
-	*	---------------------------	*/
+    #endregion
+
+    #region Main menu
 
     //Called when a message is to be displayed in the bottom right box
     private void ShowMessage(string msg){
@@ -133,6 +131,7 @@ public class BattleMenu : MonoBehaviour{
             }
         }
     }
+
     private void NormalAskForAction () {
         if (Attacker.GetCreature().isPlayerOwned()){
             ShowMessage("What will " + Attacker.GetCreature().displayName + " do?");
@@ -147,6 +146,7 @@ public class BattleMenu : MonoBehaviour{
             EnemyAI();
         }
     }
+
     private void RandomAction () {
         //here the eidolon will choose a random move
         int randNum = Random.Range(1, 6+1); //the +1 since Random.Range(int min, int max) is exclusive on max
@@ -308,38 +308,15 @@ public class BattleMenu : MonoBehaviour{
         ES.SetSelectedGameObject(ProgressButton);
         
     }
-    private void HPDrain () {
-        //a helper method for the status effects
-        float reducingFactor = 1/16; // 1/16 is what pokemon uses for burn/poison
-        Attacker.ApplyDamage(reducingFactor*Attacker.Target.maxActiveHealth, Attacker);
-        ShowMessage("drained hp from " + Attacker.Target.displayName + ".");
-    }
-    private void ManaDrain () {
-        //helper for the status effects
-        float reducingFactor = 1/16;
-        Attacker.Target.currentMana = Mathf.Max(0, Attacker.Target.currentMana - reducingFactor*Attacker.Target.maxMana);
-        ShowMessage("drained mana from " + Attacker.Target.displayName + ".");
-    }
-    private void checkWearOff () {
-        //another helper method for the status effects
-        float wearOffChance = 0.4f; //hardcoded 40% chance of wearing off every turn
-        float randNum = Random.Range(0.0f, 1.0f);
-        if (randNum <= wearOffChance) {
-            //then the status will wear off
-            ShowMessage(Attacker.statusEffect.ToString() + " wore off.");
-            Attacker.statusEffect = StatusEffect.None;
-            Attacker.RestoreStatFromStatus();
-        }
-    }
 
     public void Progress () {
         ProgressButton.GetComponent<Button>().interactable = false;
         AskForAction();
     }
 
-    /*	---------------------------
-	*	Attacking functions
-	*	---------------------------	*/
+    #endregion
+
+    #region Attacking
 
     //Called when the oppoenent is selected
     public void DoAttack(){
@@ -440,9 +417,9 @@ public class BattleMenu : MonoBehaviour{
         }
     }
 
-    /*	---------------------------
-	*	Targeting functions
-	*	---------------------------	*/
+    #endregion
+
+    #region Targeting
 
     private void targetSingle(){
         //Makes the opponents selectable for the move to target
@@ -529,9 +506,9 @@ public class BattleMenu : MonoBehaviour{
         ES.SetSelectedGameObject(button);
     }
 
-    /*	---------------------------
-	*	Utility functions
-	*	---------------------------	*/
+    #endregion
+
+    #region Utility
 
     private void EnemyAI () {
         CreatureBattleStatusController Defender;
@@ -619,4 +596,31 @@ public class BattleMenu : MonoBehaviour{
         }
         SceneManager.sceneUnloaded -= ReenableOES;
     }
+
+    private void HPDrain() {
+        //a helper method for the status effects
+        float reducingFactor = 1 / 16; // 1/16 is what pokemon uses for burn/poison
+        Attacker.ApplyDamage(reducingFactor * Attacker.Target.maxActiveHealth, Attacker);
+        ShowMessage("drained hp from " + Attacker.Target.displayName + ".");
+    }
+
+    private void ManaDrain() {
+        //helper for the status effects
+        float reducingFactor = 1 / 16;
+        Attacker.Target.currentMana = Mathf.Max(0, Attacker.Target.currentMana - reducingFactor * Attacker.Target.maxMana);
+        ShowMessage("drained mana from " + Attacker.Target.displayName + ".");
+    }
+
+    private void checkWearOff() {
+        //another helper method for the status effects
+        float wearOffChance = 0.4f; //hardcoded 40% chance of wearing off every turn
+        float randNum = Random.Range(0.0f, 1.0f);
+        if (randNum <= wearOffChance) {
+            //then the status will wear off
+            ShowMessage(Attacker.statusEffect.ToString() + " wore off.");
+            Attacker.statusEffect = StatusEffect.None;
+            Attacker.RestoreStatFromStatus();
+        }
+    }
+    #endregion
 }
