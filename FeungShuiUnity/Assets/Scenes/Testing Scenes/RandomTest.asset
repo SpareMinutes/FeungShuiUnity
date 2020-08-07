@@ -194,52 +194,6 @@ MonoBehaviour:
   next: 0
   ObjectName: 
   Direction: CaveDoor
---- !u!114 &-5360001528726430705
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f999fe7b44717f349807b3bb3cc868fe, type: 3}
-  m_Name: Wait
-  m_EditorClassIdentifier: 
-  graph: {fileID: 11400000}
-  position: {x: 552, y: -280}
-  ports:
-    keys:
-    - previous
-    - next
-    values:
-    - _fieldName: previous
-      _node: {fileID: -5360001528726430705}
-      _typeQualifiedName: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral,
-        PublicKeyToken=b77a5c561934e089
-      connections:
-      - fieldName: next
-        node: {fileID: -1057464680733415114}
-        reroutePoints: []
-      _direction: 0
-      _connectionType: 0
-      _typeConstraint: 0
-      _dynamic: 0
-    - _fieldName: next
-      _node: {fileID: -5360001528726430705}
-      _typeQualifiedName: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral,
-        PublicKeyToken=b77a5c561934e089
-      connections:
-      - fieldName: previous
-        node: {fileID: 3365301672827369556}
-        reroutePoints: []
-      _direction: 1
-      _connectionType: 0
-      _typeConstraint: 0
-      _dynamic: 0
-  previous: 0
-  next: 0
-  Duration: 5
 --- !u!114 &-3525985262677969742
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -315,9 +269,6 @@ MonoBehaviour:
       - fieldName: previous
         node: {fileID: -7028519200435797118}
         reroutePoints: []
-      - fieldName: previous
-        node: {fileID: -5360001528726430705}
-        reroutePoints: []
       _direction: 1
       _connectionType: 0
       _typeConstraint: 0
@@ -350,7 +301,6 @@ MonoBehaviour:
   - {fileID: -7793889059360505056}
   - {fileID: 3365301672827369556}
   - {fileID: -8351036609337301442}
-  - {fileID: -5360001528726430705}
   Start: {fileID: -3525985262677969742}
   activeNodes: []
   ConnectedObjectName: NPC (1)
@@ -532,9 +482,6 @@ MonoBehaviour:
         reroutePoints: []
       - fieldName: next
         node: {fileID: -7028519200435797118}
-        reroutePoints: []
-      - fieldName: next
-        node: {fileID: -5360001528726430705}
         reroutePoints: []
       _direction: 0
       _connectionType: 0

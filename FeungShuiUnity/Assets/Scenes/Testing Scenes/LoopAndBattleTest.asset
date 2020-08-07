@@ -30,7 +30,6 @@ MonoBehaviour:
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 0
-  graph: {fileID: 11400000}
   next: 0
   PauseMovement: 1
   FacePlayer: 1
@@ -60,11 +59,13 @@ MonoBehaviour:
       - fieldName: onVictory
         node: {fileID: 3871150533838518750}
         reroutePoints: []
+      - fieldName: onDefeat
+        node: {fileID: 3871150533838518750}
+        reroutePoints: []
       _direction: 0
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 0
-  graph: {fileID: 11400000}
   previous: 0
 --- !u!114 &-415546883380031755
 MonoBehaviour:
@@ -109,7 +110,6 @@ MonoBehaviour:
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 0
-  graph: {fileID: 11400000}
   message: Okay, here we go again.
   previous: 0
   next: 0
@@ -204,7 +204,6 @@ MonoBehaviour:
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 1
-  graph: {fileID: 11400000}
   message: Did you get all that?
   previous: 0
   answers:
@@ -258,12 +257,14 @@ MonoBehaviour:
       _node: {fileID: 3871150533838518750}
       _typeQualifiedName: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral,
         PublicKeyToken=b77a5c561934e089
-      connections: []
+      connections:
+      - fieldName: previous
+        node: {fileID: -2796792120185896248}
+        reroutePoints: []
       _direction: 1
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 0
-  graph: {fileID: 11400000}
   previous: 0
   onVictory: 0
   onDefeat: 0
@@ -312,7 +313,6 @@ MonoBehaviour:
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 0
-  graph: {fileID: 11400000}
   message: 'That was all, we''re gonna battle now. '
   previous: 0
   next: 0
@@ -362,7 +362,6 @@ MonoBehaviour:
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 0
-  graph: {fileID: 11400000}
   message: Okay, first I'm gonna say some stuff. Then I'm gonna ask you a question.
   previous: 0
   next: 0
@@ -409,7 +408,6 @@ MonoBehaviour:
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 0
-  graph: {fileID: 11400000}
   message: Okay! Great!
   previous: 0
   next: 0
