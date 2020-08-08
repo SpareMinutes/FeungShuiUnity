@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using XNode;
 
+[CreateNodeMenu("Interactions/Text")]
 public class TextNode : InteractionNode {
     [TextArea(1, 2)]
     public string message;

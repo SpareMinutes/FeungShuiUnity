@@ -1,6 +1,6 @@
-﻿using UnityEngine;
-using XNode;
+﻿using XNode;
 
+[CreateNodeMenu("Interactions")]
 public abstract class InteractionNode : Node {
 
     // Use this for initialization

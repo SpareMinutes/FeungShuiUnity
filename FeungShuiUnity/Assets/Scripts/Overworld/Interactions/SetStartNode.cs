@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 
+[CreateNodeMenu("Interactions/Set Start")]
 public class SetStartNode : InteractionNode {
     [Input(backingValue = ShowBackingValue.Never)] public bool previous;
     [Output] public bool next;

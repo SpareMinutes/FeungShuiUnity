@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
+[CreateNodeMenu("Interactions/Question")]
 public class QuestionNode : InteractionNode {
     [TextArea(1, 2)]
     public string message;

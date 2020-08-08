@@ -1,6 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
+[CreateNodeMenu("Interactions/End")]
 public class EndNode : InteractionNode {
     [Input(backingValue = ShowBackingValue.Never)] public bool previous;
 

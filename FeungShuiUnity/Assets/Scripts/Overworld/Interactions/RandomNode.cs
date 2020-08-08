@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
+[CreateNodeMenu("Interactions/Random")]
 public class RandomNode : InteractionNode {
     [Input(backingValue = ShowBackingValue.Never)] public bool previous;
     [Output(dynamicPortList = true)] public List<int> outcomes;

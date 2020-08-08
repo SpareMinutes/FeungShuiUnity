@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using XNode;
 
+[CreateNodeMenu("Interactions/Wait For All")]
 public class WaitForAllNode : InteractionNode {
     [Input(backingValue = ShowBackingValue.Never)] public bool previous;
     [Output] public bool next;
