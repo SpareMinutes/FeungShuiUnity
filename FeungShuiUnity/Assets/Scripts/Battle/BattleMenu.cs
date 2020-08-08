@@ -576,14 +576,15 @@ public class BattleMenu : MonoBehaviour{
     private void EndBattle() {
         //load the world again (probably also want to save the scene view for the route the player was last in)
         SceneManager.UnloadSceneAsync("Battle_GUI");
-        SceneManager.sceneUnloaded += ReenableOES;
+        SceneManager.sceneUnloaded += AfterBattle;
     }
 
-    private void ReenableOES(Scene scene) {
+    private void AfterBattle (Scene scene) {
         OES.SetActive(true);
         Time.timeScale = 1;
         GameObject.Find("WalkableCharacter").transform.GetChild(0).gameObject.SetActive(true);
         GameObject.Find("InGameUI").GetComponent<MenuAndWorldUI>().enabled = true;
+        interaction.GetComponent<Battle>().defeated = playerWon;
         if (interaction != null) {
             //Find the first active battle node to signal the result of the battle. Assumes only one battle will be active at once.
             foreach(InteractionNode node in interaction.graph.activeNodes) {
@@ -594,7 +595,7 @@ public class BattleMenu : MonoBehaviour{
             }
             interaction = null;
         }
-        SceneManager.sceneUnloaded -= ReenableOES;
+        SceneManager.sceneUnloaded -= AfterBattle;
     }
 
     private void HPDrain() {

@@ -4,6 +4,7 @@ using UnityEngine.SceneManagement;
 public class Battle : MonoBehaviour{
     public Creature[] Party;
     private Creature[] PlayerParty, OpposingParty;
+    public bool defeated = false;
 
     // Start is called before the first frame update
     void Start(){
