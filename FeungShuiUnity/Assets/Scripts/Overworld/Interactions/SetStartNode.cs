@@ -6,8 +6,8 @@ public class SetStartNode : InteractionNode {
     [Output] public bool next;
     public StartNode newStart;
 
-    public override void Execute() {
+    public override void Execute(GameObject context) {
         ((InteractionGraph)graph).Start = newStart;
-        ExecuteNext(GetOutputPort("next"));
+        ExecuteNext(GetOutputPort("next"), context);
     }
 }

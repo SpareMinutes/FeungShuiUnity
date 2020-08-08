@@ -10,8 +10,8 @@ public class TurnNode : InteractionNode {
     [Tooltip("An integer angle in degrees or the name of another object.")]
     public string Direction;
 
-    public override void Execute() {
-        GameObject obj = ObjectName.Equals("") ? ((InteractionGraph)graph).GetConnectedObject() : GameObject.Find(ObjectName);
+    public override void Execute(GameObject context) {
+        GameObject obj = ObjectName.Equals("") ? context : GameObject.Find(ObjectName);
         int dir;
         try {
             dir = Int32.Parse(Direction);
@@ -20,6 +20,6 @@ public class TurnNode : InteractionNode {
             dir = 135 - (int)(Mathf.Atan2(vector.y, vector.x) * Mathf.Rad2Deg);
         }
         obj.GetComponent<Animator>().SetInteger("angle", dir);
-        ExecuteNext(GetOutputPort("next"));
+        ExecuteNext(GetOutputPort("next"), context);
     }
 }

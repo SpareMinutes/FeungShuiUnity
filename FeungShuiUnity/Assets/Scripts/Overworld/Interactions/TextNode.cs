@@ -10,8 +10,9 @@ public class TextNode : InteractionNode {
     [Input(backingValue = ShowBackingValue.Never)] public bool previous;
     [Output] public bool next;
 
-    public override void Execute() {
+    public override void Execute(GameObject context) {
         GameObject.Find("InGameUI").GetComponent<MenuAndWorldUI>().ShowMessage(message, true);
         GameObject.Find("InGameUI").GetComponent<MenuAndWorldUI>().SetActiveNode(this);
+        GameObject.Find("InGameUI").GetComponent<MenuAndWorldUI>().SetDialogueContext(context);
     }
 }

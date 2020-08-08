@@ -589,7 +589,7 @@ public class BattleMenu : MonoBehaviour{
             //Find the first active battle node to signal the result of the battle. Assumes only one battle will be active at once.
             foreach(InteractionNode node in interaction.graph.activeNodes) {
                 if (typeof(BattleNode).IsInstanceOfType(node)) {
-                    ((BattleNode)node).Finish(playerWon);
+                    ((BattleNode)node).Finish(playerWon, interaction.gameObject);
                     break;
                 }
             }

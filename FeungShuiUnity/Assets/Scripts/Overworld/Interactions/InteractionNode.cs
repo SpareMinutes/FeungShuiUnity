@@ -1,7 +1,8 @@
-﻿using XNode;
+﻿using UnityEngine;
+using XNode;
 
 [CreateNodeMenu("Interactions")]
-public abstract class InteractionNode : Node {
+public abstract class InteractionNode : ExecutableNode {
 
     // Use this for initialization
     protected override void Init() {
@@ -13,15 +14,13 @@ public abstract class InteractionNode : Node {
 		return null; // Replace this
 	}
 
-    public abstract void Execute();
-
-    public void ExecuteNext(NodePort nextPort) {
+    public void ExecuteNext(NodePort nextPort, GameObject context) {
         ((InteractionGraph)graph).activeNodes.Remove(this);
         for (int i = 0; i < nextPort.ConnectionCount; i++) {
             NodePort connection = nextPort.GetConnection(i);
             InteractionNode next = (InteractionNode)connection.node;
             ((InteractionGraph)graph).activeNodes.Add(next);
-            next.Execute();
+            next.Execute(context);
         }
     }
 }

@@ -8,9 +8,10 @@ public class QuestionNode : InteractionNode {
     [Input(backingValue = ShowBackingValue.Never)] public bool previous;
     [Output(dynamicPortList = true)] public List<string> answers;
 
-    public override void Execute() {
+    public override void Execute(GameObject context) {
         GameObject.Find("InGameUI").GetComponent<MenuAndWorldUI>().ShowMessage(message, false);
         GameObject.Find("InGameUI").GetComponent<MenuAndWorldUI>().ShowAnswers(answers.ToArray());
         GameObject.Find("InGameUI").GetComponent<MenuAndWorldUI>().SetActiveNode(this);
+        GameObject.Find("InGameUI").GetComponent<MenuAndWorldUI>().SetDialogueContext(context);
     }
 }

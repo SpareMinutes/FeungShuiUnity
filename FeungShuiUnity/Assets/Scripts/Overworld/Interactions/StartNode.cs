@@ -7,16 +7,15 @@ public class StartNode : InteractionNode {
     public bool PauseMovement = true;
     public bool FacePlayer = true;
 
-    public override void Execute() {
+    public override void Execute(GameObject context) {
         try {
-            GameObject obj = ((InteractionGraph)graph).GetConnectedObject();
-            obj.GetComponent<WanderAI>().enabled = false;
-            Vector3 dir = GameObject.Find("WalkableCharacter").transform.position - obj.transform.position;
-            obj.GetComponent<Animator>().SetBool("isWalking", false);
-            obj.GetComponent<Animator>().SetInteger("angle", 135 - (int)(Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg));
+            context.GetComponent<WanderAI>().enabled = false;
+            Vector3 dir = GameObject.Find("WalkableCharacter").transform.position - context.transform.position;
+            context.GetComponent<Animator>().SetBool("isWalking", false);
+            context.GetComponent<Animator>().SetInteger("angle", 135 - (int)(Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg));
         } catch (NullReferenceException e) {
 
         }
-        ExecuteNext(GetOutputPort("next"));
+        ExecuteNext(GetOutputPort("next"), context);
     }
 }

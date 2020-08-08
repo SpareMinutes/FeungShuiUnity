@@ -11,7 +11,7 @@ public class MusicNode : InteractionNode {
     public float Volume;
     public AudioClip Clip;
 
-    public override void Execute() {
+    public override void Execute(GameObject context) {
         AudioSource source = GameObject.Find(SourceName).GetComponent<AudioSource>();
         if (source != null) {
             source.volume = Volume / 100f;
@@ -20,6 +20,6 @@ public class MusicNode : InteractionNode {
                 source.Play();
             }
         }
-        ExecuteNext(GetOutputPort("next"));
+        ExecuteNext(GetOutputPort("next"), context);
     }
 }

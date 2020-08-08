@@ -15,7 +15,7 @@ public class Interaction : MonoBehaviour {
     }
 
     public void Begin() {
-        graph.Execute();
+        graph.Execute(gameObject);
         //currBranch = startBranch;
         //currStep = 0;
         //RunStep();

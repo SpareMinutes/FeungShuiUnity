@@ -12,7 +12,7 @@ public class MenuAndWorldUI : MonoBehaviour{
     [SerializeField]
     private GameObject[] Answers, AnswerBG;
     private bool isMenuOpen, isBagOpen, isPartyOpen = false;
-    private GameObject SelectedMenu, SelectedMessage, SelectedBag, SelectedParty;
+    private GameObject SelectedMenu, SelectedMessage, SelectedBag, SelectedParty, dialogueContext;
 
     private List<BagTab> bagTabs;
     private int currentTabIndex = 0;
@@ -131,9 +131,13 @@ public class MenuAndWorldUI : MonoBehaviour{
         activeNode = target;
     }
 
+    public void SetDialogueContext(GameObject target) {
+        dialogueContext = target;
+    }
+
     public void AdvanceMessage() {
         shownAnswers = 0;
-        activeNode.ExecuteNext(activeNode.GetOutputPort("next"));
+        activeNode.ExecuteNext(activeNode.GetOutputPort("next"), dialogueContext);
         //if (!activeNode.RunStep())
         //    disableButton();
     }
@@ -177,7 +181,7 @@ public class MenuAndWorldUI : MonoBehaviour{
         selection -= 10 - shownAnswers;
         AnswerBox.SetActive(false);
         shownAnswers = 0;
-        activeNode.ExecuteNext(activeNode.GetOutputPort("answers " + selection));
+        activeNode.ExecuteNext(activeNode.GetOutputPort("answers " + selection), dialogueContext);
     }
 
     public void OpenMenu () {
