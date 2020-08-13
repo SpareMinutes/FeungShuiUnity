@@ -4,17 +4,11 @@ using UnityEngine;
 using XNode;
 
 [CreateNodeMenu("NPC AI/Is Defeated")]
-public class IsDefeatedNode : AINode {
-    [Input(backingValue = ShowBackingValue.Never)] public bool previous;
-    [Output] public bool next;
+public class IsDefeatedNode : LogicNode {
+    [Output] public bool output;
 
-    // Return the correct value of an output port when requested
-    public override object GetValue(NodePort port) {
-        return next;
-	}
-
-    public override void Execute(GameObject context) {
-        next = context.GetComponent<Battle>().defeated;
-        ExecuteNext(GetOutputPort("next"), context);
+    public override bool GetValue(GameObject context) {
+        output = context.GetComponent<Battle>().defeated;
+        return output;
     }
 }

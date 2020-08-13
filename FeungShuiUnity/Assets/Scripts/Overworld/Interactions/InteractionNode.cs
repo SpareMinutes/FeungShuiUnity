@@ -14,7 +14,7 @@ public abstract class InteractionNode : ExecutableNode {
 		return null; // Replace this
 	}
 
-    public void ExecuteNext(NodePort nextPort, GameObject context) {
+    public new void ExecuteNext(NodePort nextPort, GameObject context) {
         ((InteractionGraph)graph).activeNodes.Remove(this);
         for (int i = 0; i < nextPort.ConnectionCount; i++) {
             NodePort connection = nextPort.GetConnection(i);

@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using XNode;
 
 [CreateNodeMenu("NPC AI/Toggle AI Mode")]
 public class ToggleAIModeNode : AINode {
-    [Input(backingValue = ShowBackingValue.Never)] public bool Value;
+    [Input(backingValue = ShowBackingValue.Never), Tooltip("Uses the value of the logic node connected to this portw hen running.")] public bool value;
+    [Input(backingValue = ShowBackingValue.Never), Tooltip("Will run when a node connected to this port finishes.")] public bool trigger;
     [Output] public bool next;
     public string ModeName;
     
@@ -15,9 +13,9 @@ public class ToggleAIModeNode : AINode {
     }
 
     public override void Execute(GameObject context) {
-        Value = (bool)GetInputPort("Value").GetConnection(0).GetOutputValue();
-        ((MonoBehaviour)context.GetComponent(ModeName)).enabled = Value;
-        next = Value;
+        value = ((LogicNode)GetInputPort("value").GetConnection(0).node).GetValue(context);
+        ((MonoBehaviour)context.GetComponent(ModeName)).enabled = value;
+        next = value;
         ExecuteNext(GetOutputPort("next"), context);
     }
 }

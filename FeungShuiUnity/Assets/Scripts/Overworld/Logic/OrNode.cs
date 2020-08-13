@@ -3,16 +3,18 @@ using XNode;
 
 [CreateNodeMenu("Logic/Or")]
 public class OrNode : LogicNode {
-    public override void Execute(GameObject context) {
+    [Input(backingValue = ShowBackingValue.Never)] public bool input;
+    [Output] public bool output;
+
+    public override bool GetValue(GameObject context) {
         NodePort inputPort = GetInputPort("input");
         for (int i = 0; i < inputPort.ConnectionCount; i++) {
-            if ((bool)inputPort.GetConnection(i).GetOutputValue()) {
+            if (((LogicNode)inputPort.GetConnection(0).node).GetValue(context)) {
                 output = true;
-                ExecuteNext(GetOutputPort("output"), context);
-                return;
+                return output;
             }
         }
         output = false;
-        ExecuteNext(GetOutputPort("output"), context);
+        return output;
     }
 }
