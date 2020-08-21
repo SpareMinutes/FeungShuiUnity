@@ -4,10 +4,10 @@ using UnityEngine;
 using XNode;
 
 [CreateNodeMenu("NPC AI/Is Defeated")]
-public class IsDefeatedNode : LogicNode {
+public class IsDefeatedNode : ProcessorNode {
     [Output] public bool output;
 
-    public override bool GetValue(GameObject context) {
+    public override object GetValue(GameObject context) {
         output = context.GetComponent<Battle>().defeated;
         return output;
     }

@@ -13,7 +13,7 @@ public class ToggleAIModeNode : AINode {
     }
 
     public override void Execute(GameObject context) {
-        value = ((LogicNode)GetInputPort("value").GetConnection(0).node).GetValue(context);
+        value = (bool)((ProcessorNode)GetInputPort("value").GetConnection(0).node).GetValue(context);
         ((MonoBehaviour)context.GetComponent(ModeName)).enabled = value;
         next = value;
         ExecuteNext(GetOutputPort("next"), context);
