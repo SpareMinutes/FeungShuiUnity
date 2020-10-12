@@ -18,7 +18,7 @@ public abstract class InteractionNode : ExecutableNode {
         ((InteractionGraph)graph).activeNodes.Remove(this);
         for (int i = 0; i < nextPort.ConnectionCount; i++) {
             NodePort connection = nextPort.GetConnection(i);
-            InteractionNode next = (InteractionNode)connection.node;
+            ExecutableNode next = (ExecutableNode)connection.node;
             ((InteractionGraph)graph).activeNodes.Add(next);
             next.Execute(context);
         }

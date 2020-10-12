@@ -8,7 +8,7 @@ public class ConditionalNode : ExecutableNode {
     [Output, Tooltip("This branch will run when Test is false.")] public bool WhenFalse;
 
     public override void Execute(GameObject context) {
-        value = (bool)((ProcessorNode)GetInputPort("input").GetConnection(0).node).GetValue(context);
+        value = (bool)((ProcessorNode)GetInputPort("value").GetConnection(0).node).GetValue(context);
         ExecuteNext(GetOutputPort(value ? "WhenTrue" : "WhenFalse"), context);
     }
 }

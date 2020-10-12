@@ -5,7 +5,7 @@ using XNode;
 [CreateAssetMenu]
 public class InteractionGraph : NodeGraph {
     public StartNode Start;
-    public List<InteractionNode> activeNodes = new List<InteractionNode>();
+    public List<ExecutableNode> activeNodes = new List<ExecutableNode>();
     private GameObject ConnectedObject;
 
     public void Execute(GameObject context) {
