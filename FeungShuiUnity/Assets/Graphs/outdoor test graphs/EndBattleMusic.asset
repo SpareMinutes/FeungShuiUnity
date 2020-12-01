@@ -62,7 +62,6 @@ MonoBehaviour:
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 0
-  graph: {fileID: 11400000}
   previous: 0
   onVictory: 0
   onDefeat: 0
@@ -108,7 +107,6 @@ MonoBehaviour:
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 0
-  graph: {fileID: 11400000}
   previous: 0
   next: 0
   SourceName: not battle
@@ -137,7 +135,6 @@ MonoBehaviour:
   - {fileID: 1959257836072501151}
   Start: {fileID: 4616710150558746249}
   activeNodes: []
-  ConnectedObjectName: 
 --- !u!114 &509017843871975051
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -184,7 +181,6 @@ MonoBehaviour:
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 0
-  graph: {fileID: 11400000}
   previous: 0
   next: 0
   SourceName: not battle
@@ -208,6 +204,7 @@ MonoBehaviour:
     keys:
     - previous
     - next
+    - variable
     values:
     - _fieldName: previous
       _node: {fileID: 1959257836072501151}
@@ -227,8 +224,17 @@ MonoBehaviour:
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 0
-  graph: {fileID: 11400000}
+    - _fieldName: variable
+      _node: {fileID: 1959257836072501151}
+      _typeQualifiedName: System.String, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
   message: hmmm....
+  variable: 
   previous: 0
   next: 0
 --- !u!114 &4616710150558746249
@@ -267,7 +273,6 @@ MonoBehaviour:
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 0
-  graph: {fileID: 11400000}
   next: 0
   PauseMovement: 1
   FacePlayer: 1
@@ -311,7 +316,6 @@ MonoBehaviour:
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 0
-  graph: {fileID: 11400000}
   previous: 0
   next: 0
   SourceName: battle
@@ -363,7 +367,6 @@ MonoBehaviour:
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 0
-  graph: {fileID: 11400000}
   previous: 0
   next: 0
   SourceName: battle
@@ -402,5 +405,4 @@ MonoBehaviour:
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 0
-  graph: {fileID: 11400000}
   previous: 0

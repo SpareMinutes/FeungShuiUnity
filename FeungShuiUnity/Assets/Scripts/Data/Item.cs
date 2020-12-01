@@ -15,9 +15,9 @@ public class Item : ScriptableObject {
     public string displayName;
     public ItemEffect function;     //what it does
     public int potency;             //how well it does it
+    public int cost;                //base cost of the item, may vary slightly from shop keep to shop keep (probably not)
+    public string description;      //describes briefly what the item does
 
-    [HideInInspector]
-    public int amount = 0; //will keep track of how many of this item the plaer has in their inventory
 
     /* //need to have a similar thing to the move to determine what their effect is
     public Item (string name, string bagTab, int function, float power) {

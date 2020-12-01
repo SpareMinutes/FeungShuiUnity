@@ -6,19 +6,23 @@ using UnityEngine.EventSystems;
 
 public class MenuAndWorldUI : MonoBehaviour{
     public EventSystem ES;
+
     [SerializeField]
-    private GameObject Player, Canvas, Message, Text, Menu, Bag, Party, Arrow, AnswerBox;
+    private GameObject Player, Canvas, Message, Text, Menu, Bag, Party, Arrow, AnswerBox, BuyInv, SellInv;
+
     private InteractionNode activeNode;
     [SerializeField]
     private GameObject[] Answers, AnswerBG;
-    private bool isMenuOpen, isBagOpen, isPartyOpen = false;
-    private GameObject SelectedMenu, SelectedMessage, SelectedBag, SelectedParty, dialogueContext;
+    private bool isMenuOpen, isBagOpen, isPartyOpen, isShopOpen, isBuying, selectAmount, amountCap = false;
+    private GameObject SelectedMenu, SelectedMessage, SelectedBag, SelectedParty, dialogueContext, SelectedShop, ShopConfirmation, context;
 
     private List<BagTab> bagTabs;
     private int currentTabIndex = 0;
     private int shownAnswers = 0;
     private List<Item> currentItems;
     private int offset = -2;
+
+    private int itemNum = 1;
 
     public void Start(){
         SelectedMenu = Menu.transform.GetChild(0).gameObject;
@@ -58,10 +62,29 @@ public class MenuAndWorldUI : MonoBehaviour{
                 //menu is open so close it
                 CloseMenu();
                 Player.GetComponent<Walk>().canWalk = true; //this is so that you can open different menus from the escape menu
+            } else if (isShopOpen) {
+                if (selectAmount) {
+                    //exit back to shop UI
+                    if (isBuying) {
+                        BuyInv.transform.GetChild(3).gameObject.SetActive(false); //close amount select
+                    } else {
+                        SellInv.transform.GetChild(3).gameObject.SetActive(false);
+                    }
+                    selectAmount = false;
+                    ES.SetSelectedGameObject(null);
+                    ES.SetSelectedGameObject(SelectedShop);
+                } else {
+                    CloseShop();
+                }
             } else if(!Message.activeSelf){
                 OpenMenu();
             }
-        } 
+        }
+
+        if (Input.GetKeyDown(KeyCode.Escape)) {
+            //reset the offset to go back to the top of the item list
+            offset = -2;
+        }
 
         if (isBagOpen) {
             //this handles the left/right arrows for bag tab changes
@@ -102,8 +125,75 @@ public class MenuAndWorldUI : MonoBehaviour{
                 //else the offset is fine
                 UpdateItemList();
             }
-        }
-    }
+        }   //end of Bag if statement
+
+        else if (isShopOpen) {
+            //shop controls go here
+            if (Input.GetKeyDown(KeyCode.UpArrow) && !selectAmount) {
+                offset --;
+                if (offset < -2) {
+                    offset = -2;
+                } else if (offset > currentItems.Count -2) {
+                    offset = currentItems.Count - 2;
+                }
+                //else the offset is fine
+
+                UpdateShopItemList();
+            }
+
+            if (Input.GetKeyDown(KeyCode.DownArrow) && !selectAmount) {
+                offset ++;
+                if (offset < -2) {
+                    offset = -2;
+                } else if (offset > currentItems.Count - 3) {
+                    offset = currentItems.Count - 3;
+                }
+                //else the offset is fine
+
+                UpdateShopItemList();
+            }
+
+            if (selectAmount) {
+                //up/down will increase/decrease the amount of items
+                Inventory buyer;
+                Inventory seller;
+                if (isBuying) {
+                    buyer = Player.GetComponent<Inventory>();
+                    seller = context.GetComponent<Inventory>();
+                } else {
+                    buyer = context.GetComponent<Inventory>();
+                    seller = Player.GetComponent<Inventory>();
+                }
+                Item item = currentItems[offset + 2];
+                int buyerMoney = buyer.money;
+                int maxAmountToBuy = (buyerMoney - buyerMoney % item.cost) / item.cost;
+                int maxAmount = Mathf.Min(seller.itemDict[item], maxAmountToBuy);
+
+                if (Input.GetKeyDown(KeyCode.UpArrow)) {
+                    if (itemNum + 1 <= maxAmount) {
+                        itemNum ++;
+                    } else if (itemNum == maxAmount) {
+                        itemNum = 1; //loop around
+                    }
+                    
+                } else if (Input.GetKeyDown(KeyCode.DownArrow)) {
+                    if (itemNum - 1 == 0) {
+                        itemNum = maxAmount; //loop around
+                    } else {
+                        itemNum --;
+                    }
+                }
+
+                if (isBuying) {
+                    BuyInv.transform.GetChild(3).GetChild(1).GetComponentInChildren<Text>().text = itemNum.ToString();
+                } else {
+                    SellInv.transform.GetChild(3).GetChild(1).GetComponentInChildren<Text>().text = itemNum.ToString();
+                }
+            }
+        } //end of shop if statement
+        
+
+    } //end of Update ()
 
     public void disableButton(){
         Message.GetComponent<Button>().interactable = false;
@@ -184,6 +274,8 @@ public class MenuAndWorldUI : MonoBehaviour{
         activeNode.ExecuteNext(activeNode.GetOutputPort("answers " + selection), dialogueContext);
     }
 
+
+
     public void OpenMenu () {
         //doesnt do anything but this is where ill put the code to open the in game menu
         Menu.SetActive(true);
@@ -200,11 +292,16 @@ public class MenuAndWorldUI : MonoBehaviour{
         //Player.GetComponent<Walk>().canWalk = true;
     }
 
+
+
     public void OpenSummary () {
         //will be called when the summary button is pressed from the menu
-        ShowMessage("This will show the summary of the adventure so far.", true);
+        //ShowMessage("This will show the summary of the adventure so far.", true);
+        Debug.Log("This will show the summary of the adventure so far.");
 
     }
+
+
 
     public void OpenParty () {
         //will be called when the party option is selected fromt the menu
@@ -221,6 +318,8 @@ public class MenuAndWorldUI : MonoBehaviour{
         isPartyOpen = false;
         Player.GetComponent<Walk>().canWalk = true;
     }
+
+
 
     public void OpenBag () {
         //opens the players bag when selected form the menu
@@ -243,8 +342,7 @@ public class MenuAndWorldUI : MonoBehaviour{
     }
 
     private void UpdateItemList () {
-        int ItemIndex = 1; //for clarity in the the GetChild function
-        //Debug.Log(offset);
+
         Inventory inventory = Player.GetComponent<Inventory>();
         currentItems = inventory.GetList(bagTabs[currentTabIndex%bagTabs.Count]);
 
@@ -257,10 +355,10 @@ public class MenuAndWorldUI : MonoBehaviour{
                 //this is to account for the 2 above and below the actual item button
                 item = "--";
             } else {
-                item = currentItems[i + offset].displayName;
+                item = inventory.itemDict[currentItems[i + offset]] + " " + currentItems[i + offset].displayName;
             }
             //then set the item text to the item
-            Bag.transform.GetChild(ItemIndex).GetChild(i).GetComponentInChildren<Text>().text = item;
+            Bag.transform.GetChild(1).GetChild(i).GetComponentInChildren<Text>().text = item;
         }
     }
 
@@ -276,14 +374,149 @@ public class MenuAndWorldUI : MonoBehaviour{
         Player.GetComponent<Walk>().canWalk = true;
     }
 
+
+
     public void Save () {
         //will be called when the player selects save from the menu
         //for right now doesnt do anything
-        ShowMessage("This will save the game.", true);
+        Debug.Log("This will save the game.");
     }
+
+
 
     public void OpenOptions () {
         //opens the ingame options menu from the menu
-        ShowMessage("This will show the options.", true);
+        Debug.Log("This will show the options.");
+    }
+
+
+
+    private void OpenShop () {
+        //opens the shop UI
+        isShopOpen = true;
+        ES.SetSelectedGameObject(null);
+        ES.SetSelectedGameObject(SelectedShop);
+        Player.GetComponent<Walk>().canWalk = false;
+
+        
+        UpdateShopItemList();
+        
+    }
+
+    public void OpenSellInv (Inventory shopInventory) {
+        //for the player to sell their items to a shop keeper
+        isBuying = false;
+        SellInv.SetActive(true);
+        SelectedShop = SellInv.transform.GetChild(1).GetChild(2).gameObject; //Sell Shop shop UI button
+        //hide the previous open text
+        GameObject.Find("InGameUI").transform.GetChild(0).gameObject.SetActive(false);
+        currentItems = new List<Item>(Player.GetComponent<Inventory>().itemDict.Keys);
+
+        OpenShop();
+    }
+
+    public void OpenBuyInv (Inventory shopInventory) {
+        //for the player to buy items from the shop keeper
+        isBuying = true;
+        BuyInv.SetActive(true);
+        SelectedShop = BuyInv.transform.GetChild(1).GetChild(2).gameObject; //Buy Shop shop UI button
+        //hide the previous open text
+        GameObject.Find("InGameUI").transform.GetChild(0).gameObject.SetActive(false);
+        currentItems = new List<Item>(shopInventory.itemDict.Keys);
+
+        OpenShop();
+    }
+
+    private void UpdateShopItemList () {
+        //item description
+        Item item = currentItems[offset+2];
+        string itemDesciption = item.description + "\ncost: " + item.cost.ToString();
+        if (isBuying) {
+            BuyInv.transform.GetChild(2).GetComponent<Text>().text = itemDesciption;
+        } else {
+            SellInv.transform.GetChild(2).GetComponent<Text>().text = itemDesciption;
+        }
+        
+        //the list of items
+        for (int i = 0; i < 5; i++) {
+            string itemText;
+
+            if (i+offset < 0 || i+offset >= currentItems.Count) { //outside the bounds
+                //this is to account for the 2 above and below the actual item button
+                itemText = "--";
+            } else {
+                int itemAmount;
+                Inventory currentInv;
+                if (isBuying) {
+                    currentInv = context.GetComponent<Inventory>();
+                } else {
+                    currentInv = Player.GetComponent<Inventory>();
+                }
+                itemAmount = currentInv.itemDict[currentItems[offset + i]];
+                itemText = currentItems[i + offset].displayName + "    " + itemAmount.ToString();
+            }
+
+            if (isBuying) {
+                BuyInv.transform.GetChild(1).GetChild(i).GetComponentInChildren<Text>().text = itemText;
+            } else {
+                SellInv.transform.GetChild(1).GetChild(i).GetComponentInChildren<Text>().text = itemText;
+            }
+        }
+    }
+
+    public void SetContext (GameObject target) {
+        context = target;
+    }
+
+    public void OpenSelectAmount () {
+        selectAmount = true;
+        ES.SetSelectedGameObject(null);
+        if (isBuying) {
+            BuyInv.transform.GetChild(3).gameObject.SetActive(true);
+            ES.SetSelectedGameObject(BuyInv.transform.GetChild(3).GetChild(1).gameObject);
+        } else {
+            SellInv.transform.GetChild(3).gameObject.SetActive(true);
+            ES.SetSelectedGameObject(SellInv.transform.GetChild(3).GetChild(1).gameObject);
+        }
+    }
+
+    public void TransferItems (Inventory fromInv, Inventory toInv) {
+        //handles money and item amounts
+        int num = itemNum;
+        Item item = currentItems[offset + 2];
+        bool moneyBool = toInv.money >= item.cost * num;
+
+        if (moneyBool && fromInv.RemoveItems(item, num)) {
+            toInv.AddItems(item, num);
+            //money stuff
+            toInv.money -= item.cost * num;
+            fromInv.money += item.cost * num;
+        }
+    }
+
+    public void CompleteTransaction () {
+        if (isBuying) {
+            Debug.Log("test");
+            TransferItems (context.GetComponent<Inventory>(), Player.GetComponent<Inventory>());
+        } else {
+            TransferItems (Player.GetComponent<Inventory>(), context.GetComponent<Inventory>());
+        }
+        offset = -2;    //reset offset to avoid out of bounds errors later
+        itemNum = 1;    //reset for next time
+
+        CloseShop();
+    }
+
+    public void CloseShop () {
+        //closes the shop UI
+        isShopOpen = false;
+        selectAmount = false;
+        BuyInv.SetActive(false);
+        BuyInv.transform.GetChild(3).gameObject.SetActive(false);
+        SellInv.SetActive(false);
+        SellInv.transform.GetChild(3).gameObject.SetActive(false);
+
+        //this also lets the player walk again
+        activeNode.ExecuteNext(activeNode.GetOutputPort("next"), context);
     }
 }

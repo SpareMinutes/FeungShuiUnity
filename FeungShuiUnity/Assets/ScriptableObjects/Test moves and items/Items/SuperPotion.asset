@@ -10,10 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c5417080610933748b78dfadf46d3a9b, type: 3}
-  m_Name: ItemOne
+  m_Name: SuperPotion
   m_EditorClassIdentifier: 
   tab: 0
-  displayName: Potion
+  displayName: Super Potion
   function: 0
-  potency: 20
-  amount: 0
+  potency: 100
+  cost: 700
+  description: 

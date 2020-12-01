@@ -30,7 +30,6 @@ MonoBehaviour:
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 0
-  graph: {fileID: 11400000}
   next: 0
   PauseMovement: 1
   FacePlayer: 1
@@ -52,6 +51,7 @@ MonoBehaviour:
     keys:
     - previous
     - next
+    - variable
     values:
     - _fieldName: previous
       _node: {fileID: -6315820799670634259}
@@ -77,8 +77,17 @@ MonoBehaviour:
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 0
-  graph: {fileID: 11400000}
+    - _fieldName: variable
+      _node: {fileID: -6315820799670634259}
+      _typeQualifiedName: System.String, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
   message: Hello!
+  variable: 
   previous: 0
   next: 0
 --- !u!114 &-5351118688824705447
@@ -99,6 +108,7 @@ MonoBehaviour:
     keys:
     - previous
     - next
+    - variable
     values:
     - _fieldName: previous
       _node: {fileID: -5351118688824705447}
@@ -124,8 +134,17 @@ MonoBehaviour:
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 0
-  graph: {fileID: 11400000}
+    - _fieldName: variable
+      _node: {fileID: -5351118688824705447}
+      _typeQualifiedName: System.String, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
   message: Hi again!
+  variable: 
   previous: 0
   next: 0
 --- !u!114 &-4784612086114823466
@@ -158,7 +177,6 @@ MonoBehaviour:
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 0
-  graph: {fileID: 11400000}
   next: 0
   PauseMovement: 1
   FacePlayer: 1
@@ -192,7 +210,6 @@ MonoBehaviour:
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 0
-  graph: {fileID: 11400000}
   next: 0
   PauseMovement: 1
   FacePlayer: 1
@@ -220,7 +237,6 @@ MonoBehaviour:
   - {fileID: 8711486443011781550}
   Start: {fileID: -4390941988322160311}
   activeNodes: []
-  ConnectedObjectName: NPC (2)
 --- !u!114 &3205420907471088650
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -264,7 +280,6 @@ MonoBehaviour:
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 0
-  graph: {fileID: 11400000}
   previous: 0
   next: 0
   newStart: {fileID: -4784612086114823466}
@@ -304,7 +319,6 @@ MonoBehaviour:
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 0
-  graph: {fileID: 11400000}
   previous: 0
 --- !u!114 &7734091710262977312
 MonoBehaviour:
@@ -349,7 +363,6 @@ MonoBehaviour:
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 0
-  graph: {fileID: 11400000}
   previous: 0
   next: 0
   newStart: {fileID: -6946214210004279544}
@@ -371,6 +384,7 @@ MonoBehaviour:
     keys:
     - previous
     - next
+    - variable
     values:
     - _fieldName: previous
       _node: {fileID: 8711486443011781550}
@@ -396,7 +410,16 @@ MonoBehaviour:
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 0
-  graph: {fileID: 11400000}
+    - _fieldName: variable
+      _node: {fileID: 8711486443011781550}
+      _typeQualifiedName: System.String, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
   message: Are you still trying to talk to me? Go away already!
+  variable: 
   previous: 0
   next: 0

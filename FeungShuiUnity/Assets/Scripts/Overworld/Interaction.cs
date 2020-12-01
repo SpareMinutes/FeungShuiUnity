@@ -121,6 +121,6 @@ public class Interaction : MonoBehaviour {
         RandomBranch, //Ints: possible branches
         SetStart, //Ints[0]: New starting branch branch
         Goto, //Ints[0]: new branch, Ints[1]: new step
-        SetMusic //Ints[0]: the new volume in tenths of a percent (1000=100%), Strings[0]: the name of the audio source object, //Obj: the sound track
+        SetMusic, //Ints[0]: the new volume in tenths of a percent (1000=100%), Strings[0]: the name of the audio source object, //Obj: the sound track
     }
 }

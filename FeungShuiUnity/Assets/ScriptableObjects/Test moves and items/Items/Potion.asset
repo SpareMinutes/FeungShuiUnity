@@ -10,10 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c5417080610933748b78dfadf46d3a9b, type: 3}
-  m_Name: ItemFour
+  m_Name: Potion
   m_EditorClassIdentifier: 
   tab: 0
-  displayName: X Attack
-  function: 1
-  potency: 2
-  amount: 0
+  displayName: Potion
+  function: 0
+  potency: 20
+  cost: 200
+  description: A spray-type of medicine for treating wounds. It can be used to heal
+    to restore 20HP to a single pokemon

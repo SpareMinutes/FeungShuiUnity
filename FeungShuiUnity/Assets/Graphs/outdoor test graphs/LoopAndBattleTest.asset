@@ -85,6 +85,7 @@ MonoBehaviour:
     keys:
     - previous
     - next
+    - variable
     values:
     - _fieldName: previous
       _node: {fileID: -415546883380031755}
@@ -110,7 +111,17 @@ MonoBehaviour:
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 0
+    - _fieldName: variable
+      _node: {fileID: -415546883380031755}
+      _typeQualifiedName: System.String, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
   message: Okay, here we go again.
+  variable: 
   previous: 0
   next: 0
 --- !u!114 &11400000
@@ -136,7 +147,6 @@ MonoBehaviour:
   - {fileID: -2796792120185896248}
   Start: {fileID: -5366915033200621194}
   activeNodes: []
-  ConnectedObjectName: NPC
 --- !u!114 &1499772096513751550
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -288,6 +298,7 @@ MonoBehaviour:
     keys:
     - previous
     - next
+    - variable
     values:
     - _fieldName: previous
       _node: {fileID: 5346623711416628649}
@@ -313,7 +324,17 @@ MonoBehaviour:
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 0
+    - _fieldName: variable
+      _node: {fileID: 5346623711416628649}
+      _typeQualifiedName: System.String, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
   message: 'That was all, we''re gonna battle now. '
+  variable: 
   previous: 0
   next: 0
 --- !u!114 &5573613775391256355
@@ -334,6 +355,7 @@ MonoBehaviour:
     keys:
     - previous
     - next
+    - variable
     values:
     - _fieldName: previous
       _node: {fileID: 5573613775391256355}
@@ -362,7 +384,17 @@ MonoBehaviour:
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 0
+    - _fieldName: variable
+      _node: {fileID: 5573613775391256355}
+      _typeQualifiedName: System.String, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
   message: Okay, first I'm gonna say some stuff. Then I'm gonna ask you a question.
+  variable: 
   previous: 0
   next: 0
 --- !u!114 &7529807231921990300
@@ -383,6 +415,7 @@ MonoBehaviour:
     keys:
     - previous
     - next
+    - variable
     values:
     - _fieldName: previous
       _node: {fileID: 7529807231921990300}
@@ -408,6 +441,16 @@ MonoBehaviour:
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 0
+    - _fieldName: variable
+      _node: {fileID: 7529807231921990300}
+      _typeQualifiedName: System.String, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
   message: Okay! Great!
+  variable: 
   previous: 0
   next: 0

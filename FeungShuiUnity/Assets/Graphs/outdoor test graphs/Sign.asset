@@ -13,11 +13,12 @@ MonoBehaviour:
   m_Name: Text
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 312, y: -24}
+  position: {x: -472, y: 88}
   ports:
     keys:
     - previous
     - next
+    - variable
     values:
     - _fieldName: previous
       _node: {fileID: -8442757661979852283}
@@ -43,7 +44,17 @@ MonoBehaviour:
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 0
+    - _fieldName: variable
+      _node: {fileID: -8442757661979852283}
+      _typeQualifiedName: System.String, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
   message: 'For example: '
+  variable: 
   previous: 0
   next: 0
 --- !u!114 &-6853088410449496938
@@ -59,7 +70,7 @@ MonoBehaviour:
   m_Name: Question
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: -200, y: 152}
+  position: {x: -168, y: 104}
   ports:
     keys:
     - previous
@@ -173,7 +184,7 @@ MonoBehaviour:
   m_Name: Start
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: -440, y: 8}
+  position: {x: -1224, y: 184}
   ports:
     keys:
     - next
@@ -191,6 +202,8 @@ MonoBehaviour:
       _typeConstraint: 0
       _dynamic: 0
   next: 0
+  PauseMovement: 1
+  FacePlayer: 1
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -227,7 +240,7 @@ MonoBehaviour:
   m_Name: End
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 344, y: 280}
+  position: {x: 552, y: 216}
   ports:
     keys:
     - previous
@@ -239,9 +252,6 @@ MonoBehaviour:
       connections:
       - fieldName: next
         node: {fileID: 6529435709317219709}
-        reroutePoints: []
-      - fieldName: next
-        node: {fileID: 2724899533600162785}
         reroutePoints: []
       _direction: 0
       _connectionType: 0
@@ -261,11 +271,12 @@ MonoBehaviour:
   m_Name: Text
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 56, y: 296}
+  position: {x: 168, y: 248}
   ports:
     keys:
     - previous
     - next
+    - variable
     values:
     - _fieldName: previous
       _node: {fileID: 2724899533600162785}
@@ -283,15 +294,22 @@ MonoBehaviour:
       _node: {fileID: 2724899533600162785}
       _typeQualifiedName: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral,
         PublicKeyToken=b77a5c561934e089
-      connections:
-      - fieldName: previous
-        node: {fileID: 376036044875687536}
-        reroutePoints: []
+      connections: []
       _direction: 1
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 0
+    - _fieldName: variable
+      _node: {fileID: 2724899533600162785}
+      _typeQualifiedName: System.String, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
   message: The sign sighs, looking slightly dejected.
+  variable: 
   previous: 0
   next: 0
 --- !u!114 &5912548684919716984
@@ -307,11 +325,12 @@ MonoBehaviour:
   m_Name: Text
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: -200, y: -24}
+  position: {x: -968, y: 72}
   ports:
     keys:
     - previous
     - next
+    - variable
     values:
     - _fieldName: previous
       _node: {fileID: 5912548684919716984}
@@ -337,7 +356,17 @@ MonoBehaviour:
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 0
+    - _fieldName: variable
+      _node: {fileID: 5912548684919716984}
+      _typeQualifiedName: System.String, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
   message: Welcome to the outdoor test area!
+  variable: 
   previous: 0
   next: 0
 --- !u!114 &6529435709317219709
@@ -353,11 +382,12 @@ MonoBehaviour:
   m_Name: Text
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 56, y: 136}
+  position: {x: 168, y: 24}
   ports:
     keys:
     - previous
     - next
+    - variable
     values:
     - _fieldName: previous
       _node: {fileID: 6529435709317219709}
@@ -392,7 +422,17 @@ MonoBehaviour:
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 0
+    - _fieldName: variable
+      _node: {fileID: 6529435709317219709}
+      _typeQualifiedName: System.String, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
   message: Really there's not much, it's just a test area after all.
+  variable: 
   previous: 0
   next: 0
 --- !u!114 &7895177660628951150
@@ -408,11 +448,12 @@ MonoBehaviour:
   m_Name: Text
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 56, y: -24}
+  position: {x: -728, y: 88}
   ports:
     keys:
     - previous
     - next
+    - variable
     values:
     - _fieldName: previous
       _node: {fileID: 7895177660628951150}
@@ -438,6 +479,16 @@ MonoBehaviour:
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 0
+    - _fieldName: variable
+      _node: {fileID: 7895177660628951150}
+      _typeQualifiedName: System.String, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
   message: 'This is the area where we test things outdoors! '
+  variable: 
   previous: 0
   next: 0
