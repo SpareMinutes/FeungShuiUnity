@@ -10,9 +10,8 @@ public class GiveItemNode : InteractionNode {
     public int amount;
 
     public override void Execute(GameObject context) {
-        //when this node runs, it needs to give the player items that will go into they're inventory
+        //when this node runs, it needs to give the player items that will go into their inventory
         GameObject.Find("WalkableCharacter").GetComponent<Inventory>().AddItems(item, amount);
-        context.SetActive(false); //just so you cant pickup the same item over and over
 
         ExecuteNext(GetOutputPort("next"), context);
     }
