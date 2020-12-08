@@ -11,7 +11,8 @@ public enum ItemEffect {
 [CreateAssetMenu()]
 public class Item : ScriptableObject {
 
-    public BagTab tab; //will be what tab the item should go in (made manually in the editor)
+    public Sprite itemImage;        //the in game image display of the item
+    public BagTab tab;              //will be what tab the item should go in (made manually in the editor)
     public string displayName;
     public ItemEffect function;     //what it does
     public int potency;             //how well it does it

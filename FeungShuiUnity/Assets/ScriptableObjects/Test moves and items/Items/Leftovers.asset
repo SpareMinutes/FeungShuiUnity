@@ -10,13 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c5417080610933748b78dfadf46d3a9b, type: 3}
-  m_Name: Potion
+  m_Name: Leftovers
   m_EditorClassIdentifier: 
-  itemImage: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
-  tab: 0
-  displayName: Potion
+  itemImage: {fileID: 0}
+  tab: 1
+  displayName: Leftovers
   function: 0
-  potency: 20
-  cost: 200
-  description: A spray-type of medicine for treating wounds. It can be used to heal
-    to restore 20HP to a single pokemon
+  potency: 0
+  cost: 1000
+  description: just a test for different bag tabs

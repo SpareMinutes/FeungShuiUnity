@@ -90,7 +90,12 @@ public class MenuAndWorldUI : MonoBehaviour{
             //this handles the left/right arrows for bag tab changes
             if (Input.GetKeyDown(KeyCode.LeftArrow)) {
                 //then we want change the tab to the left
-                currentTabIndex--;
+                if (currentTabIndex - 1 < 0) {
+                    currentTabIndex = bagTabs.Count - 1;
+                } else {
+                    currentTabIndex--;
+                }
+                
                 offset = -2;
                 UpdateItemList();
             }
@@ -350,16 +355,33 @@ public class MenuAndWorldUI : MonoBehaviour{
         Bag.transform.GetChild(tabTitleIndex).GetComponent<Text>().text = bagTabs[currentTabIndex%bagTabs.Count].ToString(); 
 
         for (int i = 0; i < 5; i++) {
-            string item;
+            string itemName;
+            string itemNum;
             if (i+offset < 0 || i+offset >= currentItems.Count) {
                 //this is to account for the 2 above and below the actual item button
-                item = "--";
+                itemName = "--";
+                itemNum = "-";
             } else {
-                item = inventory.itemDict[currentItems[i + offset]] + " " + currentItems[i + offset].displayName;
+                itemName = currentItems[i + offset].displayName;
+                itemNum = inventory.itemDict[currentItems[i + offset]].ToString();
             }
             //then set the item text to the item
-            Bag.transform.GetChild(1).GetChild(i).GetComponentInChildren<Text>().text = item;
+            Bag.transform.GetChild(1).GetChild(i).GetComponentInChildren<Text>().text = itemName;
+            Bag.transform.GetChild(5).GetChild(i).GetComponentInChildren<Text>().text = itemNum;
         }
+        //reset incase the tab has no items in it
+        Bag.transform.GetChild(6).GetComponent<Text>().text = "";
+        Bag.transform.GetChild(4).GetComponent<Image>().sprite = null;
+
+        //to stop throwing exceptions
+        if (currentItems.Count > 0) {
+            //item description in bag
+            Bag.transform.GetChild(6).GetComponent<Text>().text = currentItems[offset + 2].description;
+            //item image
+            Bag.transform.GetChild(4).GetComponent<Image>().sprite = currentItems[offset + 2].itemImage;
+        }
+        
+
     }
 
     public void UseItem () {
@@ -439,27 +461,30 @@ public class MenuAndWorldUI : MonoBehaviour{
         
         //the list of items
         for (int i = 0; i < 5; i++) {
-            string itemText;
+            string itemName;
+            string itemNum;
 
             if (i+offset < 0 || i+offset >= currentItems.Count) { //outside the bounds
                 //this is to account for the 2 above and below the actual item button
-                itemText = "--";
+                itemName = "--";
+                itemNum = "-";
             } else {
-                int itemAmount;
                 Inventory currentInv;
                 if (isBuying) {
                     currentInv = context.GetComponent<Inventory>();
                 } else {
                     currentInv = Player.GetComponent<Inventory>();
                 }
-                itemAmount = currentInv.itemDict[currentItems[offset + i]];
-                itemText = currentItems[i + offset].displayName + "    " + itemAmount.ToString();
+                itemNum = currentInv.itemDict[currentItems[offset + i]].ToString();
+                itemName = currentItems[i + offset].displayName;
             }
 
             if (isBuying) {
-                BuyInv.transform.GetChild(1).GetChild(i).GetComponentInChildren<Text>().text = itemText;
+                BuyInv.transform.GetChild(1).GetChild(i).GetComponentInChildren<Text>().text = itemName;
+                BuyInv.transform.GetChild(4).GetChild(i).GetComponentInChildren<Text>().text = itemNum;
             } else {
-                SellInv.transform.GetChild(1).GetChild(i).GetComponentInChildren<Text>().text = itemText;
+                SellInv.transform.GetChild(1).GetChild(i).GetComponentInChildren<Text>().text = itemName;
+                SellInv.transform.GetChild(4).GetChild(i).GetComponentInChildren<Text>().text = itemNum;
             }
         }
     }
