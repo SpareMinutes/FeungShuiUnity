@@ -1,11 +1,19 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
 
-public class Species{
-    Type typeP, typeS;
-    Hashtable learnset;
+[CreateAssetMenu]
+public class Species:ScriptableObject{
+    [SerializeField]
+    private Type typeP, typeS;
     //0-health, 1-mana, 2-attack, 3-defense, 4-intelligence, 5-resistance, 6-speed
-    int[] baseStats;
+    [SerializeField]
+    private int[] baseStats;
+    [SerializeField]
+    private LearnedMove[] learnset;
+    public Sprite battleSprite;
 
     public Species(Type typePIn, Type typeSIn, int[] baseStatsIn) {
         this.typeP = typePIn;
@@ -35,5 +43,12 @@ public class Species{
 
     public Type getSType () {
         return typeS;
+    }
+
+    [Serializable]
+    //TODO: code how to serialize this
+    struct LearnedMove {
+        int level;
+        Move move;
     }
 }

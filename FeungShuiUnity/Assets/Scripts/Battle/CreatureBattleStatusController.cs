@@ -37,7 +37,7 @@ public class CreatureBattleStatusController : MonoBehaviour {
         currentSpeed = Target.getSpeed();
         preDefenseMoveDefense = currentDefense;
         preDefenseMoveResistance = currentResistance;
-        sprite.GetComponent<Image>().sprite = Resources.Load<Sprite>("Spirits/" + Target.speciesName);
+        sprite.GetComponent<Image>().sprite = Target.species.battleSprite;
     }
 
     // Update is called once per frame

@@ -8,9 +8,7 @@ public class Creature {
     System.Guid uid;
     public bool playerOwned;
     public string name;
-    //Used for editor
-    public string speciesName;
-    Species species;
+    public Species species;
     Nature nature;
     //The amount this spicific creature differs from others of its level and species
     //0-exp, 1-health, 2-attack, 3-defense, 4-intelligence, 5-resistance, 6-speed
@@ -59,7 +57,6 @@ public class Creature {
 
     public void UpdateStats() {
         int level = getLevel();
-        species = SpiritsTable.Find(speciesName);
         //TODO: factor in upgrade points and multipliers
         //0-health, 1-mana, 2-attack, 3-defense, 4-intelligence, 5-resistance, 6-speed
         int[] baseStats = species.getStats();

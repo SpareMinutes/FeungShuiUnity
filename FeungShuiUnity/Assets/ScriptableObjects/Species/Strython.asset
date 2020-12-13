@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f75fe4b51718e3445b91bd7841052537, type: 3}
+  m_Name: Strython
+  m_EditorClassIdentifier: 
+  typeP: 3
+  typeS: 14
+  baseStats: 41000000500000003200000041000000780000005f0000005a000000
+  learnset: []
+  battleSprite: {fileID: 0}
