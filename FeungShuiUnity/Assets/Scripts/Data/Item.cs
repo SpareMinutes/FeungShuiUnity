@@ -13,7 +13,7 @@ public class Item : ScriptableObject {
 
     public Sprite itemImage;        //the in game image display of the item
     public BagTab tab;              //will be what tab the item should go in (made manually in the editor)
-    public string displayName;
+    public string name;
     public ItemEffect function;     //what it does
     public int potency;             //how well it does it
     public int cost;                //base cost of the item, may vary slightly from shop keep to shop keep (probably not)
@@ -22,7 +22,7 @@ public class Item : ScriptableObject {
 
     /* //need to have a similar thing to the move to determine what their effect is
     public Item (string name, string bagTab, int function, float power) {
-        displayName = name;
+        name = name;
         tab = bagTab;
         this.function = function; //defined the type of item it is
         this.power = power; //determines how potent the item is

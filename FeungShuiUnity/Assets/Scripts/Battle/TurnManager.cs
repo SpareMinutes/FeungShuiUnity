@@ -56,7 +56,7 @@ public class TurnManager : MonoBehaviour{
             }
         }
         for(int i=0; i<5; i++) {
-            TurnLabels[i].text = Upcoming.ElementAt<CreatureBattleStatusController>(i).Target.displayName;
+            TurnLabels[i].text = Upcoming.ElementAt<CreatureBattleStatusController>(i).Target.name;
         }
     }
 

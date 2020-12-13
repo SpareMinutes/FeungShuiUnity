@@ -27,8 +27,8 @@ public class CreatureBattleStatusController : MonoBehaviour {
 
     // Start is called before the first frame update
     void Start() {
-        Target.Init();
-        Name.GetComponent<Text>().text = Target.displayName;
+        Target.UpdateStats();
+        Name.GetComponent<Text>().text = Target.name;
 
         currentAttack = Target.getAttack();
         currentDefense = Target.getDefense();

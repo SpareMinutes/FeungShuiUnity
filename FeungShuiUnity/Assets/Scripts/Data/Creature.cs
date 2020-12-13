@@ -3,48 +3,63 @@ using UnityEngine;
 
 //Handles Creature status for reference in parties
 [System.Serializable]
-public class Creature{
-    //name of the creature, will default to species name if none is given
-    public string displayName;
+public class Creature {
+    #region Info and trait variables
+    System.Guid uid;
+    public bool playerOwned;
+    public string name;
+    //Used for editor
     public string speciesName;
-    private Species species;
+    Species species;
+    Nature nature;
+    //The amount this spicific creature differs from others of its level and species
+    //0-exp, 1-health, 2-attack, 3-defense, 4-intelligence, 5-resistance, 6-speed
+    int[] scaleFactors;
+    public List<Move> Moves;
+    int totalExp;
+    #endregion
 
-    //stats
-    public float maxActiveHealth;
-    public float maxCriticalHealth;
-    public float maxMana;
+    #region Stat variables
     //dont need to edit these in the editor, but they are needed by other scripts so theyll stay public
-    [HideInInspector] 
+    [HideInInspector]
+    public float maxActiveHealth;
+    [HideInInspector]
+    public float maxCriticalHealth;
+    [HideInInspector]
+    public float maxMana;
+
+    [HideInInspector]
     public float currentCriticalHealth;
     [HideInInspector]
     public float currentActiveHealth;
     [HideInInspector]
     public float currentMana;
 
+    //convenience variables of actual stats calculated from species, nature, etc
     private int attack;
     private int defense;
     private int intelligence; //Special attack
     private int resistance; //Special defense
     private int speed;
-     
-    private float friendship = 0; //0 should be neutral, and less <0 is bad >0 is good
 
-    //xp stuff
-    public float totalExp = 0;
-
-    //misc stats
-    public bool playerOwned;
-    private Type type; //only single type for now
-    private string personality;
     private List<float> statModifiers;
-    public List<Move> Moves;
 
     private static Dictionary<Creature, float> friendshipDict = new Dictionary<Creature, float>();
     private float trainerFriendship; // because the player isnt of type Creature
+    #endregion
 
-    public void Init() {
-        species = SpiritsTable.Find(speciesName);
+    public Creature(Species spIn, Nature natIn, int[] factorsIn, int startLevel) {
+        this.species = spIn;
+        this.nature = natIn;
+        this.scaleFactors = factorsIn;
+        this.uid = System.Guid.NewGuid();
+        this.totalExp = (int)(scaleFactors[0] * Mathf.Pow(startLevel, 3));
+        UpdateStats();
+    }
+
+    public void UpdateStats() {
         int level = getLevel();
+        species = SpiritsTable.Find(speciesName);
         //TODO: factor in upgrade points and multipliers
         //0-health, 1-mana, 2-attack, 3-defense, 4-intelligence, 5-resistance, 6-speed
         int[] baseStats = species.getStats();
@@ -57,9 +72,22 @@ public class Creature{
         resistance = (int)Mathf.Floor((baseStats[5] * level / 50.0f) + 5);
         speed = (int)Mathf.Floor((baseStats[6] * level / 50.0f) + 5);
     }
-    
+
+    //Do something similar to this for stats?
+    public int GetLevel() {
+        return (int)Mathf.Floor(Mathf.Pow((totalExp / scaleFactors[0]), (1 / 3)));
+    }
+
+    //Returns true if there was a level up
+    public bool GainExp(int amount) {
+        int levelBefore = GetLevel();
+        totalExp += amount;
+        int levelAfter = GetLevel();
+        return (levelBefore != levelAfter);
+    }
+
     public int getLevel() {
-        return (int)Mathf.Pow(totalExp,1/3f);
+        return (int)Mathf.Pow(totalExp, 1 / 3f);
     }
 
     public Type getPType() {
@@ -81,7 +109,7 @@ public class Creature{
         return maxCriticalHealth;
     }
 
-    public float getCriticalHealth () {
+    public float getCriticalHealth() {
         return currentCriticalHealth;
     }
 
@@ -113,7 +141,7 @@ public class Creature{
         return this.speed;
     }
 
-    public bool isPlayerOwned () {
+    public bool isPlayerOwned() {
         return playerOwned;
     }
 }

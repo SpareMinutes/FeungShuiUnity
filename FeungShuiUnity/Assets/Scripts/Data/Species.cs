@@ -13,11 +13,11 @@ public class Species{
         this.baseStats = baseStatsIn;
     }
 
-    public Spirit Spawn(int startLevel){
+    public Creature Spawn(int startLevel){
         Dictionary<string, float> scaleFactors = new Dictionary<string, float>();
         Nature nature = SelectNature();
         //TODO: Generate final scale factors
-        return new Spirit(this, nature, baseStats, startLevel);
+        return new Creature(this, nature, baseStats, startLevel);
     }
 
     protected Nature SelectNature(){

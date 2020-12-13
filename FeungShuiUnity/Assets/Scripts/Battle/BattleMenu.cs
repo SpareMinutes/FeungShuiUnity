@@ -102,7 +102,7 @@ public class BattleMenu : MonoBehaviour{
                     if (randNum <= FrostBiteChance) {
                         //then no action occurs
                         StatusHappened = true;
-                        ShowMessage(Attacker.Target.displayName + " did not take an action due to Frost Bite.");
+                        ShowMessage(Attacker.Target.name + " did not take an action due to Frost Bite.");
                     }
                     break;
                 } case StatusEffect.Paralysis : {
@@ -110,7 +110,7 @@ public class BattleMenu : MonoBehaviour{
                     if (randNum <= ParalysisChance) {
                         //then no action occurs
                         StatusHappened = true;
-                        ShowMessage(Attacker.Target.displayName + " did not take an action due to Paralysis.");
+                        ShowMessage(Attacker.Target.name + " did not take an action due to Paralysis.");
                         LoadProgress();
                     }
                     break;
@@ -134,7 +134,7 @@ public class BattleMenu : MonoBehaviour{
 
     private void NormalAskForAction () {
         if (Attacker.GetCreature().isPlayerOwned()){
-            ShowMessage("What will " + Attacker.GetCreature().displayName + " do?");
+            ShowMessage("What will " + Attacker.GetCreature().name + " do?");
             //Enable action type buttons
             GameObject.Find("Attack").GetComponent<Button>().interactable = true;
             GameObject.Find("Defend").GetComponent<Button>().interactable = true;
@@ -214,7 +214,7 @@ public class BattleMenu : MonoBehaviour{
             //hurt itself
             float damageToTake = (1/16)*Attacker.Target.maxActiveHealth;
             Attacker.ApplyDamage(damageToTake, Attacker);
-            ShowMessage(Attacker.Target.displayName + " hurt itself in its rage.");
+            ShowMessage(Attacker.Target.name + " hurt itself in its rage.");
             LoadProgress();
         }
     }
@@ -251,13 +251,13 @@ public class BattleMenu : MonoBehaviour{
         //since it has no targets it doesnt need a target selection
         //show/remove appropriate buttons
         //show message that the spririt used defend
-        ShowMessage(Attacker.GetCreature().displayName + " used Defend!");
+        ShowMessage(Attacker.GetCreature().name + " used Defend!");
         //progress the turn cycle
         LoadProgress();
     }
 
     public void SelectItem(){
-        ShowMessage("" + Attacker.GetCreature().displayName + " used an [ITEM] (WIP)");
+        ShowMessage("" + Attacker.GetCreature().name + " used an [ITEM] (WIP)");
         LoadProgress();
     }
 
@@ -323,7 +323,7 @@ public class BattleMenu : MonoBehaviour{
         foreach (CreatureBattleStatusController Defender in Defenders){
             if (SelectedMove.execute(Attacker, Defender)) {
                 //attack hit
-                ShowMessage(Attacker.GetCreature().displayName + " used " + SelectedMove.name + " on " + Defender.GetCreature().displayName + ".");
+                ShowMessage(Attacker.GetCreature().name + " used " + SelectedMove.name + " on " + Defender.GetCreature().name + ".");
             } else {
                 //attack missed
                 ShowMessage(SelectedMove.name + " missed.");
@@ -565,10 +565,10 @@ public class BattleMenu : MonoBehaviour{
         } else if (todo == 1) {
             LoadDefend();
         } else if (todo == 2) {
-            ShowMessage("" + Attacker.GetCreature().displayName + " used an [ITEM] (WIP)");
+            ShowMessage("" + Attacker.GetCreature().name + " used an [ITEM] (WIP)");
             LoadProgress();
         } else if (todo == 3) {
-            ShowMessage("" + Attacker.GetCreature().displayName + " switched (WIP)");
+            ShowMessage("" + Attacker.GetCreature().name + " switched (WIP)");
             LoadProgress();
         }
     }
@@ -602,14 +602,14 @@ public class BattleMenu : MonoBehaviour{
         //a helper method for the status effects
         float reducingFactor = 1 / 16; // 1/16 is what pokemon uses for burn/poison
         Attacker.ApplyDamage(reducingFactor * Attacker.Target.maxActiveHealth, Attacker);
-        ShowMessage("drained hp from " + Attacker.Target.displayName + ".");
+        ShowMessage("drained hp from " + Attacker.Target.name + ".");
     }
 
     private void ManaDrain() {
         //helper for the status effects
         float reducingFactor = 1 / 16;
         Attacker.Target.currentMana = Mathf.Max(0, Attacker.Target.currentMana - reducingFactor * Attacker.Target.maxMana);
-        ShowMessage("drained mana from " + Attacker.Target.displayName + ".");
+        ShowMessage("drained mana from " + Attacker.Target.name + ".");
     }
 
     private void checkWearOff() {

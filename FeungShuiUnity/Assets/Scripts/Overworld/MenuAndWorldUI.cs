@@ -362,7 +362,7 @@ public class MenuAndWorldUI : MonoBehaviour{
                 itemName = "--";
                 itemNum = "-";
             } else {
-                itemName = currentItems[i + offset].displayName;
+                itemName = currentItems[i + offset].name;
                 itemNum = inventory.itemDict[currentItems[i + offset]].ToString();
             }
             //then set the item text to the item
@@ -387,7 +387,7 @@ public class MenuAndWorldUI : MonoBehaviour{
     public void UseItem () {
         //function for the item button
         currentItems[offset + 2].use();
-        Debug.Log(currentItems[offset + 2].displayName);
+        Debug.Log(currentItems[offset + 2].name);
     }
 
     public void CloseBag () {
@@ -476,7 +476,7 @@ public class MenuAndWorldUI : MonoBehaviour{
                     currentInv = Player.GetComponent<Inventory>();
                 }
                 itemNum = currentInv.itemDict[currentItems[offset + i]].ToString();
-                itemName = currentItems[i + offset].displayName;
+                itemName = currentItems[i + offset].name;
             }
 
             if (isBuying) {
