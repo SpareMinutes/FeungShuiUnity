@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using System;
 
 public class MenuAndWorldUI : MonoBehaviour{
     public EventSystem ES;
@@ -303,19 +304,28 @@ public class MenuAndWorldUI : MonoBehaviour{
         //will be called when the summary button is pressed from the menu
         //ShowMessage("This will show the summary of the adventure so far.", true);
         Debug.Log("This will show the summary of the adventure so far.");
-
     }
 
 
 
     public void OpenParty () {
         //will be called when the party option is selected fromt the menu
-        //ShowMessage("This will show the spirit party.");
         isPartyOpen = true;
         Party.SetActive(true);
         ES.SetSelectedGameObject(null);
         ES.SetSelectedGameObject(SelectedParty);
         Player.GetComponent<Walk>().canWalk = false;
+        for(int i=0; i<6; i++) {
+            GameObject memberObject = Party.transform.GetChild(i + 1).gameObject;
+            try {
+                Creature memberData = Player.GetComponent<Battle>().Party[i];
+                memberObject.transform.GetChild(1).GetComponent<Text>().text = memberData.name;
+                memberObject.transform.GetChild(2).GetComponent<Slider>().value = memberData.currentActiveHealth/ memberData.maxActiveHealth;
+                memberObject.SetActive(true);
+            } catch (IndexOutOfRangeException e){
+                memberObject.SetActive(false);
+            }
+        }
     }
 
     public void CloseParty () {
@@ -325,7 +335,7 @@ public class MenuAndWorldUI : MonoBehaviour{
     }
 
 
-
+    #region Bag
     public void OpenBag () {
         //opens the players bag when selected form the menu
         //ShowMessage("This will show the player inventory.");
@@ -395,6 +405,7 @@ public class MenuAndWorldUI : MonoBehaviour{
         isBagOpen = false;
         Player.GetComponent<Walk>().canWalk = true;
     }
+    #endregion
 
 
 
@@ -413,6 +424,7 @@ public class MenuAndWorldUI : MonoBehaviour{
 
 
 
+    #region Shops
     private void OpenShop () {
         //opens the shop UI
         isShopOpen = true;
@@ -544,4 +556,5 @@ public class MenuAndWorldUI : MonoBehaviour{
         //this also lets the player walk again
         activeNode.ExecuteNext(activeNode.GetOutputPort("next"), context);
     }
+    #endregion
 }
