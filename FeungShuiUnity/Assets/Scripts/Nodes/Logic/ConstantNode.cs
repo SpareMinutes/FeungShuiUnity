@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-[CreateNodeMenu("Logic/Constant")]
+[CreateNodeMenu("Logic/Constant"), NodeTint(80, 80, 120)]
 public class ConstantNode : ProcessorNode {
     public bool value;
     [Output] public bool output;

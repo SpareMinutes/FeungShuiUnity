@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using XNode;
 
-[CreateNodeMenu("Logic/Or")]
+[CreateNodeMenu("Logic/Or"), NodeTint(80, 80, 120)]
 public class OrNode : ProcessorNode {
     [Input(backingValue = ShowBackingValue.Never)] public bool input;
     [Output] public bool output;

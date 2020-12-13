@@ -13,11 +13,12 @@ public class TextNode : InteractionNode {
     [Output] public bool next;
 
     public override void Execute(GameObject context) {
-        NodePort varPort = GetInputPort("variable");
         string parsedMessage = message;
-        for (int i = 0; i < varPort.ConnectionCount; i++) {
-            parsedMessage = Regex.Replace(parsedMessage, "%v" + i, ((ProcessorNode)varPort.GetConnection(i).node).GetValue(context).ToString());
+        int varNum = 0;
+        foreach (NodePort varPort in DynamicPorts) {
+            parsedMessage = Regex.Replace(parsedMessage, "%v" + varNum, ((ProcessorNode)varPort.GetConnection(0).node).GetValue(context).ToString());
             Debug.Log(parsedMessage);
+            varNum++;
         }
         GameObject.Find("InGameUI").GetComponent<MenuAndWorldUI>().ShowMessage(parsedMessage, true);
         GameObject.Find("InGameUI").GetComponent<MenuAndWorldUI>().SetActiveNode(this);

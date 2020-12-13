@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using XNode;
 
-[CreateNodeMenu("Math/Compare")]
+[CreateNodeMenu("Math/Compare"), NodeTint(100, 150, 180)]
 public class CompareNode : ProcessorNode {
     [Input(backingValue = ShowBackingValue.Unconnected)] public float first;
     public Comparison operation;

@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using XNode;
 
-[CreateNodeMenu("Math/Count")]
+[CreateNodeMenu("Math/Count"), NodeTint(100, 150, 180)]
 public class CountNode : ProcessorNode {
     [Input(backingValue = ShowBackingValue.Never)] public bool input;
     [Output] public int output;

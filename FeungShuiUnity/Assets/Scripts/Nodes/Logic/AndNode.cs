@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using XNode;
 
-[CreateNodeMenu("Logic/And")]
+[CreateNodeMenu("Logic/And"), NodeTint(80, 80, 120)]
 public class AndNode : ProcessorNode {
     [Input(backingValue = ShowBackingValue.Never)] public bool input;
     [Output] public bool output;

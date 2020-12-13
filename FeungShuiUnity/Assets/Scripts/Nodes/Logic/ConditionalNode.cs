@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-[CreateNodeMenu("Logic/Conditional")]
+[CreateNodeMenu("Logic/Conditional"), NodeTint(80, 80, 120)]
 public class ConditionalNode : ExecutableNode {
     [Input(backingValue = ShowBackingValue.Never), Tooltip("Uses the value of the logic node connected to this portw hen running.")] public bool value;
     [Input(backingValue = ShowBackingValue.Never), Tooltip("Will run when a node connected to this port finishes.")] public bool trigger;

@@ -1,8 +1,9 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class Battle : MonoBehaviour{
-    public Creature[] Party;
+    public List<Creature> Party;
     private Creature[] PlayerParty, OpposingParty;
     public bool defeated = false;
 
@@ -17,7 +18,7 @@ public class Battle : MonoBehaviour{
     }
 
     public void StartBattle() {
-        PlayerParty = GameObject.Find("WalkableCharacter").GetComponent<Battle>().Party;
+        PlayerParty = GameObject.Find("WalkableCharacter").GetComponent<Battle>().Party.ToArray();
         //load the battle scene
         Time.timeScale = 0;
         GameObject.Find("WalkableCharacter").transform.GetChild(0).gameObject.SetActive(false);
@@ -25,8 +26,8 @@ public class Battle : MonoBehaviour{
     }
 
     public void StartTrainerBattle() {
-        OpposingParty = GetComponentInParent<Battle>().Party;
-        PlayerParty = GameObject.Find("WalkableCharacter").GetComponent<Battle>().Party;
+        OpposingParty = GetComponentInParent<Battle>().Party.ToArray();
+        PlayerParty = GameObject.Find("WalkableCharacter").GetComponent<Battle>().Party.ToArray();
         StartBattle();
         SceneManager.sceneLoaded += LoadParties;
     }
