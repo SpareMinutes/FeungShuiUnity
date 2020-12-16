@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemImage: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
   tab: 0
-  displayName: Potion
+  name: Potion
   function: 0
   potency: 20
   cost: 200

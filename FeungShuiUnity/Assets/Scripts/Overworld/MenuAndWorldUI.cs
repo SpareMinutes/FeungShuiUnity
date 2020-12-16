@@ -174,18 +174,25 @@ public class MenuAndWorldUI : MonoBehaviour{
                 int buyerMoney = buyer.money;
                 int maxAmountToBuy = (buyerMoney - buyerMoney % item.cost) / item.cost;
                 int maxAmount = Mathf.Min(seller.itemDict[item], maxAmountToBuy);
+                if (maxAmount == 0) {
+                    //cant buy any of the item
+                    itemNum = 0;
+                }
 
                 if (Input.GetKeyDown(KeyCode.UpArrow)) {
                     if (itemNum + 1 <= maxAmount) {
                         itemNum ++;
                     } else if (itemNum == maxAmount) {
-                        itemNum = 1; //loop around
+                        if (maxAmount != 0) {
+                            itemNum = 1; //loop around
+                        }
+                        //else itemNum should remain at 0
                     }
                     
                 } else if (Input.GetKeyDown(KeyCode.DownArrow)) {
                     if (itemNum - 1 == 0) {
                         itemNum = maxAmount; //loop around
-                    } else {
+                    } else if (itemNum > 0){
                         itemNum --;
                     }
                 }

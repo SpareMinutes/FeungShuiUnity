@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5417080610933748b78dfadf46d3a9b, type: 3}
   m_Name: SuperPotion
   m_EditorClassIdentifier: 
+  itemImage: {fileID: 0}
   tab: 0
-  displayName: Super Potion
+  name: Super Potion
   function: 0
   potency: 100
   cost: 700

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemImage: {fileID: 0}
   tab: 1
-  displayName: Leftovers
+  name: Leftovers
   function: 0
   potency: 0
   cost: 1000

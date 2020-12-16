@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5417080610933748b78dfadf46d3a9b, type: 3}
   m_Name: XAttack
   m_EditorClassIdentifier: 
+  itemImage: {fileID: 0}
   tab: 0
-  displayName: X Attack
+  name: X Attack
   function: 1
   potency: 2
   cost: 100
