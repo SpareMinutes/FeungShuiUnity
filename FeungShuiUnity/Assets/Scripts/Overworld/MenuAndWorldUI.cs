@@ -57,11 +57,13 @@ public class MenuAndWorldUI : MonoBehaviour{
         if (Input.GetButtonDown("Cancel")) {
             if (isBagOpen) {
                 CloseBag();
+                OpenMenu();
             } else if (isPartyOpen) {
                 CloseParty();
+                OpenMenu();
             } else if (isMenuOpen) {
                 //menu is open so close it
-                CloseMenu();
+                CloseMenu(true);
                 Player.GetComponent<Walk>().canWalk = true; //this is so that you can open different menus from the escape menu
             } else if (isShopOpen) {
                 if (selectAmount) {
@@ -206,8 +208,13 @@ public class MenuAndWorldUI : MonoBehaviour{
         } //end of shop if statement
         
 
-    } //end of Update ()
+    }
 
+    public void SetContext(GameObject target) {
+        context = target;
+    }
+
+    #region Interactions
     public void disableButton(){
         Message.GetComponent<Button>().interactable = false;
         Message.SetActive(false);
@@ -216,12 +223,16 @@ public class MenuAndWorldUI : MonoBehaviour{
         Invoke("reActivateInteract", 0.0167f);
     }
 
-    private void reActivateInteract () {
+    public void disableInteract() {
+        Player.transform.GetChild(0).gameObject.SetActive(false); //gets the first object that is the players child (in this case the interact area)
+    }
+
+    private void enableInteract () {
         Player.transform.GetChild(0).gameObject.SetActive(true);
     }
 
     public void ShowMessage(string msg, bool useArrow){
-        Player.transform.GetChild(0).gameObject.SetActive(false); //gets the first object that is the players child (in this case the interact area)
+        disableInteract();
         Player.GetComponent<Walk>().canWalk = false;
         Message.SetActive(true);
         Message.GetComponent<Button>().interactable = useArrow;
@@ -286,11 +297,11 @@ public class MenuAndWorldUI : MonoBehaviour{
         shownAnswers = 0;
         activeNode.ExecuteNext(activeNode.GetOutputPort("answers " + selection), dialogueContext);
     }
-
+    #endregion
 
 
     public void OpenMenu () {
-        //doesnt do anything but this is where ill put the code to open the in game menu
+        disableInteract();
         Menu.SetActive(true);
         isMenuOpen = true;
         ES.SetSelectedGameObject(null);
@@ -298,11 +309,16 @@ public class MenuAndWorldUI : MonoBehaviour{
         Player.GetComponent<Walk>().canWalk = false;
     }
 
-    public void CloseMenu () {
-        //this is mainly for if theres anything else we want to put here
+    //Bool determings whether to reenable movement and interactions
+    //false when called by opening a submenu
+    //true when called by fully closing the menu
+    public void CloseMenu (bool fullyClosed) {
         Menu.SetActive(false);
         isMenuOpen = false;
-        //Player.GetComponent<Walk>().canWalk = true;
+        if (fullyClosed) {
+            Player.GetComponent<Walk>().canWalk = true;
+            enableInteract();
+        }
     }
 
 
@@ -311,6 +327,7 @@ public class MenuAndWorldUI : MonoBehaviour{
         //will be called when the summary button is pressed from the menu
         //ShowMessage("This will show the summary of the adventure so far.", true);
         Debug.Log("This will show the summary of the adventure so far.");
+        Player.GetComponent<Walk>().canWalk = true;
     }
 
 
@@ -322,6 +339,7 @@ public class MenuAndWorldUI : MonoBehaviour{
         ES.SetSelectedGameObject(null);
         ES.SetSelectedGameObject(SelectedParty);
         Player.GetComponent<Walk>().canWalk = false;
+        //Show the party's data
         for(int i=0; i<6; i++) {
             GameObject memberObject = Party.transform.GetChild(i + 1).gameObject;
             try {
@@ -329,7 +347,7 @@ public class MenuAndWorldUI : MonoBehaviour{
                 memberObject.transform.GetChild(1).GetComponent<Text>().text = memberData.name;
                 memberObject.transform.GetChild(2).GetComponent<Slider>().value = memberData.currentActiveHealth/ memberData.maxActiveHealth;
                 memberObject.SetActive(true);
-            } catch (IndexOutOfRangeException e){
+            } catch (ArgumentOutOfRangeException e){
                 memberObject.SetActive(false);
             }
         }
@@ -420,6 +438,7 @@ public class MenuAndWorldUI : MonoBehaviour{
         //will be called when the player selects save from the menu
         //for right now doesnt do anything
         Debug.Log("This will save the game.");
+        Player.GetComponent<Walk>().canWalk = true;
     }
 
 
@@ -427,6 +446,7 @@ public class MenuAndWorldUI : MonoBehaviour{
     public void OpenOptions () {
         //opens the ingame options menu from the menu
         Debug.Log("This will show the options.");
+        Player.GetComponent<Walk>().canWalk = true;
     }
 
 
@@ -506,10 +526,6 @@ public class MenuAndWorldUI : MonoBehaviour{
                 SellInv.transform.GetChild(4).GetChild(i).GetComponentInChildren<Text>().text = itemNum;
             }
         }
-    }
-
-    public void SetContext (GameObject target) {
-        context = target;
     }
 
     public void OpenSelectAmount () {

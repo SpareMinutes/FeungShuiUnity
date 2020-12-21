@@ -47,12 +47,17 @@ public class Creature {
     #endregion
 
     public Creature(Species spIn, Nature natIn, int[] factorsIn, int startLevel) {
-        this.species = spIn;
-        this.nature = natIn;
-        this.scaleFactors = factorsIn;
-        this.uid = System.Guid.NewGuid();
-        this.totalExp = (int)(scaleFactors[0] * Mathf.Pow(startLevel, 3));
+        species = spIn;
+        nature = natIn;
+        scaleFactors = factorsIn;
+        uid = System.Guid.NewGuid();
+        totalExp = (int)(scaleFactors[0] * Mathf.Pow(startLevel, 3));
+
         UpdateStats();
+
+        currentActiveHealth = maxActiveHealth;
+        currentCriticalHealth = maxCriticalHealth;
+        currentMana = maxMana;
     }
 
     public void UpdateStats() {
