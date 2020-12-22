@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Start
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: -472, y: -24}
+  position: {x: -8, y: -8}
   ports:
     keys:
     - next
@@ -46,7 +46,7 @@ MonoBehaviour:
   m_Name: End
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 1016, y: 40}
+  position: {x: 1512, y: -8}
   ports:
     keys:
     - previous
@@ -80,7 +80,7 @@ MonoBehaviour:
   m_Name: Text
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 8, y: 216}
+  position: {x: 488, y: 136}
   ports:
     keys:
     - previous
@@ -160,13 +160,14 @@ MonoBehaviour:
   m_Name: Question
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 8, y: -8}
+  position: {x: 488, y: -56}
   ports:
     keys:
     - previous
     - answers
     - answers 0
     - answers 1
+    - variable
     values:
     - _fieldName: previous
       _node: {fileID: 1499772096513751550}
@@ -214,11 +215,21 @@ MonoBehaviour:
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 1
+    - _fieldName: variable
+      _node: {fileID: 1499772096513751550}
+      _typeQualifiedName: System.String, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
   message: Did you get all that?
   previous: 0
   answers:
   - Yes
   - No
+  variable: 
 --- !u!114 &3871150533838518750
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -232,7 +243,7 @@ MonoBehaviour:
   m_Name: Battle
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 744, y: 8}
+  position: {x: 1240, y: -40}
   ports:
     keys:
     - previous
@@ -293,7 +304,7 @@ MonoBehaviour:
   m_Name: Text
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 488, y: 8}
+  position: {x: 984, y: -40}
   ports:
     keys:
     - previous
@@ -350,7 +361,7 @@ MonoBehaviour:
   m_Name: Text
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: -232, y: -56}
+  position: {x: 248, y: -104}
   ports:
     keys:
     - previous
@@ -410,7 +421,7 @@ MonoBehaviour:
   m_Name: Text
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 248, y: 8}
+  position: {x: 744, y: -40}
   ports:
     keys:
     - previous

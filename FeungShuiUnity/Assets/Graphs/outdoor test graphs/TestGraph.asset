@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Conditional
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 904, y: -120}
+  position: {x: 552, y: -104}
   ports:
     keys:
     - value
@@ -86,7 +86,7 @@ MonoBehaviour:
   m_Name: Count
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 360, y: -184}
+  position: {x: -8, y: -136}
   ports:
     keys:
     - input
@@ -144,7 +144,7 @@ MonoBehaviour:
   m_Name: Constant
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 40, y: -120}
+  position: {x: -328, y: -72}
   ports:
     keys:
     - output
@@ -179,7 +179,7 @@ MonoBehaviour:
   m_Name: Text
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 648, y: -152}
+  position: {x: 296, y: -120}
   ports:
     keys:
     - variable
@@ -262,7 +262,7 @@ MonoBehaviour:
   m_Name: Text
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 1192, y: -344}
+  position: {x: 840, y: -296}
   ports:
     keys:
     - variable
@@ -332,7 +332,7 @@ MonoBehaviour:
   m_Name: Compare
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 648, y: -312}
+  position: {x: 312, y: -280}
   ports:
     keys:
     - first
@@ -392,7 +392,7 @@ MonoBehaviour:
   m_Name: Constant
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 40, y: -344}
+  position: {x: -328, y: -296}
   ports:
     keys:
     - output
@@ -438,13 +438,13 @@ MonoBehaviour:
   - {fileID: -8728722874903835122}
   - {fileID: 3410247563509092022}
   - {fileID: 4302621908344245381}
-  - {fileID: 485205242956370328}
   - {fileID: -5469000689203481726}
   - {fileID: -5767330008591938029}
   - {fileID: 4002226582363573720}
   - {fileID: 2235907144954846135}
   - {fileID: 4666340938962991513}
   - {fileID: 8800946961200534652}
+  - {fileID: 485205242956370328}
   Start: {fileID: 4894134944058912895}
   activeNodes: []
 --- !u!114 &86511589030649230
@@ -460,7 +460,7 @@ MonoBehaviour:
   m_Name: Count
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 360, y: -328}
+  position: {x: -8, y: -280}
   ports:
     keys:
     - input
@@ -518,7 +518,7 @@ MonoBehaviour:
   m_Name: Unary
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 904, y: -312}
+  position: {x: 552, y: -264}
   ports:
     keys:
     - value
@@ -567,7 +567,7 @@ MonoBehaviour:
   m_Name: Text
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 1704, y: -424}
+  position: {x: 1304, y: -376}
   ports:
     keys:
     - variable
@@ -624,7 +624,7 @@ MonoBehaviour:
   m_Name: Text
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 1160, y: -120}
+  position: {x: 808, y: -72}
   ports:
     keys:
     - variable
@@ -671,6 +671,9 @@ MonoBehaviour:
         PublicKeyToken=b77a5c561934e089
       connections:
       - fieldName: output
+        node: {fileID: 0}
+        reroutePoints: []
+      - fieldName: output
         node: {fileID: 485205242956370328}
         reroutePoints: []
       _direction: 0
@@ -694,7 +697,7 @@ MonoBehaviour:
   m_Name: Give Spirit
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 1448, y: -296}
+  position: {x: 1064, y: -248}
   ports:
     keys:
     - previous
@@ -755,7 +758,7 @@ MonoBehaviour:
   m_Name: Operation
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 696, y: -472}
+  position: {x: 360, y: -424}
   ports:
     keys:
     - first
@@ -815,7 +818,7 @@ MonoBehaviour:
   m_Name: Text
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 1704, y: -184}
+  position: {x: 1304, y: -136}
   ports:
     keys:
     - variable
@@ -872,7 +875,7 @@ MonoBehaviour:
   m_Name: Constant
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 40, y: -232}
+  position: {x: -328, y: -184}
   ports:
     keys:
     - output
@@ -907,7 +910,7 @@ MonoBehaviour:
   m_Name: Start
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 360, y: -40}
+  position: {x: -8, y: -8}
   ports:
     keys:
     - next
@@ -940,7 +943,7 @@ MonoBehaviour:
   m_Name: End
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 2008, y: 8}
+  position: {x: 1576, y: 56}
   ports:
     keys:
     - previous
@@ -977,7 +980,7 @@ MonoBehaviour:
   m_Name: Text
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 1448, y: -104}
+  position: {x: 1064, y: -72}
   ports:
     keys:
     - variable

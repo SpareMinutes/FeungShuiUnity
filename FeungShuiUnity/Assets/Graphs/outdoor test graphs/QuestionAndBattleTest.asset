@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Text
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 200, y: -296}
+  position: {x: 520, y: -280}
   ports:
     keys:
     - previous
@@ -73,7 +73,7 @@ MonoBehaviour:
   m_Name: Text
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: -72, y: 88}
+  position: {x: 248, y: 184}
   ports:
     keys:
     - previous
@@ -130,13 +130,14 @@ MonoBehaviour:
   m_Name: Question
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: -72, y: -136}
+  position: {x: 248, y: -88}
   ports:
     keys:
     - previous
     - answers
     - answers 0
     - answers 1
+    - variable
     values:
     - _fieldName: previous
       _node: {fileID: -5611391542501504785}
@@ -184,11 +185,21 @@ MonoBehaviour:
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 1
+    - _fieldName: variable
+      _node: {fileID: -5611391542501504785}
+      _typeQualifiedName: System.String, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
   message: Back for more?
   previous: 0
   answers:
   - Yes
   - No
+  variable: 
 --- !u!114 &-4137654679789809046
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -202,7 +213,7 @@ MonoBehaviour:
   m_Name: Text
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 696, y: -344}
+  position: {x: 1000, y: -296}
   ports:
     keys:
     - previous
@@ -259,7 +270,7 @@ MonoBehaviour:
   m_Name: Text
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 280, y: -104}
+  position: {x: 552, y: -56}
   ports:
     keys:
     - previous
@@ -319,7 +330,7 @@ MonoBehaviour:
   m_Name: Rematch Start
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: -328, y: -72}
+  position: {x: -8, y: -8}
   ports:
     keys:
     - next
@@ -380,7 +391,7 @@ MonoBehaviour:
   m_Name: Default Start
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: -328, y: -296}
+  position: {x: -8, y: -168}
   ports:
     keys:
     - next
@@ -413,13 +424,14 @@ MonoBehaviour:
   m_Name: Question
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: -72, y: -360}
+  position: {x: 248, y: -360}
   ports:
     keys:
     - previous
     - answers
     - answers 0
     - answers 1
+    - variable
     values:
     - _fieldName: previous
       _node: {fileID: 3069762000647247833}
@@ -467,11 +479,21 @@ MonoBehaviour:
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 1
+    - _fieldName: variable
+      _node: {fileID: 3069762000647247833}
+      _typeQualifiedName: System.String, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
   message: You lookin ta fight?
   previous: 0
   answers:
   - Yes
   - No
+  variable: 
 --- !u!114 &6934228122144783888
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -485,7 +507,7 @@ MonoBehaviour:
   m_Name: End
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 1032, y: -88}
+  position: {x: 1288, y: 120}
   ports:
     keys:
     - previous
@@ -525,7 +547,7 @@ MonoBehaviour:
   m_Name: Battle
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 424, y: -296}
+  position: {x: 744, y: -216}
   ports:
     keys:
     - previous
@@ -586,7 +608,7 @@ MonoBehaviour:
   m_Name: Text
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 696, y: -200}
+  position: {x: 1000, y: -72}
   ports:
     keys:
     - previous
@@ -643,7 +665,7 @@ MonoBehaviour:
   m_Name: Defeated Start
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: -328, y: 120}
+  position: {x: -8, y: 168}
   ports:
     keys:
     - next
