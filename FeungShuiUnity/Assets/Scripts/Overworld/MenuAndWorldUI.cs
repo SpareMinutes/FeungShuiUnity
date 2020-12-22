@@ -220,11 +220,14 @@ public class MenuAndWorldUI : MonoBehaviour{
         Message.SetActive(false);
         Player.GetComponent<Walk>().canWalk = true;
         activeNode = null;
-        Invoke("enableInteract", 0.0167f);
     }
 
     public void disableInteract() {
         Player.transform.GetChild(0).gameObject.SetActive(false); //gets the first object that is the players child (in this case the interact area)
+    }
+
+    public void sceduleReenable() {
+        Invoke("enableInteract", 0.0167f);
     }
 
     private void enableInteract () {
@@ -328,6 +331,7 @@ public class MenuAndWorldUI : MonoBehaviour{
         //ShowMessage("This will show the summary of the adventure so far.", true);
         Debug.Log("This will show the summary of the adventure so far.");
         Player.GetComponent<Walk>().canWalk = true;
+        enableInteract();
     }
 
 
@@ -439,6 +443,7 @@ public class MenuAndWorldUI : MonoBehaviour{
         //for right now doesnt do anything
         Debug.Log("This will save the game.");
         Player.GetComponent<Walk>().canWalk = true;
+        enableInteract();
     }
 
 
@@ -447,6 +452,7 @@ public class MenuAndWorldUI : MonoBehaviour{
         //opens the ingame options menu from the menu
         Debug.Log("This will show the options.");
         Player.GetComponent<Walk>().canWalk = true;
+        enableInteract();
     }
 
 

@@ -7,6 +7,7 @@ public class EndNode : InteractionNode {
 
     public override void Execute(GameObject context) {
         GameObject.Find("InGameUI").GetComponent<MenuAndWorldUI>().disableButton();
+        GameObject.Find("InGameUI").GetComponent<MenuAndWorldUI>().sceduleReenable();
         ((InteractionGraph)graph).activeNodes.Clear();
         try {
             context.GetComponent<WanderAI>().enabled = true;
