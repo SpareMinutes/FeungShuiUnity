@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SecondStart
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: -424, y: 120}
+  position: {x: -8, y: -8}
   ports:
     keys:
     - next
@@ -46,7 +46,7 @@ MonoBehaviour:
   m_Name: Text
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: -184, y: -72}
+  position: {x: 216, y: -216}
   ports:
     keys:
     - previous
@@ -103,7 +103,7 @@ MonoBehaviour:
   m_Name: Text
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: -184, y: 88}
+  position: {x: 216, y: -8}
   ports:
     keys:
     - previous
@@ -160,7 +160,7 @@ MonoBehaviour:
   m_Name: LastStart
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: -312, y: 280}
+  position: {x: 216, y: 216}
   ports:
     keys:
     - next
@@ -193,7 +193,7 @@ MonoBehaviour:
   m_Name: FirstStart
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: -424, y: -40}
+  position: {x: -8, y: -152}
   ports:
     keys:
     - next
@@ -250,7 +250,7 @@ MonoBehaviour:
   m_Name: Set Start
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 56, y: 104}
+  position: {x: 456, y: 8}
   ports:
     keys:
     - previous
@@ -296,7 +296,7 @@ MonoBehaviour:
   m_Name: End
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 360, y: 104}
+  position: {x: 760, y: 8}
   ports:
     keys:
     - previous
@@ -333,7 +333,7 @@ MonoBehaviour:
   m_Name: Set Start
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 56, y: -56}
+  position: {x: 456, y: -136}
   ports:
     keys:
     - previous
@@ -379,7 +379,7 @@ MonoBehaviour:
   m_Name: Text
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: -56, y: 248}
+  position: {x: 456, y: 136}
   ports:
     keys:
     - previous

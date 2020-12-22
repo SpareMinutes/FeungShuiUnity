@@ -1,13 +1,23 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 [CreateNodeMenu("Interactions/Random")]
 public class RandomNode : InteractionNode {
     [Input(backingValue = ShowBackingValue.Never)] public bool previous;
-    [Output(dynamicPortList = true)] public List<int> outcomes;
+    [Output(dynamicPortList = true)] public List<float> outcomes;
 
     public override void Execute(GameObject context) {
-        int result = (int)Random.Range(0, outcomes.ToArray().Length - 0.0000001f);
-        ExecuteNext(GetOutputPort("outcomes " + result), context);
+        float result = Random.Range(0, outcomes.ToArray().Sum());
+        float total = 0f;
+        for(int i=0; i< outcomes.ToArray().Length; i++) {
+            float value = outcomes.ToArray()[i];
+            if(result <= (total + value)) {
+                ExecuteNext(GetOutputPort("outcomes " + i), context);
+                break;
+            } else {
+                total += value;
+            }
+        }
     }
 }

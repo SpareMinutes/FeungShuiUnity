@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Battle
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: -136, y: 264}
+  position: {x: 296, y: 248}
   ports:
     keys:
     - previous
@@ -80,7 +80,7 @@ MonoBehaviour:
   m_Name: Music
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: -136, y: -88}
+  position: {x: 296, y: -104}
   ports:
     keys:
     - previous
@@ -148,7 +148,7 @@ MonoBehaviour:
   m_Name: Music
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 200, y: -72}
+  position: {x: 632, y: -88}
   ports:
     keys:
     - previous
@@ -199,7 +199,7 @@ MonoBehaviour:
   m_Name: Text
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 245, y: 310}
+  position: {x: 680, y: 296}
   ports:
     keys:
     - previous
@@ -250,7 +250,7 @@ MonoBehaviour:
   m_Name: Start, EndBattleMusic
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: -456, y: 72}
+  position: {x: -8, y: -8}
   ports:
     keys:
     - next
@@ -289,7 +289,7 @@ MonoBehaviour:
   m_Name: Music
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: -136, y: 88}
+  position: {x: 296, y: 72}
   ports:
     keys:
     - previous
@@ -334,7 +334,7 @@ MonoBehaviour:
   m_Name: Music
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 200, y: 88}
+  position: {x: 632, y: 72}
   ports:
     keys:
     - previous
@@ -385,7 +385,7 @@ MonoBehaviour:
   m_Name: End
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 488, y: 72}
+  position: {x: 920, y: 56}
   ports:
     keys:
     - previous

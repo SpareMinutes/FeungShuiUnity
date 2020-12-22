@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Wait For All
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 792, y: 120}
+  position: {x: 1224, y: 104}
   ports:
     keys:
     - previous
@@ -61,7 +61,7 @@ MonoBehaviour:
   m_Name: Text
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 552, y: -8}
+  position: {x: 968, y: -24}
   ports:
     keys:
     - previous
@@ -124,7 +124,7 @@ MonoBehaviour:
   m_Name: Turn
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 552, y: 152}
+  position: {x: 968, y: 184}
   ports:
     keys:
     - previous
@@ -171,7 +171,7 @@ MonoBehaviour:
   m_Name: Turn
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 552, y: -152}
+  position: {x: 968, y: -152}
   ports:
     keys:
     - previous
@@ -218,7 +218,7 @@ MonoBehaviour:
   m_Name: Start
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: -440, y: 8}
+  position: {x: -8, y: -8}
   ports:
     keys:
     - next
@@ -251,7 +251,7 @@ MonoBehaviour:
   m_Name: Text
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 312, y: -88}
+  position: {x: 728, y: -136}
   ports:
     keys:
     - previous
@@ -338,7 +338,7 @@ MonoBehaviour:
   m_Name: Random
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: -200, y: -24}
+  position: {x: 232, y: -24}
   ports:
     keys:
     - previous
@@ -360,7 +360,7 @@ MonoBehaviour:
       _dynamic: 0
     - _fieldName: outcomes
       _node: {fileID: 975251048482160318}
-      _typeQualifiedName: System.Collections.Generic.List`1[[System.Int32, mscorlib,
+      _typeQualifiedName: System.Collections.Generic.List`1[[System.Single, mscorlib,
         Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]], mscorlib,
         Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
       connections: []
@@ -370,7 +370,7 @@ MonoBehaviour:
       _dynamic: 0
     - _fieldName: outcomes 0
       _node: {fileID: 975251048482160318}
-      _typeQualifiedName: System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral,
+      _typeQualifiedName: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
         PublicKeyToken=b77a5c561934e089
       connections:
       - fieldName: previous
@@ -382,7 +382,7 @@ MonoBehaviour:
       _dynamic: 1
     - _fieldName: outcomes 1
       _node: {fileID: 975251048482160318}
-      _typeQualifiedName: System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral,
+      _typeQualifiedName: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
         PublicKeyToken=b77a5c561934e089
       connections:
       - fieldName: previous
@@ -393,7 +393,9 @@ MonoBehaviour:
       _typeConstraint: 0
       _dynamic: 1
   previous: 0
-  outcomes: 0000000000000000
+  outcomes:
+  - 1
+  - 1
 --- !u!114 &1174520939175486168
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -407,7 +409,7 @@ MonoBehaviour:
   m_Name: End
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 1048, y: 40}
+  position: {x: 1480, y: 56}
   ports:
     keys:
     - previous
@@ -441,7 +443,7 @@ MonoBehaviour:
   m_Name: Text
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 72, y: -88}
+  position: {x: 488, y: -136}
   ports:
     keys:
     - previous
@@ -498,7 +500,7 @@ MonoBehaviour:
   m_Name: Wait For All
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 792, y: -56}
+  position: {x: 1224, y: -24}
   ports:
     keys:
     - previous
@@ -546,7 +548,7 @@ MonoBehaviour:
   m_Name: Text
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 72, y: 56}
+  position: {x: 488, y: 72}
   ports:
     keys:
     - previous
@@ -603,7 +605,7 @@ MonoBehaviour:
   m_Name: Text
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 312, y: 56}
+  position: {x: 728, y: 72}
   ports:
     keys:
     - previous

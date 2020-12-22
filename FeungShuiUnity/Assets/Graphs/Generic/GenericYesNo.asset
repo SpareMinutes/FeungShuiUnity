@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Context Config
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 2344, y: -520}
+  position: {x: 1928, y: -312}
   ports:
     keys:
     - output
@@ -31,7 +31,7 @@ MonoBehaviour:
       _typeConstraint: 0
       _dynamic: 0
   component: Messages
-  field: message7
+  field: message8
   output: 0
 --- !u!114 &-8571549332324642550
 MonoBehaviour:
@@ -46,7 +46,7 @@ MonoBehaviour:
   m_Name: Text
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 872, y: -280}
+  position: {x: 232, y: -72}
   ports:
     keys:
     - variable
@@ -116,7 +116,7 @@ MonoBehaviour:
   m_Name: Text
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 1352, y: -280}
+  position: {x: 712, y: -72}
   ports:
     keys:
     - variable
@@ -151,7 +151,7 @@ MonoBehaviour:
         PublicKeyToken=b77a5c561934e089
       connections:
       - fieldName: previous
-        node: {fileID: 3926916030154640183}
+        node: {fileID: 1469148000774490155}
         reroutePoints: []
       _direction: 1
       _connectionType: 0
@@ -186,7 +186,7 @@ MonoBehaviour:
   m_Name: Text
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 3064, y: -152}
+  position: {x: 2648, y: 56}
   ports:
     keys:
     - variable
@@ -256,7 +256,7 @@ MonoBehaviour:
   m_Name: Text
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 3064, y: -392}
+  position: {x: 2648, y: -184}
   ports:
     keys:
     - variable
@@ -326,7 +326,7 @@ MonoBehaviour:
   m_Name: Context Config
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 2104, y: 72}
+  position: {x: 1688, y: 280}
   ports:
     keys:
     - output
@@ -344,7 +344,7 @@ MonoBehaviour:
       _typeConstraint: 0
       _dynamic: 0
   component: Messages
-  field: messageB
+  field: messageC
   output: 0
 --- !u!114 &-5036870244303528760
 MonoBehaviour:
@@ -359,7 +359,7 @@ MonoBehaviour:
   m_Name: Text
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 2104, y: -392}
+  position: {x: 1688, y: -184}
   ports:
     keys:
     - variable
@@ -429,7 +429,7 @@ MonoBehaviour:
   m_Name: Context Config
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 2584, y: -520}
+  position: {x: 2168, y: -312}
   ports:
     keys:
     - output
@@ -447,7 +447,7 @@ MonoBehaviour:
       _typeConstraint: 0
       _dynamic: 0
   component: Messages
-  field: message8
+  field: message9
   output: 0
 --- !u!114 &-4871925483670403264
 MonoBehaviour:
@@ -462,7 +462,7 @@ MonoBehaviour:
   m_Name: Context Config
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 2584, y: 72}
+  position: {x: 2168, y: 280}
   ports:
     keys:
     - output
@@ -480,7 +480,7 @@ MonoBehaviour:
       _typeConstraint: 0
       _dynamic: 0
   component: Messages
-  field: messageD
+  field: messageE
   output: 0
 --- !u!114 &-4803975400495871598
 MonoBehaviour:
@@ -495,7 +495,7 @@ MonoBehaviour:
   m_Name: Text
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 2344, y: -152}
+  position: {x: 1928, y: 56}
   ports:
     keys:
     - variable
@@ -565,7 +565,7 @@ MonoBehaviour:
   m_Name: Context Config
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 872, y: -408}
+  position: {x: 232, y: -200}
   ports:
     keys:
     - output
@@ -598,7 +598,7 @@ MonoBehaviour:
   m_Name: Text
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 2344, y: -392}
+  position: {x: 1928, y: -184}
   ports:
     keys:
     - variable
@@ -668,7 +668,7 @@ MonoBehaviour:
   m_Name: Question
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 1848, y: -280}
+  position: {x: 1448, y: -72}
   ports:
     keys:
     - previous
@@ -764,7 +764,7 @@ MonoBehaviour:
   m_Name: Start
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 632, y: -184}
+  position: {x: -8, y: -8}
   ports:
     keys:
     - next
@@ -797,7 +797,7 @@ MonoBehaviour:
   m_Name: Context Config
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 1112, y: -408}
+  position: {x: 472, y: -200}
   ports:
     keys:
     - output
@@ -830,7 +830,7 @@ MonoBehaviour:
   m_Name: Context Config
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 2104, y: -520}
+  position: {x: 1688, y: -312}
   ports:
     keys:
     - output
@@ -848,7 +848,7 @@ MonoBehaviour:
       _typeConstraint: 0
       _dynamic: 0
   component: Messages
-  field: message6
+  field: message7
   output: 0
 --- !u!114 &-1357188096112050553
 MonoBehaviour:
@@ -863,7 +863,7 @@ MonoBehaviour:
   m_Name: Context Config
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 2824, y: -520}
+  position: {x: 2408, y: -312}
   ports:
     keys:
     - output
@@ -881,7 +881,7 @@ MonoBehaviour:
       _typeConstraint: 0
       _dynamic: 0
   component: Messages
-  field: message9
+  field: messageA
   output: 0
 --- !u!114 &-650549282103667903
 MonoBehaviour:
@@ -896,7 +896,7 @@ MonoBehaviour:
   m_Name: Context Config
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 1864, y: 72}
+  position: {x: 1448, y: 280}
   ports:
     keys:
     - output
@@ -914,7 +914,7 @@ MonoBehaviour:
       _typeConstraint: 0
       _dynamic: 0
   component: Messages
-  field: messageA
+  field: messageB
   output: 0
 --- !u!114 &11400000
 MonoBehaviour:
@@ -961,6 +961,8 @@ MonoBehaviour:
   - {fileID: 7466460486751121224}
   - {fileID: 8815884398266160883}
   - {fileID: -7546066893713717125}
+  - {fileID: 3592222198294969783}
+  - {fileID: 1469148000774490155}
   Start: {fileID: -3020598471192452502}
   activeNodes: []
 --- !u!114 &714790075127226483
@@ -976,7 +978,7 @@ MonoBehaviour:
   m_Name: Context Config
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 1352, y: -408}
+  position: {x: 712, y: -200}
   ports:
     keys:
     - output
@@ -987,7 +989,7 @@ MonoBehaviour:
         PublicKeyToken=b77a5c561934e089
       connections:
       - fieldName: variable 0
-        node: {fileID: 3926916030154640183}
+        node: {fileID: 1469148000774490155}
         reroutePoints: []
       _direction: 1
       _connectionType: 0
@@ -1009,7 +1011,7 @@ MonoBehaviour:
   m_Name: Context Config
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 632, y: -408}
+  position: {x: -8, y: -200}
   ports:
     keys:
     - output
@@ -1029,6 +1031,76 @@ MonoBehaviour:
   component: Messages
   field: message0
   output: 0
+--- !u!114 &1469148000774490155
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d762cbf92c108af4c88a8fa8e4737aa5, type: 3}
+  m_Name: Text
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 952, y: -72}
+  ports:
+    keys:
+    - variable
+    - previous
+    - next
+    - variable 0
+    values:
+    - _fieldName: variable
+      _node: {fileID: 1469148000774490155}
+      _typeQualifiedName: System.String, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: previous
+      _node: {fileID: 1469148000774490155}
+      _typeQualifiedName: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: next
+        node: {fileID: -8176861317884935522}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: next
+      _node: {fileID: 1469148000774490155}
+      _typeQualifiedName: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: previous
+        node: {fileID: 3926916030154640183}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: variable 0
+      _node: {fileID: 1469148000774490155}
+      _typeQualifiedName: System.String, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: output
+        node: {fileID: 714790075127226483}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 1
+  message: '%v0'
+  variable: 
+  previous: 0
+  next: 0
 --- !u!114 &2031103510202777221
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1042,7 +1114,7 @@ MonoBehaviour:
   m_Name: Text
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 2824, y: -392}
+  position: {x: 2408, y: -184}
   ports:
     keys:
     - variable
@@ -1112,7 +1184,7 @@ MonoBehaviour:
   m_Name: End
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 3336, y: -152}
+  position: {x: 2920, y: 56}
   ports:
     keys:
     - previous
@@ -1146,7 +1218,7 @@ MonoBehaviour:
   m_Name: Context Config
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 1592, y: -56}
+  position: {x: 1192, y: 152}
   ports:
     keys:
     - output
@@ -1164,7 +1236,7 @@ MonoBehaviour:
       _typeConstraint: 0
       _dynamic: 0
   component: Messages
-  field: message4
+  field: message5
   output: 0
 --- !u!114 &3204512823841651952
 MonoBehaviour:
@@ -1179,7 +1251,7 @@ MonoBehaviour:
   m_Name: Text
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 1112, y: -280}
+  position: {x: 472, y: -72}
   ports:
     keys:
     - variable
@@ -1236,6 +1308,39 @@ MonoBehaviour:
   variable: 
   previous: 0
   next: 0
+--- !u!114 &3592222198294969783
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9101e42e79066824c9c2ae04b9b003be, type: 3}
+  m_Name: Context Config
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 952, y: -200}
+  ports:
+    keys:
+    - output
+    values:
+    - _fieldName: output
+      _node: {fileID: 3592222198294969783}
+      _typeQualifiedName: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: variable 0
+        node: {fileID: 3926916030154640183}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  component: Messages
+  field: message4
+  output: 0
 --- !u!114 &3817831106356145504
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1249,7 +1354,7 @@ MonoBehaviour:
   m_Name: Text
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 2104, y: -152}
+  position: {x: 1688, y: 56}
   ports:
     keys:
     - variable
@@ -1319,7 +1424,7 @@ MonoBehaviour:
   m_Name: Text
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 1592, y: -280}
+  position: {x: 1192, y: -72}
   ports:
     keys:
     - variable
@@ -1342,7 +1447,7 @@ MonoBehaviour:
         PublicKeyToken=b77a5c561934e089
       connections:
       - fieldName: next
-        node: {fileID: -8176861317884935522}
+        node: {fileID: 1469148000774490155}
         reroutePoints: []
       _direction: 0
       _connectionType: 0
@@ -1366,7 +1471,7 @@ MonoBehaviour:
         PublicKeyToken=b77a5c561934e089
       connections:
       - fieldName: output
-        node: {fileID: 714790075127226483}
+        node: {fileID: 3592222198294969783}
         reroutePoints: []
       _direction: 0
       _connectionType: 0
@@ -1389,7 +1494,7 @@ MonoBehaviour:
   m_Name: Text
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 2584, y: -392}
+  position: {x: 2168, y: -184}
   ports:
     keys:
     - variable
@@ -1459,7 +1564,7 @@ MonoBehaviour:
   m_Name: Context Config
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 2344, y: 72}
+  position: {x: 1928, y: 280}
   ports:
     keys:
     - output
@@ -1477,7 +1582,7 @@ MonoBehaviour:
       _typeConstraint: 0
       _dynamic: 0
   component: Messages
-  field: messageC
+  field: messageD
   output: 0
 --- !u!114 &7466460486751121224
 MonoBehaviour:
@@ -1492,7 +1597,7 @@ MonoBehaviour:
   m_Name: Context Config
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 2824, y: 72}
+  position: {x: 2408, y: 280}
   ports:
     keys:
     - output
@@ -1510,7 +1615,7 @@ MonoBehaviour:
       _typeConstraint: 0
       _dynamic: 0
   component: Messages
-  field: messageE
+  field: messageF
   output: 0
 --- !u!114 &7580752424018279433
 MonoBehaviour:
@@ -1525,7 +1630,7 @@ MonoBehaviour:
   m_Name: Text
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 2584, y: -152}
+  position: {x: 2168, y: 56}
   ports:
     keys:
     - variable
@@ -1595,7 +1700,7 @@ MonoBehaviour:
   m_Name: Text
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 2824, y: -152}
+  position: {x: 2408, y: 56}
   ports:
     keys:
     - variable
@@ -1665,7 +1770,7 @@ MonoBehaviour:
   m_Name: Context Config
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 1864, y: -520}
+  position: {x: 1448, y: -312}
   ports:
     keys:
     - output
@@ -1683,5 +1788,5 @@ MonoBehaviour:
       _typeConstraint: 0
       _dynamic: 0
   component: Messages
-  field: message5
+  field: message6
   output: 0

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Text
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: -472, y: 88}
+  position: {x: 728, y: -56}
   ports:
     keys:
     - previous
@@ -70,7 +70,7 @@ MonoBehaviour:
   m_Name: Question
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: -168, y: 104}
+  position: {x: 984, y: -104}
   ports:
     keys:
     - previous
@@ -80,6 +80,7 @@ MonoBehaviour:
     - answers 2
     - answers 3
     - answers 4
+    - variable
     values:
     - _fieldName: previous
       _node: {fileID: -6853088410449496938}
@@ -163,6 +164,15 @@ MonoBehaviour:
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 1
+    - _fieldName: variable
+      _node: {fileID: -6853088410449496938}
+      _typeQualifiedName: System.String, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
   message: Would you like to know about what's north, south, east, or west?
   previous: 0
   answers:
@@ -171,6 +181,7 @@ MonoBehaviour:
   - East
   - West
   - I don't care
+  variable: 
 --- !u!114 &-1975057920697342899
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -184,7 +195,7 @@ MonoBehaviour:
   m_Name: Start
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: -1224, y: 184}
+  position: {x: 0, y: 0}
   ports:
     keys:
     - next
@@ -240,7 +251,7 @@ MonoBehaviour:
   m_Name: End
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 552, y: 216}
+  position: {x: 1528, y: 40}
   ports:
     keys:
     - previous
@@ -271,7 +282,7 @@ MonoBehaviour:
   m_Name: Text
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 168, y: 248}
+  position: {x: 1256, y: 72}
   ports:
     keys:
     - previous
@@ -325,7 +336,7 @@ MonoBehaviour:
   m_Name: Text
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: -968, y: 72}
+  position: {x: 248, y: -56}
   ports:
     keys:
     - previous
@@ -382,7 +393,7 @@ MonoBehaviour:
   m_Name: Text
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 168, y: 24}
+  position: {x: 1256, y: -152}
   ports:
     keys:
     - previous
@@ -448,7 +459,7 @@ MonoBehaviour:
   m_Name: Text
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: -728, y: 88}
+  position: {x: 488, y: -56}
   ports:
     keys:
     - previous
