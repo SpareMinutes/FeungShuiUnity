@@ -8,7 +8,6 @@ public class EndNode : InteractionNode {
     public override void Execute(GameObject context) {
         GameObject.Find("InGameUI").GetComponent<MenuAndWorldUI>().disableButton();
         ((InteractionGraph)graph).activeNodes.Clear();
-        Debug.Log(context);
         try {
             context.GetComponent<WanderAI>().enabled = true;
         } catch (NullReferenceException e) {

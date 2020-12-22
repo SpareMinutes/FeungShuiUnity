@@ -220,7 +220,7 @@ public class MenuAndWorldUI : MonoBehaviour{
         Message.SetActive(false);
         Player.GetComponent<Walk>().canWalk = true;
         activeNode = null;
-        Invoke("reActivateInteract", 0.0167f);
+        Invoke("enableInteract", 0.0167f);
     }
 
     public void disableInteract() {

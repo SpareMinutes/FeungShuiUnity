@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 public class Battle : MonoBehaviour{
     public List<Creature> Party;
     private Creature[] PlayerParty, OpposingParty;
-    public bool defeated = false;
+    public bool defeated = false, challenged = false;
 
     // Start is called before the first frame update
     void Start(){
@@ -23,6 +23,7 @@ public class Battle : MonoBehaviour{
         Time.timeScale = 0;
         GameObject.Find("WalkableCharacter").transform.GetChild(0).gameObject.SetActive(false);
         SceneManager.LoadSceneAsync("Battle_GUI", LoadSceneMode.Additive);
+        challenged = true;
     }
 
     public void StartTrainerBattle() {

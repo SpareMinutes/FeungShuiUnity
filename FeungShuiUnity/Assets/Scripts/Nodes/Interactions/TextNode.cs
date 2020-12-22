@@ -20,8 +20,13 @@ public class TextNode : InteractionNode {
             Debug.Log(parsedMessage);
             varNum++;
         }
-        GameObject.Find("InGameUI").GetComponent<MenuAndWorldUI>().ShowMessage(parsedMessage, true);
-        GameObject.Find("InGameUI").GetComponent<MenuAndWorldUI>().SetActiveNode(this);
-        GameObject.Find("InGameUI").GetComponent<MenuAndWorldUI>().SetDialogueContext(context);
+        if (parsedMessage.Trim().Length > 0) {
+            GameObject.Find("InGameUI").GetComponent<MenuAndWorldUI>().ShowMessage(parsedMessage, true);
+            GameObject.Find("InGameUI").GetComponent<MenuAndWorldUI>().SetActiveNode(this);
+            GameObject.Find("InGameUI").GetComponent<MenuAndWorldUI>().SetDialogueContext(context);
+        } else {
+            Debug.Log("No text");
+            ExecuteNext(GetOutputPort("next"), context);
+        }
     }
 }
