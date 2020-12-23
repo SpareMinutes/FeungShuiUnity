@@ -1,36 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-8319600623327976086
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 171e20702789e83458f8c17c9adc94cf, type: 3}
-  m_Name: Is Defeated
-  m_EditorClassIdentifier: 
-  graph: {fileID: 11400000}
-  position: {x: -40, y: -264}
-  ports:
-    keys:
-    - output
-    values:
-    - _fieldName: output
-      _node: {fileID: -8319600623327976086}
-      _typeQualifiedName: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral,
-        PublicKeyToken=b77a5c561934e089
-      connections:
-      - fieldName: input
-        node: {fileID: 8729216580809849903}
-        reroutePoints: []
-      _direction: 1
-      _connectionType: 0
-      _typeConstraint: 0
-      _dynamic: 0
-  output: 0
 --- !u!114 &-6567399994136498159
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -157,16 +126,82 @@ MonoBehaviour:
         PublicKeyToken=b77a5c561934e089
       connections:
       - fieldName: trigger
-        node: {fileID: -5993026969181904330}
+        node: {fileID: 2480343663211286759}
         reroutePoints: []
       - fieldName: trigger
-        node: {fileID: 2480343663211286759}
+        node: {fileID: -5993026969181904330}
         reroutePoints: []
       _direction: 1
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 0
   next: 0
+--- !u!114 &-5512747185612106842
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9101e42e79066824c9c2ae04b9b003be, type: 3}
+  m_Name: Context Config
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: -40, y: -168}
+  ports:
+    keys:
+    - output
+    values:
+    - _fieldName: output
+      _node: {fileID: -5512747185612106842}
+      _typeQualifiedName: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: input
+        node: {fileID: 4353737897945610453}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  component: GuardAI
+  field: Aggroed
+  output: 0
+--- !u!114 &-5043603220936461224
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9101e42e79066824c9c2ae04b9b003be, type: 3}
+  m_Name: Context Config
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: -40, y: -296}
+  ports:
+    keys:
+    - output
+    values:
+    - _fieldName: output
+      _node: {fileID: -5043603220936461224}
+      _typeQualifiedName: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: input
+        node: {fileID: 8729216580809849903}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  component: Battle
+  field: defeated
+  output: 0
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -181,45 +216,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nodes:
   - {fileID: -5917623176264616141}
-  - {fileID: 2237840427337917361}
-  - {fileID: -8319600623327976086}
   - {fileID: 4353737897945610453}
   - {fileID: 8729216580809849903}
   - {fileID: -6567399994136498159}
+  - {fileID: -5043603220936461224}
+  - {fileID: -5512747185612106842}
   - {fileID: -5993026969181904330}
   - {fileID: 2480343663211286759}
   Beginning: {fileID: -5917623176264616141}
---- !u!114 &2237840427337917361
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5a8b02802e69c96438cd0045f198af8b, type: 3}
-  m_Name: Aggro
-  m_EditorClassIdentifier: 
-  graph: {fileID: 11400000}
-  position: {x: -40, y: -168}
-  ports:
-    keys:
-    - output
-    values:
-    - _fieldName: output
-      _node: {fileID: 2237840427337917361}
-      _typeQualifiedName: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral,
-        PublicKeyToken=b77a5c561934e089
-      connections:
-      - fieldName: input
-        node: {fileID: 4353737897945610453}
-        reroutePoints: []
-      _direction: 1
-      _connectionType: 0
-      _typeConstraint: 0
-      _dynamic: 0
-  output: 0
 --- !u!114 &2480343663211286759
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -308,7 +312,7 @@ MonoBehaviour:
         node: {fileID: 8729216580809849903}
         reroutePoints: []
       - fieldName: output
-        node: {fileID: 2237840427337917361}
+        node: {fileID: -5512747185612106842}
         reroutePoints: []
       _direction: 0
       _connectionType: 0
@@ -356,7 +360,7 @@ MonoBehaviour:
         PublicKeyToken=b77a5c561934e089
       connections:
       - fieldName: output
-        node: {fileID: -8319600623327976086}
+        node: {fileID: -5043603220936461224}
         reroutePoints: []
       _direction: 0
       _connectionType: 0

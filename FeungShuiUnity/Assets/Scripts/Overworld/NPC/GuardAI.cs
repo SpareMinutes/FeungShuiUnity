@@ -7,7 +7,7 @@ public class GuardAI : MonoBehaviour{
     public Collider2D AggroZone;
     [Tooltip("The zone which ends aggro when exited by the player. Must completely contain Aggro Zone.")]
     public Collider2D RelaxZone;
-    private bool Aggroed;
+    public bool Aggroed;
 
     public void Update() {
         if (AggroZone.IsTouching(GameObject.Find("WalkableCharacter").GetComponent<CapsuleCollider2D>()))
