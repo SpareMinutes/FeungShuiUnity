@@ -22,9 +22,8 @@ public class Inventory : MonoBehaviour{
     private List<Item> ItemsList = new List<Item>();
     [SerializeField]
     private List<int> ItemAmountsList = new List<int>();
-    
 
-    public void Start () {
+    public void Start() {
         //init the dictionary for look ups later on
         tabs = new Dictionary<BagTab, List<Item>>() {
             {BagTab.BattleItems, new List<Item>()},
@@ -33,10 +32,10 @@ public class Inventory : MonoBehaviour{
             {BagTab.Other, new List<Item>()}
         };
 
-        for (int i = 0; i < ItemsList.Count; i ++) {
+        for (int i = 0; i < ItemsList.Count; i++) {
             //assume that ItemsList and ItemAmountsList are the same length
             //and ItemsList contains only 1 of each distinct item
-            itemDict.Add(ItemsList[i],ItemAmountsList[i]);
+            itemDict.Add(ItemsList[i], ItemAmountsList[i]);
 
             //update bag
             Item item = ItemsList[i];
@@ -44,8 +43,18 @@ public class Inventory : MonoBehaviour{
         }
     }
 
+    //Keeps inspector in-sync with internal data.
+    //Should have no bearing on actual gameplay.
+    private void UpdateItemsList() {
+        ItemsList.Clear();
+        ItemAmountsList.Clear();
+        foreach (Item item in itemDict.Keys) {
+            ItemsList.Add(item);
+            ItemAmountsList.Add(itemDict[item]);
+        }
+    }
 
-    public void AddItems (Item item, int num) {
+    public void AddItems(Item item, int num) {
         if (itemDict.ContainsKey(item)) {
             //then the item is already in the inventory so we want to just increase its amount
             itemDict[item] += num;
@@ -54,10 +63,11 @@ public class Inventory : MonoBehaviour{
             itemDict.Add(item, num);
             tabs[item.tab].Add(item);
         }
+        UpdateItemsList();
     }
 
-    public bool RemoveItems (Item item, int num) {
-        if (!itemDict.ContainsKey(item) || itemDict[item] < num){
+    public bool RemoveItems(Item item, int num) {
+        if (!itemDict.ContainsKey(item) || itemDict[item] < num) {
             //item not in inventory or subtracting num will result in a negative amount
             return false;
         }
@@ -71,10 +81,11 @@ public class Inventory : MonoBehaviour{
             tabs[item.tab].Remove(item);
         }
 
+        UpdateItemsList();
         return true;
     }
-    
-    public List<Item> GetList (BagTab tab) {
+
+    public List<Item> GetList(BagTab tab) {
         //returns the list of items in the tab given
         //should be called by the 
         return tabs[tab];
