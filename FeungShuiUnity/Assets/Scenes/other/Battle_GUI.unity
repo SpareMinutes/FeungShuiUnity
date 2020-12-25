@@ -428,6 +428,12 @@ MonoBehaviour:
   - {fileID: 1801963241}
   - {fileID: 697713215}
   - {fileID: 310602267}
+  actionButtons:
+  - {fileID: 967773083}
+  - {fileID: 129029145}
+  - {fileID: 1983008605}
+  - {fileID: 1302651192}
+  - {fileID: 1616583670}
   attackButtons:
   - {fileID: 329073177}
   - {fileID: 112590830}
@@ -439,7 +445,7 @@ MonoBehaviour:
   - {fileID: 785058654}
   - {fileID: 785058653}
   ProgressButton: {fileID: 1481494417}
-  movesTable: {fileID: 11400000, guid: 6f2226309accb054d873673f6c9288a1, type: 2}
+  interaction: {fileID: 0}
 --- !u!114 &86151460
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -828,7 +834,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 86151459}
-        m_MethodName: LoadDefend
+        m_MethodName: SelectDefend
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2486,6 +2492,26 @@ PrefabInstance:
       propertyPath: m_LocalScale.x
       value: -0.2
       objectReference: {fileID: 0}
+    - target: {fileID: 6088687388570923066, guid: 34b4b6045b46818458011bdcd1cd685a,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 86151459}
+    - target: {fileID: 6088687388570923066, guid: 34b4b6045b46818458011bdcd1cd685a,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: LoadDefender
+      objectReference: {fileID: 0}
+    - target: {fileID: 6088687388570923066, guid: 34b4b6045b46818458011bdcd1cd685a,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 86151459}
+    - target: {fileID: 6088687388570923066, guid: 34b4b6045b46818458011bdcd1cd685a,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: DoAttack
+      objectReference: {fileID: 0}
     - target: {fileID: 6735881300671704945, guid: 34b4b6045b46818458011bdcd1cd685a,
         type: 3}
       propertyPath: Target.moveNames.Array.size
@@ -2586,6 +2612,26 @@ PrefabInstance:
       propertyPath: sprite
       value: 
       objectReference: {fileID: 67951009}
+    - target: {fileID: 7368861132129759472, guid: 34b4b6045b46818458011bdcd1cd685a,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 86151459}
+    - target: {fileID: 7368861132129759472, guid: 34b4b6045b46818458011bdcd1cd685a,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: LoadDefender
+      objectReference: {fileID: 0}
+    - target: {fileID: 7368861132129759472, guid: 34b4b6045b46818458011bdcd1cd685a,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 86151459}
+    - target: {fileID: 7368861132129759472, guid: 34b4b6045b46818458011bdcd1cd685a,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: DoAttack
+      objectReference: {fileID: 0}
     - target: {fileID: 8018237581673557947, guid: 34b4b6045b46818458011bdcd1cd685a,
         type: 3}
       propertyPath: Target.moveNames.Array.size
@@ -2971,7 +3017,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1302651195}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 86151459}
+        m_MethodName: SelectSpirits
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1302651195
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3090,7 +3147,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 86151459}
-        m_MethodName: Progress
+        m_MethodName: finishAction
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4006,6 +4063,7 @@ GameObject:
   - component: {fileID: 1812085865}
   - component: {fileID: 1812085864}
   - component: {fileID: 1812085863}
+  - component: {fileID: 1812085866}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -4078,6 +4136,37 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1812085866
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1812085862}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a79441f348de89743a2939f4d699eac1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_RenderShadows: 1
+  m_RequiresDepthTextureOption: 2
+  m_RequiresOpaqueTextureOption: 2
+  m_CameraType: 0
+  m_CameraOutput: 0
+  m_Cameras: []
+  m_RendererIndex: -1
+  m_VolumeLayerMask:
+    serializedVersion: 2
+    m_Bits: 1
+  m_VolumeTrigger: {fileID: 0}
+  m_RenderPostProcessing: 0
+  m_Antialiasing: 0
+  m_AntialiasingQuality: 2
+  m_StopNaN: 0
+  m_Dithering: 0
+  m_RequiresDepthTexture: 0
+  m_RequiresColorTexture: 0
+  m_Version: 2
 --- !u!1001 &1881137244
 PrefabInstance:
   m_ObjectHideFlags: 0
