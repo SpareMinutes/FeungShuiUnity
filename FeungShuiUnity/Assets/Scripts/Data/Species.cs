@@ -8,7 +8,7 @@ using UnityEngine.UI;
 public class Species:ScriptableObject{
     [SerializeField]
     private Type typeP, typeS;
-    //0-health, 1-mana, 2-attack, 3-defense, 4-intelligence, 5-resistance, 6-speed
+    //0-health, 1-mana, 2-attack, 3-defense, 4-intelligence, 5-resistance, 6-speed, 7-exp
     [SerializeField]
     private int[] baseStats;
     [SerializeField]

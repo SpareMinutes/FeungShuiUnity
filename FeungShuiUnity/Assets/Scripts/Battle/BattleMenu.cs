@@ -92,7 +92,7 @@ public class BattleMenu : MonoBehaviour{
     }
 
     //Called when a message is to be displayed in the bottom right box
-    private void ShowMessage(string msg){
+    public void ShowMessage(string msg){
         //Turn on the message box and set the text
         Message.SetActive(true);
         Message.GetComponent<Text>().text = msg;
@@ -116,7 +116,7 @@ public class BattleMenu : MonoBehaviour{
             EndBattle();
         } else if (ES.GetComponent<TurnManager>().whoWins().Equals("No-one")){
             Attacker = ES.GetComponent<TurnManager>().getNextSpirit();
-            Attacker.relieveDefenseMove(); //get rid of the defense move on their next turn 
+            Attacker.setDefending(false); //get rid of the defense move on their next turn 
             Debug.Log(Attacker.Target.name + "'s turn beginning.");
             //Status effects that take place at the START of the turn go here
             float randNum = UnityEngine.Random.Range(0.0f, 1.0f);
@@ -163,7 +163,7 @@ public class BattleMenu : MonoBehaviour{
     private void AskForAction(){
         //End last action
         finishAction();
-        if (Attacker.GetCreature().isPlayerOwned()){
+        if (Attacker.GetCreature().playerOwned){
             ShowMessage("What will " + Attacker.GetCreature().name + " do?");
             //Enable action type buttons
             for (int i = 0; i < 5; i++) actionButtons[i].GetComponent<Button>().interactable = true;
@@ -191,7 +191,7 @@ public class BattleMenu : MonoBehaviour{
                     DoAttack();
                     break;
                 case Move.Target.Ally:
-                    if (Attacker.Target.isPlayerOwned()){
+                    if (Attacker.Target.playerOwned){
                         Defenders = turnManager.getActivePlayerControlled();
                     } else {
                         Defenders = turnManager.getActiveEnemies();
@@ -200,7 +200,7 @@ public class BattleMenu : MonoBehaviour{
                     DoAttack();
                     break;
                 case Move.Target.Double:
-                    if (Attacker.Target.isPlayerOwned()){
+                    if (Attacker.Target.playerOwned){
                         Defenders = turnManager.getActiveEnemies();
                     } else {
                         Defenders = turnManager.getActivePlayerControlled();
@@ -225,7 +225,7 @@ public class BattleMenu : MonoBehaviour{
                     DoAttack();
                     break;
                 case Move.Target.Team:
-                    if (Attacker.Target.isPlayerOwned()){
+                    if (Attacker.Target.playerOwned){
                         Defenders = turnManager.getActivePlayerControlled();
                     } else {
                         Defenders = turnManager.getActiveEnemies();
@@ -238,7 +238,7 @@ public class BattleMenu : MonoBehaviour{
             SelectDefend();
         } else if (randNum == 6){
             //hurt itself
-            float damageToTake = (1 / 16) * Attacker.Target.maxActiveHealth;
+            float damageToTake = (1 / 16) * Attacker.Target.getMaxActiveHealth();
             Attacker.ApplyDamage(damageToTake, Attacker);
             ShowMessage(Attacker.Target.name + " hurt itself in its rage.");
             EndTurn();
@@ -317,7 +317,7 @@ public class BattleMenu : MonoBehaviour{
 
     public void SelectDefend(){
         //Notify controller that it is defending
-        Attacker.doDefenseMove();
+        Attacker.setDefending(true);
         //Show a message that the spririt defended
         messageBoxActions.Enqueue(() => ShowMessage(Attacker.GetCreature().name + " defended!"));
         //Progress the turn cycle
@@ -587,14 +587,14 @@ public class BattleMenu : MonoBehaviour{
     private void HPDrain(){
         //a helper method for the status effects
         float reducingFactor = 1 / 16; // 1/16 is what pokemon uses for burn/poison
-        Attacker.ApplyDamage(reducingFactor * Attacker.Target.maxActiveHealth, Attacker);
+        Attacker.ApplyDamage(reducingFactor * Attacker.Target.getMaxActiveHealth(), Attacker);
         ShowMessage("drained hp from " + Attacker.Target.name + ".");
     }
 
     private void ManaDrain(){
         //helper for the status effects
         float reducingFactor = 1 / 16;
-        Attacker.Target.currentMana = Mathf.Max(0, Attacker.Target.currentMana - reducingFactor * Attacker.Target.maxMana);
+        Attacker.Target.currentMana = Mathf.Max(0, Attacker.Target.currentMana - reducingFactor * Attacker.Target.getMaxMana());
         ShowMessage("drained mana from " + Attacker.Target.name + ".");
     }
 

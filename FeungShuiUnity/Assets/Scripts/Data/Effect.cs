@@ -9,7 +9,7 @@ public enum StatusEffect {
     None=0, Burn, FrostBite, Rabid, Poison, Paralysis
 }
 public enum Stat {
-    None = 0, HP, Attack, Defense, Intelligence, Resistance, Speed
+    None=0, HP=1, Mana=2, Attack=3, Defense=4, Intelligence=5, Resistance=6, Speed=7
 }
 
 
@@ -17,7 +17,9 @@ public enum Stat {
 public class Effect {
     
     public EffectType effectType;
+    [Tooltip("Only used for the Status effectType")]
     public StatusEffect statusEffect;
+    [Tooltip("Only used for the BuffTarget and BuffTarget effectTypes")]
     public Stat stat;
     /* [Tooltip(@"usage (set to -ve for healing moves):
     Damage:             the power value of the move
@@ -34,33 +36,16 @@ public class Effect {
     private float damageModifier;
     private bool MakesContact;
 
-    public void execute (CreatureBattleStatusController attacker, CreatureBattleStatusController defender, float damageModifier, bool MakesContact) {
+    public void execute(CreatureBattleStatusController attacker, CreatureBattleStatusController defender, float damageModifier, bool MakesContact){
         user = attacker;
         target = defender;
         this.damageModifier = damageModifier;
         this.MakesContact = MakesContact;
 
-        switch (effectType) {
-            case EffectType.Damage : {
-                Damage();
-                break;
-            }
-            case EffectType.FixedDamage : {
-                FixedDamage();
-                break;
-            }
-            case EffectType.PercentageDamage : {
-                PercentageDamage();
-                break;
-            }
-            case EffectType.Status : {
-                Status();
-                break;
-            }
-        }
+        GetType().GetMethod("" + effectType.ToString()).Invoke(this, null);
     }
 
-    private void Damage () {
+    private void Damage(){
         float relevantAttackStat = user.getAttack(MakesContact);
         float relevantDefenseStat = target.getDefense(MakesContact);
 
@@ -76,15 +61,17 @@ public class Effect {
     }
 
     private void PercentageDamage () {
-        float damageToTake = power * (useCurrentHealth ? target.GetCreature().currentActiveHealth : target.GetCreature().maxActiveHealth);
+        float damageToTake = power * (useCurrentHealth ? target.GetCreature().currentActiveHealth : target.GetCreature().getMaxActiveHealth());
         user.ApplyDamage(damageToTake, target);
     }
 
     private void Buff () {
         Debug.Log("used Buff (WIP)");
+        GameObject ES = GameObject.Find("BattleEventSystem");
+        ES.GetComponent<BattleMenu>().messageBoxActions.Enqueue(() => ES.GetComponent<BattleMenu>().ShowMessage("used Buff (WIP)"));
         //usage:
-            //power: how much the stat is changed by (%)
-            //chance: the chance of the stat change happening
+        //power: how much the stat is changed by (%)
+        //chance: the chance of the stat change happening
     }
 
     private void Status () {

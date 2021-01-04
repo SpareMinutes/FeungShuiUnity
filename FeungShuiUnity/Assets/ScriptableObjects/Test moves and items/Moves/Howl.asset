@@ -13,9 +13,15 @@ MonoBehaviour:
   m_Name: Howl
   m_EditorClassIdentifier: 
   AttackTarget: 0
-  Accuracy: 1
-  Cost: 1
+  Accuracy: 100
+  Cost: 10
   Type: 3
   CritChance: 0
   MakesContact: 0
-  Effects: []
+  Effects:
+  - effectType: 4
+    statusEffect: 0
+    stat: 3
+    power: 5
+    chance: 100
+    useCurrentHealth: 0

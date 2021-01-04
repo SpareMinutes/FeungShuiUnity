@@ -63,7 +63,7 @@ public class TurnManager : MonoBehaviour{
     public List<CreatureBattleStatusController> getActivePlayerControlled () {
         List<CreatureBattleStatusController> dummyList = new List<CreatureBattleStatusController>();
         foreach (CreatureBattleStatusController creature in takeTurns) {
-            if (creature.GetCreature().isPlayerOwned()) {
+            if (creature.GetCreature().playerOwned) {
                 dummyList.Add(creature);
             }
         }
@@ -73,7 +73,7 @@ public class TurnManager : MonoBehaviour{
     public List<CreatureBattleStatusController> getActiveEnemies () {
         List<CreatureBattleStatusController> dummyList = new List<CreatureBattleStatusController>();
         foreach (CreatureBattleStatusController creature in takeTurns) {
-            if (!creature.GetCreature().isPlayerOwned()) {
+            if (!creature.GetCreature().playerOwned) {
                 dummyList.Add(creature);
             }
         }

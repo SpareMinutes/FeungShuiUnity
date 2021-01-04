@@ -13,9 +13,15 @@ MonoBehaviour:
   m_Name: Pound
   m_EditorClassIdentifier: 
   AttackTarget: 2
-  Accuracy: 1
-  Cost: 1
+  Accuracy: 100
+  Cost: 5
   Type: 3
   CritChance: 0.01
   MakesContact: 1
-  Effects: []
+  Effects:
+  - effectType: 0
+    statusEffect: 0
+    stat: 0
+    power: 5
+    chance: 100
+    useCurrentHealth: 0

@@ -349,7 +349,7 @@ public class MenuAndWorldUI : MonoBehaviour{
             try {
                 Creature memberData = Player.GetComponent<Battle>().Party[i];
                 memberObject.transform.GetChild(1).GetComponent<Text>().text = memberData.name;
-                memberObject.transform.GetChild(2).GetComponent<Slider>().value = memberData.currentActiveHealth/ memberData.maxActiveHealth;
+                memberObject.transform.GetChild(2).GetComponent<Slider>().value = memberData.currentActiveHealth/ memberData.getMaxActiveHealth();
                 memberObject.SetActive(true);
             } catch (ArgumentOutOfRangeException e){
                 memberObject.SetActive(false);

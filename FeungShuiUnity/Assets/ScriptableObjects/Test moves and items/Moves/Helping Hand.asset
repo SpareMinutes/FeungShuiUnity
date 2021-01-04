@@ -14,14 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AttackTarget: 1
   Accuracy: 100
-  Cost: 0
+  Cost: 5
   Type: 3
   CritChance: 0
   MakesContact: 0
   Effects:
   - effectType: 5
     statusEffect: 0
-    stat: 2
+    stat: 3
     power: 5
     chance: 0
     useCurrentHealth: 0

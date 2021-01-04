@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   typeP: 3
   typeS: 14
-  baseStats: 41000000500000003200000041000000780000005f0000005a000000
+  baseStats: 41000000500000003200000041000000780000005f0000005a00000064000000
   learnset: []
-  battleSprite: {fileID: 0}
+  battleSprite: {fileID: 21300000, guid: aedc304728f52db4d9988f5027517c66, type: 3}
