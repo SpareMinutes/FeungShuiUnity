@@ -1011,8 +1011,6 @@ MonoBehaviour:
   previous: 0
   onVictory: 0
   onDefeat: 0
-  onRematch: {fileID: 2649667593348503938}
-  afterDefeat: {fileID: 2649667593348503938}
 --- !u!114 &688969035253663883
 MonoBehaviour:
   m_ObjectHideFlags: 0
