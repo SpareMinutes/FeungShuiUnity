@@ -45,7 +45,7 @@ public class Effect {
         GetType().GetMethod("" + effectType.ToString()).Invoke(this, null);
     }
 
-    private void Damage(){
+    public void Damage(){
         float relevantAttackStat = user.getAttack(MakesContact);
         float relevantDefenseStat = target.getDefense(MakesContact);
 
@@ -55,20 +55,28 @@ public class Effect {
         user.ApplyDamage(damageToTake, target);
     }
 
-    private void FixedDamage () {
+    public void FixedDamage(){
         //no filters on the damage, will deal the exact power as damage points to the target
         user.ApplyDamage(power, target);
     }
 
-    private void PercentageDamage () {
+    public void PercentageDamage(){
         float damageToTake = power * (useCurrentHealth ? target.GetCreature().currentActiveHealth : target.GetCreature().getMaxActiveHealth());
         user.ApplyDamage(damageToTake, target);
     }
 
-    private void Buff () {
-        Debug.Log("used Buff (WIP)");
+    public void BuffSelf() {
+        Buff(user);
+    }
+    
+    public void BuffTarget() {
+        Buff(target);
+    }
+
+    public void Buff(CreatureBattleStatusController creatureToBuff) {
+        Debug.Log(creatureToBuff.Target.name + " used Buff (WIP)");
         GameObject ES = GameObject.Find("BattleEventSystem");
-        ES.GetComponent<BattleMenu>().messageBoxActions.Enqueue(() => ES.GetComponent<BattleMenu>().ShowMessage("used Buff (WIP)"));
+        ES.GetComponent<BattleMenu>().messageBoxActions.Enqueue(() => ES.GetComponent<BattleMenu>().ShowMessage(creatureToBuff.Target.name + " used Buff (WIP)"));
         //usage:
         //power: how much the stat is changed by (%)
         //chance: the chance of the stat change happening
