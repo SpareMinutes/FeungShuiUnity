@@ -28,7 +28,6 @@ public class BattleMenu : MonoBehaviour{
         //Disable overworld's event system and ui(since the battle window is just an overlay)
         OES = GameObject.Find("EventSystem");
         OES.SetActive(false);
-        GameObject.Find("InGameUI").GetComponent<MenuAndWorldUI>().enabled = false;
         //Initialize the turn order
         ES.GetComponent<TurnManager>().Init();
         //Set up navigation control variables
@@ -332,10 +331,7 @@ public class BattleMenu : MonoBehaviour{
     }
     
     public void SelectSpirits(){
-        //Show a message that this is not implemented yet
-        messageBoxActions.Enqueue(() => ShowMessage(Attacker.GetCreature().name + " looked at [SPIRITS] (WIP)"));
-        //Progress the turn cycle
-        messageBoxActions.Enqueue(() => AskForAction());
+        GameObject.Find("InGameUI").GetComponent<MenuAndWorldUI>().OpenSubscene("PartyScreen");
     }
 
     public void Run(){
@@ -564,12 +560,9 @@ public class BattleMenu : MonoBehaviour{
     }
 
     private void EndBattle(){
-        SceneManager.UnloadSceneAsync("Battle_GUI");
         //Enable overworld's event system and UI
         OES.SetActive(true);
-        Time.timeScale = 1;
-        GameObject.Find("WalkableCharacter").transform.GetChild(0).gameObject.SetActive(true);
-        GameObject.Find("InGameUI").GetComponent<MenuAndWorldUI>().enabled = true;
+        SceneManager.UnloadSceneAsync("Battle_GUI");
         //Continue interaction, if any (there probably is one though).
         if (interaction != null){
             interaction.GetComponent<Battle>().defeated = playerWon;    //Update the status of the battle

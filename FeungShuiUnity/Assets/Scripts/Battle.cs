@@ -20,9 +20,7 @@ public class Battle : MonoBehaviour{
     public void StartBattle() {
         PlayerParty = GameObject.Find("WalkableCharacter").GetComponent<Battle>().Party.ToArray();
         //load the battle scene
-        Time.timeScale = 0;
-        GameObject.Find("WalkableCharacter").transform.GetChild(0).gameObject.SetActive(false);
-        SceneManager.LoadSceneAsync("Battle_GUI", LoadSceneMode.Additive);
+        GameObject.Find("InGameUI").GetComponent<MenuAndWorldUI>().OpenSubscene("Battle_GUI");
         challenged = true;
     }
 

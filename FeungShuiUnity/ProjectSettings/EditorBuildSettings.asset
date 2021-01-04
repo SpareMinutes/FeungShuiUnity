@@ -65,4 +65,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/other/mountains north of temoku.unity
     guid: ccc2799702b0d614fac9477c13aff378
+  - enabled: 1
+    path: Assets/Scenes/other/PartyScreen.unity
+    guid: f542889e0a3684145a64484d8a8376c2
   m_configObjects: {}

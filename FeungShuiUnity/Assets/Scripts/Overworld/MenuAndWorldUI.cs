@@ -3,19 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
-using System;
+using UnityEngine.SceneManagement;
 
 public class MenuAndWorldUI : MonoBehaviour{
     public EventSystem ES;
 
     [SerializeField]
-    private GameObject Player, Canvas, Message, Text, Menu, Bag, Party, Arrow, AnswerBox, BuyInv, SellInv;
+    private GameObject Player, Canvas, Message, Text, Menu, Bag, Arrow, AnswerBox, BuyInv, SellInv;
 
     private InteractionNode activeNode;
     [SerializeField]
     private GameObject[] Answers, AnswerBG;
-    private bool isMenuOpen, isBagOpen, isPartyOpen, isShopOpen, isBuying, selectAmount, amountCap = false;
-    private GameObject SelectedMenu, SelectedMessage, SelectedBag, SelectedParty, dialogueContext, SelectedShop, ShopConfirmation, context;
+    public bool isMenuOpen, isBagOpen, isPartyOpen, isShopOpen, isBuying, selectAmount, amountCap = false;
+    private GameObject SelectedMenu, SelectedMessage, SelectedBag, dialogueContext, SelectedShop, ShopConfirmation, context;
 
     private List<BagTab> bagTabs;
     private int currentTabIndex = 0;
@@ -29,7 +29,6 @@ public class MenuAndWorldUI : MonoBehaviour{
         SelectedMenu = Menu.transform.GetChild(0).gameObject;
         SelectedMessage = Message;
         SelectedBag = Bag.transform.GetChild(1).GetChild(2).gameObject; //should select the item button if hte layering is correct
-        SelectedParty = Party.transform.GetChild(1).gameObject;
     }
 
     public void Update (){
@@ -61,6 +60,8 @@ public class MenuAndWorldUI : MonoBehaviour{
             } else if (isPartyOpen) {
                 CloseParty();
                 OpenMenu();
+            } else if (activeNode is BattleNode) {
+                //do nothing
             } else if (isMenuOpen) {
                 //menu is open so close it
                 CloseMenu(true);
@@ -79,7 +80,7 @@ public class MenuAndWorldUI : MonoBehaviour{
                 } else {
                     CloseShop();
                 }
-            } else if(!Message.activeSelf){
+            } else if (!Message.activeSelf) {
                 OpenMenu();
             }
         }
@@ -302,7 +303,7 @@ public class MenuAndWorldUI : MonoBehaviour{
     }
     #endregion
 
-
+    #region Menu
     public void OpenMenu () {
         disableInteract();
         Menu.SetActive(true);
@@ -310,9 +311,11 @@ public class MenuAndWorldUI : MonoBehaviour{
         ES.SetSelectedGameObject(null);
         ES.SetSelectedGameObject(SelectedMenu);
         Player.GetComponent<Walk>().canWalk = false;
+        GameObject.Find("WalkableCharacter").transform.GetChild(0).gameObject.SetActive(false);
+        Time.timeScale = 0;
     }
 
-    //Bool determings whether to reenable movement and interactions
+    //Bool determines whether to reenable movement and interactions
     //false when called by opening a submenu
     //true when called by fully closing the menu
     public void CloseMenu (bool fullyClosed) {
@@ -320,51 +323,33 @@ public class MenuAndWorldUI : MonoBehaviour{
         isMenuOpen = false;
         if (fullyClosed) {
             Player.GetComponent<Walk>().canWalk = true;
-            enableInteract();
+            sceduleReenable();
+            Time.timeScale = 1;
         }
     }
-
 
 
     public void OpenSummary () {
         //will be called when the summary button is pressed from the menu
         //ShowMessage("This will show the summary of the adventure so far.", true);
         Debug.Log("This will show the summary of the adventure so far.");
-        Player.GetComponent<Walk>().canWalk = true;
-        enableInteract();
     }
-
 
 
     public void OpenParty () {
         //will be called when the party option is selected fromt the menu
         isPartyOpen = true;
-        Party.SetActive(true);
         ES.SetSelectedGameObject(null);
-        ES.SetSelectedGameObject(SelectedParty);
-        Player.GetComponent<Walk>().canWalk = false;
-        //Show the party's data
-        for(int i=0; i<6; i++) {
-            GameObject memberObject = Party.transform.GetChild(i + 1).gameObject;
-            try {
-                Creature memberData = Player.GetComponent<Battle>().Party[i];
-                memberObject.transform.GetChild(1).GetComponent<Text>().text = memberData.name;
-                memberObject.transform.GetChild(2).GetComponent<Slider>().value = memberData.currentActiveHealth/ memberData.getMaxActiveHealth();
-                memberObject.SetActive(true);
-            } catch (ArgumentOutOfRangeException e){
-                memberObject.SetActive(false);
-            }
-        }
+        //ES.SetSelectedGameObject(SelectedParty);
+        OpenSubscene("PartyScreen");
     }
 
     public void CloseParty () {
-        Party.SetActive(false);
         isPartyOpen = false;
-        Player.GetComponent<Walk>().canWalk = true;
+        SceneManager.UnloadSceneAsync("PartyScreen");
     }
 
-
-    #region Bag
+    
     public void OpenBag () {
         //opens the players bag when selected form the menu
         //ShowMessage("This will show the player inventory.");
@@ -435,26 +420,27 @@ public class MenuAndWorldUI : MonoBehaviour{
         isBagOpen = false;
         Player.GetComponent<Walk>().canWalk = true;
     }
-    #endregion
-
 
 
     public void Save () {
         //will be called when the player selects save from the menu
         //for right now doesnt do anything
         Debug.Log("This will save the game.");
-        Player.GetComponent<Walk>().canWalk = true;
-        enableInteract();
     }
-
-
+    
 
     public void OpenOptions () {
         //opens the ingame options menu from the menu
         Debug.Log("This will show the options.");
-        Player.GetComponent<Walk>().canWalk = true;
-        enableInteract();
     }
+
+
+    public void OpenSubscene(string name) {
+        Player.GetComponent<Walk>().canWalk = false;
+        GameObject.Find("WalkableCharacter").transform.GetChild(0).gameObject.SetActive(false);
+        SceneManager.LoadSceneAsync(name, LoadSceneMode.Additive);
+    }
+    #endregion
 
 
 
