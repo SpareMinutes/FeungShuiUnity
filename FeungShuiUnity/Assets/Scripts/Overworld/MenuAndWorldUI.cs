@@ -378,6 +378,7 @@ public class MenuAndWorldUI : MonoBehaviour{
         Inventory inventory = Player.GetComponent<Inventory>();
         
         //bag tab
+        inventory.OrganiseBagTabs();
         bagTabs = new List<BagTab>(inventory.tabs.Keys);
         
         //item lineup
