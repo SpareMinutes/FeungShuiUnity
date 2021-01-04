@@ -34,12 +34,13 @@ public class BattleMenu : MonoBehaviour{
         //Set up navigation control variables
         Selected = ES.firstSelectedGameObject;
         IsSelectingAttack = false;
-        Moves.SetActive(false);
         SelectedMove = null;
+        //Initialize lists and queue
         Defenders = new List<CreatureBattleStatusController> { };
-        toExculdeFromSelection = new List<CreatureBattleStatusController>() { }; //blank list
+        toExculdeFromSelection = new List<CreatureBattleStatusController>() { };
         messageBoxActions = new Queue<Action>(){ };
         currentAction = null;
+        //Setup done, begin the battle
         BeginTurn();
     }
 
@@ -67,13 +68,15 @@ public class BattleMenu : MonoBehaviour{
                 AskForAction();
             }
         }
-            advanceActions();
+        //Run a pending action, if any
+        advanceActions();
     }
 
     #endregion
 
     #region Cycle controls
 
+    //Run the next action in the queue
     public void advanceActions(){
         if (currentAction == null && messageBoxActions.Count > 0){
             currentAction = messageBoxActions.Dequeue();
@@ -82,6 +85,8 @@ public class BattleMenu : MonoBehaviour{
         }
     }
 
+    //Clear the current action to mark that the next one should run next Update()
+    //Called by the advance arrow on the text box
     public void finishAction(){
         currentAction = null;
     }
@@ -94,11 +99,12 @@ public class BattleMenu : MonoBehaviour{
         //Disable attack buttons
         Moves.SetActive(false);
         IsSelectingAttack = false;
+        //Turn on the advance arrow
         ProgressButton.GetComponent<Button>().interactable = true;
         ES.SetSelectedGameObject(ProgressButton);
     }
 
-    //Select action type (Attack/Defend/Item/Run)
+    //Processing performed at the start of a turn before player/ai input
     public void BeginTurn(){
         if (ES.GetComponent<TurnManager>().whoWins().Equals("Player")){
             Debug.Log("Player Wins");
@@ -153,6 +159,7 @@ public class BattleMenu : MonoBehaviour{
         }
     }
 
+    //Select action type (Attack/Defend/Item/Run)
     private void AskForAction(){
         //End last action
         finishAction();
@@ -238,6 +245,7 @@ public class BattleMenu : MonoBehaviour{
         }
     }
 
+    //Processing performed after a turn
     private void EndTurn(){
         //END of turn status effects go here, start of turn status effects go in AskForAction
         switch (Attacker.statusEffect){
@@ -348,6 +356,7 @@ public class BattleMenu : MonoBehaviour{
         for (int i = 0; i < 4; i++) attackButtons[i].GetComponent<Button>().interactable = false;
     }
 
+    //Get the index of the CreatureBattleStatusController connected to the attacker
     private int findAttacker(){
         for (int i = 0; i <= 1; i++){
             GameObject spirit = spiritStatuses[i];
@@ -411,7 +420,7 @@ public class BattleMenu : MonoBehaviour{
 
     #region Targeting
     
-    //Another super common few lines
+    //Utility method to avoid repeating a few lines of code
     private void enableTarget(int id){
         GameObject spirit = spiritStatuses[id];
         if (spirit!=null && spirit.activeSelf){
@@ -489,6 +498,8 @@ public class BattleMenu : MonoBehaviour{
 
     #region Utility
 
+    //Randomly generate actions the opponent is going to perform
+    //Todo: allow different types of AIs with different levels of difficulty
     private void EnemyAI () {
         CreatureBattleStatusController Defender;
         // AI part //
