@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
+using System;
 
 public class MenuAndWorldUI : MonoBehaviour{
     public EventSystem ES;
@@ -12,14 +13,11 @@ public class MenuAndWorldUI : MonoBehaviour{
     private GameObject Player, Canvas, Message, Text, Menu, Bag, Arrow, AnswerBox, BuyInv, SellInv;
 
     private InteractionNode activeNode;
-    [SerializeField]
-    private GameObject[] Answers, AnswerBG;
     public bool isMenuOpen, isBagOpen, isPartyOpen, isShopOpen, isBuying, selectAmount, amountCap = false;
     private GameObject SelectedMenu, SelectedMessage, SelectedBag, dialogueContext, SelectedShop, ShopConfirmation, context;
 
     private List<BagTab> bagTabs;
     private int currentTabIndex = 0;
-    private int shownAnswers = 0;
     private List<Item> currentItems;
     private int offset = -2;
 
@@ -39,6 +37,8 @@ public class MenuAndWorldUI : MonoBehaviour{
             if (isMenuOpen) {
                 //menu is open 
                 ES.SetSelectedGameObject(SelectedMenu);
+            } else if (AnswerBox.activeSelf) {
+                //Do nothing, but exit the if/else anyway to avoid the next option
             } else if (Message.activeSelf) {
                 //message is open
                 ES.SetSelectedGameObject(SelectedMessage);
@@ -47,10 +47,6 @@ public class MenuAndWorldUI : MonoBehaviour{
                 ES.SetSelectedGameObject(SelectedBag);
             }
             //else nothing is open
-        }
-        if (shownAnswers > 0 && !Answers.Contains(selected)) {
-            //answers are shown
-            ES.SetSelectedGameObject(Answers[9]);
         }
 
         if (Input.GetButtonDown("Cancel")) {
@@ -254,52 +250,23 @@ public class MenuAndWorldUI : MonoBehaviour{
     }
 
     public void AdvanceMessage() {
-        shownAnswers = 0;
         activeNode.ExecuteNext(activeNode.GetOutputPort("next"), dialogueContext);
         //if (!activeNode.RunStep())
         //    disableButton();
     }
 
     public void ShowAnswers(string[] options) {
+        //Build an array of Actions
+        Action[] actions = new Action[options.Length];
+        for (int i = 0; i < options.Length; i++) {
+            actions[i] = () => RunAnswer();
+        }
+        AnswerBox.GetComponent<OptionBox>().Populate(options, actions);
         AnswerBox.SetActive(true);
-        shownAnswers = options.Length;
-        int offset = Answers.Length - options.Length;
-        int maxLen = 0;
-        //Fill in text. Also count length of longest option for use later
-        for (int i=0; i<options.Length; i++) {
-            Answers[offset + i].GetComponent<Text>().text = options[i];
-            maxLen = Mathf.Max(maxLen, options[i].Length);
-            Answers[offset + i].SetActive(true);
-        }
-        for(int i=0; i<offset; i++) {
-            Answers[i].GetComponent<Text>().text = "";
-            Answers[i].SetActive(false);
-        }
-        //Set box height
-        for(int i=6; i<9; i++) {
-            RectTransform rt = AnswerBG[i].GetComponent<RectTransform>();
-            rt.localPosition = new Vector3(rt.localPosition.x, 10*options.Length-1, 0);
-        }
-        for (int i = 3; i < 6; i++) {
-            RectTransform rt = AnswerBG[i].GetComponent<RectTransform>();
-            rt.transform.localScale = new Vector3(rt.transform.localScale.x, (float)(2.5*options.Length-0.25), 1);
-        }
-        //Set box width
-        for (int i = 2; i <= 8; i+=3) {
-            RectTransform rt = AnswerBG[i].GetComponent<RectTransform>();
-            rt.localPosition = new Vector3(6*maxLen, rt.localPosition.y, 0);
-        }
-        for (int i = 1; i <= 7; i+=3) {
-            RectTransform rt = AnswerBG[i].GetComponent<RectTransform>();
-            rt.transform.localScale = new Vector3((float)(1.5 * maxLen), rt.transform.localScale.y, 1);
-        }
     }
 
-    public void RunAnswer(int selection) {
-        selection -= 10 - shownAnswers;
-        AnswerBox.SetActive(false);
-        shownAnswers = 0;
-        activeNode.ExecuteNext(activeNode.GetOutputPort("answers " + selection), dialogueContext);
+    public void RunAnswer() {
+        activeNode.ExecuteNext(activeNode.GetOutputPort("answers " + AnswerBox.GetComponent<OptionBox>().chosen), dialogueContext);
     }
     #endregion
 

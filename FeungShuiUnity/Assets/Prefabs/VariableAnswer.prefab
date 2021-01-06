@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3827253278839088937}
   - component: {fileID: 7190398674729797257}
   m_Layer: 5
-  m_Name: AnswerA
+  m_Name: VariableAnswer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -78,7 +78,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Answer A
+  m_Text: Answer
 --- !u!114 &7190398674729797257
 MonoBehaviour:
   m_ObjectHideFlags: 0
