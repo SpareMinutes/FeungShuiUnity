@@ -235,7 +235,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7689022480591237868}
+      - m_Target: {fileID: 0}
         m_MethodName: UseItem
         m_Mode: 1
         m_Arguments:
@@ -246,7 +246,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 7689022480591237868}
+      - m_Target: {fileID: 0}
         m_MethodName: CloseBag
         m_Mode: 1
         m_Arguments:
@@ -1943,7 +1943,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7689022480591237868}
+      - m_Target: {fileID: 0}
         m_MethodName: CompleteTransaction
         m_Mode: 1
         m_Arguments:
@@ -2149,7 +2149,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7689022480591237868}
+      - m_Target: {fileID: 0}
         m_MethodName: OpenSelectAmount
         m_Mode: 1
         m_Arguments:
@@ -2395,7 +2395,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7689022480591237868}
+      - m_Target: {fileID: 0}
         m_MethodName: OpenSelectAmount
         m_Mode: 1
         m_Arguments:
@@ -3628,7 +3628,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7689022480591237868}
+      - m_Target: {fileID: 0}
         m_MethodName: OpenBag
         m_Mode: 1
         m_Arguments:
@@ -3639,7 +3639,7 @@ MonoBehaviour:
           m_StringArgument: This will show the player inventory.
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 7689022480591237868}
+      - m_Target: {fileID: 0}
         m_MethodName: CloseMenu
         m_Mode: 6
         m_Arguments:
@@ -3768,7 +3768,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7689022480591237868}
+      - m_Target: {fileID: 0}
         m_MethodName: OpenOptions
         m_Mode: 1
         m_Arguments:
@@ -3779,7 +3779,7 @@ MonoBehaviour:
           m_StringArgument: This will show the options.
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 7689022480591237868}
+      - m_Target: {fileID: 0}
         m_MethodName: CloseMenu
         m_Mode: 6
         m_Arguments:
@@ -3981,7 +3981,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7689022480591237868}
+      - m_Target: {fileID: 0}
         m_MethodName: OpenSummary
         m_Mode: 1
         m_Arguments:
@@ -3992,7 +3992,7 @@ MonoBehaviour:
           m_StringArgument: This will show the summary of the adventure so far.
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 7689022480591237868}
+      - m_Target: {fileID: 0}
         m_MethodName: CloseMenu
         m_Mode: 6
         m_Arguments:
@@ -4015,7 +4015,6 @@ GameObject:
   - component: {fileID: 7689022480591237870}
   - component: {fileID: 7689022480591237871}
   - component: {fileID: 7689022480591237856}
-  - component: {fileID: 7689022480591237868}
   m_Layer: 5
   m_Name: InGameUI
   m_TagString: Untagged
@@ -4105,36 +4104,6 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &7689022480591237868
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7689022480591237857}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2f520fa633c6af94aaaff76d920b377c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ES: {fileID: 0}
-  Player: {fileID: 0}
-  Canvas: {fileID: 7689022480591237857}
-  Message: {fileID: 7689022480803676947}
-  Text: {fileID: 7689022480803211913}
-  Menu: {fileID: 7689022481200461671}
-  Bag: {fileID: 1595588251}
-  Arrow: {fileID: 7689022480065822641}
-  AnswerBox: {fileID: 836849396366235441}
-  BuyInv: {fileID: 5486990074100495651}
-  SellInv: {fileID: 8203966789492839157}
-  isMenuOpen: 0
-  isBagOpen: 0
-  isPartyOpen: 0
-  isShopOpen: 0
-  isBuying: 0
-  selectAmount: 0
-  amountCap: 0
 --- !u!1 &7689022480803211913
 GameObject:
   m_ObjectHideFlags: 0
@@ -4334,7 +4303,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7689022480591237868}
+      - m_Target: {fileID: 0}
         m_MethodName: AdvanceMessage
         m_Mode: 1
         m_Arguments:
@@ -4463,7 +4432,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7689022480591237868}
+      - m_Target: {fileID: 0}
         m_MethodName: OpenParty
         m_Mode: 1
         m_Arguments:
@@ -4474,7 +4443,7 @@ MonoBehaviour:
           m_StringArgument: This will show the spirit party.
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 7689022480591237868}
+      - m_Target: {fileID: 0}
         m_MethodName: CloseMenu
         m_Mode: 6
         m_Arguments:
@@ -4912,7 +4881,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7689022480591237868}
+      - m_Target: {fileID: 0}
         m_MethodName: Save
         m_Mode: 1
         m_Arguments:
@@ -4923,7 +4892,7 @@ MonoBehaviour:
           m_StringArgument: This will save the game.
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 7689022480591237868}
+      - m_Target: {fileID: 0}
         m_MethodName: CloseMenu
         m_Mode: 6
         m_Arguments:
@@ -5206,7 +5175,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7689022480591237868}
+      - m_Target: {fileID: 0}
         m_MethodName: CompleteTransaction
         m_Mode: 1
         m_Arguments:
@@ -5737,17 +5706,20 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 7689022480591237868}
+      objectReference: {fileID: 7689022480591237868, guid: 737839d04245d774e9c247effc421d20,
+        type: 3}
     - target: {fileID: 1302964843905688835, guid: eed730fc757640d46978b49d23a1781b,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 7689022480591237868}
+      objectReference: {fileID: 7689022480591237868, guid: 737839d04245d774e9c247effc421d20,
+        type: 3}
     - target: {fileID: 1808273498606787427, guid: eed730fc757640d46978b49d23a1781b,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 7689022480591237868}
+      objectReference: {fileID: 7689022480591237868, guid: 737839d04245d774e9c247effc421d20,
+        type: 3}
     - target: {fileID: 2774211039129811576, guid: eed730fc757640d46978b49d23a1781b,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5857,17 +5829,20 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 7689022480591237868}
+      objectReference: {fileID: 7689022480591237868, guid: 737839d04245d774e9c247effc421d20,
+        type: 3}
     - target: {fileID: 3873148843112938484, guid: eed730fc757640d46978b49d23a1781b,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 7689022480591237868}
+      objectReference: {fileID: 7689022480591237868, guid: 737839d04245d774e9c247effc421d20,
+        type: 3}
     - target: {fileID: 3982147512634111836, guid: eed730fc757640d46978b49d23a1781b,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 7689022480591237868}
+      objectReference: {fileID: 7689022480591237868, guid: 737839d04245d774e9c247effc421d20,
+        type: 3}
     - target: {fileID: 6445988536796593838, guid: eed730fc757640d46978b49d23a1781b,
         type: 3}
       propertyPath: m_Name
@@ -5882,7 +5857,8 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 7689022480591237868}
+      objectReference: {fileID: 7689022480591237868, guid: 737839d04245d774e9c247effc421d20,
+        type: 3}
     - target: {fileID: 7284099294836840009, guid: eed730fc757640d46978b49d23a1781b,
         type: 3}
       propertyPath: AnswerPrefab
@@ -5893,28 +5869,25 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 7689022480591237868}
+      objectReference: {fileID: 7689022480591237868, guid: 737839d04245d774e9c247effc421d20,
+        type: 3}
     - target: {fileID: 8452513932708292685, guid: eed730fc757640d46978b49d23a1781b,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 7689022480591237868}
+      objectReference: {fileID: 7689022480591237868, guid: 737839d04245d774e9c247effc421d20,
+        type: 3}
     - target: {fileID: 8663028734303096779, guid: eed730fc757640d46978b49d23a1781b,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 7689022480591237868}
+      objectReference: {fileID: 7689022480591237868, guid: 737839d04245d774e9c247effc421d20,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: eed730fc757640d46978b49d23a1781b, type: 3}
 --- !u!224 &8400950835233969127 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 2774211039129811576, guid: eed730fc757640d46978b49d23a1781b,
-    type: 3}
-  m_PrefabInstance: {fileID: 5974542207051950495}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &836849396366235441 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6445988536796593838, guid: eed730fc757640d46978b49d23a1781b,
     type: 3}
   m_PrefabInstance: {fileID: 5974542207051950495}
   m_PrefabAsset: {fileID: 0}

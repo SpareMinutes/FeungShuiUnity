@@ -6,7 +6,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using System;
 
-public class BattleMenu : MonoBehaviour{
+public class BattleMenu : Menu{
     public EventSystem ES;
     public GameObject Message, Moves;
     private GameObject Selected, OES;
@@ -20,14 +20,12 @@ public class BattleMenu : MonoBehaviour{
     public Interaction interaction;
     private bool playerWon;
     public Queue<Action> messageBoxActions;
+    public Canvas canvas;
     Action currentAction;
 
     #region General
 
     void Start(){
-        //Disable overworld's event system and ui(since the battle window is just an overlay)
-        OES = GameObject.Find("EventSystem");
-        OES.SetActive(false);
         //Initialize the turn order
         ES.GetComponent<TurnManager>().Init();
         //Set up navigation control variables
@@ -71,6 +69,19 @@ public class BattleMenu : MonoBehaviour{
         advanceActions();
     }
 
+    #endregion
+
+    #region Menu interactions
+    public override void Pause() {
+        paused = true;
+        canvas.enabled = false;
+    }
+
+    public override void Resume() {
+        paused = false;
+        gameObject.SetActive(true);
+        canvas.enabled = true;
+    }
     #endregion
 
     #region Cycle controls
@@ -331,7 +342,7 @@ public class BattleMenu : MonoBehaviour{
     }
     
     public void SelectSpirits(){
-        GameObject.Find("InGameUI").GetComponent<MenuAndWorldUI>().OpenSubscene("PartyScreen");
+        GameObject.Find("EventSystem").GetComponent<BattleMenu>().OpenNewMenu("PartyScreen");
     }
 
     public void Run(){
@@ -560,9 +571,7 @@ public class BattleMenu : MonoBehaviour{
     }
 
     private void EndBattle(){
-        //Enable overworld's event system and UI
-        OES.SetActive(true);
-        SceneManager.UnloadSceneAsync("Battle_GUI");
+        ReturnToLast();
         //Continue interaction, if any (there probably is one though).
         if (interaction != null){
             interaction.GetComponent<Battle>().defeated = playerWon;    //Update the status of the battle
@@ -604,5 +613,5 @@ public class BattleMenu : MonoBehaviour{
     }
 
     #endregion
-    
+
 }

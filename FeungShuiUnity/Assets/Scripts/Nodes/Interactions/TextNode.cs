@@ -21,9 +21,9 @@ public class TextNode : InteractionNode {
             varNum++;
         }
         if (parsedMessage.Trim().Length > 0) {
-            GameObject.Find("InGameUI").GetComponent<MenuAndWorldUI>().ShowMessage(parsedMessage, true);
-            GameObject.Find("InGameUI").GetComponent<MenuAndWorldUI>().SetActiveNode(this);
-            GameObject.Find("InGameUI").GetComponent<MenuAndWorldUI>().SetDialogueContext(context);
+            GameObject.Find("EventSystem").GetComponent<OverworldUI>().ShowMessage(parsedMessage, true);
+            GameObject.Find("EventSystem").GetComponent<OverworldUI>().SetActiveNode(this);
+            GameObject.Find("EventSystem").GetComponent<OverworldUI>().SetDialogueContext(context);
         } else {
             Debug.Log("No text");
             ExecuteNext(GetOutputPort("next"), context);

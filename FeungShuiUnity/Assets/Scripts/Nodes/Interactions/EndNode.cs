@@ -6,8 +6,8 @@ public class EndNode : InteractionNode {
     [Input(backingValue = ShowBackingValue.Never)] public bool previous;
 
     public override void Execute(GameObject context) {
-        GameObject.Find("InGameUI").GetComponent<MenuAndWorldUI>().disableButton();
-        GameObject.Find("InGameUI").GetComponent<MenuAndWorldUI>().sceduleReenable();
+        GameObject.Find("EventSystem").GetComponent<OverworldUI>().disableButton();
+        GameObject.Find("EventSystem").GetComponent<OverworldUI>().scheduleReenable();
         ((InteractionGraph)graph).activeNodes.Clear();
         try {
             context.GetComponent<WanderAI>().enabled = true;

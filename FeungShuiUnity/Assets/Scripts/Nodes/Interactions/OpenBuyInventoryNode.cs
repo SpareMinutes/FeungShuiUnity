@@ -12,10 +12,10 @@ public class OpenBuyInventoryNode : InteractionNode {
         //shop inventory
         Inventory buyInventory = context.GetComponent<Inventory>();
 
-        GameObject.Find("InGameUI").GetComponent<MenuAndWorldUI>().SetActiveNode(this);
-        GameObject.Find("InGameUI").GetComponent<MenuAndWorldUI>().SetContext(context);
+        GameObject.Find("InGameUI").GetComponent<OverworldUI>().SetActiveNode(this);
+        //GameObject.Find("InGameUI").GetComponent<OverworldUI>().SetContext(context);
         
-        GameObject.Find("InGameUI").GetComponent<MenuAndWorldUI>().OpenBuyInv(buyInventory);
+        //GameObject.Find("InGameUI").GetComponent<OverworldUI>().OpenBuyInv(buyInventory);
     }
 
 }

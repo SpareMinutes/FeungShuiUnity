@@ -21,9 +21,9 @@ public class QuestionNode : InteractionNode {
             }
             varNum++;
         }
-        GameObject.Find("InGameUI").GetComponent<MenuAndWorldUI>().ShowMessage(parsedMessage, false);
-        GameObject.Find("InGameUI").GetComponent<MenuAndWorldUI>().ShowAnswers(answers.ToArray());
-        GameObject.Find("InGameUI").GetComponent<MenuAndWorldUI>().SetActiveNode(this);
-        GameObject.Find("InGameUI").GetComponent<MenuAndWorldUI>().SetDialogueContext(context);
+        GameObject.Find("EventSystem").GetComponent<OverworldUI>().ShowMessage(parsedMessage, false);
+        GameObject.Find("EventSystem").GetComponent<OverworldUI>().ShowAnswers(answers.ToArray());
+        GameObject.Find("EventSystem").GetComponent<OverworldUI>().SetActiveNode(this);
+        GameObject.Find("EventSystem").GetComponent<OverworldUI>().SetDialogueContext(context);
     }
 }

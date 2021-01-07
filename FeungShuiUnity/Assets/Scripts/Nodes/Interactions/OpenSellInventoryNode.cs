@@ -12,9 +12,9 @@ public class OpenSellInventoryNode : InteractionNode {
         //shop inventory
         Inventory inventory = context.GetComponent<Inventory>(); //this inventory is just needed for the transfer of money between the player and npc
         
-        GameObject.Find("InGameUI").GetComponent<MenuAndWorldUI>().SetActiveNode(this);
-        GameObject.Find("InGameUI").GetComponent<MenuAndWorldUI>().SetContext(context);
+        GameObject.Find("InGameUI").GetComponent<OverworldUI>().SetActiveNode(this);
+        //GameObject.Find("InGameUI").GetComponent<OverworldUI>().SetContext(context);
 
-        GameObject.Find("InGameUI").GetComponent<MenuAndWorldUI>().OpenSellInv(inventory);
+        //GameObject.Find("InGameUI").GetComponent<OverworldUI>().OpenSellInv(inventory);
     }
 }

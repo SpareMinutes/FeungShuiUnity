@@ -4,26 +4,21 @@ using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;  
 using UnityEngine.UI;
 
-public class PartyMenu : MonoBehaviour {
+public class PartyMenu : Menu{
     private EventSystem ES;
     private GameObject Selected, LastCanvas;
-    public GameObject Actions;
-    private bool inBattle, isSelecting;
+    public OptionBox Actions;
+    private bool inBattle;
+    private int selectedIndex;
 
-    public void setInBattle(bool value) {
-        inBattle = value;
-    }
-
+    #region General
     // Start is called before the first frame update
     void Start(){
         ES = gameObject.GetComponent<EventSystem>();
         Selected = ES.firstSelectedGameObject;
         GameObject Canvas = GameObject.Find("PartyCanvas");
-        //Disable battle screen or other, if any
-        LastCanvas = GameObject.Find("Canvas");
-        if (LastCanvas != null) LastCanvas.SetActive(false);
 
-        isSelecting = false;
+        selectedIndex = -1;
 
         GameObject Player = GameObject.Find("WalkableCharacter");
         //Show the party's data
@@ -51,19 +46,30 @@ public class PartyMenu : MonoBehaviour {
                 Selected = ES.currentSelectedGameObject;
         }
         if (Input.GetButtonDown("Cancel")) {
-            if (isSelecting) {
-                Actions.SetActive(false);
-                isSelecting = false;
+            if (selectedIndex>=0) {
+                Actions.gameObject.SetActive(false);
+                selectedIndex = -1;
             } else {
-                if (LastCanvas != null) LastCanvas.SetActive(true);
-                SceneManager.UnloadSceneAsync("PartyScreen");
+                ReturnToLast();
             }
         }
     }
+    #endregion
 
     public void Select(int id) {
-        isSelecting = true;
-        Actions.transform.GetChild(1).GetComponent<Button>().interactable = LastCanvas != null;
-        Actions.SetActive(true);
+        selectedIndex = id;
+        if(LastCanvas == null) {
+            string[] labels = { "Details" };
+            Action[] actionsIn = { () => ShowDetails() };
+            Actions.Populate(labels, actionsIn);
+        }
+    }
+
+    public void ShowDetails() {
+
+    }
+
+    public void SwitchOut() {
+
     }
 }

@@ -500,7 +500,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Answers: {fileID: 1348832413550363498}
   Background: {fileID: 2750196300213239904}
-  AnswerPrefab: {fileID: 0}
+  AnswerPrefab: {fileID: 300006650334018324, guid: a7f9cf0a00868ad4c9237d93140fafb2,
+    type: 3}
+  lastSelected: {fileID: 0}
+  chosen: 0
 --- !u!1 &6857348982139699284
 GameObject:
   m_ObjectHideFlags: 0

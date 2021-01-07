@@ -34,17 +34,17 @@ public class Interaction : MonoBehaviour {
                     for(int i=0; i<step.ints.Length; i++) {
                         resultBranches[10 - step.ints.Length + i] = step.ints[i];
                     }
-                    GameObject.Find("InGameUI").GetComponent<MenuAndWorldUI>().ShowMessage(step.message, false);
-                    GameObject.Find("InGameUI").GetComponent<MenuAndWorldUI>().ShowAnswers(step.strings);
-                    //GameObject.Find("InGameUI").GetComponent<MenuAndWorldUI>().SetActiveInteraction(this);
+                    GameObject.Find("InGameUI").GetComponent<OverworldUI>().ShowMessage(step.message, false);
+                    GameObject.Find("InGameUI").GetComponent<OverworldUI>().ShowAnswers(step.strings);
+                    //GameObject.Find("InGameUI").GetComponent<OverworldUI>().SetActiveInteraction(this);
                     break;
                 case StepType.Simple:
-                    GameObject.Find("InGameUI").GetComponent<MenuAndWorldUI>().ShowMessage(step.message, true);
-                    //GameObject.Find("InGameUI").GetComponent<MenuAndWorldUI>().SetActiveInteraction(this);
+                    GameObject.Find("InGameUI").GetComponent<OverworldUI>().ShowMessage(step.message, true);
+                    //GameObject.Find("InGameUI").GetComponent<OverworldUI>().SetActiveInteraction(this);
                     currStep++;
                     break;
                 case StepType.Battle:
-                    GameObject.Find("InGameUI").GetComponent<MenuAndWorldUI>().disableButton();
+                    GameObject.Find("InGameUI").GetComponent<OverworldUI>().disableButton();
                     GetComponent<Battle>().StartTrainerBattle();
                     break;
                 case StepType.RandomBranch:
@@ -79,7 +79,7 @@ public class Interaction : MonoBehaviour {
         } catch (System.IndexOutOfRangeException e) {
             //the branch has ended
             SetBranch(startBranch);
-            GameObject.Find("InGameUI").GetComponent<MenuAndWorldUI>().disableButton();
+            GameObject.Find("InGameUI").GetComponent<OverworldUI>().disableButton();
             return false;
         }
     }

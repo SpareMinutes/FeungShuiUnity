@@ -56,6 +56,7 @@ public class OptionBox : MonoBehaviour{
         }
 
         ES = GameObject.Find("EventSystem").GetComponent<EventSystem>();
+        gameObject.SetActive(true);
     }
 
     private void OnEnable() {

@@ -411,7 +411,9 @@ MonoBehaviour:
   - {fileID: 3750422290906627111}
   - {fileID: -9161845401039698091}
   Start: {fileID: 5068440562987892691}
-  activeNodes: []
+  activeNodes:
+  - {fileID: -2628911693269460345}
+  - {fileID: -2628911693269460345}
 --- !u!114 &3069762000647247833
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -773,8 +775,6 @@ MonoBehaviour:
   previous: 0
   onVictory: 0
   onDefeat: 0
-  onRematch: {fileID: 5068440562987892691}
-  afterDefeat: {fileID: 5068440562987892691}
 --- !u!114 &8027813220165326029
 MonoBehaviour:
   m_ObjectHideFlags: 0

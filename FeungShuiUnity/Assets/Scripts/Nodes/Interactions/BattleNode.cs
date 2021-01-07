@@ -6,8 +6,8 @@ public class BattleNode : InteractionNode {
     [Output] public bool onVictory, onDefeat;
 
     public override void Execute(GameObject context) {
-        GameObject.Find("InGameUI").GetComponent<MenuAndWorldUI>().disableButton();
-        GameObject.Find("InGameUI").GetComponent<MenuAndWorldUI>().SetActiveNode(this);
+        GameObject.Find("EventSystem").GetComponent<OverworldUI>().disableButton();
+        GameObject.Find("EventSystem").GetComponent<OverworldUI>().SetActiveNode(this);
         context.GetComponent<Battle>().StartTrainerBattle();
     }
 
