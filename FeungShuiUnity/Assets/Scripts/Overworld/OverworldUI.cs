@@ -99,6 +99,7 @@ public class OverworldUI : Menu {
 
     #region Menu interactions
     public override void Pause() {
+        base.Pause();
         Player.GetComponent<Walk>().canWalk = false;
         disableInteract();
         Time.timeScale = 0;
@@ -106,11 +107,19 @@ public class OverworldUI : Menu {
     }
 
     public override void Resume() {
-        Player.GetComponent<Walk>().canWalk = true;
-        scheduleReenable();
+        base.Resume();
         Time.timeScale = 1;
-        paused = false;
-        gameObject.SetActive(true);
+        if(activeNode == null) {
+            Player.GetComponent<Walk>().canWalk = true;
+            scheduleReenable();
+        }
+    }
+
+    public void FinishBattle(bool result, GameObject context) {
+        Resume();
+        //Continue the interaction
+        //There should never be a situation where this is not a valid cast
+        ((BattleNode)activeNode).Finish(result, context);
     }
     #endregion
 }

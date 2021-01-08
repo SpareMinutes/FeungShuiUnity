@@ -8,7 +8,7 @@ public class OverworldMenu : Menu {
 
     private GameObject Selected;
 
-    GameObject menu;
+    public GameObject menu;
 
     public void Start() {
         //disableInteract();
@@ -41,8 +41,13 @@ public class OverworldMenu : Menu {
 
     #region Menu interactions
     public override void Pause() {
+        base.Pause();
         menu.SetActive(false);
-        paused = true;
+    }
+
+    public override void Resume() {
+        base.Resume();
+        menu.SetActive(true);
     }
     #endregion
 

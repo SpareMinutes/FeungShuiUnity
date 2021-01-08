@@ -30,6 +30,7 @@ public abstract class Menu : MonoBehaviour {
 
     public virtual void Pause() {
         paused = true;
+        gameObject.SetActive(false);
     }
 
     public virtual void Resume() {

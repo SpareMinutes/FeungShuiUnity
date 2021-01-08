@@ -82,6 +82,18 @@ public class BattleMenu : Menu{
         gameObject.SetActive(true);
         canvas.enabled = true;
     }
+
+    public override void Close() {
+        base.Close();
+        SceneManager.sceneUnloaded += EndBattle;
+    }
+
+    public void EndBattle(Scene scene) {
+        //Continue the interaction
+        //There should never be a situation where this is not a valid cast
+        ((OverworldUI)LastMenu).FinishBattle(playerWon, interaction.gameObject);
+        SceneManager.sceneUnloaded -= EndBattle;
+    }
     #endregion
 
     #region Cycle controls
@@ -119,11 +131,11 @@ public class BattleMenu : Menu{
         if (ES.GetComponent<TurnManager>().whoWins().Equals("Player")){
             Debug.Log("Player Wins");
             playerWon = true;
-            EndBattle();
+            Close();
         } else if (ES.GetComponent<TurnManager>().whoWins().Equals("Computer")){
             Debug.Log("Player Looses");
             playerWon = false;
-            EndBattle();
+            Close();
         } else if (ES.GetComponent<TurnManager>().whoWins().Equals("No-one")){
             Attacker = ES.GetComponent<TurnManager>().getNextSpirit();
             Attacker.setDefending(false); //get rid of the defense move on their next turn 
@@ -348,7 +360,7 @@ public class BattleMenu : Menu{
     public void Run(){
         //TODO: Add code to decide whether running is possible
         playerWon = false;
-        EndBattle();
+            Close();
     }
 
     #endregion
@@ -567,22 +579,6 @@ public class BattleMenu : Menu{
         } else if (todo == 3){
             messageBoxActions.Enqueue(() => ShowMessage("" + Attacker.GetCreature().name + " switched (WIP)"));
             messageBoxActions.Enqueue(() => EndTurn());
-        }
-    }
-
-    private void EndBattle(){
-        ReturnToLast();
-        //Continue interaction, if any (there probably is one though).
-        if (interaction != null){
-            interaction.GetComponent<Battle>().defeated = playerWon;    //Update the status of the battle
-            //Find the first active battle node to signal the result of the battle. Assumes only one battle will be active at once.
-            foreach (InteractionNode node in interaction.graph.activeNodes){
-                if (typeof(BattleNode).IsInstanceOfType(node)){
-                    ((BattleNode)node).Finish(playerWon, interaction.gameObject);
-                    break;
-                }
-            }
-            interaction = null;     //There is no longer an interaction in control of the BattleMenu
         }
     }
 
