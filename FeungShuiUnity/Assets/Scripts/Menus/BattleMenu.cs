@@ -346,11 +346,12 @@ public class BattleMenu : Menu{
         messageBoxActions.Enqueue(() => EndTurn());
     }
 
-    public void SelectItem(){
+    public void SelectItem() {
+        GameObject.Find("EventSystem").GetComponent<BattleMenu>().OpenNewMenu("BagScreen");
         //Show a message that this is not implemented yet
-        messageBoxActions.Enqueue(() => ShowMessage(Attacker.GetCreature().name + " used an [ITEM] (WIP)"));
+        //messageBoxActions.Enqueue(() => ShowMessage(Attacker.GetCreature().name + " used an [ITEM] (WIP)"));
         //Progress the turn cycle
-        messageBoxActions.Enqueue(() => EndTurn());
+        //messageBoxActions.Enqueue(() => EndTurn());
     }
     
     public void SelectSpirits(){

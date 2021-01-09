@@ -1,7 +1,6 @@
 ﻿using System;
 using UnityEngine;
-using UnityEngine.EventSystems;
-using UnityEngine.SceneManagement;  
+using UnityEngine.EventSystems; 
 using UnityEngine.UI;
 
 public class PartyMenu : Menu{
@@ -12,18 +11,17 @@ public class PartyMenu : Menu{
     private int selectedIndex;
 
     #region General
-    // Start is called before the first frame update
     void Start(){
         ES = gameObject.GetComponent<EventSystem>();
         Selected = ES.firstSelectedGameObject;
-        GameObject Canvas = GameObject.Find("PartyCanvas");
+        GameObject canvas = GameObject.Find("PartyCanvas");
 
         selectedIndex = -1;
 
         GameObject Player = GameObject.Find("WalkableCharacter");
         //Show the party's data
         for (int i = 0; i < 6; i++) {
-            GameObject memberObject = Canvas.transform.GetChild(i + 1).gameObject;
+            GameObject memberObject = canvas.transform.GetChild(i + 1).gameObject;
             try {
                 Creature memberData = Player.GetComponent<Battle>().Party[i];
                 memberObject.transform.GetChild(1).GetComponent<Text>().text = memberData.name;

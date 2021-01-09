@@ -20,7 +20,7 @@ public class Battle : MonoBehaviour{
     public void StartBattle() {
         PlayerParty = GameObject.Find("WalkableCharacter").GetComponent<Battle>().Party.ToArray();
         //load the battle scene
-        GameObject.Find("EventSystem").GetComponent<OverworldUI>().OpenNewMenu("Battle_GUI");
+        GameObject.Find("EventSystem").GetComponent<OverworldUI>().OpenNewMenu("BattleScreen");
         challenged = true;
     }
 

@@ -18,7 +18,7 @@ EditorBuildSettings:
     path: Assets/Scenes/old maps/map G6 riverside town.unity
     guid: 8a8b7b798d553034cba8fb50a618d654
   - enabled: 1
-    path: Assets/Scenes/Menus/Battle_GUI.unity
+    path: Assets/Scenes/Menus/BattleScreen.unity
     guid: cac38fa964892164db8d804fe9278c69
   - enabled: 1
     path: Assets/Scenes/old maps/map E6 lakeside town.unity
@@ -71,4 +71,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Menus/OverworldMenu.unity
     guid: f8ee0b725db28994a883a8b56a6a7678
+  - enabled: 1
+    path: Assets/Scenes/Menus/BagScreen.unity
+    guid: eebeadcdfd316db49b08db98f3944e15
   m_configObjects: {}

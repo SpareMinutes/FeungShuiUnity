@@ -15,24 +15,6 @@ public class OverworldUI : Menu {
     public void Update() {
         //No need to update a paused scene
         if (paused) return;
-        ////Ensures clicking doesn't deselect buttons
-        //GameObject selected = ES.currentSelectedGameObject;
-
-        //if (selected == null) {
-        //    if (isMenuOpen) {
-        //        //menu is open 
-        //        ES.SetSelectedGameObject(SelectedMenu);
-        //    } else if (AnswerBox.activeSelf) {
-        //        //Do nothing, but exit the if/else anyway to avoid the next option
-        //    } else if (Message.activeSelf) {
-        //        //message is open
-        //        ES.SetSelectedGameObject(SelectedMessage);
-        //    } else if (Bag.activeSelf) {
-        //        //the bag is open
-        //        ES.SetSelectedGameObject(SelectedBag);
-        //    }
-        //    //else nothing is open
-        //}
 
         if (Input.GetButtonDown("Cancel")) {
             OpenNewMenu("OverworldMenu");
