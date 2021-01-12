@@ -95,8 +95,7 @@ MonoBehaviour:
   - {fileID: 8545193071194597488}
   - {fileID: -5437527316934966831}
   Start: {fileID: -1965353686934560531}
-  activeNodes:
-  - {fileID: 0}
+  activeNodes: []
 --- !u!114 &8545193071194597488
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -1,7 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using XNode;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 
 [CreateNodeMenu("Interactions/Open Shop")]
@@ -10,8 +7,11 @@ public class OpenShopNode : InteractionNode {
     [Output] public bool next; 
 
     private Inventory npcInv;
+    private GameObject context;
 
-    public override void Execute(GameObject context) {
+    public override void Execute(GameObject contextIn) {
+        context = contextIn;
+
         //get the relevant inventories
         npcInv = context.GetComponent<Inventory>();
 
@@ -29,4 +29,7 @@ public class OpenShopNode : InteractionNode {
         SceneManager.sceneLoaded -= loadInventories;
     }
 
+    public void Finish() {
+        ExecuteNext(GetOutputPort("next"), context);
+    }
 }

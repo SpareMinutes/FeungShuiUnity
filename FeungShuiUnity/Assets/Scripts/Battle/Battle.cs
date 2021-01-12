@@ -36,7 +36,6 @@ public class Battle : MonoBehaviour{
         GameObject.Find("Spirit3Status").GetComponent<CreatureBattleStatusController>().Target = Party[1];
         GameObject.Find("Spirit2Status").GetComponent<CreatureBattleStatusController>().Target = PlayerParty[0];
         GameObject.Find("Spirit1Status").GetComponent<CreatureBattleStatusController>().Target = PlayerParty[1];
-        GameObject.Find("EventSystem").GetComponent<BattleMenu>().interaction = GetComponentInParent<Interaction>();
         SceneManager.sceneLoaded -= LoadParties;
     }
 }

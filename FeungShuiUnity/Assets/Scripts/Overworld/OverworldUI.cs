@@ -97,11 +97,18 @@ public class OverworldUI : Menu {
         }
     }
 
-    public void FinishBattle(bool result, GameObject context) {
+    public void FinishBattle(bool result) {
         Resume();
         //Continue the interaction
         //There should never be a situation where this is not a valid cast
-        ((BattleNode)activeNode).Finish(result, context);
+        ((BattleNode)activeNode).Finish(result);
+    }
+
+    public void CloseShop() {
+        Resume();
+        //Continue the interaction
+        //There should never be a situation where this is not a valid cast
+        ((OpenShopNode)activeNode).Finish();
     }
     #endregion
 }

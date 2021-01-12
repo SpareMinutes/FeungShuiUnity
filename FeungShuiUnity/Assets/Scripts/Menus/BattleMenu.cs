@@ -17,7 +17,6 @@ public class BattleMenu : Menu{
     private List<CreatureBattleStatusController> toExculdeFromSelection;
     public GameObject[] spiritStatuses, actionButtons, attackButtons, toggles;
     public GameObject ProgressButton;
-    public Interaction interaction;
     private bool playerWon;
     public Queue<Action> messageBoxActions;
     public Canvas canvas;
@@ -91,7 +90,7 @@ public class BattleMenu : Menu{
     public void EndBattle(Scene scene) {
         //Continue the interaction
         //There should never be a situation where this is not a valid cast
-        ((OverworldUI)LastMenu).FinishBattle(playerWon, interaction.gameObject);
+        ((OverworldUI)LastMenu).FinishBattle(playerWon);
         SceneManager.sceneUnloaded -= EndBattle;
     }
     #endregion

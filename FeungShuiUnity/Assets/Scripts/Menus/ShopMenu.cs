@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 
 public class ShopMenu : ItemMenu {
-    public GameObject AmountSelection, SellText, BuyText;
+    public GameObject AmountSelection, SellButton, BuyButton, ItemButton, Merchant;
     public int menuType;
     [HideInInspector]
     public Inventory npcInv, playerInv;
@@ -29,11 +30,9 @@ public class ShopMenu : ItemMenu {
 
     // Update is called once per frame
     void Update() {
+        int lastType = menuType;
         if (Input.GetButtonDown("Cancel")) {
-            if (itemScrolling) {
-                //exit out of the shop altogether
-                ReturnToLast();
-            } else {
+            if (!itemScrolling) {
                 //exit back to buy/sell menus
                 AmountSelection.SetActive(false);
                 Button button = ItemList.GetComponentInChildren<Button>();
@@ -41,66 +40,31 @@ public class ShopMenu : ItemMenu {
                 ES.SetSelectedGameObject(button.gameObject);
                 selectedItem = null;
                 itemScrolling = true;
-            }
-        }
-        
-        int lastType = menuType;
-        if (Input.GetButtonDown("Horizontal")) {
-            if (itemScrolling) {
-                //just so that you can change between buy/sell once an item has been selected
-                if (Input.GetAxisRaw("Horizontal") > 0)//right
-                    menuType = Mathf.Min(1, menuType + 1);
-                else//left
-                    menuType = Mathf.Max(-1, menuType - 1);
-            }
-
-            if (lastType != menuType) {
-                switch (menuType) {
+            } else if (menuType != 0) {
+                menuType = 0;
+                ItemButton.GetComponent<Button>().interactable = false;
+                switch (lastType) {
                     case -1:
-                        //sell
-                        menu.transform.localPosition = new Vector3(-180, 0, 0);
-                        AmountSelection.transform.localPosition = new Vector3(95, -55, 0);
-                        BuyText.SetActive(false);
-
-                        itemList = new List<Item>(playerInv.itemDict.Keys);
-                        currInv = playerInv;
-                        otherInv = npcInv;
-                        UpdateItemList(itemList, currInv, 0);
-
-                        StartCoroutine("MoveRight");
-                        break;
-                    case 1:
-                        //buy
-                        menu.transform.localPosition = new Vector3(180, 0, 0);
-                        AmountSelection.transform.localPosition = new Vector3(-95, -55, 0);
-                        SellText.SetActive(false);
-
-                        itemList = new List<Item>(npcInv.itemDict.Keys);
-                        currInv = npcInv;
-                        otherInv = playerInv;
-                        UpdateItemList(itemList, currInv, 0);
-
+                        BuyButton.SetActive(true);
+                        SellButton.GetComponent<Button>().enabled = true;
+                        ES.SetSelectedGameObject(SellButton);
                         StartCoroutine("MoveLeft");
                         break;
-                    case 0:
-                        //choose
-                        BuyText.SetActive(true);
-                        SellText.SetActive(true);
-                        switch (lastType) {
-                            case -1:
-                                StartCoroutine("MoveLeft");
-                                break;
-                            case 1:
-                                StartCoroutine("MoveRight");
-                                break;
-                        }
+                    case 1:
+                        SellButton.SetActive(true);
+                        BuyButton.GetComponent<Button>().enabled = true;
+                        ES.SetSelectedGameObject(BuyButton);
+                        StartCoroutine("MoveRight");
                         break;
                 }
+            } else {
+                //exit out of the shop altogether
+                ReturnToLast();
             }
         }
 
         if (Input.GetButtonDown("Vertical")) {
-            if (itemScrolling) {
+            if (menuType != 0 && itemScrolling) {
                 if (Input.GetAxisRaw("Vertical") > 0) {
                     //scroll items up
                     itemIndex --;
@@ -108,6 +72,7 @@ public class ShopMenu : ItemMenu {
                     //scroll items down
                     itemIndex ++;
                 }
+                //loop around
                 itemIndex += itemList.Count;
                 itemIndex %= itemList.Count;
                 UpdateItemList(itemList, currInv, itemIndex);
@@ -121,13 +86,47 @@ public class ShopMenu : ItemMenu {
                     changeItemAmount(-1);
                 }
             }
-            
         }
+    }
+
+    public void OpenSell() {
+        menuType = -1;
+        menu.transform.localPosition = new Vector3(-180, 0, 0);
+        AmountSelection.transform.localPosition = new Vector3(95, -55, 0);
+        BuyButton.SetActive(false);
+        SellButton.GetComponent<Button>().enabled = false;
+        ItemButton.GetComponent<Button>().interactable = true;
+        ES.SetSelectedGameObject(ItemButton);
+
+        itemList = new List<Item>(playerInv.itemDict.Keys);
+        currInv = playerInv;
+        otherInv = npcInv;
+        UpdateItemList(itemList, currInv, 0);
+
+        StartCoroutine("MoveRight");
+    }
+
+    public void OpenBuy() {
+        menuType = 1;
+        menu.transform.localPosition = new Vector3(180, 0, 0);
+        AmountSelection.transform.localPosition = new Vector3(-95, -55, 0);
+        SellButton.SetActive(false);
+        BuyButton.GetComponent<Button>().enabled = false;
+        ItemButton.GetComponent<Button>().interactable = true;
+        ES.SetSelectedGameObject(ItemButton);
+
+        itemList = new List<Item>(npcInv.itemDict.Keys);
+        currInv = npcInv;
+        otherInv = playerInv;
+        UpdateItemList(itemList, currInv, 0);
+
+        StartCoroutine("MoveLeft");
     }
 
     IEnumerator MoveLeft() {
         for(int i=0; i<60; i++) {
             menu.transform.localPosition = new Vector3(menu.transform.localPosition.x - 2, 0, 0);
+            Merchant.transform.localPosition = new Vector3(Merchant.transform.localPosition.x - 1, 0, 0);
             yield return null; // new WaitForSecondsRealtime(0.001f);
         }
     }
@@ -135,6 +134,7 @@ public class ShopMenu : ItemMenu {
     IEnumerator MoveRight() {
         for (int i = 0; i < 60; i++) {
             menu.transform.localPosition = new Vector3(menu.transform.localPosition.x + 2, 0, 0);
+            Merchant.transform.localPosition = new Vector3(Merchant.transform.localPosition.x + 1, 0, 0);
             yield return null; //new WaitForSecondsRealtime(0.001f);
         }
     }
@@ -193,5 +193,15 @@ public class ShopMenu : ItemMenu {
         itemScrolling = true;
     }
 
+    public void CloseShop(Scene scene) {
+        //Continue the interaction
+        //There should never be a situation where this is not a valid cast
+        ((OverworldUI)LastMenu).CloseShop();
+        SceneManager.sceneUnloaded -= CloseShop;
+    }
 
+    public override void Close() {
+        base.Close();
+        SceneManager.sceneUnloaded += CloseShop;
+    }
 }
