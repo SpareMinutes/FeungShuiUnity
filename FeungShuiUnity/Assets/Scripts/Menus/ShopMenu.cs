@@ -25,7 +25,7 @@ public class ShopMenu : ItemMenu {
         itemIndex = 0;
         itemScrolling = true;
         ES = GameObject.Find("EventSystem").GetComponent<EventSystem>();
-        ES.SetSelectedGameObject(ItemList.GetComponentInChildren<Button>().gameObject);
+        //ES.SetSelectedGameObject(ItemList.GetComponentInChildren<Button>().gameObject);
     }
 
     // Update is called once per frame
@@ -64,7 +64,7 @@ public class ShopMenu : ItemMenu {
         }
 
         if (Input.GetButtonDown("Vertical")) {
-            if (menuType != 0 && itemScrolling) {
+            if (menuType != 0 && itemScrolling && itemList.Count != 0) {
                 if (Input.GetAxisRaw("Vertical") > 0) {
                     //scroll items up
                     itemIndex --;
@@ -76,7 +76,7 @@ public class ShopMenu : ItemMenu {
                 itemIndex += itemList.Count;
                 itemIndex %= itemList.Count;
                 UpdateItemList(itemList, currInv, itemIndex);
-            } else { 
+            } else if (menuType != 0 && !itemScrolling) {
                 //amount select
                 if (Input.GetAxisRaw("Vertical") > 0) {
                     //increase amount
@@ -102,6 +102,10 @@ public class ShopMenu : ItemMenu {
         currInv = playerInv;
         otherInv = npcInv;
         UpdateItemList(itemList, currInv, 0);
+        if (itemList.Count == 0) {
+            //the button throws exceptions when there are no items selected, this prevents that
+            ItemButton.GetComponent<Button>().interactable = false;
+        }
 
         StartCoroutine("MoveRight");
     }
@@ -119,6 +123,10 @@ public class ShopMenu : ItemMenu {
         currInv = npcInv;
         otherInv = playerInv;
         UpdateItemList(itemList, currInv, 0);
+        if (itemList.Count == 0) {
+            //the button throws exceptions when there are no items selected, this prevents that
+            ItemButton.GetComponent<Button>().interactable = false;
+        }
 
         StartCoroutine("MoveLeft");
     }
@@ -163,6 +171,9 @@ public class ShopMenu : ItemMenu {
         if (amount + num > maxAmount) {
             //cant buy more than the money or stock will allow
             amount = 1;
+            if (maxAmount == 0) {
+                amount = 0;
+            }
         } else if (amount + num <= 0) {
             //cant buy a negative amount
             amount = maxAmount;
@@ -176,21 +187,52 @@ public class ShopMenu : ItemMenu {
 
     public void TransferItems () {
         Debug.Log("went through");
-        //money transfer
-        currInv.money += amount * selectedItem.cost;
-        otherInv.money -= amount * selectedItem.cost;
+        if (amount != 0) {
+            //money transfer
+            currInv.money += amount * selectedItem.cost;
+            otherInv.money -= amount * selectedItem.cost;
 
-        //item transfer
-        currInv.RemoveItems(selectedItem, amount); //should never return false
-        otherInv.AddItems(selectedItem, amount);
+            //item transfer
+            currInv.RemoveItems(selectedItem, amount); //should never return false
+            otherInv.AddItems(selectedItem, amount);
+
+            //update item lists
+            itemList = new List<Item>(currInv.itemDict.Keys);
+            itemIndex = 0;
+            UpdateItemList(itemList, currInv, itemIndex);
+        }
 
         //exit back to item scrolling
+        if (itemList.Count == 0) {
+            //inventory has no more items to display
+            Debug.Log("No more items to buy/sell");
+
+            int lastType = menuType;
+            menuType = 0;
+            ItemButton.GetComponent<Button>().interactable = false;
+            switch (lastType) {
+                case -1:
+                    BuyButton.SetActive(true);
+                    SellButton.GetComponent<Button>().enabled = true;
+                    ES.SetSelectedGameObject(SellButton);
+                    StartCoroutine("MoveLeft");
+                    break;
+                case 1:
+                    SellButton.SetActive(true);
+                    BuyButton.GetComponent<Button>().enabled = true;
+                    ES.SetSelectedGameObject(BuyButton);
+                    StartCoroutine("MoveRight");
+                    break;
+            }
+        } else {
+            Button button = ItemList.GetComponentInChildren<Button>();
+            button.interactable = true;
+            ES.SetSelectedGameObject(button.gameObject);
+            itemScrolling = true;
+        }
+
         AmountSelection.SetActive(false);
-        Button button = ItemList.GetComponentInChildren<Button>();
-        button.interactable = true;
-        ES.SetSelectedGameObject(button.gameObject);
         selectedItem = null;
-        itemScrolling = true;
     }
 
     public void CloseShop(Scene scene) {
