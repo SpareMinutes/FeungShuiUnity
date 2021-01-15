@@ -9,6 +9,9 @@ public class PartyMenu : Menu{
     public OptionBox Actions;
     private bool inBattle;
     private int selectedIndex;
+    private Creature selectedCreature;
+
+    private bool toUse;
 
     #region General
     void Start(){
@@ -56,18 +59,80 @@ public class PartyMenu : Menu{
 
     public void Select(int id) {
         selectedIndex = id;
-        if(LastCanvas == null) {
-            string[] labels = { "Details" };
-            Action[] actionsIn = { () => ShowDetails() };
+        selectedCreature = GameObject.Find("WalkableCharacter").GetComponent<Battle>().Party[id];
+
+        if (LastMenu is BattleMenu) {
+            string[] labels = {"Details", "Send Out"};
+            Action[] actionsIn = {() => ShowDetails(), () => SwitchOut()};
             Actions.Populate(labels, actionsIn);
+        } else if (LastMenu is BagMenu) {
+            string[] labels = {"Confirm"};
+            Action[] actionsIn = {() => NotifySelection(selectedCreature)};
+            Actions.Populate(labels, actionsIn);
+        } else {
+            //Todo: implement Creature.HasItem()
+            //if(selectedCreature.HasItem()){
+            //string[] labels = {"Details", "Switch", "Use Item", "Take Item"};
+            //Action[] actionsIn = {() => ShowDetails(), () => SwitchOrder(), () => SelectItem(true), () => TakeItem()};
+            //Actions.Populate(labels, actionsIn);
+            //}else{
+            string[] labels = {"Details", "Switch", "Use Item", "Give Item"};
+            Action[] actionsIn = {() => ShowDetails(), () => SwitchOrder(), () => SelectItem(true), () => SelectItem(false)};
+            Actions.Populate(labels, actionsIn);
+            //}
         }
     }
 
+    #region Using/giving items
+    //TODO: Decide if we really want another copy of this stuff here
+    public void UseItem(Item item, Creature creature) {
+        //TODO: Implement this
+    }
+
+    public void GiveItem(Item item, Creature creature) {
+        //TODO: Implement this
+    }
+
+    public void TakeItem(Creature creature) {
+        //TODO: Implement this
+    }
+    #endregion
+
+    #region Menu functions
     public void ShowDetails() {
 
+    }
+    
+    //Bool: are you going to use the item? If not, you're going to give it.
+    public void SelectItem(bool toUseIn) {
+        OpenNewMenu("BagScreen");
     }
 
     public void SwitchOut() {
 
     }
+
+    public void SwitchOrder() {
+
+    }
+    #endregion
+
+    #region Menu interactions
+    //Used to signal to the BagMenu that opened this menu which creature was selected
+    public void NotifySelection(Creature result) {
+        ((BagMenu)LastMenu).ReceiveNotify(result);
+    }
+
+    //Used to receive signal from the BagMenu which item was selected
+    public void ReceiveNotify(Item result) {
+        switch (toUse) {
+            case true:
+                //TODO: Code for what param to enter here instead of null
+                UseItem(result, null);      break;
+            case false:
+                //TODO: Code for what param to enter here instead of null
+                GiveItem(result, null);     break;
+        }
+    }
+    #endregion
 }
