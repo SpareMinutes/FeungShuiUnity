@@ -7,21 +7,18 @@ public class Battle : MonoBehaviour{
     private Creature[] PlayerParty, OpposingParty;
     public bool defeated = false, challenged = false;
 
-    // Start is called before the first frame update
-    void Start(){
-        
-    }
-
-    // Update is called once per frame
-    void Update(){
-        
-    }
-
     public void StartBattle() {
         PlayerParty = GameObject.Find("WalkableCharacter").GetComponent<Battle>().Party.ToArray();
         //load the battle scene
         GameObject.Find("EventSystem").GetComponent<OverworldUI>().OpenNewMenu("BattleScreen");
         challenged = true;
+    }
+
+    public void StartWildBattle(Creature[] opposition) {
+        PlayerParty = Party.ToArray();
+        OpposingParty = opposition;
+        StartBattle();
+        SceneManager.sceneLoaded += LoadParties;
     }
 
     public void StartTrainerBattle() {

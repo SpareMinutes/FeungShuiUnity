@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.Tilemaps;
 
 
@@ -11,9 +9,6 @@ public class EncounterWild : MonoBehaviour{
     [SerializeField]
     private Battle Player;
 
-    public string[] TileNames;
-    public int[] AltRates;
-
     public void Start(){
         Counter = 0;
     }
@@ -23,15 +18,16 @@ public class EncounterWild : MonoBehaviour{
             Counter += Time.fixedDeltaTime;
         if (Counter >= 1){
             string type = Background.GetTile(new Vector3Int((int)(transform.position.x / 16), (int)(transform.position.y / 16), 0)).name;
-            float rate = 0.0f;
-            if (type.Equals("Grass"))
-                rate = 0.2f;
-            if (type.Equals("Path"))
-                rate = 0.1f;
-            float roll = Random.Range(0f, 1f);
+            
+            foreach (Collider2D contacts in Physics2D.OverlapPointAll(transform.position)) {
+                EncounterZone zone = contacts.GetComponent<EncounterZone>();
+                if (zone != null) {
+                    Creature[] opposition = zone.RollEncounter(type);
+                    GetComponent<Battle>().StartWildBattle(opposition);
+                    break;
+                }
+            }
             Debug.Log("Rolled for encounter on " + type);
-            if (roll < rate)
-                Player.StartBattle();
             Counter -= 1;
         }
     }

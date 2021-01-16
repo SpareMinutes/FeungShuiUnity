@@ -1,7 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using XNode;
+﻿using UnityEngine;
 
 [CreateNodeMenu("Interactions/Give Spirit")]
 public class GiveSpiritNode : InteractionNode {
@@ -13,7 +10,7 @@ public class GiveSpiritNode : InteractionNode {
     public override void Execute(GameObject context) {
         Battle player = GameObject.Find("WalkableCharacter").GetComponent<Battle>();
         if (player.Party.Count < 6) {
-            player.Party.Add(species.Spawn(level));
+            player.Party.Add(new Creature(species, level));
             ExecuteNext(GetOutputPort("success"), context);
         } else {
             ExecuteNext(GetOutputPort("noRoom"), context);

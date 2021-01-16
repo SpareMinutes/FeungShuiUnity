@@ -16,21 +16,9 @@ public class Species:ScriptableObject{
     public Sprite battleSprite;
 
     public Species(Type typePIn, Type typeSIn, int[] baseStatsIn) {
-        this.typeP = typePIn;
-        this.typeS = typeSIn;
-        this.baseStats = baseStatsIn;
-    }
-
-    public Creature Spawn(int startLevel){
-        Dictionary<string, float> scaleFactors = new Dictionary<string, float>();
-        Nature nature = SelectNature();
-        //TODO: Generate final scale factors
-        return new Creature(this, nature, baseStats, startLevel);
-    }
-
-    protected Nature SelectNature(){
-        //TODO
-        return null;
+        typeP = typePIn;
+        typeS = typeSIn;
+        baseStats = baseStatsIn;
     }
 
     public int[] getStats() {

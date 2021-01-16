@@ -10915,7 +10915,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   height: 2
-  player: {fileID: 0}
+  player: {fileID: 210855304}
 --- !u!61 &1145373068
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -15989,7 +15989,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   height: 0
-  player: {fileID: 0}
+  player: {fileID: 210855304}
 --- !u!61 &1552878967
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -16680,7 +16680,7 @@ PrefabInstance:
     - target: {fileID: 7714926596179382551, guid: 60a912dff5e9e784aa77429c0e38e37f,
         type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8863851292449889813, guid: 60a912dff5e9e784aa77429c0e38e37f,
         type: 3}

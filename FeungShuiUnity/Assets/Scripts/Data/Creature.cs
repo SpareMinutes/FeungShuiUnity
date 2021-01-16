@@ -29,19 +29,24 @@ public class Creature {
     private static Dictionary<Creature, float> friendshipDict = new Dictionary<Creature, float>();
     private float trainerFriendship; // because the player isnt of type Creature
     #endregion
-
-    public Creature(Species spIn, Nature natIn, int[] factorsIn, int startLevelIn) {
+    
+    //Create a new creature from code
+    public Creature(Species spIn, int startLevelIn) {
         species = spIn;
-        nature = natIn;
         startLevel = startLevelIn;
-        scaleFactors = factorsIn;
         init();
     }
 
+    //Create a new creature from editor
     public void init() {
         //If the guid is all 0 then we know this Creature has never been initialized.
         if (uid.ToString().Equals("00000000-0000-0000-0000-000000000000")) {
+            //Generate permanent details
             uid = System.Guid.NewGuid();
+            nature = null; //Todo
+            scaleFactors = null; //Todo
+
+            //Initialize stats
             totalExp = (int)((species.getStats()[7] / 100f) * Mathf.Pow(startLevel, 3));
             currentCriticalHealth = getMaxCriticalHealth();
             currentActiveHealth = getMaxActiveHealth();
