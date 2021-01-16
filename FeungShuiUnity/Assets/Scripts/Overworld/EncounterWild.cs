@@ -11,6 +11,9 @@ public class EncounterWild : MonoBehaviour{
     [SerializeField]
     private Battle Player;
 
+    public string[] TileNames;
+    public int[] AltRates;
+
     public void Start(){
         Counter = 0;
     }
@@ -31,5 +34,5 @@ public class EncounterWild : MonoBehaviour{
                 Player.StartBattle();
             Counter -= 1;
         }
-    }   
+    }
 }
