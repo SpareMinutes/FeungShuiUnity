@@ -19,7 +19,7 @@ public class CreatureBattleStatusController : MonoBehaviour {
     private float statChangeAmount;
 
     void Start() {
-        Name.GetComponent<Text>().text = Target.name;
+        Name.GetComponent<Text>().text = Target.GetName();
         sprite.GetComponent<Image>().sprite = Target.species.battleSprite;
         Target.init();
         if (!Target.playerOwned) {

@@ -7,7 +7,8 @@ public class Creature {
     #region Info and trait variables
     System.Guid uid;
     public bool playerOwned;
-    public string name;
+    [SerializeField]
+    private string name;
     public Species species;
     Nature nature;
     //The amount this spicific creature differs from others of its level and species (todo: unused)
@@ -17,7 +18,7 @@ public class Creature {
     int totalExp = -1;
     //Used for editor
     public int startLevel;
-    //
+    public Dictionary<int, Move> LevelupMoves;
     #endregion
 
     #region Stat variables
@@ -35,6 +36,13 @@ public class Creature {
         species = spIn;
         startLevel = startLevelIn;
         init();
+        int testLevel = getLevel();
+        while(Moves.Count < 4 && testLevel > 0) {
+            Move result = species.GetLevelupMove(testLevel);
+            if (result != null)
+                Moves.Add(result);
+            testLevel--;
+        }
     }
 
     //Create a new creature from editor
@@ -52,6 +60,10 @@ public class Creature {
             currentActiveHealth = getMaxActiveHealth();
             currentMana = getMaxMana();
         }
+    }
+
+    public string GetName() {
+        return (name== null || name.Equals("")) ? species.name : name;
     }
 
     //Do something similar to this for stats?

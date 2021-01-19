@@ -138,7 +138,7 @@ public class BattleMenu : Menu{
         } else if (ES.GetComponent<TurnManager>().whoWins().Equals("No-one")){
             Attacker = ES.GetComponent<TurnManager>().getNextSpirit();
             Attacker.setDefending(false); //get rid of the defense move on their next turn 
-            Debug.Log(Attacker.Target.name + "'s turn beginning.");
+            Debug.Log(Attacker.Target.GetName() + "'s turn beginning.");
             //Status effects that take place at the START of the turn go here
             float randNum = UnityEngine.Random.Range(0.0f, 1.0f);
             float FrostBiteChance = 0.5f;
@@ -151,7 +151,7 @@ public class BattleMenu : Menu{
                     if (randNum <= FrostBiteChance){
                         //then no action occurs
                         StatusHappened = true;
-                        messageBoxActions.Enqueue(() => ShowMessage(Attacker.Target.name + " did not take an action due to Frost Bite."));
+                        messageBoxActions.Enqueue(() => ShowMessage(Attacker.Target.GetName() + " did not take an action due to Frost Bite."));
                     }
                     break;
                 case StatusEffect.Paralysis:
@@ -159,7 +159,7 @@ public class BattleMenu : Menu{
                     if (randNum <= ParalysisChance){
                         //then no action occurs
                         StatusHappened = true;
-                        messageBoxActions.Enqueue(() => ShowMessage(Attacker.Target.name + " did not take an action due to Paralysis."));
+                        messageBoxActions.Enqueue(() => ShowMessage(Attacker.Target.GetName() + " did not take an action due to Paralysis."));
                         messageBoxActions.Enqueue(() => EndTurn());
                     }
                     break;
@@ -185,7 +185,7 @@ public class BattleMenu : Menu{
         //End last action
         finishAction();
         if (Attacker.GetCreature().playerOwned){
-            ShowMessage("What will " + Attacker.GetCreature().name + " do?");
+            ShowMessage("What will " + Attacker.GetCreature().GetName() + " do?");
             //Enable action type buttons
             for (int i = 0; i < 5; i++) actionButtons[i].GetComponent<Button>().interactable = true;
             ProgressButton.GetComponent<Button>().interactable = false;
@@ -261,7 +261,7 @@ public class BattleMenu : Menu{
             //hurt itself
             float damageToTake = (1 / 16) * Attacker.Target.getMaxActiveHealth();
             Attacker.ApplyDamage(damageToTake, Attacker);
-            ShowMessage(Attacker.Target.name + " hurt itself in its rage.");
+            ShowMessage(Attacker.Target.GetName() + " hurt itself in its rage.");
             EndTurn();
         }
     }
@@ -340,7 +340,7 @@ public class BattleMenu : Menu{
         //Notify controller that it is defending
         Attacker.setDefending(true);
         //Show a message that the spririt defended
-        messageBoxActions.Enqueue(() => ShowMessage(Attacker.GetCreature().name + " defended!"));
+        messageBoxActions.Enqueue(() => ShowMessage(Attacker.GetCreature().GetName() + " defended!"));
         //Progress the turn cycle
         messageBoxActions.Enqueue(() => EndTurn());
     }
@@ -360,7 +360,7 @@ public class BattleMenu : Menu{
     public void Run(){
         //TODO: Add code to decide whether running is possible
         playerWon = false;
-            Close();
+        Close();
     }
 
     #endregion
@@ -412,10 +412,10 @@ public class BattleMenu : Menu{
             string message;
             if (SelectedMove.execute(Attacker, Defender)){
                 //attack hit
-                message = Attacker.GetCreature().name + " used " + SelectedMove.name + " on " + Defender.GetCreature().name + ".";
+                message = Attacker.GetCreature().GetName() + " used " + SelectedMove.name + " on " + Defender.GetCreature().GetName() + ".";
             } else {
                 //attack missed
-                message = SelectedMove.name + " missed" + Defender.GetCreature().name + ".";
+                message = SelectedMove.name + " missed" + Defender.GetCreature().GetName() + ".";
             }
             messageBoxActions.Enqueue(() => ShowMessage(message));
         }
@@ -571,13 +571,13 @@ public class BattleMenu : Menu{
                     break;
             }
         } else if (todo == 1){
-            messageBoxActions.Enqueue(() => ShowMessage(Attacker.GetCreature().name + " defended!"));
+            messageBoxActions.Enqueue(() => ShowMessage(Attacker.GetCreature().GetName() + " defended!"));
             messageBoxActions.Enqueue(() => EndTurn());
         } else if (todo == 2){
-            messageBoxActions.Enqueue(() => ShowMessage("" + Attacker.GetCreature().name + " used an [ITEM] (WIP)"));
+            messageBoxActions.Enqueue(() => ShowMessage("" + Attacker.GetCreature().GetName() + " used an [ITEM] (WIP)"));
             messageBoxActions.Enqueue(() => EndTurn());
         } else if (todo == 3){
-            messageBoxActions.Enqueue(() => ShowMessage("" + Attacker.GetCreature().name + " switched (WIP)"));
+            messageBoxActions.Enqueue(() => ShowMessage("" + Attacker.GetCreature().GetName() + " switched (WIP)"));
             messageBoxActions.Enqueue(() => EndTurn());
         }
     }
@@ -586,14 +586,14 @@ public class BattleMenu : Menu{
         //a helper method for the status effects
         float reducingFactor = 1 / 16; // 1/16 is what pokemon uses for burn/poison
         Attacker.ApplyDamage(reducingFactor * Attacker.Target.getMaxActiveHealth(), Attacker);
-        ShowMessage("drained hp from " + Attacker.Target.name + ".");
+        ShowMessage("drained hp from " + Attacker.Target.GetName() + ".");
     }
 
     private void ManaDrain(){
         //helper for the status effects
         float reducingFactor = 1 / 16;
         Attacker.Target.currentMana = Mathf.Max(0, Attacker.Target.currentMana - reducingFactor * Attacker.Target.getMaxMana());
-        ShowMessage("drained mana from " + Attacker.Target.name + ".");
+        ShowMessage("drained mana from " + Attacker.Target.GetName() + ".");
     }
 
     private void checkWearOff(){

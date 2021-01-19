@@ -23,11 +23,14 @@ public class EncounterWild : MonoBehaviour{
                 EncounterZone zone = contacts.GetComponent<EncounterZone>();
                 if (zone != null) {
                     Creature[] opposition = zone.RollEncounter(type);
-                    GetComponent<Battle>().StartWildBattle(opposition);
+                    Debug.Log("Rolled for encounter on " + type);
+                    if (opposition!= null)
+                        GetComponent<Battle>().StartWildBattle(opposition);
+                    else
+                        Debug.Log("There was none");
                     break;
                 }
             }
-            Debug.Log("Rolled for encounter on " + type);
             Counter -= 1;
         }
     }

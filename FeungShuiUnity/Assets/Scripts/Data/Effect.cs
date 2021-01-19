@@ -74,9 +74,9 @@ public class Effect {
     }
 
     public void Buff(CreatureBattleStatusController creatureToBuff) {
-        Debug.Log(creatureToBuff.Target.name + " used Buff (WIP)");
+        Debug.Log(creatureToBuff.Target.GetName() + " used Buff (WIP)");
         GameObject ES = GameObject.Find("BattleEventSystem");
-        ES.GetComponent<BattleMenu>().messageBoxActions.Enqueue(() => ES.GetComponent<BattleMenu>().ShowMessage(creatureToBuff.Target.name + " used Buff (WIP)"));
+        ES.GetComponent<BattleMenu>().messageBoxActions.Enqueue(() => ES.GetComponent<BattleMenu>().ShowMessage(creatureToBuff.Target.GetName() + " used Buff (WIP)"));
         //usage:
         //power: how much the stat is changed by (%)
         //chance: the chance of the stat change happening

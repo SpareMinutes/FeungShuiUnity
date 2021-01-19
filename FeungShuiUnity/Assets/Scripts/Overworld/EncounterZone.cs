@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -36,21 +37,25 @@ public class EncounterZone : MonoBehaviour{
             rate = DefaultRate;
             type += "(default)";
         }
-        float roll = Random.Range(0f, 1f);
+        float roll = UnityEngine.Random.Range(0f, 1f);
 
         if (roll < rate) {
-            roll = Random.Range(0f, 1f);
             Creature[] opposition = new Creature[2];
-            for(int i=0; i<2; i++)
+            for (int i = 0; i < 2; i++) {
+                roll = UnityEngine.Random.Range(0f, 1f);
                 for (int j = cumulativeProbs.Length - 1; j >= 0; j--)
-                    if (cumulativeProbs[j] <= roll)
+                    if (cumulativeProbs[j] <= roll) {
                         opposition[i] = PossibleEncounters[j].Generate();
+                        break;
+                    }
+            }
             return opposition;
         }
 
         return null;
     }
 
+    [Serializable]
     public class Encounter {
         public Species species;
         public int MeanLevel, LevelRange;
@@ -58,8 +63,9 @@ public class EncounterZone : MonoBehaviour{
         public Creature Generate() {
             float level = 0;
             for (int i = 0; i < 3; i++)
-                level += Random.Range(0, LevelRange / 3f);
+                level += UnityEngine.Random.Range(0, LevelRange / 3f);
             level += MeanLevel - (LevelRange / 2);
+            Debug.Log(species.name + " level " + level);
             return new Creature(species, (int)level);
         }
     }

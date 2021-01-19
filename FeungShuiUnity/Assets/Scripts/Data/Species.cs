@@ -11,9 +11,9 @@ public class Species:ScriptableObject{
     //0-health, 1-mana, 2-attack, 3-defense, 4-intelligence, 5-resistance, 6-speed, 7-exp
     [SerializeField]
     private int[] baseStats;
-    [SerializeField]
-    private LearnedMove[] learnset;
     public Sprite battleSprite;
+    [SerializeField]
+    private Learnset LearnedMoves;
 
     public Species(Type typePIn, Type typeSIn, int[] baseStatsIn) {
         typeP = typePIn;
@@ -33,10 +33,13 @@ public class Species:ScriptableObject{
         return typeS;
     }
 
+    public Move GetLevelupMove(int level) {
+        return null;
+    }
+
     [Serializable]
-    //TODO: code how to serialize this
-    struct LearnedMove {
-        int level;
-        Move move;
+    public class Learnset {
+        [SerializeField]
+        private Move[] LevelupMoves = new Move[100];
     }
 }

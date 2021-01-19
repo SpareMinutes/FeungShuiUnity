@@ -56,7 +56,7 @@ public class TurnManager : MonoBehaviour{
             }
         }
         for(int i=0; i<5; i++) {
-            TurnLabels[i].text = Upcoming.ElementAt<CreatureBattleStatusController>(i).Target.name;
+            TurnLabels[i].text = Upcoming.ElementAt<CreatureBattleStatusController>(i).Target.GetName();
         }
     }
 
@@ -100,6 +100,7 @@ public class TurnManager : MonoBehaviour{
             //CPU wins
             return "Computer";
         } else if(getActiveEnemies().Count == 0) {
+            Debug.Log(getActiveEnemies().Count);
             // player wins
             return "Player";
         }  else {
