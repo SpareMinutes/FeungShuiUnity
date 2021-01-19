@@ -14,7 +14,7 @@ public class Creature {
     //The amount this spicific creature differs from others of its level and species (todo: unused)
     //0-health, 1-mana, 2-attack, 3-defense, 4-intelligence, 5-resistance, 6-speed, 7-exp
     int[] scaleFactors;
-    public List<Move> Moves;
+    public List<Move> Moves = new List<Move>();
     int totalExp = -1;
     //Used for editor
     public int startLevel;

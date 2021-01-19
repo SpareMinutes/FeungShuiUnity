@@ -101,7 +101,8 @@ public class OverworldUI : Menu {
         Resume();
         //Continue the interaction
         //There should never be a situation where this is not a valid cast
-        ((BattleNode)activeNode).Finish(result);
+        if (activeNode != null)
+            ((BattleNode)activeNode).Finish(result);
     }
 
     public void CloseShop() {

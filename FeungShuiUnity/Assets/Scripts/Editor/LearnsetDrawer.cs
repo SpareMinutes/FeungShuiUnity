@@ -1,4 +1,4 @@
-﻿using UnityEditor;
+﻿/* using UnityEditor;
 using UnityEngine;
 
 [CustomPropertyDrawer(typeof(Species.Learnset))]
@@ -38,4 +38,4 @@ public class LearnsetDrawer : PropertyDrawer {
     //public override float GetPropertyHeight(SerializedProperty property, GUIContent label) {
     //    return base.GetPropertyHeight(property, label) * 2;
     //}
-}
+} */

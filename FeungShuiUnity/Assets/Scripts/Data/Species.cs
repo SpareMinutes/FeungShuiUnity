@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 [CreateAssetMenu]
-public class Species:ScriptableObject{
+public class Species : ScriptableObject{
     [SerializeField]
     private Type typeP, typeS;
     //0-health, 1-mana, 2-attack, 3-defense, 4-intelligence, 5-resistance, 6-speed, 7-exp
@@ -14,11 +14,20 @@ public class Species:ScriptableObject{
     public Sprite battleSprite;
     [SerializeField]
     private Learnset LearnedMoves;
+    public Dictionary<int,Move> moveSet = new Dictionary<int, Move>();
 
     public Species(Type typePIn, Type typeSIn, int[] baseStatsIn) {
         typeP = typePIn;
         typeS = typeSIn;
         baseStats = baseStatsIn;
+    }
+
+    public void OnEnable () {
+        //init the learnset dict
+        moveSet = new Dictionary<int, Move>();
+        for (int i = 0; i < LearnedMoves.Levels.Count; i++) {
+            moveSet.Add(LearnedMoves.Levels[i], LearnedMoves.Moves[i]);
+        }
     }
 
     public int[] getStats() {
@@ -39,7 +48,10 @@ public class Species:ScriptableObject{
 
     [Serializable]
     public class Learnset {
-        [SerializeField]
-        private Move[] LevelupMoves = new Move[100];
+        /* [SerializeField]
+        private Move[] LevelupMoves = new Move[100]; */
+
+        public List<int> Levels = new List<int>();
+        public List<Move> Moves = new List<Move>();
     }
 }

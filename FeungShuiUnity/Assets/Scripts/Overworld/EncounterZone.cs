@@ -65,8 +65,33 @@ public class EncounterZone : MonoBehaviour{
             for (int i = 0; i < 3; i++)
                 level += UnityEngine.Random.Range(0, LevelRange / 3f);
             level += MeanLevel - (LevelRange / 2);
+
+            List<Move> moves = GenerateMoves((int)level);
+
             Debug.Log(species.name + " level " + level);
-            return new Creature(species, (int)level);
+            Creature creature = new Creature(species, (int)level);
+            creature.Moves = moves; 
+            return creature;
+        }
+
+        private List<Move> GenerateMoves (int level) {
+            //get a list of possible moves that the creature can know at its current level
+            List<Move> returnMoves = new List<Move>();
+            List<Move> possibleMoves = new List<Move>();
+            foreach (int i in species.moveSet.Keys)  {
+                if (i <= level) {
+                    //then the creature could have learnt the move
+                    possibleMoves.Add(species.moveSet[i]);
+                }
+            }
+
+            //choose 4 moves at random and return them
+            for (int i = 0; i < 4; i++) {
+                Move selectedMove = possibleMoves[UnityEngine.Random.Range(0, possibleMoves.Count - 1)];
+                returnMoves.Add(selectedMove);
+                possibleMoves.Remove(selectedMove);
+            }
+            return returnMoves;
         }
     }
 }
