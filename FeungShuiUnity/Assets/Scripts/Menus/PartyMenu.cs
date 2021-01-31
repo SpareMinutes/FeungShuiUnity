@@ -1,6 +1,7 @@
 ﻿using System;
 using UnityEngine;
-using UnityEngine.EventSystems; 
+using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class PartyMenu : Menu{
@@ -8,7 +9,6 @@ public class PartyMenu : Menu{
     private GameObject Selected, LastCanvas;
     public OptionBox Actions;
     private bool inBattle;
-    private int selectedIndex;
     private Creature selectedCreature;
 
     private bool toUse;
@@ -19,7 +19,7 @@ public class PartyMenu : Menu{
         Selected = ES.firstSelectedGameObject;
         GameObject canvas = GameObject.Find("PartyCanvas");
 
-        selectedIndex = -1;
+        selectedCreature = null;
 
         GameObject Player = GameObject.Find("WalkableCharacter");
         //Show the party's data
@@ -47,18 +47,22 @@ public class PartyMenu : Menu{
                 Selected = ES.currentSelectedGameObject;
         }
         if (Input.GetButtonDown("Cancel")) {
-            if (selectedIndex>=0) {
-                Actions.gameObject.SetActive(false);
-                selectedIndex = -1;
+            if (selectedCreature != null) {
+                CloseActions();
             } else {
                 ReturnToLast();
             }
         }
     }
+
+    //Convenience method used in a few places
+    private void CloseActions() {
+        Actions.gameObject.SetActive(false);
+        selectedCreature = null;
+    }
     #endregion
 
     public void Select(int id) {
-        selectedIndex = id;
         selectedCreature = GameObject.Find("WalkableCharacter").GetComponent<Battle>().Party[id];
 
         if (LastMenu is BattleMenu) {
@@ -109,11 +113,24 @@ public class PartyMenu : Menu{
     }
 
     public void SwitchOut() {
+        //Todo: make the debugs appear in-game
+        if (selectedCreature.currentActiveHealth <= 0) {
+            Debug.Log("No health");
+            CloseActions();
+        } else if (GameObject.Find("PlayerStatus").GetComponent<PartyBattleStatusController>().IsCreatureActive(selectedCreature)) {
+            Debug.Log("Already active");
+            CloseActions();
+        } else {
+            ReturnToLast();
+            ((BattleMenu)LastMenu).GetAttacker().SetTarget(selectedCreature);
+            ((BattleMenu)LastMenu).messageBoxActions.Enqueue(() => ((BattleMenu)LastMenu).EndTurn());
+        }
+    }
 
+    public void PerformSwitch(Scene scene) {
     }
 
     public void SwitchOrder() {
-
     }
     #endregion
 

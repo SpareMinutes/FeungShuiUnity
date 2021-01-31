@@ -10,7 +10,9 @@ public class GiveSpiritNode : InteractionNode {
     public override void Execute(GameObject context) {
         Battle player = GameObject.Find("WalkableCharacter").GetComponent<Battle>();
         if (player.Party.Count < 6) {
-            player.Party.Add(new Creature(species, level));
+            Creature spawnedCreature = new Creature(species, level);
+            spawnedCreature.playerOwned = true;
+            player.Party.Add(spawnedCreature);
             ExecuteNext(GetOutputPort("success"), context);
         } else {
             ExecuteNext(GetOutputPort("noRoom"), context);

@@ -93,6 +93,10 @@ public class BattleMenu : Menu{
         ((OverworldUI)LastMenu).FinishBattle(playerWon);
         SceneManager.sceneUnloaded -= EndBattle;
     }
+
+    public CreatureBattleStatusController GetAttacker() {
+        return Attacker;
+    }
     #endregion
 
     #region Cycle controls
@@ -267,7 +271,7 @@ public class BattleMenu : Menu{
     }
 
     //Processing performed after a turn
-    private void EndTurn(){
+    public void EndTurn(){
         //END of turn status effects go here, start of turn status effects go in AskForAction
         switch (Attacker.statusEffect){
             case StatusEffect.Burn:
@@ -413,8 +417,9 @@ public class BattleMenu : Menu{
             if (SelectedMove.execute(Attacker, Defender)){
                 //attack hit
                 message = Attacker.GetCreature().GetName() + " used " + SelectedMove.name + " on " + Defender.GetCreature().GetName() + ".";
+                messageBoxActions.Enqueue(() => ShowMessage(message));
                 //faint?
-                if(Defender.GetCreature().currentActiveHealth <= 0) {
+                if (Defender.GetCreature().currentActiveHealth <= 0) {
                     if (Defender.GetCreature().currentCriticalHealth <= 0) {
                         messageBoxActions.Enqueue(() => ShowMessage(Defender.GetCreature().GetName() + " died!"));
                         messageBoxActions.Enqueue(() => Defender.Die());
@@ -426,8 +431,8 @@ public class BattleMenu : Menu{
             } else {
                 //attack missed
                 message = SelectedMove.name + " missed" + Defender.GetCreature().GetName() + ".";
+                messageBoxActions.Enqueue(() => ShowMessage(message));
             }
-            messageBoxActions.Enqueue(() => ShowMessage(message));
         }
         resetSelection();
 

@@ -445,7 +445,6 @@ MonoBehaviour:
   - {fileID: 785058654}
   - {fileID: 785058653}
   ProgressButton: {fileID: 1481494417}
-  interaction: {fileID: 0}
   canvas: {fileID: 1552161348}
 --- !u!114 &86151460
 MonoBehaviour:
@@ -2483,6 +2482,11 @@ PrefabInstance:
       propertyPath: m_LocalScale.x
       value: -0.2
       objectReference: {fileID: 0}
+    - target: {fileID: 2296433803121419806, guid: 34b4b6045b46818458011bdcd1cd685a,
+        type: 3}
+      propertyPath: IsPlayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3209972065489686998, guid: 34b4b6045b46818458011bdcd1cd685a,
         type: 3}
       propertyPath: m_Name
@@ -2613,6 +2617,11 @@ PrefabInstance:
       propertyPath: sprite
       value: 
       objectReference: {fileID: 67951009}
+    - target: {fileID: 6735881300671704945, guid: 34b4b6045b46818458011bdcd1cd685a,
+        type: 3}
+      propertyPath: ES
+      value: 
+      objectReference: {fileID: 86151457}
     - target: {fileID: 7368861132129759472, guid: 34b4b6045b46818458011bdcd1cd685a,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -2733,6 +2742,11 @@ PrefabInstance:
       propertyPath: sprite
       value: 
       objectReference: {fileID: 302500751}
+    - target: {fileID: 8018237581673557947, guid: 34b4b6045b46818458011bdcd1cd685a,
+        type: 3}
+      propertyPath: ES
+      value: 
+      objectReference: {fileID: 86151457}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 34b4b6045b46818458011bdcd1cd685a, type: 3}
 --- !u!224 &1205052470 stripped

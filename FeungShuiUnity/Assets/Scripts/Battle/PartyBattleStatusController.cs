@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -43,7 +44,7 @@ public class PartyBattleStatusController : MonoBehaviour{
 
     public void ChooseNew(CreatureBattleStatusController CreatureStatus) {
         if (IsPlayer) {
-
+            GameObject.Find("EventSystem").GetComponent<BattleMenu>().SelectSpirits();
         } else {
             //Todo: make this be based on AI
             for(int i=0; i< Party.Count; i++) {
@@ -69,5 +70,9 @@ public class PartyBattleStatusController : MonoBehaviour{
         if (CreatureStatus1.Target != null) Active.Add(CreatureStatus1);
         if (CreatureStatus2.Target != null) Active.Add(CreatureStatus2);
         return Active;
+    }
+
+    public bool IsCreatureActive(Creature targetCreature) {
+        return CreatureStatus1.Target.Equals(targetCreature) || CreatureStatus2.Target.Equals(targetCreature);
     }
 }
