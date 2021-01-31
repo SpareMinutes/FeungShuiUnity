@@ -4,11 +4,16 @@ using UnityEngine.EventSystems;
 
 //Encapsulates Creature for use in battle
 public class CreatureBattleStatusController : MonoBehaviour {
-    public Creature Target;
-    public GameObject Name, Critical, Stamina, Mana;
+    //Info about parent controller   
+    public PartyBattleStatusController Parent;
+    public int index;
+    //Other objects
     public EventSystem ES;
+    public GameObject Name, Critical, Stamina, Mana;
     public Image sprite;
-    
+    //Status
+    public Creature Target;
+
     [HideInInspector]
     public bool isDefending = false;
     public StatusEffect statusEffect;
@@ -18,7 +23,16 @@ public class CreatureBattleStatusController : MonoBehaviour {
     private Stat statChangedFromStatus;
     private float statChangeAmount;
 
-    void Start() {
+    public void SetTarget(Creature TargetIn) {
+        Target = TargetIn;
+        if(Target == null) {
+            gameObject.SetActive(false);
+            sprite.enabled = false;
+            return;
+        } else {
+            gameObject.SetActive(true);
+            sprite.enabled = true;
+        }
         Name.GetComponent<Text>().text = Target.GetName();
         sprite.GetComponent<Image>().sprite = Target.species.battleSprite;
         Target.init();
@@ -36,25 +50,13 @@ public class CreatureBattleStatusController : MonoBehaviour {
         //Update critical health bar
         width = Target.currentCriticalHealth > 0 ? Mathf.Max(0.25f, 3f * (Target.currentCriticalHealth / Target.getMaxCriticalHealth())) : 0;
         Critical.transform.localScale = new Vector3(width, 1, 0);
-
-        //Faint
-        if (Target.currentActiveHealth <= 0) {
-            //remove Target from the Turn manager list
-            ES.GetComponent<TurnManager>().removeFromPlay(this);
-            gameObject.SetActive(false);
-
-            //To do: ask for replacement
-            //would just reassign the Target
-            //ask player to choose from their party 
-            //enemy AI would just choose a random non fainted spirit from their party
-            //selecton would happen at the end of combat in the menu (todo)
-        }
     }
 
     public Creature GetCreature() {
         return Target;
     }
 
+    #region Getting stats
     public float getAttack(bool Physical) {
         return Physical ? Target.getStat(2)*statChanges[2] : Target.getStat(4) * statChanges[4];
     }
@@ -68,7 +70,9 @@ public class CreatureBattleStatusController : MonoBehaviour {
     public float getSpeed() {
         return Target.getStat(6) * statChanges[6];
     }
+    #endregion
 
+    #region Damage
     public void ApplyDamage (float damageToTake, CreatureBattleStatusController damageTarget) {
         if (damageTarget.GetCreature().currentActiveHealth > damageToTake) {//No damage to crit health, just reduce active health
             damageTarget.GetCreature().currentActiveHealth -= damageToTake;
@@ -79,6 +83,23 @@ public class CreatureBattleStatusController : MonoBehaviour {
         }
         damageTarget.GetCreature().currentActiveHealth = Mathf.Min(damageTarget.GetCreature().currentActiveHealth, damageTarget.GetCreature().getMaxActiveHealth());
     }
+
+    public void Faint() {
+        //remove Target from the Turn manager list
+        ES.GetComponent<TurnManager>().removeFromPlay(this);
+
+        SetTarget(null);
+        Parent.ChooseNew(this);
+    }
+
+    public void Die() {
+        //remove Target from the Turn manager list
+        ES.GetComponent<TurnManager>().removeFromPlay(this);
+
+        SetTarget(null);
+        Parent.Remove(this);
+    }
+    #endregion
 
     #region Stat changes
     public void setDefending(bool defending) {

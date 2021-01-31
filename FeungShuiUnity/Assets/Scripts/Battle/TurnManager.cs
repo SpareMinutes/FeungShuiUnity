@@ -60,24 +60,12 @@ public class TurnManager : MonoBehaviour{
         }
     }
 
-    public List<CreatureBattleStatusController> getActivePlayerControlled () {
-        List<CreatureBattleStatusController> dummyList = new List<CreatureBattleStatusController>();
-        foreach (CreatureBattleStatusController creature in takeTurns) {
-            if (creature.GetCreature().playerOwned) {
-                dummyList.Add(creature);
-            }
-        }
-        return dummyList;
+    public List<CreatureBattleStatusController> getActivePlayerControlled() {
+        return GameObject.Find("PlayerStatus").GetComponent<PartyBattleStatusController>().GetActive();
     }
 
     public List<CreatureBattleStatusController> getActiveEnemies () {
-        List<CreatureBattleStatusController> dummyList = new List<CreatureBattleStatusController>();
-        foreach (CreatureBattleStatusController creature in takeTurns) {
-            if (!creature.GetCreature().playerOwned) {
-                dummyList.Add(creature);
-            }
-        }
-        return dummyList;
+        return GameObject.Find("EnemyStatus").GetComponent<PartyBattleStatusController>().GetActive();
     }
 
     public List<CreatureBattleStatusController> getAllActive () {

@@ -413,6 +413,16 @@ public class BattleMenu : Menu{
             if (SelectedMove.execute(Attacker, Defender)){
                 //attack hit
                 message = Attacker.GetCreature().GetName() + " used " + SelectedMove.name + " on " + Defender.GetCreature().GetName() + ".";
+                //faint?
+                if(Defender.GetCreature().currentActiveHealth <= 0) {
+                    if (Defender.GetCreature().currentCriticalHealth <= 0) {
+                        messageBoxActions.Enqueue(() => ShowMessage(Defender.GetCreature().GetName() + " died!"));
+                        messageBoxActions.Enqueue(() => Defender.Die());
+                    } else {
+                        messageBoxActions.Enqueue(() => ShowMessage(Defender.GetCreature().GetName() + " fainted!"));
+                        messageBoxActions.Enqueue(() => Defender.Faint());
+                    }
+                }
             } else {
                 //attack missed
                 message = SelectedMove.name + " missed" + Defender.GetCreature().GetName() + ".";
