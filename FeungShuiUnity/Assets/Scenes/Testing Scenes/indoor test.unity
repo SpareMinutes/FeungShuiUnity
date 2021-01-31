@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -1246,7 +1246,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &348534240
 MonoBehaviour:
@@ -1260,7 +1260,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13fa029c6bb4f284d9443991771b9c7c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 864255991}
+  target: {fileID: 0}
   bounds:
     serializedVersion: 2
     x: -1476.8
@@ -1487,6 +1487,7 @@ MonoBehaviour:
       ints: 
       type: 0
       Obj: {fileID: 0}
+  graph: {fileID: 0}
 --- !u!4 &483683642
 Transform:
   m_ObjectHideFlags: 0
@@ -2101,6 +2102,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5961909820879152650, guid: 60a912dff5e9e784aa77429c0e38e37f,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -38.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5961909820879152650, guid: 60a912dff5e9e784aa77429c0e38e37f,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -36.4
+      objectReference: {fileID: 0}
     - target: {fileID: 7041208782141400035, guid: 60a912dff5e9e784aa77429c0e38e37f,
         type: 3}
       propertyPath: m_Name
@@ -2173,12 +2184,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 60a912dff5e9e784aa77429c0e38e37f, type: 3}
---- !u!1 &864255991 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7041208782141400035, guid: 60a912dff5e9e784aa77429c0e38e37f,
-    type: 3}
-  m_PrefabInstance: {fileID: 864255990}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1053218560
 GameObject:
   m_ObjectHideFlags: 0
@@ -3160,7 +3165,7 @@ PrefabInstance:
         type: 3}
       propertyPath: Player
       value: 
-      objectReference: {fileID: 864255991}
+      objectReference: {fileID: 0}
     - target: {fileID: 7689022480591237869, guid: 737839d04245d774e9c247effc421d20,
         type: 3}
       propertyPath: m_LocalPosition.x
