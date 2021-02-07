@@ -82,6 +82,7 @@ public class OverworldUI : Menu {
     #region Menu interactions
     public override void Pause() {
         base.Pause();
+        Message.SetActive(false);
         Player.GetComponent<Walk>().canWalk = false;
         disableInteract();
         Time.timeScale = 0;
