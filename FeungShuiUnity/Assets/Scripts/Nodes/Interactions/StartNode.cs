@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-[CreateNodeMenu("Interactions/Start"), NodeTint(100, 200, 100)]
+[CreateNodeMenu("Interactions/Flow Control/Start"), NodeTint(100, 200, 100)]
 public class StartNode : InteractionNode {
     [Output] public bool next;
     public bool PauseMovement = true;

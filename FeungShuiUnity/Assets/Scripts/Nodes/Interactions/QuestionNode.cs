@@ -3,7 +3,7 @@ using System.Text.RegularExpressions;
 using UnityEngine;
 using XNode;
 
-[CreateNodeMenu("Interactions/Question")]
+[CreateNodeMenu("Interactions/Display/Question")]
 public class QuestionNode : InteractionNode {
     [TextArea(1, 2)]
     public string message;

@@ -4,7 +4,7 @@ using System.Text.RegularExpressions;
 using UnityEngine;
 using XNode;
 
-[CreateNodeMenu("Interactions/Text")]
+[CreateNodeMenu("Interactions/Display/Text")]
 public class TextNode : InteractionNode {
     [TextArea(1, 2)]
     public string message;

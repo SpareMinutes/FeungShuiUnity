@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-[CreateNodeMenu("Interactions/Set Start")]
+[CreateNodeMenu("Interactions/Flow Control/Set Start")]
 public class SetStartNode : InteractionNode {
     [Input(backingValue = ShowBackingValue.Never)] public bool previous;
     [Output] public bool next;

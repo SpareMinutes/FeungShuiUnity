@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using XNode;
 
-[CreateNodeMenu("Interactions/Take Money")]
+[CreateNodeMenu("Interactions/Actions/Take Money")]
 public class TakeMoneyNode : InteractionNode {
     [Input(backingValue = ShowBackingValue.Never)] public bool previous;
     [Output] public bool success, failure;

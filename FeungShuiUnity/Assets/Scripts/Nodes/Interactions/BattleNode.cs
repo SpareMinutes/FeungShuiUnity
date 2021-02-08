@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-[CreateNodeMenu("Interactions/Battle")]
+[CreateNodeMenu("Interactions/Actions/Battle")]
 public class BattleNode : InteractionNode {
     [Input(backingValue = ShowBackingValue.Never)] public bool previous;
     [Output] public bool onVictory, onDefeat;

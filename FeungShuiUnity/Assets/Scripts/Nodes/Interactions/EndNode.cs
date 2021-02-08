@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-[CreateNodeMenu("Interactions/End"), NodeTint(200, 100, 100)]
+[CreateNodeMenu("Interactions/Flow Control/End"), NodeTint(200, 100, 100)]
 public class EndNode : InteractionNode {
     [Input(backingValue = ShowBackingValue.Never)] public bool previous;
 

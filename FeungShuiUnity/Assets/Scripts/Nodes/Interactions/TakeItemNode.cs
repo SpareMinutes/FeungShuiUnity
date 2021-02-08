@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using XNode;
 
-[CreateNodeMenu("Interactions/Take Items")]
+[CreateNodeMenu("Interactions/Actions/Take Items")]
 public class TakeItemNode : InteractionNode {
     [Input(backingValue = ShowBackingValue.Never)] public bool previous;
     [Output] public bool success, failure;

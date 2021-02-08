@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-[CreateNodeMenu("Interactions/Give Spirit")]
+[CreateNodeMenu("Interactions/Actions/Give Spirit")]
 public class GiveSpiritNode : InteractionNode {
     public Species species;
     public int level;

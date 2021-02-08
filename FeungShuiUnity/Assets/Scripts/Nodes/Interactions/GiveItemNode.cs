@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateNodeMenu("Interactions/Give Items")]
+[CreateNodeMenu("Interactions/Actions/Give Items")]
 public class GiveItemNode : InteractionNode {
     [Input(backingValue = ShowBackingValue.Never)] public bool previous;
     [Output] public bool next;

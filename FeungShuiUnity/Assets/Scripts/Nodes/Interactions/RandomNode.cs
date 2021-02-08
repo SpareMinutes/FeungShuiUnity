@@ -2,7 +2,7 @@
 using System.Linq;
 using UnityEngine;
 
-[CreateNodeMenu("Interactions/Random")]
+[CreateNodeMenu("Interactions/Flow Control/Random")]
 public class RandomNode : InteractionNode {
     [Input(backingValue = ShowBackingValue.Never)] public bool previous;
     [Output(dynamicPortList = true)] public List<float> outcomes;

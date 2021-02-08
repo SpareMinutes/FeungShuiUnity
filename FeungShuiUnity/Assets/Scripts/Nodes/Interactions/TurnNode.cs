@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-[CreateNodeMenu("Interactions/Turn")]
+[CreateNodeMenu("Interactions/Animation/Turn")]
 public class TurnNode : InteractionNode {
     [Input(backingValue = ShowBackingValue.Never)] public bool previous;
     [Output] public bool next;
