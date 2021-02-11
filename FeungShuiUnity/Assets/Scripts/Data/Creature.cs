@@ -100,7 +100,7 @@ public class Creature {
     }
 
     public float getMaxMana() {
-        return (int)Mathf.Floor((species.getStats()[1] * getLevel() / 50.0f) + 5);
+        return (int)Mathf.Floor((species.getStats()[1] * getLevel() / 10.0f) + 25);
     }
 
     public float getStat(int stat) {
