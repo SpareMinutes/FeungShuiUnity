@@ -374,9 +374,11 @@ public class BattleMenu : Menu{
     //Called when a move is selected
     public void LoadAttack(int index){
         SelectedMove = Attacker.Target.Moves[index];
-        Debug.Log("target" + SelectedMove.AttackTarget.ToString());
-        GetType().GetMethod("target" + SelectedMove.AttackTarget.ToString()).Invoke(this, null);
-        for (int i = 0; i < 4; i++) attackButtons[i].GetComponent<Button>().interactable = false;
+        if (Attacker.Target.currentMana >= SelectedMove.getCost()) {
+            Debug.Log("target" + SelectedMove.AttackTarget.ToString());
+            GetType().GetMethod("target" + SelectedMove.AttackTarget.ToString()).Invoke(this, null);
+            for (int i = 0; i < 4; i++) attackButtons[i].GetComponent<Button>().interactable = false;
+        }
     }
 
     //Get the index of the CreatureBattleStatusController connected to the attacker
@@ -412,6 +414,7 @@ public class BattleMenu : Menu{
 
     //Called when the oppoenent is selected
     public void DoAttack(){
+        Attacker.Target.currentMana -= SelectedMove.getCost();
         foreach (CreatureBattleStatusController Defender in Defenders){
             string message;
             if (SelectedMove.execute(Attacker, Defender)){

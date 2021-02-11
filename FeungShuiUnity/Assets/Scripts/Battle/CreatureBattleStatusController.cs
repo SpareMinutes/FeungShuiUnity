@@ -50,6 +50,9 @@ public class CreatureBattleStatusController : MonoBehaviour {
         //Update critical health bar
         width = Target.currentCriticalHealth > 0 ? Mathf.Max(0.25f, 3f * (Target.currentCriticalHealth / Target.getMaxCriticalHealth())) : 0;
         Critical.transform.localScale = new Vector3(width, 1, 0);
+        //Update mana bar
+        width = Target.currentCriticalHealth > 0 ? Mathf.Max(0.25f, 6f * (Target.currentMana / Target.getMaxMana())) : 0;
+        Mana.transform.localScale = new Vector3(width, 1, 0);
     }
 
     public Creature GetCreature() {

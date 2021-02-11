@@ -43,6 +43,10 @@ public class Move : ScriptableObject{
         
     }
 
+    public float getCost() {
+        return Cost;
+    }
+
     public float getModifier() {
         Type attackingPType = Attacker.GetCreature().getPType();
         Type attackingSType = Attacker.GetCreature().getSType();

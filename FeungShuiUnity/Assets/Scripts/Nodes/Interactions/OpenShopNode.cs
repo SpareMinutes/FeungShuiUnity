@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 
-[CreateNodeMenu("Interactions/Actions/Open Shop")]
+[CreateNodeMenu("Interactions/Display/Open Shop")]
 public class OpenShopNode : InteractionNode {
     [Input(backingValue = ShowBackingValue.Never)] public bool previous;
     [Output] public bool next; 

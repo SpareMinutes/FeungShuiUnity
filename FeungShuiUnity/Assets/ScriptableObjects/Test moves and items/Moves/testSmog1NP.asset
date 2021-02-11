@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AttackTarget: 2
   Accuracy: 100
-  Cost: 0
+  Cost: 5
   Type: 10
   CritChance: 0
   MakesContact: 0
