@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f75fe4b51718e3445b91bd7841052537, type: 3}
+  m_Name: Froagon
+  m_EditorClassIdentifier: 
+  typeP: 4
+  typeS: 5
+  baseStats: 4600000046000000460000004600000046000000460000004600000064000000
+  battleSprite: {fileID: 21300000, guid: 8d73589d4e1aadd48a695723d4dc1aa9, type: 3}
+  LearnedMoves:
+    Levels: 01000000020000000300000004000000
+    Moves:
+    - {fileID: 11400000, guid: 4d42eadc15583c948b264a7a4caaef84, type: 2}
+    - {fileID: 11400000, guid: 92cd34cc3a17ac84aafd999fc68b0330, type: 2}
+    - {fileID: 11400000, guid: 92cd34cc3a17ac84aafd999fc68b0330, type: 2}
+    - {fileID: 11400000, guid: 92cd34cc3a17ac84aafd999fc68b0330, type: 2}

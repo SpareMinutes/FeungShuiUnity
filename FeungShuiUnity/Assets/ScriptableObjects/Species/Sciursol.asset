@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f75fe4b51718e3445b91bd7841052537, type: 3}
+  m_Name: Sciursol
+  m_EditorClassIdentifier: 
+  typeP: 3
+  typeS: 14
+  baseStats: 3c0000003c0000003c0000003c0000003c0000003c0000003c00000064000000
+  battleSprite: {fileID: 21300000, guid: 5dc63b5a916647a498a70de21dfced94, type: 3}
+  LearnedMoves:
+    Levels: 0100000002000000030000000400000005000000060000000700000008000000090000000a000000
+    Moves:
+    - {fileID: 11400000, guid: af817c8ab423ce44f85b39883f244257, type: 2}
+    - {fileID: 11400000, guid: 92cd34cc3a17ac84aafd999fc68b0330, type: 2}
+    - {fileID: 11400000, guid: 472f8c238c4ac6640907aeb93dd38300, type: 2}
+    - {fileID: 11400000, guid: 4ba494eb5b67b5b43aac4fb8972081ac, type: 2}
+    - {fileID: 11400000, guid: 4ba494eb5b67b5b43aac4fb8972081ac, type: 2}
+    - {fileID: 11400000, guid: 4ba494eb5b67b5b43aac4fb8972081ac, type: 2}
+    - {fileID: 11400000, guid: 4ba494eb5b67b5b43aac4fb8972081ac, type: 2}
+    - {fileID: 11400000, guid: 4ba494eb5b67b5b43aac4fb8972081ac, type: 2}
+    - {fileID: 11400000, guid: 4ba494eb5b67b5b43aac4fb8972081ac, type: 2}
+    - {fileID: 11400000, guid: 4ba494eb5b67b5b43aac4fb8972081ac, type: 2}
