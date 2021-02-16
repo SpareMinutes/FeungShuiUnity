@@ -19,7 +19,7 @@ MonoBehaviour:
   LearnedMoves:
     Levels: 01000000020000000300000004000000
     Moves:
+    - {fileID: 11400000, guid: ba6805ce8c989a24b80d46f3bd1c5353, type: 2}
+    - {fileID: 11400000, guid: 19505c2c5709558468db68a589a7d24d, type: 2}
     - {fileID: 11400000, guid: 472f8c238c4ac6640907aeb93dd38300, type: 2}
-    - {fileID: 11400000, guid: e04c0c536d4db4b4c975d9269a85724b, type: 2}
-    - {fileID: 11400000, guid: e04c0c536d4db4b4c975d9269a85724b, type: 2}
     - {fileID: 11400000, guid: e04c0c536d4db4b4c975d9269a85724b, type: 2}

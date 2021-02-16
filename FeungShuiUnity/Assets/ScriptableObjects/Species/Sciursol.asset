@@ -17,15 +17,9 @@ MonoBehaviour:
   baseStats: 3c0000003c0000003c0000003c0000003c0000003c0000003c00000064000000
   battleSprite: {fileID: 21300000, guid: 5dc63b5a916647a498a70de21dfced94, type: 3}
   LearnedMoves:
-    Levels: 0100000002000000030000000400000005000000060000000700000008000000090000000a000000
+    Levels: 01000000020000000300000004000000
     Moves:
-    - {fileID: 11400000, guid: af817c8ab423ce44f85b39883f244257, type: 2}
+    - {fileID: 11400000, guid: abb148f2663fcd945860933d37d10448, type: 2}
     - {fileID: 11400000, guid: 92cd34cc3a17ac84aafd999fc68b0330, type: 2}
-    - {fileID: 11400000, guid: 472f8c238c4ac6640907aeb93dd38300, type: 2}
-    - {fileID: 11400000, guid: 4ba494eb5b67b5b43aac4fb8972081ac, type: 2}
-    - {fileID: 11400000, guid: 4ba494eb5b67b5b43aac4fb8972081ac, type: 2}
-    - {fileID: 11400000, guid: 4ba494eb5b67b5b43aac4fb8972081ac, type: 2}
-    - {fileID: 11400000, guid: 4ba494eb5b67b5b43aac4fb8972081ac, type: 2}
-    - {fileID: 11400000, guid: 4ba494eb5b67b5b43aac4fb8972081ac, type: 2}
-    - {fileID: 11400000, guid: 4ba494eb5b67b5b43aac4fb8972081ac, type: 2}
-    - {fileID: 11400000, guid: 4ba494eb5b67b5b43aac4fb8972081ac, type: 2}
+    - {fileID: 11400000, guid: af817c8ab423ce44f85b39883f244257, type: 2}
+    - {fileID: 11400000, guid: 0f045cd13e49a0f4c9c9045a4d1340a5, type: 2}

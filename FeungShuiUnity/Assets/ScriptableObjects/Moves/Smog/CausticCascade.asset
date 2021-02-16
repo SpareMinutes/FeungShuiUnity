@@ -1,0 +1,45 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c23e9da98fcaa93488ff0bfddb2fe502, type: 3}
+  m_Name: CausticCascade
+  m_EditorClassIdentifier: 
+  AttackTarget: 2
+  Accuracy: 0.9
+  Cost: 75
+  Type: 10
+  CritChance: 0
+  MakesContact: 0
+  Effects:
+  - effectType: 0
+    statusEffect: 0
+    stat: 0
+    power: 85
+    chance: 0
+    useCurrentHealth: 0
+  - effectType: 5
+    statusEffect: 0
+    stat: 4
+    power: -0.2
+    chance: 0.5
+    useCurrentHealth: 0
+  - effectType: 5
+    statusEffect: 0
+    stat: 6
+    power: -0.2
+    chance: 0.5
+    useCurrentHealth: 0
+  - effectType: 4
+    statusEffect: 0
+    stat: 5
+    power: -0.2
+    chance: 1
+    useCurrentHealth: 0
