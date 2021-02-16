@@ -13,6 +13,9 @@ public class TurnManager : MonoBehaviour{
     private Queue<CreatureBattleStatusController> Upcoming;
 
     public void Init(){
+        takeTurns = new List<CreatureBattleStatusController>();
+        takeTurns.AddRange(GameObject.Find("PlayerStatus").GetComponent<PartyBattleStatusController>().GetActive());
+        takeTurns.AddRange(GameObject.Find("EnemyStatus").GetComponent<PartyBattleStatusController>().GetActive());
         sortBySpeed();
         Upcoming = new Queue<CreatureBattleStatusController>();
         remove = new List<CreatureBattleStatusController>();

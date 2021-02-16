@@ -12,5 +12,6 @@ public class HealPartyNode : InteractionNode {
             spirit.currentMana = spirit.getMaxMana();
             //Todo: clear status condition
         }
+        ExecuteNext(GetOutputPort("next"), context);
     }
 }

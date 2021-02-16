@@ -16,7 +16,7 @@ public class OverworldUI : Menu {
         //No need to update a paused scene
         if (paused) return;
 
-        if (Input.GetButtonDown("Cancel")) {
+        if (Input.GetButtonDown("Cancel") && GameObject.Find("InWorldMessage")==null) {
             OpenNewMenu("OverworldMenu");
         }
     }
