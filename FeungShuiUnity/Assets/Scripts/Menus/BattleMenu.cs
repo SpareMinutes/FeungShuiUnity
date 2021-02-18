@@ -378,7 +378,7 @@ public class BattleMenu : Menu{
             Debug.Log("target" + SelectedMove.AttackTarget.ToString());
             GetType().GetMethod("target" + SelectedMove.AttackTarget.ToString()).Invoke(this, null);
             for (int i = 0; i < 4; i++) attackButtons[i].GetComponent<Button>().interactable = false;
-        }
+        } else SelectedMove = null;
     }
 
     //Get the index of the CreatureBattleStatusController connected to the attacker
