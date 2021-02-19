@@ -14,16 +14,23 @@ public class PartyBattleStatusController : MonoBehaviour{
 
     public void Begin(List<Creature> PartyIn) {
         Party = PartyIn;
+        //Init indices
         ActiveIndices = new int[2];
-        ActiveIndices[0] = 0;
-        CreatureStatus1.SetTarget(Party[0]);
-        if (Party.Count > 1) {
-            CreatureStatus2.SetTarget(Party[1]);
-            ActiveIndices[1] = 1;
-        } else {
-            CreatureStatus2.SetTarget(null);
-            ActiveIndices[1] = -1;
+        ActiveIndices[0] = -1;
+        ActiveIndices[1] = -1;
+        //Find healthy party members
+        int checkIndex = 0;
+        int successes = 0;
+        while (checkIndex < Party.Count && successes < 2) {
+            if(Party[checkIndex].currentActiveHealth > 0) {
+                ActiveIndices[successes] = checkIndex;
+                successes++;
+            }
+            checkIndex++;
         }
+        //Fill in the active party
+        CreatureStatus1.SetTarget(ActiveIndices[0] >= 0 ? Party[ActiveIndices[0]] : null);
+        CreatureStatus2.SetTarget(ActiveIndices[1] >= 0 ? Party[ActiveIndices[1]] : null);
         UpdateIndicators();
     }
 
@@ -73,6 +80,6 @@ public class PartyBattleStatusController : MonoBehaviour{
     }
 
     public bool IsCreatureActive(Creature targetCreature) {
-        return CreatureStatus1.Target.Equals(targetCreature) || CreatureStatus2.Target.Equals(targetCreature);
+        return (CreatureStatus1.Target!=null && CreatureStatus1.Target.Equals(targetCreature)) || (CreatureStatus2.Target != null && CreatureStatus2.Target.Equals(targetCreature));
     }
 }
