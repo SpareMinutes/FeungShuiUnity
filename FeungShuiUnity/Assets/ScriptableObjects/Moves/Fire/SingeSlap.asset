@@ -28,6 +28,6 @@ MonoBehaviour:
   - effectType: 3
     statusEffect: 1
     stat: 0
-    power: 0
-    chance: 1
+    power: 20
+    chance: 0.5
     useCurrentHealth: 0

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c23e9da98fcaa93488ff0bfddb2fe502, type: 3}
   m_Name: Clangcophany
   m_EditorClassIdentifier: 
-  AttackTarget: 5
+  AttackTarget: 3
   Accuracy: 1
   Cost: 60
   Type: 6

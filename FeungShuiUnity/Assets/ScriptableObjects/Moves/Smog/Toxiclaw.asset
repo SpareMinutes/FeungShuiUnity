@@ -29,5 +29,5 @@ MonoBehaviour:
     statusEffect: 4
     stat: 0
     power: 0
-    chance: 0.25
+    chance: 0.5
     useCurrentHealth: 0
