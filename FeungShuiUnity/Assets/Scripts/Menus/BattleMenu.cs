@@ -41,6 +41,9 @@ public class BattleMenu : Menu{
     }
 
     void Update(){
+        //This must always be selected if it is active.
+        if (ProgressButton.GetComponent<Button>().interactable)
+            ES.SetSelectedGameObject(ProgressButton);
         //Ensures clicking doesn't deselect buttons
         if (ES.currentSelectedGameObject != Selected){
             if (ES.currentSelectedGameObject == null)
@@ -156,6 +159,7 @@ public class BattleMenu : Menu{
                         //then no action occurs
                         StatusHappened = true;
                         messageBoxActions.Enqueue(() => ShowMessage(Attacker.Target.GetName() + " did not take an action due to Frost Bite."));
+                        messageBoxActions.Enqueue(() => EndTurn());
                     }
                     break;
                 case StatusEffect.Paralysis:
@@ -176,10 +180,10 @@ public class BattleMenu : Menu{
                     }
                     break;
                 default:
-                    if (!StatusHappened){
-                        AskForAction();
-                    }
                     break;
+            }
+            if (!StatusHappened) {
+                AskForAction();
             }
         }
     }
@@ -260,7 +264,7 @@ public class BattleMenu : Menu{
             }
         } else if (randNum == 5){
             //defend action
-            SelectDefend();
+            Defend();
         } else if (randNum == 6){
             //hurt itself
             float damageToTake = (1 / 16) * Attacker.Target.getMaxActiveHealth();
@@ -340,11 +344,14 @@ public class BattleMenu : Menu{
         for (i = 0; i < 5; i++) actionButtons[i].GetComponent<Button>().interactable = false;
     }
 
-    public void SelectDefend(){
+    public void Defend(){
+        Creature actor = Attacker.GetCreature();
         //Notify controller that it is defending
         Attacker.setDefending(true);
+        //Recover some mana
+        actor.currentMana = Mathf.Min(actor.getMaxMana(), actor.currentMana + actor.getMaxMana() * 0.125f);
         //Show a message that the spririt defended
-        messageBoxActions.Enqueue(() => ShowMessage(Attacker.GetCreature().GetName() + " defended!"));
+        messageBoxActions.Enqueue(() => ShowMessage(actor.GetName() + " defended!"));
         //Progress the turn cycle
         messageBoxActions.Enqueue(() => EndTurn());
     }
@@ -589,8 +596,7 @@ public class BattleMenu : Menu{
                     break;
             }
         } else if (todo == 1){
-            messageBoxActions.Enqueue(() => ShowMessage(Attacker.GetCreature().GetName() + " defended!"));
-            messageBoxActions.Enqueue(() => EndTurn());
+            Defend();
         } else if (todo == 2){
             messageBoxActions.Enqueue(() => ShowMessage("" + Attacker.GetCreature().GetName() + " used an [ITEM] (WIP)"));
             messageBoxActions.Enqueue(() => EndTurn());

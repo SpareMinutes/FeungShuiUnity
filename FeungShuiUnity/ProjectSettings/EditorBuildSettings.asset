@@ -6,63 +6,63 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/AlphaDemo.unity
+    guid: 5e03203cae9cc0d43a15965b845ac878
+  - enabled: 0
     path: Assets/Scenes/Overworld/temoku/temoku.unity
     guid: e3232af4af02c98499ab1014d0874231
   - enabled: 0
     path: Assets/Scenes/old maps/TestEnvironment.unity
     guid: aede70f0ae2b0b54f8f23804a350afa7
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Testing Scenes/outdoor test.unity
     guid: 51f1f960de065214d8b578429c16d053
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/old maps/map G6 riverside town.unity
     guid: 8a8b7b798d553034cba8fb50a618d654
-  - enabled: 1
-    path: Assets/Scenes/Menus/BattleScreen.unity
-    guid: cac38fa964892164db8d804fe9278c69
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/old maps/map E6 lakeside town.unity
     guid: 0eae2fcc8f08ad445bb53448fd4523dd
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/old maps/map F6.unity
     guid: 60cebeecc907a3c468b51cb4713b8716
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Testing Scenes/indoor test.unity
     guid: edf05fc5792114845a16b9e1fce53049
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Testing Scenes/cave test area.unity
     guid: b56a9ec09c1269b43acf3ef853a680fd
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Overworld/temoku/temHouse01.unity
     guid: 6c1dfa6f766f39141a0ae416a09ff210
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Overworld/temoku/temHouse02.unity
     guid: 55dd5e22fc437ef4b996dd6d39a131a4
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Overworld/lime lake.unity
     guid: 086f1c374ab0344499103b110f30fae2
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Overworld/north east swamp.unity
     guid: 8b22a6e16b9511d40bb0c04d8f848c0b
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Overworld/river east of lime lake.unity
     guid: 271737b0b20ee2d44951884ece8c6a8e
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Overworld/perdice/perdice.unity
     guid: 35a78cc252d40504584e860309b226e2
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Overworld/perdice/per house1.unity
     guid: d935266c99e945340a9502f6b838da0d
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Overworld/perdice/per house2.unity
     guid: 421e16f6b28e68c48af055b7de0f201c
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Overworld/river south of lime lake.unity
     guid: e2dd5f4d679ffcc429925d687ffff03c
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Overworld/oylispo.unity
     guid: 0327bfb7892fe2b4ab09bf638d8398df
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Overworld/mountains north of temoku.unity
     guid: ccc2799702b0d614fac9477c13aff378
   - enabled: 1
@@ -77,4 +77,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Menus/ShopMenu.unity
     guid: cb8310f540b58694b98da483cdcb7f81
+  - enabled: 1
+    path: Assets/Scenes/Menus/BattleScreen.unity
+    guid: cac38fa964892164db8d804fe9278c69
   m_configObjects: {}

@@ -82,7 +82,7 @@ public class Effect {
         //chance: the chance of the stat change happening
     }
 
-    private void Status () {
+    public void Status() {
         //will apply a status effect to the target
         //uses:
             //chance : for the chance that the move will apply the status effect to the target

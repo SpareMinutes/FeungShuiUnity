@@ -15,7 +15,7 @@ MonoBehaviour:
   AttackTarget: 2
   Accuracy: 0.9
   Cost: 40
-  Type: 10
+  Type: 9
   CritChance: 0
   MakesContact: 1
   Effects:
