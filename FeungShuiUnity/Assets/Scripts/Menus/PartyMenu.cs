@@ -27,6 +27,7 @@ public class PartyMenu : Menu{
             GameObject memberObject = canvas.transform.GetChild(i + 1).gameObject;
             try {
                 Creature memberData = Player.GetComponent<Battle>().Party[i];
+                memberData.init();
                 memberObject.transform.GetChild(1).GetComponent<Text>().text = memberData.GetName();
                 memberObject.transform.GetChild(2).GetComponent<Text>().text = "Lv" + memberData.GetLevel();
                 memberObject.transform.GetChild(3).GetComponent<Slider>().value = memberData.currentCriticalHealth / memberData.getMaxCriticalHealth();

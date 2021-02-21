@@ -18,7 +18,7 @@ public class OptionBox : MonoBehaviour{
         actions = new Action[0];
         int maxLen = 0;
         int actionsLen = Mathf.Min(labels.Length, actionsIn.Length);
-        foreach (Transform child in Answers.transform) {
+        foreach (Transform child in transform) {
             Destroy(child.gameObject);
         }
         for (int i=0; i<actionsLen; i++) {
@@ -32,28 +32,13 @@ public class OptionBox : MonoBehaviour{
                 actions[chosen]();
                 gameObject.SetActive(false);
             });
-            answer.transform.parent = Answers.transform;
-            answer.GetComponent<RectTransform>().localPosition = new Vector3(0, (actionsLen-i-1) * 10, 0);
+            answer.transform.parent = transform;
+            answer.GetComponent<RectTransform>().localPosition = new Vector3(4, 4+(actionsLen-i-1) * 10, 0);
+            answer.GetComponent<RectTransform>().localScale = new Vector3(0.2f, 0.2f, 1);
             maxLen = Mathf.Max(maxLen, labels[i].Length);
         }
-        //Set box height
-        for (int i = 6; i < 9; i++) {
-            RectTransform rt = Background.transform.GetChild(i).GetComponent<RectTransform>();
-            rt.localPosition = new Vector3(rt.localPosition.x, 10 * actions.Length - 1, 0);
-        }
-        for (int i = 3; i < 6; i++) {
-            RectTransform rt = Background.transform.GetChild(i).GetComponent<RectTransform>();
-            rt.transform.localScale = new Vector3(rt.transform.localScale.x, (float)(2.5 * actions.Length - 0.25), 1);
-        }
-        //Set box width
-        for (int i = 2; i <= 8; i += 3) {
-            RectTransform rt = Background.transform.GetChild(i).GetComponent<RectTransform>();
-            rt.localPosition = new Vector3(6 * maxLen, rt.localPosition.y, 0);
-        }
-        for (int i = 1; i <= 7; i += 3) {
-            RectTransform rt = Background.transform.GetChild(i).GetComponent<RectTransform>();
-            rt.transform.localScale = new Vector3((float)(1.5 * maxLen), rt.transform.localScale.y, 1);
-        }
+        GetComponent<RectTransform>().SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, 6 * maxLen + 8);
+        GetComponent<RectTransform>().SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, 10 * actionsLen + 8);
 
         ES = GameObject.Find("EventSystem").GetComponent<EventSystem>();
         gameObject.SetActive(true);
@@ -65,7 +50,7 @@ public class OptionBox : MonoBehaviour{
 
     private void Update() {
         if (lastSelected == null)
-            lastSelected = Answers.transform.GetChild(0).gameObject;
+            lastSelected = transform.GetChild(0).gameObject;
         if (ES.currentSelectedGameObject == null) {
             ES.SetSelectedGameObject(lastSelected);
         } else {

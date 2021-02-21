@@ -68,7 +68,7 @@ public class Creature {
 
     //Do something similar to this for stats?
     public int GetLevel() {
-        return (int)Mathf.Floor(Mathf.Pow(totalExp / (species.getStats()[7]/100), 1 / 3));
+        return (int)Mathf.Floor(Mathf.Pow(totalExp / (species.getStats()[7]/100f), 1/3f));
     }
 
     //Returns true if there was a level up

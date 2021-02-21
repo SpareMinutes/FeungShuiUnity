@@ -330,7 +330,7 @@ public class BattleMenu : Menu{
         //Goes through the list of moves of a creature and displays them in the rightmost text as selectable buttons
         int i = 0;
         while (i < Attacker.GetCreature().Moves.Count){
-            attackButtons[i].GetComponentInChildren<Text>().text = Attacker.GetCreature().Moves[i].ToString();
+            attackButtons[i].GetComponentInChildren<Text>().text = Attacker.GetCreature().Moves[i].name;
             attackButtons[i].GetComponent<Button>().interactable = true;
             i++;
         }
