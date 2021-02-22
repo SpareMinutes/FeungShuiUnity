@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -121,6 +121,12 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &50793759 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9136859073808531906, guid: cf5deda59d9199e47aebff9ff66716b0,
+    type: 3}
+  m_PrefabInstance: {fileID: 845374948}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &149029501
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -313,7 +319,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76c392e42b5098c458856cdf6ecaaaa1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_FirstSelected: {fileID: 0}
+  m_FirstSelected: {fileID: 50793759}
   m_sendNavigationEvents: 1
   m_DragThreshold: 10
 --- !u!4 &287623160
@@ -925,11 +931,6 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 287623161}
-    - target: {fileID: 9136859073808531908, guid: cf5deda59d9199e47aebff9ff66716b0,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 3
-      objectReference: {fileID: 0}
     - target: {fileID: 9136859074488447067, guid: cf5deda59d9199e47aebff9ff66716b0,
         type: 3}
       propertyPath: m_AnchorMax.x
