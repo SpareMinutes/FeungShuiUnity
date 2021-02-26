@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f75fe4b51718e3445b91bd7841052537, type: 3}
   m_Name: Shadhex
   m_EditorClassIdentifier: 
-  typeP: 10
+  typeP: 9
   typeS: 14
   baseStats: 69000000780000004b0000005000000087000000690000007300000064000000
   battleSprite: {fileID: 21300000, guid: 4086553cc8dbe8744827ac9c8081c81a, type: 3}
