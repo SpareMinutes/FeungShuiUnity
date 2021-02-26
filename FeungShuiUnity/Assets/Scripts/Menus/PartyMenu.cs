@@ -6,18 +6,20 @@ using UnityEngine.UI;
 
 public class PartyMenu : Menu{
     private EventSystem ES;
-    private GameObject Selected, LastCanvas;
+    private GameObject Selected, LastSelected, canvas, LastCanvas;
     public OptionBox Actions;
     private bool inBattle;
     private Creature selectedCreature;
 
     private bool toUse;
 
+    private CreatureBattleStatusController defeatedStatus;
+
     #region General
     void Start(){
         ES = gameObject.GetComponent<EventSystem>();
         Selected = ES.firstSelectedGameObject;
-        GameObject canvas = GameObject.Find("PartyCanvas");
+        canvas = GameObject.Find("PartyCanvas");
 
         selectedCreature = null;
 
@@ -51,7 +53,7 @@ public class PartyMenu : Menu{
         if (Input.GetButtonDown("Cancel")) {
             if (selectedCreature != null) {
                 CloseActions();
-            } else {
+            } else if (defeatedStatus == null) {
                 ReturnToLast();
             }
         }
@@ -59,13 +61,20 @@ public class PartyMenu : Menu{
 
     //Convenience method used in a few places
     private void CloseActions() {
+        for (int i = 0; i < 6; i++)
+            canvas.transform.GetChild(i + 1).gameObject.GetComponent<Button>().interactable = true;
         Actions.gameObject.SetActive(false);
+        Selected = LastSelected;
+        ES.SetSelectedGameObject(Selected);
         selectedCreature = null;
     }
     #endregion
 
     public void Select(int id) {
+        for (int i = 0; i < 6; i++)
+            canvas.transform.GetChild(i + 1).gameObject.GetComponent<Button>().interactable = false;
         selectedCreature = GameObject.Find("WalkableCharacter").GetComponent<Battle>().Party[id];
+        LastSelected = Selected;
 
         if (LastMenu is BattleMenu) {
             string[] labels = {"Details", "Send Out"};
@@ -87,6 +96,7 @@ public class PartyMenu : Menu{
             Actions.Populate(labels, actionsIn);
             //}
         }
+        Selected = Actions.transform.GetChild(0).gameObject;
     }
 
     #region Using/giving items
@@ -124,8 +134,10 @@ public class PartyMenu : Menu{
             CloseActions();
         } else {
             ReturnToLast();
-            ((BattleMenu)LastMenu).GetAttacker().SetTarget(selectedCreature);
+            CreatureBattleStatusController targetStatus = defeatedStatus == null ? ((BattleMenu)LastMenu).GetAttacker() : defeatedStatus;
+            targetStatus.SetTarget(selectedCreature);
             ((BattleMenu)LastMenu).messageBoxActions.Enqueue(() => ((BattleMenu)LastMenu).EndTurn());
+            defeatedStatus = null;
         }
     }
 
@@ -152,6 +164,10 @@ public class PartyMenu : Menu{
                 //TODO: Code for what param to enter here instead of null
                 GiveItem(result, null);     break;
         }
+    }
+
+    public void SetDefeated(CreatureBattleStatusController CreatureStatus) {
+        defeatedStatus = CreatureStatus;
     }
     #endregion
 }

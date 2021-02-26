@@ -20,6 +20,7 @@ public class BattleMenu : Menu{
     private bool playerWon;
     public Queue<Action> messageBoxActions;
     public Canvas canvas;
+    private CreatureBattleStatusController defeatedStatus;
     Action currentAction;
 
     #region General
@@ -368,6 +369,19 @@ public class BattleMenu : Menu{
         GameObject.Find("EventSystem").GetComponent<BattleMenu>().OpenNewMenu("PartyScreen");
     }
 
+    //This is called upon fainting/death. The supplied controller is what gets replaced instead of the attacker.
+    //Leaving this menu without making a selection is also disabled.
+    public void SelectSpirits(CreatureBattleStatusController CreatureStatus) {
+        GameObject.Find("EventSystem").GetComponent<BattleMenu>().OpenNewMenu("PartyScreen");
+        defeatedStatus = CreatureStatus;
+        SceneManager.sceneLoaded += SetDefeated;
+    }
+
+    private void SetDefeated(Scene scene, LoadSceneMode mode) {
+        GameObject.Find("EventSystem").GetComponent<PartyMenu>().SetDefeated(defeatedStatus);
+        SceneManager.sceneLoaded -= SetDefeated;
+    }
+
     public void Run(){
         //TODO: Add code to decide whether running is possible
         playerWon = false;
@@ -552,7 +566,7 @@ public class BattleMenu : Menu{
             - choose an attack
             - choose a target (should be the opposite target choices as the player)
         */
-        int todo = UnityEngine.Random.Range(0, 3);
+        int todo = UnityEngine.Random.Range(0, 1);
         //0=attack, 1=defend, 2=item, 3=switch(though probably onto go through with this if certain conditions are met)
 
         if (todo == 0) {

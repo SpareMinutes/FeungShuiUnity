@@ -51,7 +51,12 @@ public class PartyBattleStatusController : MonoBehaviour{
 
     public void ChooseNew(CreatureBattleStatusController CreatureStatus) {
         if (IsPlayer) {
-            GameObject.Find("EventSystem").GetComponent<BattleMenu>().SelectSpirits();
+            int healthyCount = 0;
+            foreach (Creature member in Party)
+                if (member.currentActiveHealth > 0)
+                    healthyCount++;
+            if (healthyCount > 1)
+                GameObject.Find("EventSystem").GetComponent<BattleMenu>().SelectSpirits(CreatureStatus);
         } else {
             //Todo: make this be based on AI
             for(int i=0; i< Party.Count; i++) {
