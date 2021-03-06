@@ -20,7 +20,7 @@ MonoBehaviour:
     values:
     - _fieldName: output
       _node: {fileID: -9128028650353010620}
-      _typeQualifiedName: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral,
+      _typeQualifiedName: System.String, mscorlib, Version=4.0.0.0, Culture=neutral,
         PublicKeyToken=b77a5c561934e089
       connections:
       - fieldName: variable 0
@@ -53,7 +53,7 @@ MonoBehaviour:
     values:
     - _fieldName: output
       _node: {fileID: -8791384022261885437}
-      _typeQualifiedName: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral,
+      _typeQualifiedName: System.String, mscorlib, Version=4.0.0.0, Culture=neutral,
         PublicKeyToken=b77a5c561934e089
       connections:
       - fieldName: variable 0
@@ -325,7 +325,7 @@ MonoBehaviour:
     values:
     - _fieldName: output
       _node: {fileID: -6725188729770940033}
-      _typeQualifiedName: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral,
+      _typeQualifiedName: System.String, mscorlib, Version=4.0.0.0, Culture=neutral,
         PublicKeyToken=b77a5c561934e089
       connections:
       - fieldName: variable 0
@@ -428,7 +428,7 @@ MonoBehaviour:
     values:
     - _fieldName: output
       _node: {fileID: -5897862300671449259}
-      _typeQualifiedName: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral,
+      _typeQualifiedName: System.String, mscorlib, Version=4.0.0.0, Culture=neutral,
         PublicKeyToken=b77a5c561934e089
       connections:
       - fieldName: variable 0
@@ -461,7 +461,7 @@ MonoBehaviour:
     values:
     - _fieldName: output
       _node: {fileID: -4855357912613208267}
-      _typeQualifiedName: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral,
+      _typeQualifiedName: System.String, mscorlib, Version=4.0.0.0, Culture=neutral,
         PublicKeyToken=b77a5c561934e089
       connections:
       - fieldName: variable 0
@@ -494,7 +494,7 @@ MonoBehaviour:
     values:
     - _fieldName: output
       _node: {fileID: -4315812704957707532}
-      _typeQualifiedName: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral,
+      _typeQualifiedName: System.String, mscorlib, Version=4.0.0.0, Culture=neutral,
         PublicKeyToken=b77a5c561934e089
       connections:
       - fieldName: variable 0
@@ -597,7 +597,7 @@ MonoBehaviour:
     values:
     - _fieldName: output
       _node: {fileID: -3533144000410754196}
-      _typeQualifiedName: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral,
+      _typeQualifiedName: System.String, mscorlib, Version=4.0.0.0, Culture=neutral,
         PublicKeyToken=b77a5c561934e089
       connections:
       - fieldName: variable 0
@@ -700,7 +700,7 @@ MonoBehaviour:
     values:
     - _fieldName: output
       _node: {fileID: -2860650781760747826}
-      _typeQualifiedName: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral,
+      _typeQualifiedName: System.String, mscorlib, Version=4.0.0.0, Culture=neutral,
         PublicKeyToken=b77a5c561934e089
       connections:
       - fieldName: variable 0
@@ -913,7 +913,7 @@ MonoBehaviour:
     values:
     - _fieldName: output
       _node: {fileID: -2052197971497157504}
-      _typeQualifiedName: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral,
+      _typeQualifiedName: System.String, mscorlib, Version=4.0.0.0, Culture=neutral,
         PublicKeyToken=b77a5c561934e089
       connections:
       - fieldName: variable 0
@@ -1016,7 +1016,7 @@ MonoBehaviour:
     values:
     - _fieldName: output
       _node: {fileID: -729630873247314759}
-      _typeQualifiedName: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral,
+      _typeQualifiedName: System.String, mscorlib, Version=4.0.0.0, Culture=neutral,
         PublicKeyToken=b77a5c561934e089
       connections:
       - fieldName: variable 0
@@ -1169,7 +1169,7 @@ MonoBehaviour:
     values:
     - _fieldName: output
       _node: {fileID: 911703613434418110}
-      _typeQualifiedName: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral,
+      _typeQualifiedName: System.String, mscorlib, Version=4.0.0.0, Culture=neutral,
         PublicKeyToken=b77a5c561934e089
       connections:
       - fieldName: variable 0
@@ -1272,7 +1272,7 @@ MonoBehaviour:
     values:
     - _fieldName: output
       _node: {fileID: 3025949693416704825}
-      _typeQualifiedName: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral,
+      _typeQualifiedName: System.String, mscorlib, Version=4.0.0.0, Culture=neutral,
         PublicKeyToken=b77a5c561934e089
       connections:
       - fieldName: variable 0
@@ -1408,7 +1408,7 @@ MonoBehaviour:
     values:
     - _fieldName: output
       _node: {fileID: 4128771220900609020}
-      _typeQualifiedName: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral,
+      _typeQualifiedName: System.String, mscorlib, Version=4.0.0.0, Culture=neutral,
         PublicKeyToken=b77a5c561934e089
       connections:
       - fieldName: variable 0
@@ -1441,7 +1441,7 @@ MonoBehaviour:
     values:
     - _fieldName: output
       _node: {fileID: 4518835945170740191}
-      _typeQualifiedName: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral,
+      _typeQualifiedName: System.String, mscorlib, Version=4.0.0.0, Culture=neutral,
         PublicKeyToken=b77a5c561934e089
       connections:
       - fieldName: variable 0
@@ -1614,7 +1614,7 @@ MonoBehaviour:
     values:
     - _fieldName: output
       _node: {fileID: 7273552103031710999}
-      _typeQualifiedName: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral,
+      _typeQualifiedName: System.String, mscorlib, Version=4.0.0.0, Culture=neutral,
         PublicKeyToken=b77a5c561934e089
       connections:
       - fieldName: variable 0
@@ -1857,7 +1857,7 @@ MonoBehaviour:
     values:
     - _fieldName: output
       _node: {fileID: 8743951963332217934}
-      _typeQualifiedName: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral,
+      _typeQualifiedName: System.String, mscorlib, Version=4.0.0.0, Culture=neutral,
         PublicKeyToken=b77a5c561934e089
       connections:
       - fieldName: variable 0
